@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+FMLCorePluginContainsFMLMod: true
+FMLAT: sciencenotleisure_at.cfg
+FMLCorePlugin: com.science.gtnl.asm.GTNLEarlyCoreMod

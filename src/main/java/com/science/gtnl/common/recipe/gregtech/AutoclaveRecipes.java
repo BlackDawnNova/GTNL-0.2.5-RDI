@@ -1,0 +1,131 @@
+package com.science.gtnl.common.recipe.gregtech;
+
+import static gregtech.api.util.GTRecipeBuilder.SECONDS;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+
+import com.science.gtnl.api.IRecipePool;
+import com.science.gtnl.common.material.GTNLMaterials;
+import com.science.gtnl.config.MainConfig;
+import com.science.gtnl.utils.recipes.RecipeBuilder;
+
+import gregtech.api.enums.ItemList;
+import gregtech.api.enums.Materials;
+import gregtech.api.enums.MaterialsGTNH;
+import gregtech.api.enums.Mods;
+import gregtech.api.enums.OrePrefixes;
+import gregtech.api.enums.TierEU;
+import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMaps;
+import gregtech.api.util.GTModHandler;
+import gregtech.api.util.GTOreDictUnificator;
+import gregtech.common.items.CombType;
+import gregtech.loaders.misc.GTBees;
+import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList;
+
+public class AutoclaveRecipes implements IRecipePool {
+
+    public RecipeMap<?> AR = RecipeMaps.autoclaveRecipes;
+    static ItemStack missing = new ItemStack(Blocks.fire);
+
+    @Override
+    public void loadRecipes() {
+
+        RecipeBuilder.builder()
+            .itemInputs(GTOreDictUnificator.get(OrePrefixes.dust, Materials.Carbon, 16))
+            .fluidInputs(GTNLMaterials.Polyetheretherketone.getMolten(9))
+            .itemOutputs(GTModHandler.getModItem(Mods.IndustrialCraft2.ID, "itemPartCarbonFibre", 64))
+            .outputChances(10000)
+            .duration(60)
+            .eut(TierEU.RECIPE_IV)
+            .addTo(AR);
+
+        // 海晶石 蒸馏水配方
+        RecipeBuilder.builder()
+            .itemInputs(
+                GregtechItemList.RedAlgaeBiomass.get(32),
+                GTOreDictUnificator.get(OrePrefixes.dust, Materials.CertusQuartz, 32))
+            .fluidInputs(GTModHandler.getDistilledWater(8000))
+            .itemOutputs(GTOreDictUnificator.get(OrePrefixes.shard, MaterialsGTNH.Prismarine, 16))
+            .duration(300)
+            .eut(TierEU.RECIPE_IV)
+            .addTo(AR);
+
+        RecipeBuilder.builder()
+            .itemInputs(GTOreDictUnificator.get(OrePrefixes.gem, Materials.Sapphire, 64))
+            .fluidInputs(Materials.Enderium.getMolten(9216))
+            .itemOutputs(GTModHandler.getModItem(Mods.EnderIO.ID, "itemMaterial", 64, 8))
+            .duration(2400)
+            .eut(TierEU.RECIPE_IV)
+            .addTo(AR);
+
+        RecipeBuilder.builder()
+            .itemInputs(GTOreDictUnificator.get(OrePrefixes.gem, Materials.Olivine, 64))
+            .fluidInputs(Materials.VividAlloy.getMolten(9216))
+            .itemOutputs(GTModHandler.getModItem(Mods.EnderIO.ID, "itemMaterial", 64, 9))
+            .duration(2400)
+            .eut(TierEU.RECIPE_IV)
+            .addTo(AR);
+
+        RecipeBuilder.builder()
+            .itemInputs(GTOreDictUnificator.get(OrePrefixes.gem, Materials.GreenSapphire, 64))
+            .fluidInputs(Materials.EnergeticSilver.getMolten(9216))
+            .itemOutputs(GTModHandler.getModItem(Mods.EnderIO.ID, "itemMaterial", 64, 13))
+            .duration(2400)
+            .eut(TierEU.RECIPE_IV)
+            .addTo(AR);
+
+        RecipeBuilder.builder()
+            .itemInputs(
+                GregtechItemList.RedAlgaeBiomass.get(32),
+                GTOreDictUnificator.get(OrePrefixes.dust, Materials.CertusQuartz, 32))
+            .fluidInputs(Materials.Grade2PurifiedWater.getFluid(8000))
+            .itemOutputs(GTOreDictUnificator.get(OrePrefixes.shard, MaterialsGTNH.Prismarine, 64))
+            .duration(300)
+            .eut(TierEU.RECIPE_LuV)
+            .addTo(AR);
+
+        if (MainConfig.recipe.enableDeleteRecipe) loadDeleteRecipe();
+    }
+
+    public void loadDeleteRecipe() {
+
+        // 下界合金碎片种子配方移除概率
+        RecipeBuilder.builder()
+            .setNEIDesc("Remove Change by GTNotLeisure")
+            .itemInputs(ItemList.Hot_Netherite_Scrap.get(2))
+            .fluidInputs(Materials.RichNetherWaste.getFluid(2_000))
+            .itemOutputs(
+                ItemList.Netherite_Scrap_Seed.get(1),
+                GTModHandler.getModItem(Mods.EtFuturumRequiem.ID, "netherite_scrap", 2))
+            .duration(300)
+            .eut(TierEU.RECIPE_IV)
+            .addTo(AR);
+
+        // 海晶石 1级水配方 输出x2
+        RecipeBuilder.builder()
+            .setNEIDesc("Remove Change by GTNotLeisure")
+            .itemInputs(
+                GregtechItemList.RedAlgaeBiomass.get(32),
+                GTOreDictUnificator.get(OrePrefixes.dust, Materials.CertusQuartz, 32))
+            .fluidInputs(Materials.Grade1PurifiedWater.getFluid(8000))
+            .itemOutputs(GTOreDictUnificator.get(OrePrefixes.shard, MaterialsGTNH.Prismarine, 32))
+            .duration(300)
+            .eut(TierEU.RECIPE_LuV)
+            .addTo(AR);
+
+        if (Mods.Forestry.isModLoaded()) {
+            RecipeBuilder.builder() // Prismarine + Comb
+                .setNEIDesc("Remove Change by GTNotLeisure")
+                .itemInputs(
+                    GregtechItemList.RedAlgaeBiomass.get(32),
+                    GTBees.combs.getStackForType(CombType.PRISMATIC, 32))
+                .fluidInputs(Materials.Grade1PurifiedWater.getFluid(8000))
+                .itemOutputs(GTOreDictUnificator.get(OrePrefixes.shard, MaterialsGTNH.Prismarine, 32))
+                .duration(15 * SECONDS)
+                .eut(TierEU.RECIPE_LuV)
+                .addTo(AR);
+        }
+    }
+}

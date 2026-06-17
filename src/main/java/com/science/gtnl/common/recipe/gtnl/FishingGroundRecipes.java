@@ -1,0 +1,409 @@
+package com.science.gtnl.common.recipe.gtnl;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+
+import com.dreammaster.item.NHItemList;
+import com.science.gtnl.api.IRecipePool;
+import com.science.gtnl.common.material.GTNLRecipeMaps;
+import com.science.gtnl.utils.item.ItemUtils;
+import com.science.gtnl.utils.recipes.RecipeBuilder;
+
+import cpw.mods.fml.common.Optional;
+import gregtech.api.enums.ItemList;
+import gregtech.api.enums.Materials;
+import gregtech.api.enums.Mods;
+import gregtech.api.enums.OrePrefixes;
+import gregtech.api.enums.TierEU;
+import gregtech.api.recipe.RecipeMap;
+import gregtech.api.util.GTModHandler;
+import gregtech.api.util.GTOreDictUnificator;
+import gregtech.api.util.GTUtility;
+import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList;
+
+public class FishingGroundRecipes implements IRecipePool {
+
+    public RecipeMap<?> FGR = GTNLRecipeMaps.FishingGroundRecipes;
+
+    @Override
+    public void loadRecipes() {
+
+        RecipeBuilder.builder()
+            .itemInputs(GTUtility.getIntegratedCircuit(1), new ItemStack(Items.fishing_rod, 0))
+            .itemOutputs(
+                new ItemStack(Items.fish, 16, 0),
+                new ItemStack(Items.fish, 16, 1),
+                new ItemStack(Items.fish, 16, 2),
+                new ItemStack(Items.fish, 8, 3))
+            .fluidInputs(FluidRegistry.getFluidStack("water", 10000))
+            .outputChances(2500, 2500, 2500, 1000)
+            .duration(200)
+            .eut(TierEU.RECIPE_MV)
+            .addTo(FGR);
+
+        RecipeBuilder.builder()
+            .itemInputs(
+                GTUtility.getIntegratedCircuit(2),
+                new ItemStack(Items.fishing_rod, 0),
+                GTOreDictUnificator.get(OrePrefixes.dust, Materials.MeatRaw, 16L))
+            .itemOutputs(
+                new ItemStack(Items.fish, 32, 0),
+                new ItemStack(Items.fish, 32, 1),
+                new ItemStack(Items.fish, 32, 2),
+                new ItemStack(Items.fish, 16, 3))
+            .fluidInputs(FluidRegistry.getFluidStack("water", 10000))
+            .outputChances(7500, 7500, 7500, 5000)
+            .duration(200)
+            .eut(TierEU.RECIPE_MV)
+            .addTo(FGR);
+
+        RecipeBuilder.builder()
+            .itemInputs(
+                GTUtility.getIntegratedCircuit(3),
+                new ItemStack(Items.fishing_rod, 0),
+                GTOreDictUnificator.get(OrePrefixes.dust, Materials.MeatCooked, 16L))
+            .itemOutputs(
+                new ItemStack(Items.fish, 64, 0),
+                new ItemStack(Items.fish, 64, 1),
+                new ItemStack(Items.fish, 64, 2),
+                new ItemStack(Items.fish, 64, 3))
+            .fluidInputs(FluidRegistry.getFluidStack("water", 10000))
+            .outputChances(9000, 9000, 9000, 9000)
+            .duration(200)
+            .eut(TierEU.RECIPE_MV)
+            .addTo(FGR);
+
+        RecipeBuilder.builder()
+            .itemInputs(GTUtility.getIntegratedCircuit(7), ItemList.ActivatedCarbonFilterMesh.get(1))
+            .itemOutputs(
+                new ItemStack(Items.rotten_flesh, 16),
+                new ItemStack(Items.bone, 16),
+                new ItemStack(Items.stick, 16),
+                new ItemStack(Items.string, 16),
+                new ItemStack(Items.dye, 16, 0),
+                new ItemStack(Items.feather, 12),
+                new ItemStack(Items.gunpowder, 12),
+                GTOreDictUnificator.get(OrePrefixes.dust, Materials.Stone, 12L),
+                new ItemStack(Blocks.tripwire_hook, 6),
+                new ItemStack(Items.bowl, 6),
+                new ItemStack(Items.leather, 6),
+                new ItemStack(Items.book, 4),
+                new ItemStack(Items.fishing_rod, 1),
+                new ItemStack(Items.bow, 1),
+                new ItemStack(Items.leather_boots, 1),
+                new ItemStack(Items.name_tag, 1),
+                new ItemStack(Items.potionitem, 1, 0),
+                GTOreDictUnificator.get(OrePrefixes.dust, Materials.Iron, 4L),
+                GTOreDictUnificator.get(OrePrefixes.dust, Materials.Manganese, 4L),
+                GTOreDictUnificator.get(OrePrefixes.dust, Materials.Sulfur, 4L),
+                GTOreDictUnificator.get(OrePrefixes.dust, Materials.QuartzSand, 4L),
+                new ItemStack(Items.clay_ball, 4),
+                new ItemStack(Items.coal, 4, 0),
+                new ItemStack(Items.sugar, 4),
+                new ItemStack(Items.redstone, 4),
+                new ItemStack(Items.dye, 4, 4),
+                GTOreDictUnificator.get(OrePrefixes.nugget, Materials.PolyvinylChloride, 2L),
+                new ItemStack(Items.gold_nugget, 2),
+                new ItemStack(Items.diamond, 1),
+                new ItemStack(Items.emerald, 1),
+                new ItemStack(Items.golden_apple, 1),
+                ItemUtils.getItemStack(ItemList.ZPM.get(1), "{GT.ItemCharge:2000000000000L}", null))
+            .fluidInputs(FluidRegistry.getFluidStack("water", 10000))
+            .outputChances(
+                8000,
+                8000,
+                8000,
+                8000,
+                8000,
+                7500,
+                7500,
+                7500,
+                6000,
+                6000,
+                5500,
+                5000,
+                3000,
+                3000,
+                3000,
+                1500,
+                3000,
+                4000,
+                4000,
+                4000,
+                4000,
+                4000,
+                3500,
+                4000,
+                3000,
+                3500,
+                2000,
+                2500,
+                500,
+                500,
+                100,
+                1)
+            .duration(400)
+            .eut(TierEU.RECIPE_EV)
+            .addTo(FGR);
+
+        RecipeBuilder.builder()
+            .itemInputs(
+                GTUtility.getIntegratedCircuit(8),
+                GTUtility.copyAmount(0, ItemList.ActivatedCarbonFilterMesh.get(1)))
+            .itemOutputs(
+                new ItemStack(Blocks.waterlily, 32),
+                new ItemStack(Blocks.vine, 32),
+                GTModHandler.getModItem(Mods.TwilightForest.ID, "tile.HugeLilyPad", 32),
+                GTModHandler.getModItem(Mods.BiomesOPlenty.ID, "lilyBop", 32, 0),
+                GTModHandler.getModItem(Mods.BiomesOPlenty.ID, "lilyBop", 32, 1),
+                GTModHandler.getModItem(Mods.BiomesOPlenty.ID, "lilyBop", 32, 2),
+                GTModHandler.getModItem(Mods.BiomesOPlenty.ID, "coral1", 16, 12),
+                GTModHandler.getModItem(Mods.BiomesOPlenty.ID, "coral1", 16, 13),
+                GTModHandler.getModItem(Mods.BiomesOPlenty.ID, "coral1", 16, 14),
+                GTModHandler.getModItem(Mods.BiomesOPlenty.ID, "coral1", 16, 15),
+                GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "seaweedItem", 64),
+                GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "waterchestnutItem", 16),
+                GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "riceItem", 16),
+                GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "cranberryItem", 16))
+            .fluidInputs(FluidRegistry.getFluidStack("water", 10000))
+            .outputChances(6000, 6000, 3000, 4000, 4000, 4000, 2500, 2500, 2500, 2500, 7500, 5000, 5000, 5000)
+            .duration(500)
+            .eut(TierEU.RECIPE_EV)
+            .addTo(FGR);
+
+        RecipeBuilder.builder()
+            .itemInputs(
+                GTUtility.getIntegratedCircuit(10),
+                GTOreDictUnificator.get(OrePrefixes.dust, Materials.Mytryl, 32L),
+                GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "seaweedItem", 64))
+            .itemOutputs(
+                GTModHandler.getModItem(Mods.GalaxySpace.ID, "tcetiedandelions", 64, 0),
+                GTModHandler.getModItem(Mods.GalaxySpace.ID, "tcetiedandelions", 64, 1),
+                GTModHandler.getModItem(Mods.GalaxySpace.ID, "tcetiedandelions", 64, 2),
+                GTModHandler.getModItem(Mods.GalaxySpace.ID, "tcetiedandelions", 64, 3),
+                GTModHandler.getModItem(Mods.GalaxySpace.ID, "tcetiedandelions", 64, 4),
+                GTModHandler.getModItem(Mods.GalaxySpace.ID, "tcetiedandelions", 64, 5))
+            .fluidInputs(FluidRegistry.getFluidStack("unknownnutrientagar", 1000))
+            .duration(1000)
+            .eut(TierEU.RECIPE_LuV)
+            .addTo(FGR);
+
+        if (Mods.PamsHarvestCraft.isModLoaded()) {
+
+            RecipeBuilder.builder()
+                .itemInputs(GTUtility.getIntegratedCircuit(4), new ItemStack(Items.fishing_rod, 0))
+                .itemOutputs(
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "anchovyrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "bassrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "calamarirawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "carprawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "catfishrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "charrrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "clamrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "crabrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "crayfishrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "eelrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "frograwItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "greenheartfishItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "grouperrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "herringrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "jellyfishrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "mudfishrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "octopusrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "perchrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "scalloprawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "shrimprawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "snailrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "snapperrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "tilapiarawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "troutrawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "tunarawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "turtlerawItem", 16),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "walleyerawItem", 16))
+                .fluidInputs(FluidRegistry.getFluidStack("water", 10000))
+                .outputChances(
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500,
+                    2500)
+                .duration(300)
+                .eut(TierEU.RECIPE_HV)
+                .addTo(FGR);
+
+            RecipeBuilder.builder()
+                .itemInputs(
+                    GTUtility.getIntegratedCircuit(5),
+                    new ItemStack(Items.fishing_rod, 0),
+                    GTOreDictUnificator.get(OrePrefixes.dust, Materials.MeatRaw, 16L))
+                .itemOutputs(
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "anchovyrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "bassrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "calamarirawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "carprawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "catfishrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "charrrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "clamrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "crabrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "crayfishrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "eelrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "frograwItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "greenheartfishItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "grouperrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "herringrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "jellyfishrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "mudfishrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "octopusrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "perchrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "scalloprawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "shrimprawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "snailrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "snapperrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "tilapiarawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "troutrawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "tunarawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "turtlerawItem", 32),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "walleyerawItem", 32))
+                .fluidInputs(FluidRegistry.getFluidStack("water", 10000))
+                .outputChances(
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500,
+                    7500)
+                .duration(300)
+                .eut(TierEU.RECIPE_HV)
+                .addTo(FGR);
+
+            RecipeBuilder.builder()
+                .itemInputs(
+                    GTUtility.getIntegratedCircuit(6),
+                    new ItemStack(Items.fishing_rod, 0),
+                    GTOreDictUnificator.get(OrePrefixes.dust, Materials.MeatCooked, 16L))
+                .itemOutputs(
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "anchovyrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "bassrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "calamarirawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "carprawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "catfishrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "charrrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "clamrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "crabrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "crayfishrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "eelrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "frograwItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "greenheartfishItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "grouperrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "herringrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "jellyfishrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "mudfishrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "octopusrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "perchrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "scalloprawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "shrimprawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "snailrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "snapperrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "tilapiarawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "troutrawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "tunarawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "turtlerawItem", 64),
+                    GTModHandler.getModItem(Mods.PamsHarvestCraft.ID, "walleyerawItem", 64))
+                .fluidInputs(FluidRegistry.getFluidStack("water", 10000))
+                .outputChances(
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000,
+                    9000)
+                .duration(300)
+                .eut(TierEU.RECIPE_HV)
+                .addTo(FGR);
+
+            if (Mods.NewHorizonsCoreMod.isModLoaded()) loadNHRecipe();
+        }
+    }
+
+    @Optional.Method(modid = "dreamcraft")
+    public void loadNHRecipe() {
+        RecipeBuilder.builder()
+            .itemInputs(GTUtility.getIntegratedCircuit(9), NHItemList.MaceratedPlantmass.getIS(16))
+            .itemOutputs(
+                GregtechItemList.AlgaeBiomass.get(64),
+                GregtechItemList.GreenAlgaeBiomass.get(64),
+                GregtechItemList.BrownAlgaeBiomass.get(64),
+                GregtechItemList.GoldenBrownAlgaeBiomass.get(64),
+                GregtechItemList.RedAlgaeBiomass.get(64))
+            .fluidInputs(FluidRegistry.getFluidStack("water", 10000))
+            .duration(200)
+            .eut(TierEU.RECIPE_EV)
+            .addTo(FGR);
+    }
+}

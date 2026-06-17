@@ -1,0 +1,2206 @@
+package com.science.gtnl.common.machine.multiblock.module.eternalGregTechWorkshop;
+
+import static com.science.gtnl.ScienceNotLeisure.RESOURCE_ROOT_ID;
+import static gregtech.api.metatileentity.BaseTileEntity.TOOLTIP_DELAY;
+import static gregtech.api.util.GTRecipeBuilder.SECONDS;
+import static gregtech.common.misc.WirelessNetworkManager.addEUToGlobalEnergyMap;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.FluidStack;
+
+import org.jetbrains.annotations.NotNull;
+
+import com.google.common.math.LongMath;
+import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
+import com.gtnewhorizon.structurelib.structure.ISurvivalBuildEnvironment;
+import com.gtnewhorizon.structurelib.structure.StructureDefinition;
+import com.gtnewhorizon.structurelib.structure.StructureUtility;
+import com.gtnewhorizons.modularui.api.ModularUITextures;
+import com.gtnewhorizons.modularui.api.drawable.IDrawable;
+import com.gtnewhorizons.modularui.api.drawable.Text;
+import com.gtnewhorizons.modularui.api.drawable.UITexture;
+import com.gtnewhorizons.modularui.api.forge.ItemStackHandler;
+import com.gtnewhorizons.modularui.api.math.Alignment;
+import com.gtnewhorizons.modularui.api.math.Color;
+import com.gtnewhorizons.modularui.api.math.Pos2d;
+import com.gtnewhorizons.modularui.api.math.Size;
+import com.gtnewhorizons.modularui.api.screen.ModularWindow;
+import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
+import com.gtnewhorizons.modularui.api.widget.IWidgetBuilder;
+import com.gtnewhorizons.modularui.api.widget.Widget;
+import com.gtnewhorizons.modularui.common.widget.ButtonWidget;
+import com.gtnewhorizons.modularui.common.widget.DrawableWidget;
+import com.gtnewhorizons.modularui.common.widget.FakeSyncWidget;
+import com.gtnewhorizons.modularui.common.widget.FluidNameHolderWidget;
+import com.gtnewhorizons.modularui.common.widget.MultiChildWidget;
+import com.gtnewhorizons.modularui.common.widget.ProgressBar;
+import com.gtnewhorizons.modularui.common.widget.Scrollable;
+import com.gtnewhorizons.modularui.common.widget.SlotGroup;
+import com.gtnewhorizons.modularui.common.widget.TextWidget;
+import com.gtnewhorizons.modularui.common.widget.textfield.NumericWidget;
+import com.science.gtnl.common.block.blocks.BlockEternalGregTechWorkshopRender;
+import com.science.gtnl.common.block.blocks.tile.TileEntityEternalGregTechWorkshop;
+import com.science.gtnl.common.machine.multiMachineBase.MultiMachineBase;
+import com.science.gtnl.common.machine.multiblock.module.eternalGregTechWorkshop.util.EGTWUpgradeStorage;
+import com.science.gtnl.common.machine.multiblock.module.eternalGregTechWorkshop.util.EternalGregTechWorkshopUI;
+import com.science.gtnl.common.machine.multiblock.module.eternalGregTechWorkshop.util.EternalGregTechWorkshopUpgrade;
+import com.science.gtnl.common.machine.multiblock.module.eternalGregTechWorkshop.util.UpgradeColor;
+import com.science.gtnl.common.material.GTNLRecipeMaps;
+import com.science.gtnl.config.MainConfig;
+import com.science.gtnl.loader.BlockLoader;
+import com.science.gtnl.utils.StructureUtils;
+import com.science.gtnl.utils.enums.BlockIcons;
+
+import bartworks.common.loaders.ItemRegistry;
+import goodgenerator.loader.Loaders;
+import gregtech.api.GregTechAPI;
+import gregtech.api.enums.HatchElement;
+import gregtech.api.enums.Materials;
+import gregtech.api.enums.MaterialsUEVplus;
+import gregtech.api.enums.SoundResource;
+import gregtech.api.enums.Textures;
+import gregtech.api.gui.modularui.GTUITextures;
+import gregtech.api.interfaces.IHatchElement;
+import gregtech.api.interfaces.INEIPreviewModifier;
+import gregtech.api.interfaces.ITexture;
+import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
+import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.implementations.MTEHatchInput;
+import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.check.CheckRecipeResult;
+import gregtech.api.recipe.check.CheckRecipeResultRegistry;
+import gregtech.api.render.TextureFactory;
+import gregtech.api.util.GTStructureUtility;
+import gregtech.api.util.GTUtility;
+import gregtech.api.util.HatchElementBuilder;
+import gregtech.api.util.IGTHatchAdder;
+import gregtech.api.util.MultiblockTooltipBuilder;
+import gregtech.common.misc.GTStructureChannels;
+import gtPlusPlus.core.block.ModBlocks;
+import lombok.Setter;
+import tectech.TecTech;
+import tectech.thing.casing.TTCasingsContainer;
+import tectech.thing.gui.TecTechUITextures;
+import tectech.thing.metaTileEntity.multi.godforge.util.MilestoneFormatter;
+import tectech.thing.metaTileEntity.multi.godforge.util.MilestoneIcon;
+
+public class EternalGregTechWorkshop extends MultiMachineBase<EternalGregTechWorkshop> implements INEIPreviewModifier {
+
+    // 75 x 19 x 75
+    private static final String STRUCTURE_PIECE_MAIN_TOP = "main_top";
+    private static final int HORIZONTAL_OFF_SET_TOP = 37;
+    private static final int VERTICAL_OFF_SET_TOP = 46;
+    private static final int DEPTH_OFF_SET_TOP = 11;
+
+    // 53 x 22 x 53
+    private static final String STRUCTURE_PIECE_MAIN_UP = "main_up";
+    private static final int HORIZONTAL_OFF_SET_UP = 26;
+    private static final int VERTICAL_OFF_SET_UP = 27;
+    private static final int DEPTH_OFF_SET_UP = 0;
+
+    // 53 x 11 x 53
+    private static final String STRUCTURE_PIECE_MAIN = "main";
+    private static final int HORIZONTAL_OFF_SET = 26;
+    private static final int VERTICAL_OFF_SET = 5;
+    private static final int DEPTH_OFF_SET = 1;
+
+    // 53 x 22 x 53
+    private static final String STRUCTURE_PIECE_MAIN_DOWN = "main_down";
+    private static final int HORIZONTAL_OFF_SET_DOWN = 26;
+    private static final int VERTICAL_OFF_SET_DOWN = -6;
+    private static final int DEPTH_OFF_SET_DOWN = 0;
+
+    // 75 x 22 x 75
+    private static final String STRUCTURE_PIECE_MAIN_BOTTOM = "main_bottom";
+    private static final int HORIZONTAL_OFF_SET_BOTTOM = 37;
+    private static final int VERTICAL_OFF_SET_BOTTOM = -28;
+    private static final int DEPTH_OFF_SET_BOTTOM = 11;
+
+    // 63 x 7 x 63
+    private static final String STRUCTURE_PIECE_MAIN_EXTRA = "main_extra";
+    private static final String STRUCTURE_PIECE_MAIN_EXTRA_AIR = "main_extra_air";
+    private static final int HORIZONTAL_OFF_SET_EXTRA = 31;
+    private static final int VERTICAL_OFF_SET_EXTRA_UP = 14;
+    private static final int VERTICAL_OFF_SET_EXTRA_DOWN = -8;
+    private static final int DEPTH_OFF_SET_EXTRA = 5;
+
+    private static final String EGTWT_STRUCTURE_FILE_PATH = RESOURCE_ROOT_ID + ":"
+        + "multiblock/eternal_gregTech_workshop/top";
+    private static final String EGTWU_STRUCTURE_FILE_PATH = RESOURCE_ROOT_ID + ":"
+        + "multiblock/eternal_gregTech_workshop/up";
+    private static final String EGTWC_STRUCTURE_FILE_PATH = RESOURCE_ROOT_ID + ":"
+        + "multiblock/eternal_gregTech_workshop/center";
+    private static final String EGTWD_STRUCTURE_FILE_PATH = RESOURCE_ROOT_ID + ":"
+        + "multiblock/eternal_gregTech_workshop/down";
+    private static final String EGTWB_STRUCTURE_FILE_PATH = RESOURCE_ROOT_ID + ":"
+        + "multiblock/eternal_gregTech_workshop/bottom";
+    private static final String EGTWE_STRUCTURE_FILE_PATH = RESOURCE_ROOT_ID + ":"
+        + "multiblock/eternal_gregTech_workshop/extra";
+    private static final String[][] shapeTop = StructureUtils.readStructureFromFile(EGTWT_STRUCTURE_FILE_PATH);
+    private static final String[][] shapeUp = StructureUtils.readStructureFromFile(EGTWU_STRUCTURE_FILE_PATH);
+    private static final String[][] shape = StructureUtils.readStructureFromFile(EGTWC_STRUCTURE_FILE_PATH);
+    private static final String[][] shapeDown = StructureUtils.readStructureFromFile(EGTWD_STRUCTURE_FILE_PATH);
+    private static final String[][] shapeBottom = StructureUtils.readStructureFromFile(EGTWB_STRUCTURE_FILE_PATH);
+    public static final String[][] shapeExtra = StructureUtils.readStructureFromFile(EGTWE_STRUCTURE_FILE_PATH);
+    private static final String[][] shapeExtraAir = StructureUtils.replaceLetters(shapeExtra, "a");
+
+    public int mHeatingCapacity = 0;
+    public int mMachineTier = 0;
+    public int mModuleTier = 1;
+    public long mMaxUseEUt = 0;
+    public double mEUtDiscount = 1;
+    public double mSpeedBoost = 1;
+    public UUID ownerUUID;
+    public boolean mExtraModule;
+    @Setter
+    public boolean enableExtraModule;
+    public boolean secretUpgrade;
+    public boolean enableRender = true;
+    public boolean isRenderActive;
+
+    public static final MilestoneFormatter DEFAULT_FORMATTING_MODE = MilestoneFormatter.COMMA;
+    public static final BigInteger DEFAULT_TOTAL_POWER = BigInteger.ZERO;
+    public static final int DEFAULT_FUEL_CONSUMPTION_FACTOR = 1;
+
+    public static final long POWER_MILESTONE_CONSTANT = LongMath.pow(10, 15);
+    public static final long RECIPE_MILESTONE_CONSTANT = LongMath.pow(10, 7);
+    public static final long FUEL_MILESTONE_CONSTANT = 10_000;
+    public static final double POWER_LOG_CONSTANT = Math.log(9);
+    public static final double RECIPE_LOG_CONSTANT = Math.log(4);
+    public static final double FUEL_LOG_CONSTANT = Math.log(3);
+
+    public ItemStack[] storedUpgradeWindowItems = new ItemStack[16];
+    public ItemStackHandler inputSlotHandler = new ItemStackHandler(16);
+
+    public BigInteger totalPowerConsumed = DEFAULT_TOTAL_POWER;
+    public long totalRecipesProcessed;
+    public long totalFuelConsumed;
+    public float totalExtensionsBuilt;
+
+    public long fuelConsumption;
+
+    public int fuelConsumptionFactor = DEFAULT_FUEL_CONSUMPTION_FACTOR;
+    public int selectedFuelType;
+
+    public int gravitonShardsAvailable = 0;
+    public int gravitonShardsSpent;
+    public boolean gravitonShardEjection;
+
+    public float powerMilestonePercentage;
+    public float recipeMilestonePercentage;
+    public float fuelMilestonePercentage;
+    public float structureMilestonePercentage;
+
+    public MilestoneFormatter formattingMode = DEFAULT_FORMATTING_MODE;
+
+    public EGTWUpgradeStorage upgrades = new EGTWUpgradeStorage();
+    public EternalGregTechWorkshopUpgrade currentUpgradeWindow;
+
+    public ArrayList<EternalGregTechWorkshopModule> moduleHatches = new ArrayList<>();
+
+    public EternalGregTechWorkshop(String aName) {
+        super(aName);
+    }
+
+    public EternalGregTechWorkshop(int aID, String aName, String aNameRegional) {
+        super(aID, aName, aNameRegional);
+    }
+
+    @Override
+    public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
+        return new EternalGregTechWorkshop(this.mName);
+    }
+
+    @Override
+    public void setItemNBT(NBTTagCompound aNBT) {
+        saveGeneralNBT(aNBT, false);
+
+        super.saveNBTData(aNBT);
+    }
+
+    @Override
+    public void saveNBTData(NBTTagCompound aNBT) {
+        super.saveNBTData(aNBT);
+        // Upgrade window stored items
+        NBTTagCompound upgradeWindowStorageNBTTag = new NBTTagCompound();
+        int storageIndex = 0;
+        for (ItemStack itemStack : inputSlotHandler.getStacks()) {
+            if (itemStack != null) {
+                upgradeWindowStorageNBTTag
+                    .setInteger(storageIndex + "stacksizeOfStoredUpgradeItems", itemStack.stackSize);
+                aNBT.setTag(storageIndex + "storedUpgradeItem", itemStack.writeToNBT(new NBTTagCompound()));
+            }
+            storageIndex++;
+        }
+        aNBT.setTag("upgradeWindowStorage", upgradeWindowStorageNBTTag);
+
+        saveGeneralNBT(aNBT, true);
+        aNBT.setInteger("mMachineTier", mMachineTier);
+        aNBT.setBoolean("enableExtraModule", enableExtraModule);
+        aNBT.setBoolean("mExtraModule", mExtraModule);
+        aNBT.setBoolean("isRenderActive", isRenderActive);
+        aNBT.setBoolean("enableRender", enableRender);
+    }
+
+    @Override
+    public void loadNBTData(final NBTTagCompound aNBT) {
+        super.loadNBTData(aNBT);
+        mMachineTier = aNBT.getInteger("mMachineTier");
+        mModuleTier = aNBT.getInteger("mModuleTier");
+        enableExtraModule = aNBT.getBoolean("enableExtraModule");
+        mExtraModule = aNBT.getBoolean("mExtraModule");
+        gravitonShardsSpent = aNBT.getInteger("gravitonShardsSpent");
+        isRenderActive = aNBT.getBoolean("isRenderActive");
+        if (aNBT.hasKey("enableRender")) enableRender = aNBT.getBoolean("enableRender");
+
+        if (aNBT.hasKey("totalPowerConsumed")) {
+            totalPowerConsumed = new BigInteger(aNBT.getByteArray("totalPowerConsumed"));
+        }
+        if (aNBT.hasKey("formattingMode")) {
+            int index = MathHelper.clamp_int(aNBT.getInteger("formattingMode"), 0, MilestoneFormatter.VALUES.length);
+            formattingMode = MilestoneFormatter.VALUES[index];
+        }
+
+        // Stored items
+        NBTTagCompound tempItemTag = aNBT.getCompoundTag("upgradeWindowStorage");
+        for (int index = 0; index < 16; index++) {
+            int stackSize = tempItemTag.getInteger(index + "stacksizeOfStoredUpgradeItems");
+            ItemStack itemStack = ItemStack.loadItemStackFromNBT(aNBT.getCompoundTag(index + "storedUpgradeItem"));
+            if (itemStack != null) {
+                storedUpgradeWindowItems[index] = itemStack.splitStack(stackSize);
+            }
+        }
+
+        upgrades.rebuildFromNBT(aNBT);
+    }
+
+    public void saveGeneralNBT(NBTTagCompound NBT, boolean force) {
+        if (force || mModuleTier != 0) NBT.setInteger("mModuleTier", mModuleTier);
+        if (force || gravitonShardsSpent != 0) NBT.setInteger("gravitonShardsSpent", gravitonShardsSpent);
+        if (force || gravitonShardsAvailable != 0) NBT.setInteger("gravitonShardsAvailable", gravitonShardsAvailable);
+        if (force || secretUpgrade) NBT.setBoolean("secretUpgrade", secretUpgrade);
+
+        if (force || gravitonShardsAvailable != 0) NBT.setInteger("gravitonShardsAvailable", gravitonShardsAvailable);
+        if (force || gravitonShardsSpent != 0) NBT.setInteger("gravitonShardsSpent", gravitonShardsSpent);
+        if (force || totalRecipesProcessed != 0) NBT.setLong("totalRecipesProcessed", totalRecipesProcessed);
+        if (force || totalFuelConsumed != 0) NBT.setLong("totalFuelConsumed", totalFuelConsumed);
+        if (force || gravitonShardEjection) NBT.setBoolean("gravitonShardEjection", gravitonShardEjection);
+        if (force || secretUpgrade) NBT.setBoolean("secretUpgrade", secretUpgrade);
+
+        if (force || !DEFAULT_TOTAL_POWER.equals(totalPowerConsumed)) {
+            NBT.setByteArray("totalPowerConsumed", totalPowerConsumed.toByteArray());
+        }
+        if (force || formattingMode != DEFAULT_FORMATTING_MODE) {
+            NBT.setInteger("formattingMode", formattingMode.ordinal());
+        }
+        upgrades.serializeToNBT(NBT, force);
+    }
+
+    public void addTotalPowerConsumed(BigInteger amount) {
+        totalPowerConsumed = totalPowerConsumed.add(amount);
+    }
+
+    public void addTotalRecipesProcessed(long amount) {
+        totalRecipesProcessed += amount;
+    }
+
+    @Override
+    public boolean onWireCutterRightClick(ForgeDirection side, ForgeDirection wrenchingSide, EntityPlayer aPlayer,
+        float aX, float aY, float aZ, ItemStack aTool) {
+        if (getBaseMetaTileEntity().isServerSide()) {
+            enableRender = !enableRender;
+            GTUtility.sendChatToPlayer(
+                aPlayer,
+                StatCollector.translateToLocal("Info_Render_" + (enableRender ? "Enabled" : "Disabled")));
+            if (!enableRender && isRenderActive) destroyRenderer();
+        }
+        return true;
+    }
+
+    @Override
+    public RecipeMap<?> getRecipeMap() {
+        return GTNLRecipeMaps.EternalGregTechWorkshopUpgradeRecipes;
+    }
+
+    @Override
+    public MultiblockTooltipBuilder createTooltip() {
+        MultiblockTooltipBuilder tt = new MultiblockTooltipBuilder();
+        tt.addMachineType(StatCollector.translateToLocal("EternalGregTechWorkshopRecipeType"))
+            .beginStructureBlock(75, 96, 75, true)
+            .addInputBus(StatCollector.translateToLocal("Tooltip_EternalGregTechWorkshop_Casing"), 1)
+            .addOutputBus(StatCollector.translateToLocal("Tooltip_EternalGregTechWorkshop_Casing"), 1)
+            .addInputHatch(StatCollector.translateToLocal("Tooltip_EternalGregTechWorkshop_Casing"), 1)
+            .addOutputHatch(StatCollector.translateToLocal("Tooltip_EternalGregTechWorkshop_Casing"), 1)
+            .addSubChannelUsage(GTStructureChannels.STRUCTURE_HEIGHT)
+            .toolTipFinisher();
+        return tt;
+    }
+
+    @Override
+    public ITexture[] getTexture(IGregTechTileEntity aBaseMetaTileEntity, ForgeDirection side, ForgeDirection facing,
+        int colorIndex, boolean aActive, boolean aRedstone) {
+        if (side == facing) {
+            if (aActive) return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(getCasingTextureID() + 1),
+                TextureFactory.builder()
+                    .addIcon(BlockIcons.OVERLAY_FRONT_GOD_FORGE_MODULE_ACTIVE)
+                    .extFacing()
+                    .build() };
+            return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(getCasingTextureID() + 1),
+                TextureFactory.builder()
+                    .addIcon(BlockIcons.OVERLAY_FRONT_TECTECH_MULTIBLOCK)
+                    .extFacing()
+                    .build() };
+        }
+        return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(getCasingTextureID() + 1) };
+    }
+
+    @Override
+    public boolean getPerfectOC() {
+        return true;
+    }
+
+    @Override
+    public int getMaxParallelRecipes() {
+        return Integer.MAX_VALUE;
+    }
+
+    @Override
+    public int getCasingTextureID() {
+        return 960;
+    }
+
+    @Override
+    public IStructureDefinition<EternalGregTechWorkshop> getStructureDefinition() {
+        return StructureDefinition.<EternalGregTechWorkshop>builder()
+            .addShape(STRUCTURE_PIECE_MAIN_TOP, StructureUtility.transpose(shapeTop))
+            .addShape(STRUCTURE_PIECE_MAIN_UP, StructureUtility.transpose(shapeUp))
+            .addShape(STRUCTURE_PIECE_MAIN, StructureUtility.transpose(shape))
+            .addShape(STRUCTURE_PIECE_MAIN_DOWN, StructureUtility.transpose(shapeDown))
+            .addShape(STRUCTURE_PIECE_MAIN_BOTTOM, StructureUtility.transpose(shapeBottom))
+            .addShape(STRUCTURE_PIECE_MAIN_EXTRA, StructureUtility.transpose(shapeExtra))
+            .addShape(STRUCTURE_PIECE_MAIN_EXTRA_AIR, StructureUtility.transpose(shapeExtraAir))
+            .addElement('A', StructureUtility.ofBlock(TTCasingsContainer.GodforgeCasings, 0))
+            .addElement('B', StructureUtility.ofBlock(Loaders.componentAssemblylineCasing, 12))
+            .addElement('C', StructureUtility.ofBlock(GregTechAPI.sBlockCasings1, 13))
+            .addElement('D', StructureUtility.ofBlock(GregTechAPI.sBlockCasingsSEMotor, 4))
+            .addElement('E', StructureUtility.ofBlock(GregTechAPI.sBlockCasings10, 11))
+            .addElement('F', StructureUtility.ofBlock(GregTechAPI.sBlockCasings9, 12))
+            .addElement('G', StructureUtility.ofBlock(TTCasingsContainer.GodforgeCasings, 1))
+            .addElement('H', StructureUtility.ofBlock(GregTechAPI.sBlockCasings1, 14))
+            .addElement('I', StructureUtility.ofBlock(ModBlocks.blockCasings5Misc, 14))
+            .addElement('J', StructureUtility.ofBlock(GregTechAPI.sBlockCasings9, 14))
+            .addElement('K', GTStructureUtility.ofFrame(Materials.NaquadahAlloy))
+            .addElement('L', StructureUtility.ofBlock(GregTechAPI.sBlockGlass1, 2))
+            .addElement('M', StructureUtility.ofBlock(ItemRegistry.bw_realglas2, 0))
+            .addElement(
+                'N',
+                GTStructureUtility.buildHatchAdder(EternalGregTechWorkshop.class)
+                    .atLeast(
+                        HatchElement.Maintenance,
+                        HatchElement.InputBus,
+                        HatchElement.OutputBus,
+                        HatchElement.InputHatch,
+                        HatchElement.OutputHatch)
+                    .casingIndex(getCasingTextureID() + 1)
+                    .dot(1)
+                    .buildAndChain(
+                        StructureUtility.onElementPass(
+                            x -> ++x.mCountCasing,
+                            StructureUtility.ofBlock(TTCasingsContainer.GodforgeCasings, 1))))
+            .addElement('O', StructureUtility.ofBlock(GregTechAPI.sBlockCasings10, 2))
+            .addElement('P', StructureUtility.ofBlock(TTCasingsContainer.sBlockCasingsBA0, 10))
+            .addElement('Q', StructureUtility.ofBlock(TTCasingsContainer.GodforgeCasings, 7))
+            .addElement('R', StructureUtility.ofBlock(TTCasingsContainer.GodforgeCasings, 4))
+            .addElement('S', StructureUtility.ofBlock(TTCasingsContainer.GodforgeCasings, 8))
+            .addElement('T', StructureUtility.ofBlock(Loaders.gravityStabilizationCasing, 0))
+            .addElement('U', StructureUtility.ofBlock(TTCasingsContainer.SpacetimeCompressionFieldGenerators, 8))
+            .addElement('V', StructureUtility.ofBlock(TTCasingsContainer.TimeAccelerationFieldGenerator, 8))
+            .addElement('W', StructureUtility.ofBlock(TTCasingsContainer.sBlockCasingsBA0, 11))
+            .addElement('X', StructureUtility.ofBlock(TTCasingsContainer.StabilisationFieldGenerators, 8))
+            .addElement(
+                'Y',
+                HatchElementBuilder.<EternalGregTechWorkshop>builder()
+                    .atLeast(EternalGregTechWorkshop.moduleElement.Module)
+                    .casingIndex(getCasingTextureID())
+                    .dot(1)
+                    .buildAndChain(TTCasingsContainer.GodforgeCasings, 0))
+            .addElement(
+                'Z',
+                StructureUtility.ofChain(
+                    StructureUtility.ofBlock(GregTechAPI.sBlockCasings1, 14),
+                    StructureUtility.ofBlock(BlockLoader.eternalGregTechWorkshopRender, 0)))
+            .addElement('a', StructureUtility.isAir())
+            .build();
+    }
+
+    @Override
+    public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
+        mCountCasing = 0;
+        moduleHatches.clear();
+        int checkTier = 0;
+
+        if (!checkPiece(STRUCTURE_PIECE_MAIN, HORIZONTAL_OFF_SET, VERTICAL_OFF_SET, DEPTH_OFF_SET)) {
+            if (isRenderActive) destroyRenderer();
+            mMachineTier = 0;
+            mExtraModule = false;
+            return false;
+        }
+
+        while (checkTier < Integer.MAX_VALUE - 1) {
+            if (!checkPiece(
+                STRUCTURE_PIECE_MAIN_UP,
+                HORIZONTAL_OFF_SET_UP,
+                VERTICAL_OFF_SET_UP + checkTier * 22,
+                DEPTH_OFF_SET_UP)) {
+                break;
+            }
+            if (!checkPiece(
+                STRUCTURE_PIECE_MAIN_DOWN,
+                HORIZONTAL_OFF_SET_DOWN,
+                VERTICAL_OFF_SET_DOWN - checkTier * 22,
+                DEPTH_OFF_SET_DOWN)) {
+                break;
+            }
+            checkTier++;
+        }
+
+        if (!checkPiece(
+            STRUCTURE_PIECE_MAIN_TOP,
+            HORIZONTAL_OFF_SET_TOP,
+            VERTICAL_OFF_SET_TOP + (checkTier - 1) * 22,
+            DEPTH_OFF_SET_TOP)) {
+            if (isRenderActive) destroyRenderer();
+            mMachineTier = 0;
+            mExtraModule = false;
+            return false;
+        }
+
+        if (!checkPiece(
+            STRUCTURE_PIECE_MAIN_BOTTOM,
+            HORIZONTAL_OFF_SET_BOTTOM,
+            VERTICAL_OFF_SET_BOTTOM - (checkTier - 1) * 22,
+            DEPTH_OFF_SET_BOTTOM)) {
+            if (isRenderActive) destroyRenderer();
+            mMachineTier = 0;
+            mExtraModule = false;
+            return false;
+        }
+
+        if (enableExtraModule && checkTier > 0) {
+            for (int i = 0; i < checkTier; i++) {
+                if (isRenderActive) {
+                    if (!checkPiece(
+                        STRUCTURE_PIECE_MAIN_EXTRA_AIR,
+                        HORIZONTAL_OFF_SET_EXTRA,
+                        VERTICAL_OFF_SET_EXTRA_UP + i * 22,
+                        DEPTH_OFF_SET_EXTRA)) {
+                        destroyRenderer();
+                        mExtraModule = false;
+                        break;
+                    }
+                    if (!checkPiece(
+                        STRUCTURE_PIECE_MAIN_EXTRA_AIR,
+                        HORIZONTAL_OFF_SET_EXTRA,
+                        VERTICAL_OFF_SET_EXTRA_DOWN - i * 22,
+                        DEPTH_OFF_SET_EXTRA)) {
+                        mExtraModule = false;
+                        break;
+                    }
+                } else {
+                    if (!checkPiece(
+                        STRUCTURE_PIECE_MAIN_EXTRA,
+                        HORIZONTAL_OFF_SET_EXTRA,
+                        VERTICAL_OFF_SET_EXTRA_UP + i * 22,
+                        DEPTH_OFF_SET_EXTRA)) {
+                        mExtraModule = false;
+                        break;
+                    }
+                    if (!checkPiece(
+                        STRUCTURE_PIECE_MAIN_EXTRA,
+                        HORIZONTAL_OFF_SET_EXTRA,
+                        VERTICAL_OFF_SET_EXTRA_DOWN - i * 22,
+                        DEPTH_OFF_SET_EXTRA)) {
+                        mExtraModule = false;
+                        break;
+                    }
+                }
+                mExtraModule = true;
+            }
+        }
+        mMachineTier = checkTier;
+
+        if (enableExtraModule && !isRenderActive && enableRender && mTotalRunTime > 0) {
+            createRenderer();
+        } else if (!enableExtraModule && isRenderActive) {
+            destroyRenderer();
+            mExtraModule = false;
+        }
+        return mCountCasing > 1;
+    }
+
+    @Override
+    public void onPreviewConstruct(@NotNull ItemStack trigger) {
+        this.buildPiece(STRUCTURE_PIECE_MAIN, trigger, false, HORIZONTAL_OFF_SET, VERTICAL_OFF_SET, DEPTH_OFF_SET);
+
+        int count = GTStructureChannels.STRUCTURE_HEIGHT.getValueClamped(trigger, 1, 64);
+
+        for (int i = 0; i < count; i++) {
+
+            this.buildPiece(
+                STRUCTURE_PIECE_MAIN_UP,
+                trigger,
+                false,
+                HORIZONTAL_OFF_SET_UP,
+                VERTICAL_OFF_SET_UP + i * 22,
+                DEPTH_OFF_SET_UP);
+
+            this.buildPiece(
+                STRUCTURE_PIECE_MAIN_DOWN,
+                trigger,
+                false,
+                HORIZONTAL_OFF_SET_DOWN,
+                VERTICAL_OFF_SET_DOWN - i * 22,
+                DEPTH_OFF_SET_DOWN);
+
+            if (count > 1) {
+                this.buildPiece(
+                    STRUCTURE_PIECE_MAIN_EXTRA,
+                    trigger,
+                    false,
+                    HORIZONTAL_OFF_SET_EXTRA,
+                    VERTICAL_OFF_SET_EXTRA_UP + i * 22,
+                    DEPTH_OFF_SET_EXTRA);
+
+                this.buildPiece(
+                    STRUCTURE_PIECE_MAIN_EXTRA,
+                    trigger,
+                    false,
+                    HORIZONTAL_OFF_SET_EXTRA,
+                    VERTICAL_OFF_SET_EXTRA_DOWN - i * 22,
+                    DEPTH_OFF_SET_EXTRA);
+            }
+        }
+
+        this.buildPiece(
+            STRUCTURE_PIECE_MAIN_TOP,
+            trigger,
+            false,
+            HORIZONTAL_OFF_SET_TOP,
+            VERTICAL_OFF_SET_TOP + (count - 1) * 22,
+            DEPTH_OFF_SET_TOP);
+
+        this.buildPiece(
+            STRUCTURE_PIECE_MAIN_BOTTOM,
+            trigger,
+            false,
+            HORIZONTAL_OFF_SET_BOTTOM,
+            VERTICAL_OFF_SET_BOTTOM - (count - 1) * 22,
+            DEPTH_OFF_SET_BOTTOM);
+    }
+
+    @Override
+    public void construct(ItemStack stackSize, boolean hintsOnly) {
+        int count = GTStructureChannels.STRUCTURE_HEIGHT.getValueClamped(stackSize, 1, 64);
+
+        this.buildPiece(
+            STRUCTURE_PIECE_MAIN,
+            stackSize,
+            hintsOnly,
+            HORIZONTAL_OFF_SET,
+            VERTICAL_OFF_SET,
+            DEPTH_OFF_SET);
+
+        for (int i = 0; i < count; i++) {
+
+            this.buildPiece(
+                STRUCTURE_PIECE_MAIN_UP,
+                stackSize,
+                hintsOnly,
+                HORIZONTAL_OFF_SET_UP,
+                VERTICAL_OFF_SET_UP + i * 22,
+                DEPTH_OFF_SET_UP);
+
+            this.buildPiece(
+                STRUCTURE_PIECE_MAIN_DOWN,
+                stackSize,
+                hintsOnly,
+                HORIZONTAL_OFF_SET_DOWN,
+                VERTICAL_OFF_SET_DOWN - i * 22,
+                DEPTH_OFF_SET_DOWN);
+
+            if (count > 1) {
+                this.buildPiece(
+                    STRUCTURE_PIECE_MAIN_EXTRA,
+                    stackSize,
+                    hintsOnly,
+                    HORIZONTAL_OFF_SET_EXTRA,
+                    VERTICAL_OFF_SET_EXTRA_UP + i * 22,
+                    DEPTH_OFF_SET_EXTRA);
+
+                this.buildPiece(
+                    STRUCTURE_PIECE_MAIN_EXTRA,
+                    stackSize,
+                    hintsOnly,
+                    HORIZONTAL_OFF_SET_EXTRA,
+                    VERTICAL_OFF_SET_EXTRA_DOWN - i * 22,
+                    DEPTH_OFF_SET_EXTRA);
+            }
+        }
+
+        this.buildPiece(
+            STRUCTURE_PIECE_MAIN_TOP,
+            stackSize,
+            hintsOnly,
+            HORIZONTAL_OFF_SET_TOP,
+            VERTICAL_OFF_SET_TOP + (count - 1) * 22,
+            DEPTH_OFF_SET_TOP);
+
+        this.buildPiece(
+            STRUCTURE_PIECE_MAIN_BOTTOM,
+            stackSize,
+            hintsOnly,
+            HORIZONTAL_OFF_SET_BOTTOM,
+            VERTICAL_OFF_SET_BOTTOM - (count - 1) * 22,
+            DEPTH_OFF_SET_BOTTOM);
+    }
+
+    @Override
+    public int survivalConstruct(ItemStack stackSize, int elementBudget, ISurvivalBuildEnvironment env) {
+        int count = GTStructureChannels.STRUCTURE_HEIGHT.getValueClamped(stackSize, 1, 64);
+        int built;
+
+        built = this.survivalBuildPiece(
+            STRUCTURE_PIECE_MAIN,
+            stackSize,
+            HORIZONTAL_OFF_SET,
+            VERTICAL_OFF_SET,
+            DEPTH_OFF_SET,
+            elementBudget,
+            env,
+            false,
+            true);
+
+        if (built >= 0) return built;
+
+        for (int i = 0; i < count; i++) {
+            built = this.survivalBuildPiece(
+                STRUCTURE_PIECE_MAIN_UP,
+                stackSize,
+                HORIZONTAL_OFF_SET_UP,
+                VERTICAL_OFF_SET_UP + i * 22,
+                DEPTH_OFF_SET_UP,
+                elementBudget,
+                env,
+                false,
+                true);
+
+            if (built >= 0) return built;
+
+            built = this.survivalBuildPiece(
+                STRUCTURE_PIECE_MAIN_DOWN,
+                stackSize,
+                HORIZONTAL_OFF_SET_DOWN,
+                VERTICAL_OFF_SET_DOWN - i * 22,
+                DEPTH_OFF_SET_DOWN,
+                elementBudget,
+                env,
+                false,
+                true);
+
+            if (built >= 0) return built;
+
+            if (count > 1) {
+                built = this.survivalBuildPiece(
+                    STRUCTURE_PIECE_MAIN_EXTRA,
+                    stackSize,
+                    HORIZONTAL_OFF_SET_EXTRA,
+                    VERTICAL_OFF_SET_EXTRA_UP + i * 22,
+                    DEPTH_OFF_SET_EXTRA,
+                    elementBudget,
+                    env,
+                    false,
+                    true);
+
+                if (built >= 0) return built;
+
+                built = this.survivalBuildPiece(
+                    STRUCTURE_PIECE_MAIN_EXTRA,
+                    stackSize,
+                    HORIZONTAL_OFF_SET_EXTRA,
+                    VERTICAL_OFF_SET_EXTRA_DOWN - i * 22,
+                    DEPTH_OFF_SET_EXTRA,
+                    elementBudget,
+                    env,
+                    false,
+                    true);
+
+                if (built >= 0) return built;
+            }
+        }
+
+        built = this.survivalBuildPiece(
+            STRUCTURE_PIECE_MAIN_TOP,
+            stackSize,
+            HORIZONTAL_OFF_SET_TOP,
+            VERTICAL_OFF_SET_TOP + (count - 1) * 22,
+            DEPTH_OFF_SET_TOP,
+            elementBudget,
+            env,
+            false,
+            true);
+
+        if (built >= 0) return built;
+
+        built = this.survivalBuildPiece(
+            STRUCTURE_PIECE_MAIN_BOTTOM,
+            stackSize,
+            HORIZONTAL_OFF_SET_BOTTOM,
+            VERTICAL_OFF_SET_BOTTOM - (count - 1) * 22,
+            DEPTH_OFF_SET_BOTTOM,
+            elementBudget,
+            env,
+            false,
+            true);
+
+        return built;
+    }
+
+    @Override
+    public void onFirstTick(IGregTechTileEntity aBaseMetaTileEntity) {
+        super.onFirstTick(aBaseMetaTileEntity);
+        this.ownerUUID = aBaseMetaTileEntity.getOwnerUuid();
+    }
+
+    long ticker = 0;
+
+    @Override
+    public void onPostTick(IGregTechTileEntity aBaseMetaTileEntity, long aTick) {
+        if (aBaseMetaTileEntity.isServerSide() && getBaseMetaTileEntity().isAllowedToWork()) {
+            ticker++;
+            if (ticker % (5 * SECONDS) == 0) {
+                startRecipeProcessing();
+
+                if (!moduleHatches.isEmpty() && moduleHatches.size() <= mMachineTier * 4) {
+                    for (EternalGregTechWorkshopModule module : moduleHatches) {
+                        if (allowModuleConnection(module, this)) {
+                            module.connect();
+                            module.setEUtDiscount(getEUtDiscount());
+                            module.setDurationModifier(getSpeedBoost());
+                            module.setMaxParallel(getTrueParallel());
+                            module.setMaxUseEUt(getMaxUseEUt());
+                            module.setHeat(getHeatingCapacity());
+                            EternalGregTechWorkshopModule.queryMilestoneStats(module, this);
+                        } else {
+                            module.disconnect();
+                            module.setEUtDiscount(1);
+                            module.setDurationModifier(1);
+                            module.setMaxParallel(0);
+                            module.setMaxUseEUt(0);
+                        }
+                    }
+                } else if (moduleHatches.size() > mMachineTier * 4) {
+                    for (EternalGregTechWorkshopModule module : moduleHatches) {
+                        module.disconnect();
+                    }
+                }
+
+                drainFuel();
+                determineCompositionMilestoneLevel();
+                determineMilestoneProgress();
+                endRecipeProcessing();
+                if (mEfficiency < 0) mEfficiency = 0;
+            }
+        }
+        super.onPostTick(aBaseMetaTileEntity, aTick);
+    }
+
+    public final ArrayList<FluidStack> validFuelList = new ArrayList<>() {
+
+        {
+            add(MaterialsUEVplus.DimensionallyTranscendentResidue.getFluid(1));
+            add(MaterialsUEVplus.RawStarMatter.getFluid(1));
+            add(MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(1));
+        }
+    };
+
+    public void drainFuel() {
+        fuelConsumption = (long) Math.max(calculateFuelConsumption(this) * 5, 1);
+
+        FluidStack fuelToDrain = new FluidStack(validFuelList.get(selectedFuelType), (int) fuelConsumption);
+        for (MTEHatchInput hatch : GTUtility.filterValidMTEs(mInputHatches)) {
+            FluidStack drained = hatch.drain(ForgeDirection.UNKNOWN, fuelToDrain, true);
+            if (drained == null) {
+                continue;
+            }
+
+            fuelToDrain.amount -= drained.amount;
+
+            if (fuelToDrain.amount == 0) {
+                totalFuelConsumed += getFuelFactor();
+                return;
+            }
+        }
+    }
+
+    public static double calculateFuelConsumption(EternalGregTechWorkshop egtw) {
+        double upgradeFactor = 1;
+        if (egtw.isUpgradeActive(EternalGregTechWorkshopUpgrade.STEM)) {
+            upgradeFactor = 0.8;
+        }
+        if (egtw.getFuelType() == 0) {
+            return egtw.getFuelFactor() * 300 * Math.pow(1.15, egtw.getFuelFactor()) * upgradeFactor;
+        }
+        if (egtw.getFuelType() == 1) {
+            return egtw.getFuelFactor() * 2 * Math.pow(1.08, egtw.getFuelFactor()) * upgradeFactor;
+        } else return egtw.getFuelFactor() / 25f * upgradeFactor;
+    }
+
+    @Override
+    public void onRemoval() {
+        if (moduleHatches != null && !moduleHatches.isEmpty()) {
+            for (EternalGregTechWorkshopModule module : moduleHatches) {
+                module.disconnect();
+            }
+        }
+        super.onRemoval();
+    }
+
+    @Override
+    public boolean isFlipChangeAllowed() {
+        if (mMachine || isRenderActive) return false;
+        return super.isFlipChangeAllowed();
+    }
+
+    @Override
+    public boolean isRotationChangeAllowed() {
+        if (mMachine || isRenderActive) return false;
+        return super.isRotationChangeAllowed();
+    }
+
+    @Override
+    public void onBlockDestroyed() {
+        super.onBlockDestroyed();
+        if (isRenderActive) {
+            destroyRenderer();
+        }
+    }
+
+    @Override
+    public @NotNull CheckRecipeResult checkProcessing() {
+        if (getBaseMetaTileEntity().isAllowedToWork()) {
+            if (addEUToGlobalEnergyMap(ownerUUID, -moduleHatches.size() * Integer.MAX_VALUE)) {
+                setEUtDiscount(Math.pow(0.95, mModuleTier));
+                setDurationModifier(Math.pow(0.9, mModuleTier));
+                setMaxUseEUt((1L << Math.min(mModuleTier, 28)) * (Integer.MAX_VALUE * 10L));
+
+                mEfficiencyIncrease = 10000;
+                mMaxProgresstime = 128;
+                return CheckRecipeResultRegistry.SUCCESSFUL;
+            }
+        }
+
+        mEUtDiscount = 1;
+        mSpeedBoost = 1;
+        mMaxUseEUt = 0;
+        mEfficiencyIncrease = 0;
+        mMaxProgresstime = 0;
+        return CheckRecipeResultRegistry.NO_RECIPE;
+    }
+
+    public static boolean allowModuleConnection(EternalGregTechWorkshopModule module, EternalGregTechWorkshop center) {
+
+        if (module instanceof EternalGregTechWorkshopModule) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean addModuleToMachineList(IGregTechTileEntity tileEntity, int baseCasingIndex) {
+        if (tileEntity == null) {
+            return false;
+        }
+        IMetaTileEntity metaTileEntity = tileEntity.getMetaTileEntity();
+        if (metaTileEntity == null) {
+            return false;
+        }
+        if (metaTileEntity instanceof EternalGregTechWorkshopModule module) {
+            return moduleHatches.add(module);
+        }
+        return false;
+    }
+
+    public enum moduleElement implements IHatchElement<EternalGregTechWorkshop> {
+
+        Module(EternalGregTechWorkshop::addModuleToMachineList, EternalGregTechWorkshopModule.class) {
+
+            @Override
+            public long count(EternalGregTechWorkshop tileEntity) {
+                return tileEntity.moduleHatches.size();
+            }
+        };
+
+        public final List<Class<? extends IMetaTileEntity>> mteClasses;
+        public final IGTHatchAdder<EternalGregTechWorkshop> adder;
+
+        @SafeVarargs
+        moduleElement(IGTHatchAdder<EternalGregTechWorkshop> adder, Class<? extends IMetaTileEntity>... mteClasses) {
+            this.mteClasses = Collections.unmodifiableList(Arrays.asList(mteClasses));
+            this.adder = adder;
+        }
+
+        @Override
+        public List<? extends Class<? extends IMetaTileEntity>> mteClasses() {
+            return mteClasses;
+        }
+
+        public IGTHatchAdder<? super EternalGregTechWorkshop> adder() {
+            return adder;
+        }
+    }
+
+    public int getFuelType() {
+        return selectedFuelType;
+    }
+
+    public void setFuelType(int fuelType) {
+        selectedFuelType = fuelType;
+    }
+
+    public int getFuelFactor() {
+        return fuelConsumptionFactor;
+    }
+
+    public double getEUtDiscount() {
+        return mEUtDiscount;
+    }
+
+    public void setEUtDiscount(double eutDiscount) {
+        mEUtDiscount = eutDiscount;
+    }
+
+    public double getSpeedBoost() {
+        return mSpeedBoost;
+    }
+
+    public void setDurationModifier(double speedBoost) {
+        mSpeedBoost = speedBoost;
+    }
+
+    public int getHeatingCapacity() {
+        return mHeatingCapacity;
+    }
+
+    public void setHeatingCapacity(int heatingCapacity) {
+        mHeatingCapacity = heatingCapacity;
+    }
+
+    public long getMaxUseEUt() {
+        return mMaxUseEUt;
+    }
+
+    public void setMaxUseEUt(long maxUseEUt) {
+        mMaxUseEUt = maxUseEUt;
+    }
+
+    public boolean getEnableExtraModule() {
+        return enableExtraModule;
+    }
+
+    @Override
+    public void checkMaintenance() {}
+
+    @Override
+    public boolean getDefaultHasMaintenanceChecks() {
+        return false;
+    }
+
+    @Override
+    public boolean shouldCheckMaintenance() {
+        return false;
+    }
+
+    @Override
+    public boolean supportsBatchMode() {
+        return false;
+    }
+
+    @Override
+    public boolean getDefaultInputSeparationMode() {
+        return false;
+    }
+
+    @Override
+    public boolean supportsInputSeparation() {
+        return false;
+    }
+
+    @Override
+    public boolean supportsVoidProtection() {
+        return false;
+    }
+
+    @Override
+    public boolean supportsSingleRecipeLocking() {
+        return false;
+    }
+
+    @Override
+    public boolean isRecipeLockingEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isInputSeparationEnabled() {
+        return false;
+    }
+
+    public void determineCompositionMilestoneLevel() {
+        int[] uniqueModuleCount = new int[5];
+        for (EternalGregTechWorkshopModule module : moduleHatches) {
+            if (module instanceof EGTWFusionModule) {
+                uniqueModuleCount[2] = 1;
+                break;
+            }
+        }
+        totalExtensionsBuilt = Arrays.stream(uniqueModuleCount)
+            .sum();
+        milestoneProgress[3] = (int) Math.floor(totalExtensionsBuilt);
+    }
+
+    public void determineMilestoneProgress() {
+        if (milestoneProgress[0] < 7) {
+            powerMilestonePercentage = (float) Math.max(
+                (Math.log((totalPowerConsumed.divide(BigInteger.valueOf(POWER_MILESTONE_CONSTANT))).longValue())
+                    / POWER_LOG_CONSTANT + 1),
+                0) / 7;
+            milestoneProgress[0] = (int) Math.floor(powerMilestonePercentage * 7);
+        }
+
+        if (milestoneProgress[1] < 7) {
+            recipeMilestonePercentage = (float) Math
+                .max((Math.log(totalRecipesProcessed * 1f / RECIPE_MILESTONE_CONSTANT) / RECIPE_LOG_CONSTANT + 1), 0)
+                / 7;
+            milestoneProgress[1] = (int) Math.floor(recipeMilestonePercentage * 7);
+        }
+        if (milestoneProgress[2] < 7) {
+            fuelMilestonePercentage = (float) Math
+                .max((Math.log(totalFuelConsumed * 1f / FUEL_MILESTONE_CONSTANT) / FUEL_LOG_CONSTANT + 1), 0) / 7;
+            milestoneProgress[2] = (int) Math.floor(fuelMilestonePercentage * 7);
+        }
+
+        if (milestoneProgress[3] <= 7) {
+            structureMilestonePercentage = totalExtensionsBuilt / 7f;
+        }
+    }
+
+    public static final int FUEL_CONFIG_WINDOW_ID = 9;
+    public static final int UPGRADE_TREE_WINDOW_ID = 10;
+    public static final int INDIVIDUAL_UPGRADE_WINDOW_ID = 11;
+    public static final int MILESTONE_WINDOW_ID = 12;
+    public static final int INDIVIDUAL_MILESTONE_WINDOW_ID = 13;
+    public static final int MANUAL_INSERTION_WINDOW_ID = 14;
+    public static final int GENERAL_INFO_WINDOW_ID = 15;
+
+    public int currentMilestoneID = 0;
+
+    @Override
+    public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
+        buildContext.addSyncedWindow(FUEL_CONFIG_WINDOW_ID, this::createFuelConfigWindow);
+        buildContext.addSyncedWindow(UPGRADE_TREE_WINDOW_ID, this::createUpgradeTreeWindow);
+        buildContext.addSyncedWindow(INDIVIDUAL_UPGRADE_WINDOW_ID, this::createIndividualUpgradeWindow);
+        buildContext.addSyncedWindow(MILESTONE_WINDOW_ID, this::createMilestoneWindow);
+        buildContext.addSyncedWindow(GENERAL_INFO_WINDOW_ID, this::createGeneralInfoWindow);
+        buildContext.addSyncedWindow(INDIVIDUAL_MILESTONE_WINDOW_ID, this::createIndividualMilestoneWindow);
+        buildContext.addSyncedWindow(MANUAL_INSERTION_WINDOW_ID, this::createManualInsertionWindow);
+
+        builder.widget(
+            new DrawableWidget().setDrawable(TecTechUITextures.BACKGROUND_SCREEN_BLUE)
+                .setPos(4, 4)
+                .setSize(190, 85))
+            .widget(
+                TextWidget.dynamicText(this::machineTierHeaderText)
+                    .setDefaultColor(EnumChatFormatting.WHITE)
+                    .setPos(6, 8)
+                    .setSize(185, 10))
+            .widget(
+                TextWidget.dynamicText(this::machineTier)
+                    .setDefaultColor(EnumChatFormatting.WHITE)
+                    .setPos(6, 20)
+                    .setSize(185, 10))
+            .widget(
+                TextWidget.dynamicText(this::extraModuleHeaderText)
+                    .setDefaultColor(EnumChatFormatting.WHITE)
+                    .setPos(6, 32)
+                    .setSize(185, 10))
+            .widget(
+                TextWidget.dynamicText(this::extraModuleState)
+                    .setDefaultColor(EnumChatFormatting.WHITE)
+                    .setPos(6, 44)
+                    .setSize(185, 10))
+            .widget(
+                TextWidget.dynamicText(this::machineState)
+                    .setDefaultColor(EnumChatFormatting.WHITE)
+                    .setPos(6, 98)
+                    .setSize(185, 10))
+            .widget(new ButtonWidget().setOnClick((clickData, widget) -> {
+                if (!widget.isClient()) {
+                    widget.getContext()
+                        .openSyncedWindow(FUEL_CONFIG_WINDOW_ID);
+                }
+            })
+                .setSize(16, 16)
+                .setBackground(
+                    () -> new IDrawable[] { TecTechUITextures.BUTTON_CELESTIAL_32x32,
+                        TecTechUITextures.OVERLAY_BUTTON_HEAT_ON })
+                .addTooltip(StatCollector.translateToLocal("fog.button.fuelconfig.tooltip"))
+                .setPos(174, 110)
+                .setTooltipShowUpDelay(TOOLTIP_DELAY))
+            .widget(new ButtonWidget().setOnClick((clickData, widget) -> {
+                if (isAllowedToWork()) {
+                    disableWorking();
+                } else {
+                    enableWorking();
+                }
+            })
+                .setPlayClickSoundResource(
+                    () -> isAllowedToWork() ? SoundResource.GUI_BUTTON_UP.resourceLocation
+                        : SoundResource.GUI_BUTTON_DOWN.resourceLocation)
+                .setBackground(() -> {
+                    if (isAllowedToWork()) {
+                        return new IDrawable[] { TecTechUITextures.BUTTON_CELESTIAL_32x32,
+                            TecTechUITextures.OVERLAY_BUTTON_POWER_SWITCH_ON };
+                    } else {
+                        return new IDrawable[] { TecTechUITextures.BUTTON_CELESTIAL_32x32,
+                            TecTechUITextures.OVERLAY_BUTTON_POWER_SWITCH_OFF };
+                    }
+                })
+                .attachSyncer(new FakeSyncWidget.BooleanSyncer(this::isAllowedToWork, val -> {
+                    if (val) enableWorking();
+                    else disableWorking();
+                }), builder)
+                .addTooltip(StatCollector.translateToLocal("GT5U.gui.button.power_switch"))
+                .setTooltipShowUpDelay(TOOLTIP_DELAY)
+                .setPos(174, 167)
+                .setSize(16, 16))
+            .widget(new ButtonWidget().setOnClick((clickData, widget) -> {
+                if (!widget.isClient()) {
+                    widget.getContext()
+                        .openSyncedWindow(MILESTONE_WINDOW_ID);
+                }
+            })
+                .setSize(16, 16)
+                .setBackground(
+                    () -> new IDrawable[] { TecTechUITextures.BUTTON_CELESTIAL_32x32,
+                        TecTechUITextures.OVERLAY_BUTTON_FLAG })
+                .addTooltip(StatCollector.translateToLocal("fog.button.milestones.tooltip"))
+                .setTooltipShowUpDelay(TOOLTIP_DELAY)
+                .setPos(174, 91))
+            .widget(
+                new ButtonWidget().setOnClick(
+                    (clickData, widget) -> {
+                        if (!widget.isClient()) widget.getContext()
+                            .openSyncedWindow(UPGRADE_TREE_WINDOW_ID);
+                    })
+                    .setSize(16, 16)
+                    .setBackground(
+                        () -> new IDrawable[] { TecTechUITextures.BUTTON_CELESTIAL_32x32,
+                            TecTechUITextures.OVERLAY_BUTTON_ARROW_BLUE_UP })
+                    .addTooltip(StatCollector.translateToLocal("fog.button.upgradetree.tooltip"))
+                    .setPos(174, 129)
+                    .setTooltipShowUpDelay(TOOLTIP_DELAY))
+            .widget(new ButtonWidget().setOnClick((clickData, widget) -> {
+                if (!widget.isClient()) {
+                    mMachine = checkMachine(this.getBaseMetaTileEntity(), null);
+                }
+                enableExtraModule = !enableExtraModule;
+            })
+                .setPlayClickSound(true)
+                .setBackground(
+                    () -> new IDrawable[] { TecTechUITextures.BUTTON_CELESTIAL_32x32,
+                        TecTechUITextures.OVERLAY_BUTTON_ARROW_BLUE_UP })
+                .attachSyncer(
+                    new FakeSyncWidget.BooleanSyncer(this::getEnableExtraModule, this::setEnableExtraModule),
+                    builder)
+                .addTooltip(StatCollector.translateToLocal("EGTW_EnableExtraModule"))
+                .setTooltipShowUpDelay(TOOLTIP_DELAY)
+                .setPos(getStructureUpdateButtonPos())
+                .setSize(16, 16))
+            .widget(new ButtonWidget().setOnClick((clickData, widget) -> {
+                if (!widget.isClient()) {
+                    mMachine = checkMachine(this.getBaseMetaTileEntity(), null);
+                }
+            })
+                .setSize(16, 16)
+                .setBackground(
+                    () -> new IDrawable[] { TecTechUITextures.BUTTON_CELESTIAL_32x32,
+                        TecTechUITextures.OVERLAY_CYCLIC_BLUE })
+                .addTooltip(StatCollector.translateToLocal("EGTW_UpdateStructureCheck"))
+                .setPos(8, 91)
+                .setTooltipShowUpDelay(TOOLTIP_DELAY));
+    }
+
+    public Text machineTier() {
+        return new Text(GTUtility.formatNumbers(mMachineTier));
+    }
+
+    public Text machineTierHeaderText() {
+        return new Text(StatCollector.translateToLocal("EGTW_MachineTier"));
+    }
+
+    public Text machineState() {
+        if (mProgresstime > 0) {
+            return new Text(StatCollector.translateToLocal("EGTW_MachineRunning"));
+        }
+        if (mMachine) {
+            return new Text(StatCollector.translateToLocal("EGTW_MachineStandby"));
+        }
+        return new Text(StatCollector.translateToLocal("EGTW_MachineIncomplete"));
+    }
+
+    public Text extraModuleHeaderText() {
+        if (enableExtraModule) {
+            return new Text(StatCollector.translateToLocal("EGTW_ExtraModule"));
+        }
+        return new Text("");
+    }
+
+    public Text extraModuleState() {
+        if (enableExtraModule) {
+            if (mExtraModule) {
+                return new Text(StatCollector.translateToLocal("EGTW_ExtraModule_On"));
+            } else {
+                return new Text(StatCollector.translateToLocal("EGTW_ExtraModule_Off"));
+            }
+        }
+        return new Text("");
+    }
+
+    public boolean isUpgradeActive(EternalGregTechWorkshopUpgrade upgrade) {
+        return upgrades.isUpgradeActive(upgrade);
+    }
+
+    public Text fuelUsage() {
+        return new Text(fuelConsumption + " L/5s");
+    }
+
+    public ModularWindow createGeneralInfoWindow(final EntityPlayer player) {
+        return EternalGregTechWorkshopUI.createGeneralInfoWindow();
+    }
+
+    public ModularWindow createFuelConfigWindow(final EntityPlayer player) {
+        final int w = 78;
+        final int h = 130;
+        final int parentW = getGUIWidth();
+        final int parentH = getGUIHeight();
+
+        ModularWindow.Builder builder = ModularWindow.builder(w, h);
+        builder.setBackground(GTUITextures.BACKGROUND_SINGLEBLOCK_DEFAULT);
+        builder.setGuiTint(getGUIColorization());
+        builder.setDraggable(true);
+        builder.setPos(
+            (size, window) -> Alignment.Center.getAlignedPos(size, new Size(parentW, parentH))
+                .add(
+                    Alignment.TopRight.getAlignedPos(new Size(parentW, parentH), new Size(w, h))
+                        .add(w - 3, 0)));
+
+        // Window header
+        builder.widget(
+            TextWidget.localised("gt.blockmachines.multimachine.FOG.fuelconsumption")
+                .setPos(3, 2)
+                .setSize(74, 34));
+
+        // Fuel factor textbox
+        NumericWidget fuelFactor = new NumericWidget();
+        fuelFactor.setSetter(val -> fuelConsumptionFactor = (int) val)
+            .setGetter(() -> fuelConsumptionFactor)
+            .setBounds(1, calculateMaxFuelFactor(this))
+            .setDefaultValue(1)
+            .setScrollValues(1, 4, 64)
+            .setTextAlignment(Alignment.Center)
+            .setTextColor(Color.WHITE.normal)
+            .setSize(70, 18)
+            .setPos(4, 35)
+            .setBackground(GTUITextures.BACKGROUND_TEXT_FIELD);
+        builder.widget(fuelFactor);
+
+        // Syncers for max fuel factor
+        builder.widget(
+            upgrades.getSyncer(EternalGregTechWorkshopUpgrade.CFCE)
+                .setOnClientUpdate($ -> fuelFactor.setMaxValue(calculateMaxFuelFactor(this))));
+        builder.widget(
+            upgrades.getSyncer(EternalGregTechWorkshopUpgrade.GEM)
+                .setOnClientUpdate($ -> fuelFactor.setMaxValue(calculateMaxFuelFactor(this))));
+        builder.widget(
+            upgrades.getSyncer(EternalGregTechWorkshopUpgrade.TSE)
+                .setOnClientUpdate($ -> fuelFactor.setMaxValue(calculateMaxFuelFactor(this))));
+
+        builder.widget(
+            new DrawableWidget().setDrawable(ModularUITextures.ICON_INFO)
+                .setPos(64, 24)
+                .setSize(10, 10)
+                .addTooltip(StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.fuelinfo.0"))
+                .addTooltip(StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.fuelinfo.1"))
+                .addTooltip(StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.fuelinfo.2"))
+                .addTooltip(StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.fuelinfo.3"))
+                .addTooltip(StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.fuelinfo.4"))
+                .addTooltip(StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.fuelinfo.5"))
+                .setTooltipShowUpDelay(TOOLTIP_DELAY))
+            .widget(
+                TextWidget.localised("gt.blockmachines.multimachine.FOG.fueltype")
+                    .setPos(3, 57)
+                    .setSize(74, 24))
+            .widget(
+                TextWidget.localised("gt.blockmachines.multimachine.FOG.fuelusage")
+                    .setPos(3, 100)
+                    .setSize(74, 20))
+            .widget(
+                TextWidget.dynamicText(this::fuelUsage)
+                    .setPos(3, 115)
+                    .setSize(74, 15))
+            .widget(
+                new MultiChildWidget().addChild(
+                    new FluidNameHolderWidget(
+                        () -> MaterialsUEVplus.DimensionallyTranscendentResidue.getFluid(1)
+                            .getUnlocalizedName()
+                            .substring(6),
+                        (String) -> MaterialsUEVplus.DimensionallyTranscendentResidue.getFluid(1)
+                            .getUnlocalizedName()) {
+
+                        @Override
+                        public void buildTooltip(List<Text> tooltip) {
+                            FluidStack fluid = createFluidStack();
+                            addFluidNameInfo(tooltip, fluid);
+                            addAdditionalFluidInfo(tooltip, fluid);
+                        }
+                    }.setTooltipShowUpDelay(TOOLTIP_DELAY)
+                        .setPos(1, 1)
+                        .setSize(16, 16))
+                    .addChild(new ButtonWidget().setOnClick((clickData, widget) -> {
+                        TecTech.proxy.playSound(getBaseMetaTileEntity(), "fx_click");
+                        selectedFuelType = 0;
+                    })
+                        .setBackground(() -> {
+                            if (selectedFuelType == 0) {
+                                return new IDrawable[] { TecTechUITextures.SLOT_OUTLINE_GREEN };
+                            } else {
+                                return new IDrawable[] {};
+                            }
+                        })
+                        .setSize(18, 18)
+                        .attachSyncer(new FakeSyncWidget.IntegerSyncer(this::getFuelType, this::setFuelType), builder))
+
+                    .setPos(6, 82)
+                    .setSize(18, 18))
+            .widget(
+                new MultiChildWidget().addChild(
+                    new FluidNameHolderWidget(
+                        () -> MaterialsUEVplus.RawStarMatter.getFluid(1)
+                            .getUnlocalizedName()
+                            .substring(6),
+                        (String) -> MaterialsUEVplus.RawStarMatter.getFluid(1)
+                            .getUnlocalizedName()) {
+
+                        @Override
+                        public void buildTooltip(List<Text> tooltip) {
+                            FluidStack fluid = createFluidStack();
+                            addFluidNameInfo(tooltip, fluid);
+                            addAdditionalFluidInfo(tooltip, fluid);
+                        }
+                    }.setTooltipShowUpDelay(TOOLTIP_DELAY)
+                        .setPos(1, 1)
+                        .setSize(16, 16))
+                    .addChild(new ButtonWidget().setOnClick((clickData, widget) -> {
+                        TecTech.proxy.playSound(getBaseMetaTileEntity(), "fx_click");
+                        selectedFuelType = 1;
+                    })
+                        .setBackground(() -> {
+                            if (selectedFuelType == 1) {
+                                return new IDrawable[] { TecTechUITextures.SLOT_OUTLINE_GREEN };
+                            } else {
+                                return new IDrawable[] {};
+                            }
+                        })
+                        .setSize(18, 18))
+                    .setPos(29, 82)
+                    .setSize(18, 18))
+            .widget(
+                new MultiChildWidget().addChild(
+                    new FluidNameHolderWidget(
+                        () -> MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(1)
+                            .getUnlocalizedName()
+                            .substring(6),
+                        (String) -> MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(1)
+                            .getUnlocalizedName()) {
+
+                        @Override
+                        public void buildTooltip(List<Text> tooltip) {
+                            FluidStack fluid = createFluidStack();
+                            addFluidNameInfo(tooltip, fluid);
+                            addAdditionalFluidInfo(tooltip, fluid);
+                        }
+                    }.setTooltipShowUpDelay(TOOLTIP_DELAY)
+                        .setPos(1, 1)
+                        .setSize(16, 16))
+                    .addChild(new ButtonWidget().setOnClick((clickData, widget) -> {
+                        TecTech.proxy.playSound(getBaseMetaTileEntity(), "fx_click");
+                        selectedFuelType = 2;
+                    })
+                        .setBackground(() -> {
+                            if (selectedFuelType == 2) {
+                                return new IDrawable[] { TecTechUITextures.SLOT_OUTLINE_GREEN };
+                            } else {
+                                return new IDrawable[] {};
+                            }
+                        })
+                        .setSize(18, 18))
+                    .setPos(52, 82)
+                    .setSize(18, 18)
+                    .attachSyncer(new FakeSyncWidget.IntegerSyncer(this::getFuelType, this::setFuelType), builder));
+
+        return builder.build();
+    }
+
+    public static int calculateMaxFuelFactor(EternalGregTechWorkshop egtw) {
+        int fuelCap = 5;
+        if (egtw.isUpgradeActive(EternalGregTechWorkshopUpgrade.TSE)) {
+            fuelCap = Integer.MAX_VALUE;
+        } else {
+            if (egtw.isUpgradeActive(EternalGregTechWorkshopUpgrade.GEM)) {
+                fuelCap += egtw.getTotalActiveUpgrades();
+            }
+            if (egtw.isUpgradeActive(EternalGregTechWorkshopUpgrade.CFCE)) {
+                fuelCap *= 1.2;
+            }
+        }
+        return Math.max(fuelCap, 1);
+    }
+
+    public int getTotalActiveUpgrades() {
+        return upgrades.getTotalActiveUpgrades();
+    }
+
+    public ModularWindow createManualInsertionWindow(final EntityPlayer player) {
+        EternalGregTechWorkshopUpgrade upgrade = currentUpgradeWindow;
+        ItemStack[] inputs = upgrade.getExtraCost();
+        final int WIDTH = 261;
+        final int HEIGHT = 106;
+        final int PARENT_WIDTH = getGUIWidth();
+        final int PARENT_HEIGHT = getGUIHeight();
+
+        for (int i = 0; i < 16; i++) {
+            inputSlotHandler.insertItem(i, storedUpgradeWindowItems[i], false);
+            storedUpgradeWindowItems[i] = null;
+        }
+
+        ModularWindow.Builder builder = ModularWindow.builder(WIDTH, HEIGHT);
+        builder.setBackground(GTUITextures.BACKGROUND_SINGLEBLOCK_DEFAULT);
+        builder.setGuiTint(getGUIColorization());
+        builder.setDraggable(true);
+        builder.setPos(
+            (size, window) -> Alignment.Center.getAlignedPos(size, new Size(PARENT_WIDTH, PARENT_HEIGHT))
+                .add(Alignment.TopRight.getAlignedPos(new Size(PARENT_WIDTH, PARENT_HEIGHT), new Size(WIDTH, HEIGHT)))
+                .subtract(5, 0)
+                .add(0, 4));
+        builder.widget(upgrades.getSyncer(upgrade));
+        builder.widget(
+            SlotGroup.ofItemHandler(inputSlotHandler, 4)
+                .startFromSlot(0)
+                .endAtSlot(15)
+                .phantom(false)
+                .background(getGUITextureSet().getItemSlot())
+                .build()
+                .setPos(184, 6));
+        builder.widget(new ButtonWidget().setOnClick((clickData, widget) -> {
+            if (!widget.isClient()) {
+                widget.getWindow()
+                    .closeWindow();
+                EternalGregTechWorkshopUI.reopenWindow(widget, UPGRADE_TREE_WINDOW_ID);
+                EternalGregTechWorkshopUI.reopenWindow(widget, INDIVIDUAL_UPGRADE_WINDOW_ID);
+            }
+        })
+            .setBackground(ModularUITextures.VANILLA_BACKGROUND, new Text("x"))
+            .setPos(251, 0)
+            .setSize(10, 10));
+        builder.widget(new MultiChildWidget().addChild(new ButtonWidget().setOnClick((clickData, widget) -> {
+            if (!widget.isClient()) {
+                upgrades.payCost(upgrade, inputSlotHandler);
+                EternalGregTechWorkshopUI.reopenWindow(widget, MANUAL_INSERTION_WINDOW_ID);
+            }
+        })
+            .setPlayClickSound(true)
+            .setBackground(GTUITextures.BUTTON_STANDARD)
+            .setSize(251, 18))
+            .addChild(
+                new TextWidget(StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.consumeUpgradeMats"))
+                    .setTextAlignment(Alignment.Center)
+                    .setScale(0.75f)
+                    .setPos(0, 1)
+                    .setSize(251, 18))
+            .setPos(5, 82)
+            .setSize(251, 16));
+
+        for (int i = 0; i < 20; i++) {
+            final int ii = i;
+            ItemStack stack = null;
+            if (i < inputs.length) {
+                stack = inputs[i];
+            }
+            Widget costWidget = EternalGregTechWorkshopUI
+                .createExtraCostWidget(stack, () -> upgrades.getPaidCosts(upgrade)[ii]);
+            costWidget.setPos(5 + (36 * (i % 5)), 6 + (18 * (i / 5)));
+            builder.widget(costWidget);
+        }
+
+        return builder.build();
+    }
+
+    public Text inversionStatusText() {
+        String inversionStatus = "";
+        return new Text(inversionStatus);
+    }
+
+    public ModularWindow createIndividualMilestoneWindow(final EntityPlayer player) {
+        final int w = 150;
+        final int h = 150;
+        final MilestoneIcon icon = MilestoneIcon.VALUES[currentMilestoneID];
+        final Size iconSize = icon.getSize();
+
+        ModularWindow.Builder builder = ModularWindow.builder(w, h);
+        builder.setBackground(TecTechUITextures.BACKGROUND_GLOW_WHITE);
+        builder.setDraggable(true);
+
+        builder.widget(
+            ButtonWidget.closeWindowButton(true)
+                .setPos(134, 4))
+            .widget(
+                new DrawableWidget().setDrawable(icon.getSymbol())
+                    .setSize(iconSize)
+                    .setPos((w - iconSize.width) / 2, (h - iconSize.height) / 2))
+            .widget(
+                new TextWidget(icon.getNameText()).setDefaultColor(EnumChatFormatting.GOLD)
+                    .setTextAlignment(Alignment.Center)
+                    .setPos(0, 8)
+                    .setSize(150, 15))
+            .widget(
+                TextWidget.dynamicText(this::inversionStatusText)
+                    .setDefaultColor(EnumChatFormatting.AQUA)
+                    .setTextAlignment(Alignment.Center)
+                    .setScale(0.8f)
+                    .setPos(0, 120)
+                    .setSize(150, 15))
+            .widget(
+                TextWidget.dynamicText(() -> totalMilestoneProgress(currentMilestoneID))
+                    .setScale(0.7f)
+                    .setDefaultColor(EnumChatFormatting.WHITE)
+                    .setTextAlignment(Alignment.Center)
+                    .setPos(5, 30)
+                    .setSize(140, 30))
+            .widget(
+                TextWidget.dynamicText(() -> currentMilestoneLevel(currentMilestoneID))
+                    .setScale(0.7f)
+                    .setDefaultColor(EnumChatFormatting.WHITE)
+                    .setTextAlignment(Alignment.Center)
+                    .setPos(5, 50)
+                    .setSize(140, 30))
+            .widget(
+                TextWidget.dynamicText(() -> milestoneProgressText(currentMilestoneID))
+                    .setScale(0.7f)
+                    .setDefaultColor(EnumChatFormatting.WHITE)
+                    .setSize(140, 30)
+                    .setPos(5, 70))
+            .widget(
+                TextWidget.dynamicText(() -> gravitonShardAmountText(currentMilestoneID))
+                    .setScale(0.7f)
+                    .setDefaultColor(EnumChatFormatting.WHITE)
+                    .setSize(140, 30)
+                    .setPos(5, 90))
+            .widget(new ButtonWidget().setOnClick((clickData, widget) -> {
+                TecTech.proxy.playSound(getBaseMetaTileEntity(), "fx_click");
+                if (clickData.mouseButton == 0) {
+                    formattingMode = formattingMode.cycle();
+                }
+            })
+                .setSize(10, 10)
+                .addTooltip(StatCollector.translateToLocal("fog.button.formatting.tooltip"))
+                .setBackground(TecTechUITextures.OVERLAY_CYCLIC_BLUE)
+                .setPos(5, 135)
+                .setTooltipShowUpDelay(TOOLTIP_DELAY)
+                .attachSyncer(
+                    new FakeSyncWidget.ByteSyncer(
+                        () -> (byte) formattingMode.ordinal(),
+                        val -> formattingMode = MilestoneFormatter.VALUES[MathHelper
+                            .clamp_int(val, 0, MilestoneFormatter.VALUES.length - 1)]),
+                    builder));
+
+        return builder.build();
+    }
+
+    public final int[] milestoneProgress = new int[] { 0, 0, 0, 0 };
+
+    public Text gravitonShardAmountText(int milestoneID) {
+        int sum;
+        int progress = milestoneProgress[milestoneID];
+        sum = progress * (progress + 1) / 2;
+        return new Text(
+            StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.shardgain") + ": "
+                + EnumChatFormatting.GRAY
+                + sum);
+    }
+
+    public Text totalMilestoneProgress(int milestoneID) {
+        Number progress;
+        String suffix;
+        switch (milestoneID) {
+            case 0 -> {
+                suffix = StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.power");
+                progress = totalPowerConsumed;
+            }
+            case 1 -> {
+                suffix = StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.recipes");
+                progress = totalRecipesProcessed;
+            }
+            case 2 -> {
+                suffix = StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.fuelconsumed");
+                progress = totalFuelConsumed;
+            }
+            case 3 -> {
+                suffix = StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.extensions");
+                progress = milestoneProgress[3];
+            }
+            default -> throw new IllegalArgumentException("Invalid Milestone ID");
+        }
+        return new Text(
+            StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.totalprogress") + ": "
+                + EnumChatFormatting.GRAY
+                + formattingMode.format(progress)
+                + " "
+                + suffix);
+    }
+
+    public Text currentMilestoneLevel(int milestoneID) {
+        int milestoneLevel = Math.min(milestoneProgress[milestoneID], 7);
+        return new Text(
+            StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.milestoneprogress") + ": "
+                + EnumChatFormatting.GRAY
+                + milestoneLevel);
+    }
+
+    public Text milestoneProgressText(int milestoneID) {
+        Number max;
+        String suffix;
+        String progressText = StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.progress");
+        Text done = new Text(
+            StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.milestonecomplete")
+                + (formattingMode != DEFAULT_FORMATTING_MODE ? EnumChatFormatting.DARK_RED + "?" : ""));
+
+        if (milestoneProgress[milestoneID] >= 7) {
+            return done;
+        }
+
+        switch (milestoneID) {
+            case 0 -> {
+                suffix = StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.power");
+                max = BigInteger.valueOf(LongMath.pow(9, milestoneProgress[0]))
+                    .multiply(BigInteger.valueOf(LongMath.pow(10, 15)));
+
+            }
+            case 1 -> {
+                suffix = StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.recipes");
+                max = LongMath.pow(4, milestoneProgress[1]) * LongMath.pow(10, 7);
+            }
+            case 2 -> {
+                suffix = StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.fuelconsumed");
+
+                max = LongMath.pow(3, milestoneProgress[2]) * LongMath.pow(10, 4);
+
+            }
+            case 3 -> {
+                suffix = StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.extensions");
+                max = milestoneProgress[3] + 1;
+            }
+            default -> throw new IllegalArgumentException("Invalid Milestone ID");
+        }
+        return new Text(progressText + ": " + EnumChatFormatting.GRAY + formattingMode.format(max) + " " + suffix);
+    }
+
+    public Widget createMilestoneButton(int milestoneID, int width, int height, Pos2d pos) {
+        return new ButtonWidget().setOnClick((clickData, widget) -> {
+            currentMilestoneID = milestoneID;
+            EternalGregTechWorkshopUI.reopenWindow(widget, INDIVIDUAL_MILESTONE_WINDOW_ID);
+        })
+            .setSize(width, height)
+            .setBackground(() -> switch (milestoneID) {
+            case 1 -> new IDrawable[] { TecTechUITextures.PICTURE_GODFORGE_MILESTONE_CONVERSION_GLOW };
+            case 2 -> new IDrawable[] { TecTechUITextures.PICTURE_GODFORGE_MILESTONE_CATALYST_GLOW };
+            case 3 -> new IDrawable[] { TecTechUITextures.PICTURE_GODFORGE_MILESTONE_COMPOSITION_GLOW };
+            default -> new IDrawable[] { TecTechUITextures.PICTURE_GODFORGE_MILESTONE_CHARGE_GLOW };
+            })
+            .addTooltip(StatCollector.translateToLocal("gt.blockmachines.multimachine.FOG.milestoneinfo"))
+            .setPos(pos)
+            .setTooltipShowUpDelay(TOOLTIP_DELAY);
+    }
+
+    public ModularWindow createMilestoneWindow(final EntityPlayer player) {
+        final int WIDTH = 400;
+        final int HEIGHT = 300;
+        ModularWindow.Builder builder = ModularWindow.builder(WIDTH, HEIGHT);
+        builder.setBackground(TecTechUITextures.BACKGROUND_SPACE);
+        builder.setGuiTint(getGUIColorization());
+        builder.setDraggable(true);
+        builder.widget(createMilestoneButton(0, 80, 100, new Pos2d(62, 24)));
+        builder.widget(createMilestoneButton(1, 70, 98, new Pos2d(263, 25)));
+        builder.widget(createMilestoneButton(2, 100, 100, new Pos2d(52, 169)));
+        builder.widget(createMilestoneButton(3, 100, 100, new Pos2d(248, 169)));
+        builder.widget(
+            TextWidget.localised("gt.blockmachines.multimachine.FOG.powermilestone")
+                .setDefaultColor(EnumChatFormatting.GOLD)
+                .setPos(77, 45)
+                .setSize(50, 30));
+        builder.widget(
+            TextWidget.localised("gt.blockmachines.multimachine.FOG.recipemilestone")
+                .setDefaultColor(EnumChatFormatting.GOLD)
+                .setPos(268, 45)
+                .setSize(60, 30));
+        builder.widget(
+            TextWidget.localised("gt.blockmachines.multimachine.FOG.fuelmilestone")
+                .setDefaultColor(EnumChatFormatting.GOLD)
+                .setPos(77, 190)
+                .setSize(50, 30));
+        builder.widget(
+            TextWidget.localised("gt.blockmachines.multimachine.FOG.purchasablemilestone")
+                .setDefaultColor(EnumChatFormatting.GOLD)
+                .setPos(268, 190)
+                .setSize(60, 30));
+        builder.widget(
+            new DrawableWidget().setDrawable(TecTechUITextures.PROGRESSBAR_GODFORGE_MILESTONE_BACKGROUND)
+                .setPos(37, 70)
+                .setSize(130, 7))
+            .widget(
+                new DrawableWidget().setDrawable(TecTechUITextures.PROGRESSBAR_GODFORGE_MILESTONE_BACKGROUND)
+                    .setPos(233, 70)
+                    .setSize(130, 7))
+            .widget(
+                new DrawableWidget().setDrawable(TecTechUITextures.PROGRESSBAR_GODFORGE_MILESTONE_BACKGROUND)
+                    .setPos(37, 215)
+                    .setSize(130, 7))
+            .widget(
+                new DrawableWidget().setDrawable(TecTechUITextures.PROGRESSBAR_GODFORGE_MILESTONE_BACKGROUND)
+                    .setPos(233, 215)
+                    .setSize(130, 7));
+        builder.widget(
+            new ProgressBar().setProgress(() -> powerMilestonePercentage)
+                .setDirection(ProgressBar.Direction.RIGHT)
+                .setTexture(TecTechUITextures.PROGRESSBAR_GODFORGE_MILESTONE_RED, 130)
+                .setSynced(true, false)
+                .setSize(130, 7)
+                .setPos(37, 70))
+            .widget(
+                new ProgressBar().setProgress(() -> recipeMilestonePercentage)
+                    .setDirection(ProgressBar.Direction.RIGHT)
+                    .setTexture(TecTechUITextures.PROGRESSBAR_GODFORGE_MILESTONE_PURPLE, 130)
+                    .setSynced(true, false)
+                    .setSize(130, 7)
+                    .setPos(233, 70))
+            .widget(
+                new ProgressBar().setProgress(() -> fuelMilestonePercentage)
+                    .setDirection(ProgressBar.Direction.RIGHT)
+                    .setTexture(TecTechUITextures.PROGRESSBAR_GODFORGE_MILESTONE_BLUE, 130)
+                    .setSynced(true, false)
+                    .setSize(130, 7)
+                    .setPos(37, 215))
+            .widget(
+                new ProgressBar().setProgress(() -> structureMilestonePercentage)
+                    .setDirection(ProgressBar.Direction.RIGHT)
+                    .setTexture(TecTechUITextures.PROGRESSBAR_GODFORGE_MILESTONE_RAINBOW, 130)
+                    .setSynced(true, false)
+                    .setSize(130, 7)
+                    .setPos(233, 215))
+            .widget(
+                ButtonWidget.closeWindowButton(true)
+                    .setOnClick((data, widget) -> {
+                        if (!widget.isClient()) {
+                            widget.getWindow()
+                                .closeWindow();
+                            EternalGregTechWorkshopUI.closeWindow(widget, INDIVIDUAL_MILESTONE_WINDOW_ID);
+                        }
+                    })
+                    .setPos(382, 6));
+        return builder.build();
+    }
+
+    public Widget createUpgradeConnectorLine(Pos2d pos, int length, float rotationAngle, UpgradeColor color,
+        EternalGregTechWorkshopUpgrade startUpgrade, EternalGregTechWorkshopUpgrade endUpgrade) {
+        return new DrawableWidget().setDrawable(() -> {
+            UITexture texture = color.getConnector();
+            if (isUpgradeActive(startUpgrade) && isUpgradeActive(endUpgrade)) {
+                texture = color.getOpaqueConnector();
+            }
+            return texture.withRotationDegree(rotationAngle);
+        })
+            .setPos(pos)
+            .setSize(6, length);
+    }
+
+    public void completeUpgrade(EternalGregTechWorkshopUpgrade upgrade) {
+        if (isUpgradeActive(upgrade)) return;
+        if (!upgrades.checkPrerequisites(upgrade)) return;
+        if (!upgrades.checkCost(upgrade, gravitonShardsAvailable)) return;
+
+        upgrades.unlockUpgrade(upgrade);
+        gravitonShardsAvailable -= upgrade.getShardCost();
+        gravitonShardsSpent += upgrade.getShardCost();
+    }
+
+    public void respecUpgrade(EternalGregTechWorkshopUpgrade upgrade) {
+        if (!isUpgradeActive(upgrade)) return;
+        if (!upgrades.checkDependents(upgrade)) return;
+
+        upgrades.respecUpgrade(upgrade);
+        gravitonShardsAvailable += upgrade.getShardCost();
+        gravitonShardsSpent -= upgrade.getShardCost();
+
+        if (upgrade == EternalGregTechWorkshopUpgrade.END) {
+            gravitonShardEjection = false;
+        }
+    }
+
+    public Widget createUpgradeBox(EternalGregTechWorkshopUpgrade upgrade, IWidgetBuilder<?> builder) {
+        return new MultiChildWidget().addChild(new ButtonWidget().setOnClick((clickData, widget) -> {
+            currentUpgradeWindow = upgrade;
+            if (clickData.mouseButton == 0) {
+                if (clickData.shift) {
+                    if (!upgrade.hasExtraCost() || upgrades.isCostPaid(upgrade)) {
+                        completeUpgrade(upgrade);
+                    } else {
+                        EternalGregTechWorkshopUI.reopenWindow(widget, MANUAL_INSERTION_WINDOW_ID);
+                        EternalGregTechWorkshopUI.closeWindow(widget, INDIVIDUAL_UPGRADE_WINDOW_ID);
+                        EternalGregTechWorkshopUI.closeWindow(widget, UPGRADE_TREE_WINDOW_ID);
+                    }
+                } else {
+                    EternalGregTechWorkshopUI.reopenWindow(widget, INDIVIDUAL_UPGRADE_WINDOW_ID);
+                }
+            } else if (clickData.mouseButton == 1) {
+                respecUpgrade(upgrade);
+            }
+        })
+            .setSize(40, 15)
+            .setBackground(() -> {
+                if (isUpgradeActive(upgrade)) {
+                    return new IDrawable[] { TecTechUITextures.BUTTON_SPACE_PRESSED_32x16 };
+                } else {
+                    return new IDrawable[] { TecTechUITextures.BUTTON_SPACE_32x16 };
+                }
+            })
+            .addTooltip(upgrade.getNameText())
+            .setTooltipShowUpDelay(TOOLTIP_DELAY))
+            .addChild(
+                new TextWidget(upgrade.getShortNameText()).setScale(0.8f)
+                    .setDefaultColor(EnumChatFormatting.GOLD)
+                    .setTextAlignment(Alignment.Center)
+                    .setSize(34, 9)
+                    .setPos(3, 4))
+            .setPos(upgrade.getTreePos())
+            .attachSyncer(upgrades.getSyncer(upgrade), builder);
+    }
+
+    public ModularWindow createIndividualUpgradeWindow(final EntityPlayer player) {
+        EternalGregTechWorkshopUpgrade upgrade = currentUpgradeWindow;
+
+        ModularWindow.Builder builder = ModularWindow.builder(upgrade.getWindowSize());
+        builder.setBackground(upgrade.getBackground());
+
+        // Syncers
+        builder.widget(
+            new FakeSyncWidget.IntegerSyncer(() -> gravitonShardsAvailable, val -> gravitonShardsAvailable = val));
+        builder.widget(upgrades.getSyncer(upgrade));
+
+        builder.widget(
+            EternalGregTechWorkshopUI.getIndividualUpgradeGroup(
+                upgrade,
+                () -> gravitonShardsAvailable,
+                () -> completeUpgrade(upgrade),
+                () -> respecUpgrade(upgrade),
+                () -> isUpgradeActive(upgrade)));
+
+        if (upgrade.hasExtraCost()) {
+            builder.widget(
+                EternalGregTechWorkshopUI
+                    .createMaterialInputButton(upgrade, () -> upgrades.isCostPaid(upgrade), (clickData, widget) -> {
+                        EternalGregTechWorkshopUI.reopenWindow(widget, MANUAL_INSERTION_WINDOW_ID);
+                        EternalGregTechWorkshopUI.closeWindow(widget, INDIVIDUAL_UPGRADE_WINDOW_ID);
+                        EternalGregTechWorkshopUI.closeWindow(widget, UPGRADE_TREE_WINDOW_ID);
+                    }));
+        }
+
+        return builder.build();
+    }
+
+    public ModularWindow createUpgradeTreeWindow(final EntityPlayer player) {
+        ModularWindow.Builder builder = ModularWindow.builder(300, 300);
+        Scrollable scrollable = new Scrollable().setVerticalScroll();
+
+        // spotless:off
+        scrollable
+            .widget(createUpgradeConnectorLine(new Pos2d(143, 71),  45,  0,      UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.START, EternalGregTechWorkshopUpgrade.IGCC))
+            .widget(createUpgradeConnectorLine(new Pos2d(124, 124), 60,  27,     UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.IGCC,  EternalGregTechWorkshopUpgrade.STEM))
+            .widget(createUpgradeConnectorLine(new Pos2d(162, 124), 60,  333,    UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.IGCC,  EternalGregTechWorkshopUpgrade.CFCE))
+            .widget(createUpgradeConnectorLine(new Pos2d(94,  184), 60,  27,     UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.STEM,  EternalGregTechWorkshopUpgrade.GISS))
+            .widget(createUpgradeConnectorLine(new Pos2d(130, 184), 60,  336,    UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.STEM,  EternalGregTechWorkshopUpgrade.FDIM))
+            .widget(createUpgradeConnectorLine(new Pos2d(156, 184), 60,  24,     UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.CFCE,  EternalGregTechWorkshopUpgrade.FDIM))
+            .widget(createUpgradeConnectorLine(new Pos2d(192, 184), 60,  333,    UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.CFCE,  EternalGregTechWorkshopUpgrade.SA))
+            .widget(createUpgradeConnectorLine(new Pos2d(143, 251), 45,  0,      UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.FDIM,  EternalGregTechWorkshopUpgrade.GPCI))
+            .widget(createUpgradeConnectorLine(new Pos2d(143, 311), 45,  0,      UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.GPCI,  EternalGregTechWorkshopUpgrade.GEM))
+            .widget(createUpgradeConnectorLine(new Pos2d(78,  250), 110, 5,      UpgradeColor.RED,    EternalGregTechWorkshopUpgrade.GISS,  EternalGregTechWorkshopUpgrade.REC))
+            .widget(createUpgradeConnectorLine(new Pos2d(110, 290), 80,  40,     UpgradeColor.RED,    EternalGregTechWorkshopUpgrade.GPCI,  EternalGregTechWorkshopUpgrade.REC))
+            .widget(createUpgradeConnectorLine(new Pos2d(208, 250), 110, 355,    UpgradeColor.RED,    EternalGregTechWorkshopUpgrade.SA,    EternalGregTechWorkshopUpgrade.CTCDD))
+            .widget(createUpgradeConnectorLine(new Pos2d(176, 290), 80,  320,    UpgradeColor.RED,    EternalGregTechWorkshopUpgrade.GPCI,  EternalGregTechWorkshopUpgrade.CTCDD))
+            .widget(createUpgradeConnectorLine(new Pos2d(100, 355), 80,  313,    UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.REC,   EternalGregTechWorkshopUpgrade.QGPIU))
+            .widget(createUpgradeConnectorLine(new Pos2d(186, 355), 80,  47,     UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.CTCDD, EternalGregTechWorkshopUpgrade.QGPIU))
+            .widget(createUpgradeConnectorLine(new Pos2d(143, 430), 48,  0,      UpgradeColor.ORANGE, EternalGregTechWorkshopUpgrade.QGPIU, EternalGregTechWorkshopUpgrade.TCT))
+            .widget(createUpgradeConnectorLine(new Pos2d(143, 490), 48,  0,      UpgradeColor.ORANGE, EternalGregTechWorkshopUpgrade.TCT,   EternalGregTechWorkshopUpgrade.EPEC))
+            .widget(createUpgradeConnectorLine(new Pos2d(143, 550), 48,  0,      UpgradeColor.ORANGE, EternalGregTechWorkshopUpgrade.EPEC,  EternalGregTechWorkshopUpgrade.POS))
+            .widget(createUpgradeConnectorLine(new Pos2d(143, 610), 48,  0,      UpgradeColor.ORANGE, EternalGregTechWorkshopUpgrade.POS,   EternalGregTechWorkshopUpgrade.NGMS))
+            .widget(createUpgradeConnectorLine(new Pos2d(110, 410), 80,  40,     UpgradeColor.PURPLE, EternalGregTechWorkshopUpgrade.QGPIU, EternalGregTechWorkshopUpgrade.SEFCP))
+            .widget(createUpgradeConnectorLine(new Pos2d(83,  490), 48,  0,      UpgradeColor.PURPLE, EternalGregTechWorkshopUpgrade.SEFCP, EternalGregTechWorkshopUpgrade.CNTI))
+            .widget(createUpgradeConnectorLine(new Pos2d(83,  550), 48,  0,      UpgradeColor.PURPLE, EternalGregTechWorkshopUpgrade.CNTI,  EternalGregTechWorkshopUpgrade.NDPE))
+            .widget(createUpgradeConnectorLine(new Pos2d(101, 590), 80,  320,    UpgradeColor.PURPLE, EternalGregTechWorkshopUpgrade.NDPE,  EternalGregTechWorkshopUpgrade.NGMS))
+            .widget(createUpgradeConnectorLine(new Pos2d(53,  536), 35,  45,     UpgradeColor.PURPLE, EternalGregTechWorkshopUpgrade.CNTI,  EternalGregTechWorkshopUpgrade.DOP))
+            .widget(createUpgradeConnectorLine(new Pos2d(176, 410), 80,  320,    UpgradeColor.GREEN,  EternalGregTechWorkshopUpgrade.QGPIU, EternalGregTechWorkshopUpgrade.GGEBE))
+            .widget(createUpgradeConnectorLine(new Pos2d(203, 490), 48,  0,      UpgradeColor.GREEN,  EternalGregTechWorkshopUpgrade.GGEBE, EternalGregTechWorkshopUpgrade.IMKG))
+            .widget(createUpgradeConnectorLine(new Pos2d(203, 550), 48,  0,      UpgradeColor.GREEN,  EternalGregTechWorkshopUpgrade.IMKG,  EternalGregTechWorkshopUpgrade.DOR))
+            .widget(createUpgradeConnectorLine(new Pos2d(185, 590), 80,  40,     UpgradeColor.GREEN,  EternalGregTechWorkshopUpgrade.DOR,   EternalGregTechWorkshopUpgrade.NGMS))
+            .widget(createUpgradeConnectorLine(new Pos2d(233, 476), 35,  315,    UpgradeColor.GREEN,  EternalGregTechWorkshopUpgrade.GGEBE, EternalGregTechWorkshopUpgrade.TPTP))
+            .widget(createUpgradeConnectorLine(new Pos2d(143, 670), 48,  0,      UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.NGMS,  EternalGregTechWorkshopUpgrade.SEDS))
+            .widget(createUpgradeConnectorLine(new Pos2d(101, 707), 75,  62.3f,  UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.SEDS,  EternalGregTechWorkshopUpgrade.PA))
+            .widget(createUpgradeConnectorLine(new Pos2d(53,  772), 78,  0,      UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.PA,    EternalGregTechWorkshopUpgrade.CD))
+            .widget(createUpgradeConnectorLine(new Pos2d(95,  837), 75,  297.7f, UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.CD,    EternalGregTechWorkshopUpgrade.TSE))
+            .widget(createUpgradeConnectorLine(new Pos2d(191, 837), 75,  62.3f,  UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.TSE,   EternalGregTechWorkshopUpgrade.TBF))
+            .widget(createUpgradeConnectorLine(new Pos2d(233, 772), 78,  0,      UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.TBF,   EternalGregTechWorkshopUpgrade.EE))
+            .widget(createUpgradeConnectorLine(new Pos2d(191, 747), 75,  62.3f,  UpgradeColor.BLUE,   EternalGregTechWorkshopUpgrade.EE,    EternalGregTechWorkshopUpgrade.END));
+        // spotless:on
+
+        for (EternalGregTechWorkshopUpgrade upgrade : upgrades.getAllUpgrades()) {
+            scrollable.widget(createUpgradeBox(upgrade, scrollable));
+        }
+
+        scrollable.widget(
+            new MultiChildWidget().addChild(
+                new ButtonWidget().setOnClick(((clickData, widget) -> secretUpgrade = !secretUpgrade))
+                    .setSize(40, 15)
+                    .setBackground(() -> {
+                        if (secretUpgrade) {
+                            return new IDrawable[] { TecTechUITextures.BUTTON_SPACE_PRESSED_32x16 };
+                        }
+                        return new IDrawable[0];
+                    })
+                    .addTooltip(StatCollector.translateToLocal("fog.upgrade.tt.secret"))
+                    .setTooltipShowUpDelay(20))
+                .addChild(
+                    new TextWidget(StatCollector.translateToLocal("fog.upgrade.tt.short.secret")).setScale(0.8f)
+                        .setDefaultColor(EnumChatFormatting.GOLD)
+                        .setTextAlignment(Alignment.Center)
+                        .setSize(34, 9)
+                        .setPos(3, 4)
+                        .setEnabled((widget -> secretUpgrade)))
+                .addChild(
+                    new DrawableWidget().setDrawable(TecTechUITextures.PICTURE_UPGRADE_CONNECTOR_BLUE_OPAQUE)
+                        .setEnabled(widget -> secretUpgrade)
+                        .setPos(40, 4)
+                        .setSize(20, 6))
+                .setPos(new Pos2d(66, 56)))
+            .widget(new TextWidget("").setPos(0, 945));
+
+        builder.widget(
+            new DrawableWidget().setDrawable(TecTechUITextures.BACKGROUND_STAR)
+                .setPos(0, 0)
+                .setSize(300, 300))
+            .widget(
+                scrollable.setSize(292, 292)
+                    .setPos(4, 4))
+            .widget(
+                ButtonWidget.closeWindowButton(true)
+                    .setOnClick((data, widget) -> {
+                        if (!widget.isClient()) {
+                            widget.getWindow()
+                                .closeWindow();
+                            EternalGregTechWorkshopUI.closeWindow(widget, INDIVIDUAL_UPGRADE_WINDOW_ID);
+                        }
+                    })
+                    .setPos(282, 4));
+        if (MainConfig.debug.enableDebugMode) {
+            builder.widget(
+                new MultiChildWidget()
+                    .addChild(
+                        new ButtonWidget().setOnClick((clickData, widget) -> upgrades.resetAll())
+                            .setSize(40, 15)
+                            .setBackground(GTUITextures.BUTTON_STANDARD)
+                            .addTooltip(StatCollector.translateToLocal("fog.debug.resetbutton.tooltip"))
+                            .setTooltipShowUpDelay(TOOLTIP_DELAY))
+                    .addChild(
+                        new TextWidget(StatCollector.translateToLocal("fog.debug.resetbutton.text"))
+                            .setTextAlignment(Alignment.Center)
+                            .setScale(0.57f)
+                            .setMaxWidth(36)
+                            .setPos(3, 3))
+                    .addChild(
+                        new NumericWidget().setSetter(val -> gravitonShardsAvailable = (int) val)
+                            .setGetter(() -> gravitonShardsAvailable)
+                            .setBounds(0, 112)
+                            .setDefaultValue(0)
+                            .setScrollValues(1, 4, 64)
+                            .setTextAlignment(Alignment.Center)
+                            .setTextColor(Color.WHITE.normal)
+                            .setSize(25, 18)
+                            .setPos(4, 16)
+                            .addTooltip(StatCollector.translateToLocal("fog.debug.gravitonshardsetter.tooltip"))
+                            .setTooltipShowUpDelay(TOOLTIP_DELAY)
+                            .setBackground(GTUITextures.BACKGROUND_TEXT_FIELD))
+                    .addChild(
+                        new ButtonWidget().setOnClick((clickData, widget) -> upgrades.unlockAll())
+                            .setSize(40, 15)
+                            .setBackground(GTUITextures.BUTTON_STANDARD)
+                            .addTooltip(StatCollector.translateToLocal("fog.debug.unlockall.text"))
+                            .setTooltipShowUpDelay(TOOLTIP_DELAY)
+                            .setPos(0, 35))
+                    .addChild(
+                        new TextWidget(StatCollector.translateToLocal("fog.debug.unlockall.text"))
+                            .setTextAlignment(Alignment.Center)
+                            .setScale(0.57f)
+                            .setMaxWidth(36)
+                            .setPos(3, 38))
+                    .setPos(4, 4));
+
+        }
+        return builder.build();
+    }
+
+    public void destroyExtraModule() {
+        for (int i = 0; i < mMachineTier; i++) {
+            buildPiece(
+                STRUCTURE_PIECE_MAIN_EXTRA_AIR,
+                null,
+                false,
+                HORIZONTAL_OFF_SET_EXTRA,
+                VERTICAL_OFF_SET_EXTRA_UP + i * 22,
+                DEPTH_OFF_SET_EXTRA);
+            buildPiece(
+                STRUCTURE_PIECE_MAIN_EXTRA_AIR,
+                null,
+                false,
+                HORIZONTAL_OFF_SET_EXTRA,
+                VERTICAL_OFF_SET_EXTRA_DOWN - i * 22,
+                DEPTH_OFF_SET_EXTRA);
+            mExtraModule = true;
+        }
+
+    }
+
+    public void buildExtraModule() {
+        for (int i = 0; i < mMachineTier; i++) {
+            buildPiece(
+                STRUCTURE_PIECE_MAIN_EXTRA,
+                null,
+                false,
+                HORIZONTAL_OFF_SET_EXTRA,
+                VERTICAL_OFF_SET_EXTRA_UP + i * 22,
+                DEPTH_OFF_SET_EXTRA);
+            buildPiece(
+                STRUCTURE_PIECE_MAIN_EXTRA,
+                null,
+                false,
+                HORIZONTAL_OFF_SET_EXTRA,
+                VERTICAL_OFF_SET_EXTRA_DOWN - i * 22,
+                DEPTH_OFF_SET_EXTRA);
+            mExtraModule = true;
+        }
+    }
+
+    public void destroyRenderer() {
+        ChunkCoordinates renderPos = getRenderPos();
+        World world = this.getBaseMetaTileEntity()
+            .getWorld();
+
+        if (!(world
+            .getBlock(renderPos.posX, renderPos.posY, renderPos.posZ) instanceof BlockEternalGregTechWorkshopRender))
+            return;
+
+        world.setBlock(renderPos.posX, renderPos.posY, renderPos.posZ, Blocks.air);
+        world.setBlock(renderPos.posX, renderPos.posY, renderPos.posZ, GregTechAPI.sBlockCasings1, 14, 2);
+
+        buildExtraModule();
+
+        isRenderActive = false;
+        disableWorking();
+    }
+
+    public void createRenderer() {
+        ChunkCoordinates renderPos = getRenderPos();
+
+        this.getBaseMetaTileEntity()
+            .getWorld()
+            .setBlock(renderPos.posX, renderPos.posY, renderPos.posZ, Blocks.air);
+        this.getBaseMetaTileEntity()
+            .getWorld()
+            .setBlock(renderPos.posX, renderPos.posY, renderPos.posZ, BlockLoader.eternalGregTechWorkshopRender);
+        TileEntityEternalGregTechWorkshop rendererTileEntity = (TileEntityEternalGregTechWorkshop) this
+            .getBaseMetaTileEntity()
+            .getWorld()
+            .getTileEntity(renderPos.posX, renderPos.posY, renderPos.posZ);
+
+        destroyExtraModule();
+
+        rendererTileEntity.setRenderRotation(getRotation(), getDirection());
+        updateRenderer();
+
+        isRenderActive = true;
+        enableWorking();
+    }
+
+    public ChunkCoordinates getRenderPos() {
+        IGregTechTileEntity gregTechTileEntity = this.getBaseMetaTileEntity();
+        int x = gregTechTileEntity.getXCoord();
+        int y = gregTechTileEntity.getYCoord();
+        int z = gregTechTileEntity.getZCoord();
+        double xOffset = 26 * getExtendedFacing().getRelativeBackInWorld().offsetX;
+        double yOffset = 26 * getExtendedFacing().getRelativeBackInWorld().offsetY;
+        double zOffset = 26 * getExtendedFacing().getRelativeBackInWorld().offsetZ;
+        return new ChunkCoordinates((int) (x + xOffset), (int) (y + yOffset), (int) (z + zOffset));
+    }
+
+    public TileEntityEternalGregTechWorkshop getRenderer() {
+        ChunkCoordinates renderPos = getRenderPos();
+        TileEntity tile = this.getBaseMetaTileEntity()
+            .getWorld()
+            .getTileEntity(renderPos.posX, renderPos.posY, renderPos.posZ);
+
+        if (tile instanceof TileEntityEternalGregTechWorkshop egtwTile) {
+            return egtwTile;
+        }
+        return null;
+    }
+
+    public void updateRenderer() {
+        TileEntityEternalGregTechWorkshop tile = getRenderer();
+        if (tile == null) return;
+        tile.setRenderCount(mMachineTier);
+        tile.updateToClient();
+    }
+}

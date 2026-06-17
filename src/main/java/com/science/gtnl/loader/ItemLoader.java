@@ -1,0 +1,720 @@
+package com.science.gtnl.loader;
+
+import static com.science.gtnl.common.item.items.SuspiciousStew.registerFlower;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidRegistry;
+
+import com.science.gtnl.client.GTNLCreativeTabs;
+import com.science.gtnl.common.item.ItemInfinityCell;
+import com.science.gtnl.common.item.ItemInfinityItem;
+import com.science.gtnl.common.item.MetaItemAdder;
+import com.science.gtnl.common.item.items.CircuitIntegratedPlus;
+import com.science.gtnl.common.item.items.DebugItem;
+import com.science.gtnl.common.item.items.DireCraftPattern;
+import com.science.gtnl.common.item.items.ElectricProspectorTool;
+import com.science.gtnl.common.item.items.FakeItemSiren;
+import com.science.gtnl.common.item.items.GTNLItemBucket;
+import com.science.gtnl.common.item.items.ItemPartActiveFormationPlane;
+import com.science.gtnl.common.item.items.ItemPartBeamFormer;
+import com.science.gtnl.common.item.items.ItemPartSuperInterface;
+import com.science.gtnl.common.item.items.KFCFamily;
+import com.science.gtnl.common.item.items.NetherTeleporter;
+import com.science.gtnl.common.item.items.NullPointerException;
+import com.science.gtnl.common.item.items.PortableItem;
+import com.science.gtnl.common.item.items.SlimeSaddle;
+import com.science.gtnl.common.item.items.SteamRocket;
+import com.science.gtnl.common.item.items.Stick;
+import com.science.gtnl.common.item.items.SuspiciousStew;
+import com.science.gtnl.common.item.items.TestItem;
+import com.science.gtnl.common.item.items.TimeStopPocketWatch;
+import com.science.gtnl.common.item.items.TwilightSword;
+import com.science.gtnl.common.item.items.VeinMiningPickaxe;
+import com.science.gtnl.common.item.items.WirelessUpgradeChip;
+import com.science.gtnl.common.item.items.bauble.LuckyHorseshoe;
+import com.science.gtnl.common.item.items.bauble.PhysicsCape;
+import com.science.gtnl.common.item.items.bauble.RejectionRing;
+import com.science.gtnl.common.item.items.bauble.RoyalGel;
+import com.science.gtnl.common.item.items.bauble.SatietyRing;
+import com.science.gtnl.common.item.items.bauble.SuperReachRing;
+import com.science.gtnl.common.item.items.fuelRod.FuelRod;
+import com.science.gtnl.common.item.items.fuelRod.FuelRodDepleted;
+import com.science.gtnl.utils.enums.GTNLItemList;
+import com.science.gtnl.utils.text.AnimatedTooltipHandler;
+
+import appeng.api.storage.StorageChannel;
+import cpw.mods.fml.common.registry.GameRegistry;
+import gregtech.api.GregTechAPI;
+import gregtech.api.enums.GTValues;
+import gregtech.api.enums.ItemList;
+import gregtech.api.enums.Materials;
+import gregtech.api.enums.Mods;
+import gregtech.api.enums.OrePrefixes;
+import gregtech.api.util.GTModHandler;
+import gregtech.api.util.GTOreDictUnificator;
+import gregtech.api.util.GTUtility;
+import gregtech.common.render.items.InfinityMetaItemRenderer;
+
+public class ItemLoader {
+
+    public static SteamRocket steamRocket = new SteamRocket();
+    public static NullPointerException nullPointerException = new NullPointerException();
+    public static FakeItemSiren fakeItemSiren = new FakeItemSiren();
+    public static NetherTeleporter netherTeleporter = new NetherTeleporter();
+    public static TestItem testItem = new TestItem();
+    public static DebugItem debugItem = new DebugItem();
+    public static KFCFamily KFCFamily = new KFCFamily();
+    public static TwilightSword twilightSword = new TwilightSword();
+    public static CircuitIntegratedPlus circuitIntegratedPlus = new CircuitIntegratedPlus();
+    public static TimeStopPocketWatch timeStopPocketWatch = new TimeStopPocketWatch();
+
+    public static ItemInfinityItem infinityTorch = new ItemInfinityItem(
+        "InfinityTorch",
+        Blocks.torch,
+        GTNLItemList.InfinityTorch);
+
+    public static ItemInfinityItem infinityWaterBucket = new ItemInfinityItem(
+        "InfinityWaterBucket",
+        Blocks.water,
+        FluidRegistry.getFluid("water"),
+        GTNLItemList.InfinityWaterBucket);
+
+    public static ItemInfinityItem infinityLavaBucket = new ItemInfinityItem(
+        "InfinityLavaBucket",
+        Blocks.lava,
+        FluidRegistry.getFluid("lava"),
+        GTNLItemList.InfinityLavaBucket);
+
+    public static ItemInfinityItem infinityHoneyBucket = new ItemInfinityItem(
+        "InfinityHoneyBucket",
+        BlockLoader.honeyFluidBlock,
+        BlockLoader.honeyFluid,
+        GTNLItemList.InfinityHoneyBucket);
+
+    public static ItemInfinityItem infinityShimmerBucket = new ItemInfinityItem(
+        "InfinityShimmerBucket",
+        BlockLoader.shimmerFluidBlock,
+        BlockLoader.shimmerFluid,
+        GTNLItemList.InfinityShimmerBucket);
+
+    public static ItemInfinityItem superstrongSponge = new ItemInfinityItem(
+        "SuperstrongSponge",
+        (Block) null,
+        false,
+        GTNLItemList.SuperstrongSponge);
+
+    public static FuelRodDepleted infinityFuelRodDepleted = new FuelRodDepleted("InfinityFuelRodDepleted", 2000);
+
+    public static FuelRod infinityFuelRod = new FuelRod(
+        "InfinityFuelRod",
+        1,
+        491520,
+        500,
+        15000,
+        160000,
+        70F,
+        new ItemStack(infinityFuelRodDepleted, 1));
+
+    public static MetaItemAdder metaItem = new MetaItemAdder("MetaItem", GTNLCreativeTabs.GTNotLeisureItem);
+
+    public static GTNLItemBucket honeyBucket;
+    public static GTNLItemBucket shimmerBucket;
+
+    public static ItemInfinityCell infinityCell = new ItemInfinityCell();
+    public static DireCraftPattern direCraftPattern = new DireCraftPattern();
+
+    public static WirelessUpgradeChip wirelessUpgradeChip = new WirelessUpgradeChip();
+    public static SuspiciousStew suspiciousStew = new SuspiciousStew();
+    public static PortableItem portableItem = new PortableItem();
+    public static ElectricProspectorTool electricProspectorTool = new ElectricProspectorTool();
+
+    public static SlimeSaddle slimeSaddle = new SlimeSaddle();
+
+    public static SuperReachRing superReachRing = new SuperReachRing();
+    public static SatietyRing satietyRing = new SatietyRing();
+    public static RejectionRing rejectionRing = new RejectionRing();
+
+    public static PhysicsCape physicsCape = new PhysicsCape();
+    public static RoyalGel royalGel = new RoyalGel();
+    public static LuckyHorseshoe luckyHorseshoe = new LuckyHorseshoe();
+
+    public static Stick stick = new Stick();
+
+    public static VeinMiningPickaxe veinMiningPickaxe = new VeinMiningPickaxe();
+
+    public static ItemPartSuperInterface superInterface = new ItemPartSuperInterface();
+    public static ItemPartActiveFormationPlane activeFormationPlane = new ItemPartActiveFormationPlane();
+    public static ItemPartBeamFormer beamFormer = new ItemPartBeamFormer();
+
+    public static ItemStack infinityDyeCell;
+    public static ItemStack infinityDyeFluidCell;
+    public static ItemStack infinityStoneCell;
+
+    public static void registryItems() {
+        honeyBucket = GTNLItemBucket.create(BlockLoader.honeyFluid);
+        shimmerBucket = GTNLItemBucket.create(BlockLoader.shimmerFluid);
+
+        var subDyeItems = new ItemInfinityCell.SubItem[16];
+        for (short i = 0; i < 16; i++) {
+            subDyeItems[i] = ItemInfinityCell.SubItem.getInstance(ItemList.DYE_ONLY_ITEMS[i].get(1));
+        }
+        infinityDyeCell = ItemInfinityCell
+            .getSubItem(StorageChannel.ITEMS, "InfinityCell.dye.name", "InfinityDyeCell", subDyeItems);
+
+        String[] colors = { "Black", "Pink", "Red", "Orange", "Yellow", "Green", "Lime", "Blue", "LightBlue", "Cyan",
+            "Brown", "Magenta", "Purple", "Gray", "LightGray", "White" };
+        var subDyeFluid = new ItemInfinityCell.SubItem[colors.length];
+        for (int i = 0; i < colors.length; i++) {
+            String color = colors[i];
+            String fluidName = "dye.chemical.dye" + color.toLowerCase();
+            subDyeFluid[i] = ItemInfinityCell.SubItem.getInstance(FluidRegistry.getFluid(fluidName));
+        }
+        infinityDyeFluidCell = ItemInfinityCell
+            .getSubItem(StorageChannel.FLUIDS, "InfinityCell.dye.fluid.name", "InfinityDyeFluidCell", subDyeFluid);
+
+        List<ItemInfinityCell.SubItem> infinityStoneCell = new ArrayList<>();
+        infinityStoneCell.add(ItemInfinityCell.SubItem.getInstance(Blocks.stone));
+        infinityStoneCell.add(ItemInfinityCell.SubItem.getInstance(Blocks.cobblestone));
+        infinityStoneCell.add(ItemInfinityCell.SubItem.getInstance(Blocks.netherrack));
+        infinityStoneCell.add(ItemInfinityCell.SubItem.getInstance(Blocks.end_stone));
+
+        infinityStoneCell.add(ItemInfinityCell.SubItem.getInstance(new ItemStack(GregTechAPI.sBlockGranites, 1, 0)));
+        infinityStoneCell.add(ItemInfinityCell.SubItem.getInstance(new ItemStack(GregTechAPI.sBlockGranites, 1, 1)));
+        infinityStoneCell.add(ItemInfinityCell.SubItem.getInstance(new ItemStack(GregTechAPI.sBlockGranites, 1, 8)));
+        infinityStoneCell.add(ItemInfinityCell.SubItem.getInstance(new ItemStack(GregTechAPI.sBlockGranites, 1, 9)));
+
+        infinityStoneCell.add(ItemInfinityCell.SubItem.getInstance(new ItemStack(GregTechAPI.sBlockStones, 1, 0)));
+        infinityStoneCell.add(ItemInfinityCell.SubItem.getInstance(new ItemStack(GregTechAPI.sBlockStones, 1, 1)));
+        infinityStoneCell.add(ItemInfinityCell.SubItem.getInstance(new ItemStack(GregTechAPI.sBlockStones, 1, 8)));
+        infinityStoneCell.add(ItemInfinityCell.SubItem.getInstance(new ItemStack(GregTechAPI.sBlockStones, 1, 9)));
+
+        if (Mods.EtFuturumRequiem.isModLoaded()) {
+            infinityStoneCell.add(
+                ItemInfinityCell.SubItem
+                    .getInstance(GTModHandler.getModItem(Mods.EtFuturumRequiem.ID, "deepslate", 1)));
+            infinityStoneCell.add(
+                ItemInfinityCell.SubItem
+                    .getInstance(GTModHandler.getModItem(Mods.EtFuturumRequiem.ID, "cobbled_deepslate", 1)));
+            infinityStoneCell.add(
+                ItemInfinityCell.SubItem
+                    .getInstance(GTModHandler.getModItem(Mods.EtFuturumRequiem.ID, "blackstone", 1)));
+        }
+
+        if (Mods.Botania.isModLoaded()) {
+            infinityStoneCell
+                .add(ItemInfinityCell.SubItem.getInstance(GTModHandler.getModItem(Mods.Botania.ID, "stone", 1, 0)));
+            infinityStoneCell
+                .add(ItemInfinityCell.SubItem.getInstance(GTModHandler.getModItem(Mods.Botania.ID, "stone", 1, 1)));
+            infinityStoneCell
+                .add(ItemInfinityCell.SubItem.getInstance(GTModHandler.getModItem(Mods.Botania.ID, "stone", 1, 2)));
+            infinityStoneCell
+                .add(ItemInfinityCell.SubItem.getInstance(GTModHandler.getModItem(Mods.Botania.ID, "stone", 1, 3)));
+        }
+
+        ItemLoader.infinityStoneCell = ItemInfinityCell
+            .getSubItem(StorageChannel.ITEMS, "InfinityCell.stone.name", "InfinityStoneCell", infinityStoneCell);
+
+        GameRegistry.registerItem(RecordLoader.recordSus, "record_sus");
+        GameRegistry.registerItem(RecordLoader.recordNewHorizons, "record_new_horizons");
+
+        GTNLItemList.RecordSus.set(RecordLoader.recordSus);
+        GTNLItemList.RecordNewHorizons.set(RecordLoader.recordNewHorizons);
+        GTNLItemList.RecordLavaChicken.set(RecordLoader.recordLavaChicken);
+        GTNLItemList.InfinityFuelRodDepleted.set(infinityFuelRodDepleted);
+        GTNLItemList.InfinityFuelRod.set(infinityFuelRod);
+        GTNLItemList.HoneyBucket.set(honeyBucket);
+        GTNLItemList.ShimmerBucket.set(shimmerBucket);
+        GTNLItemList.InfinityCell.set(infinityCell);
+        GTNLItemList.InfinityDyeCell.set(infinityDyeCell);
+        GTNLItemList.InfinityDyeFluidCell.set(infinityDyeFluidCell);
+        GTNLItemList.InfinityStoneCell.set(ItemLoader.infinityStoneCell);
+    }
+
+    public static void registryMetaItems() {
+        GTNLItemList.TrollFace
+            .set(MetaItemAdder.initItem(0, new String[] { StatCollector.translateToLocal("Tooltip_TrollFace_00") }));
+        GTNLItemList.DepletedExcitedNaquadahFuelRod.set(
+            MetaItemAdder.initItem(
+                1,
+                new String[] { StatCollector.translateToLocal("Tooltip_DepletedExcitedNaquadahFuelRod_00") }));
+        GTNLItemList.BlazeCube
+            .set(MetaItemAdder.initItem(2, new String[] { StatCollector.translateToLocal("Tooltip_BlazeCube_00") }));
+        GTNLItemList.EnhancementCore.set(
+            MetaItemAdder.initItem(3, new String[] { StatCollector.translateToLocal("Tooltip_EnhancementCore_00") }));
+        GTNLItemList.WaterCover.set(MetaItemAdder.initItem(4));
+        GTNLItemList.ActivatedGaiaPylon.set(MetaItemAdder.initItem(5));
+        GTNLItemList.PrecisionSteamMechanism.set(MetaItemAdder.initItem(6));
+        GTNLItemList.MeteorMinerSchematic1.set(
+            MetaItemAdder
+                .initItem(7, new String[] { StatCollector.translateToLocal("Tooltip_MeteorMinerSchematicI_00") }));
+        GTNLItemList.MeteorMinerSchematic2.set(
+            MetaItemAdder
+                .initItem(8, new String[] { StatCollector.translateToLocal("Tooltip_MeteorMinerSchematicII_00") }));
+        GTNLItemList.CircuitResonaticULV.set(
+            MetaItemAdder.initItem(
+                9,
+                new String[] { StatCollector.translateToLocal("Tooltip_CircuitResonaticULV_00"),
+                    StatCollector.translateToLocal("Tooltip_CircuitResonaticULV_01") }));
+        GTNLItemList.CircuitResonaticLV.set(
+            MetaItemAdder.initItem(
+                10,
+                new String[] { StatCollector.translateToLocal("Tooltip_CircuitResonaticLV_00"),
+                    StatCollector.translateToLocal("Tooltip_CircuitResonaticLV_01") }));
+        GTNLItemList.CircuitResonaticMV.set(
+            MetaItemAdder.initItem(
+                11,
+                new String[] { StatCollector.translateToLocal("Tooltip_CircuitResonaticMV_00"),
+                    StatCollector.translateToLocal("Tooltip_CircuitResonaticMV_01") }));
+        GTNLItemList.CircuitResonaticHV.set(
+            MetaItemAdder.initItem(
+                12,
+                new String[] { StatCollector.translateToLocal("Tooltip_CircuitResonaticHV_00"),
+                    StatCollector.translateToLocal("Tooltip_CircuitResonaticHV_01") }));
+        GTNLItemList.CircuitResonaticEV.set(
+            MetaItemAdder.initItem(
+                13,
+                new String[] { StatCollector.translateToLocal("Tooltip_CircuitResonaticEV_00"),
+                    StatCollector.translateToLocal("Tooltip_CircuitResonaticEV_01") }));
+        GTNLItemList.CircuitResonaticIV.set(
+            MetaItemAdder.initItem(
+                14,
+                new String[] { StatCollector.translateToLocal("Tooltip_CircuitResonaticIV_00"),
+                    StatCollector.translateToLocal("Tooltip_CircuitResonaticIV_01") }));
+        GTNLItemList.CircuitResonaticLuV.set(
+            MetaItemAdder.initItem(
+                15,
+                new String[] { StatCollector.translateToLocal("Tooltip_CircuitResonaticLuV_00"),
+                    StatCollector.translateToLocal("Tooltip_CircuitResonaticLuV_01") }));
+        GTNLItemList.CircuitResonaticZPM.set(
+            MetaItemAdder.initItem(
+                16,
+                new String[] { StatCollector.translateToLocal("Tooltip_CircuitResonaticZPM_00"),
+                    StatCollector.translateToLocal("Tooltip_CircuitResonaticZPM_01") }));
+        GTNLItemList.CircuitResonaticUV.set(
+            MetaItemAdder.initItem(
+                17,
+                new String[] { StatCollector.translateToLocal("Tooltip_CircuitResonaticUV_00"),
+                    StatCollector.translateToLocal("Tooltip_CircuitResonaticUV_01") }));
+        GTNLItemList.CircuitResonaticUHV.set(
+            MetaItemAdder.initItem(
+                18,
+                new String[] { StatCollector.translateToLocal("Tooltip_CircuitResonaticUHV_00"),
+                    StatCollector.translateToLocal("Tooltip_CircuitResonaticUHV_01") }));
+        GTNLItemList.CircuitResonaticUEV.set(
+            MetaItemAdder.initItem(
+                19,
+                new String[] { StatCollector.translateToLocal("Tooltip_CircuitResonaticUEV_00"),
+                    StatCollector.translateToLocal("Tooltip_CircuitResonaticUEV_01") }));
+        GTNLItemList.CircuitResonaticUIV.set(
+            MetaItemAdder.initItem(
+                20,
+                new String[] { StatCollector.translateToLocal("Tooltip_CircuitResonaticUIV_00"),
+                    StatCollector.translateToLocal("Tooltip_CircuitResonaticUIV_01") }));
+        GTNLItemList.VerySimpleCircuit.set(
+            MetaItemAdder.initItem(
+                21,
+                new String[] { StatCollector.translateToLocal("Tooltip_VerySimpleCircuit_00"),
+                    StatCollector.translateToLocal("Tooltip_VerySimpleCircuit_01") }));
+        GTNLItemList.SimpleCircuit.set(
+            MetaItemAdder.initItem(
+                22,
+                new String[] { StatCollector.translateToLocal("Tooltip_SimpleCircuit_00"),
+                    StatCollector.translateToLocal("Tooltip_SimpleCircuit_01") }));
+        GTNLItemList.BasicCircuit.set(
+            MetaItemAdder.initItem(
+                23,
+                new String[] { StatCollector.translateToLocal("Tooltip_BasicCircuit_00"),
+                    StatCollector.translateToLocal("Tooltip_BasicCircuit_01") }));
+        GTNLItemList.AdvancedCircuit.set(
+            MetaItemAdder.initItem(
+                24,
+                new String[] { StatCollector.translateToLocal("Tooltip_AdvancedCircuit_00"),
+                    StatCollector.translateToLocal("Tooltip_AdvancedCircuit_01") }));
+        GTNLItemList.EliteCircuit.set(
+            MetaItemAdder.initItem(
+                25,
+                new String[] { StatCollector.translateToLocal("Tooltip_EliteCircuit_00"),
+                    StatCollector.translateToLocal("Tooltip_EliteCircuit_01") }));
+        GTNLItemList.StargateSingularity.set(MetaItemAdder.initItem(26))
+            .setRender(new InfinityMetaItemRenderer());
+        GTNLItemList.StargateCompressedSingularity.set(MetaItemAdder.initItem(27))
+            .setRender(new InfinityMetaItemRenderer());
+        GTNLItemList.BiowareSMDCapacitor.set(MetaItemAdder.initItem(28));
+        GTNLItemList.BiowareSMDDiode.set(MetaItemAdder.initItem(29));
+        GTNLItemList.BiowareSMDInductor.set(MetaItemAdder.initItem(30));
+        GTNLItemList.BiowareSMDResistor.set(MetaItemAdder.initItem(31));
+        GTNLItemList.BiowareSMDTransistor.set(MetaItemAdder.initItem(32));
+        GTNLItemList.CosmicSMDCapacitor.set(MetaItemAdder.initItem(33));
+        GTNLItemList.CosmicSMDDiode.set(MetaItemAdder.initItem(34));
+        GTNLItemList.CosmicSMDInductor.set(MetaItemAdder.initItem(35));
+        GTNLItemList.CosmicSMDResistor.set(MetaItemAdder.initItem(36));
+        GTNLItemList.CosmicSMDTransistor.set(MetaItemAdder.initItem(37));
+        GTNLItemList.ExoticSMDCapacitor.set(MetaItemAdder.initItem(38));
+        GTNLItemList.ExoticSMDDiode.set(MetaItemAdder.initItem(39));
+        GTNLItemList.ExoticSMDInductor.set(MetaItemAdder.initItem(40));
+        GTNLItemList.ExoticSMDResistor.set(MetaItemAdder.initItem(41));
+        GTNLItemList.ExoticSMDTransistor.set(MetaItemAdder.initItem(42));
+        GTNLItemList.TemporallySMDCapacitor.set(MetaItemAdder.initItem(43));
+        GTNLItemList.TemporallySMDDiode.set(MetaItemAdder.initItem(44));
+        GTNLItemList.TemporallySMDInductor.set(MetaItemAdder.initItem(45));
+        GTNLItemList.TemporallySMDResistor.set(MetaItemAdder.initItem(46));
+        GTNLItemList.TemporallySMDTransistor.set(MetaItemAdder.initItem(47));
+        GTNLItemList.LVParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                48,
+                new String[] { StatCollector.translateToLocal("Tooltip_LVParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_LVParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_LVParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.MVParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                49,
+                new String[] { StatCollector.translateToLocal("Tooltip_MVParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_MVParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_MVParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.HVParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                50,
+                new String[] { StatCollector.translateToLocal("Tooltip_HVParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_HVParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_HVParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.EVParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                51,
+                new String[] { StatCollector.translateToLocal("Tooltip_EVParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_EVParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_EVParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.IVParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                52,
+                new String[] { StatCollector.translateToLocal("Tooltip_IVParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_IVParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_IVParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.LuVParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                53,
+                new String[] { StatCollector.translateToLocal("Tooltip_LuVParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_LuVParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_LuVParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.ZPMParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                54,
+                new String[] { StatCollector.translateToLocal("Tooltip_ZPMParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_ZPMParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_ZPMParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.UVParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                55,
+                new String[] { StatCollector.translateToLocal("Tooltip_UVParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_UVParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_UVParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.UHVParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                56,
+                new String[] { StatCollector.translateToLocal("Tooltip_UHVParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_UHVParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_UHVParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.UEVParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                57,
+                new String[] { StatCollector.translateToLocal("Tooltip_UEVParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_UEVParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_UEVParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.UIVParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                58,
+                new String[] { StatCollector.translateToLocal("Tooltip_UIVParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_UIVParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_UIVParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.UMVParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                59,
+                new String[] { StatCollector.translateToLocal("Tooltip_UMVParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_UMVParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_UMVParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.UXVParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                60,
+                new String[] { StatCollector.translateToLocal("Tooltip_UXVParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_UXVParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_UXVParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.MAXParallelControllerCore.set(
+            MetaItemAdder.initItem(
+                61,
+                new String[] { StatCollector.translateToLocal("Tooltip_MAXParallelControllerCore_00"),
+                    StatCollector.translateToLocal("Tooltip_MAXParallelControllerCore_01"),
+                    StatCollector.translateToLocal("Tooltip_MAXParallelControllerCore_02"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_00"),
+                    StatCollector.translateToLocal("Tooltip_ParallelControllerCore_Deprecated_01") }));
+
+        GTNLItemList.NagaBook.set(MetaItemAdder.initItem(62));
+        GTNLItemList.TwilightForestBook.set(MetaItemAdder.initItem(63));
+        GTNLItemList.LichBook.set(MetaItemAdder.initItem(64));
+        GTNLItemList.MinotaurBook.set(MetaItemAdder.initItem(65));
+        GTNLItemList.HydraBook.set(MetaItemAdder.initItem(66));
+        GTNLItemList.KnightPhantomBook.set(MetaItemAdder.initItem(67));
+        GTNLItemList.UrGhastBook.set(MetaItemAdder.initItem(68));
+        GTNLItemList.AlphaYetiBook.set(MetaItemAdder.initItem(69));
+        GTNLItemList.SnowQueenBook.set(MetaItemAdder.initItem(70));
+        GTNLItemList.FinalBook.set(MetaItemAdder.initItem(71));
+        GTNLItemList.GiantBook.set(MetaItemAdder.initItem(72));
+        GTNLItemList.ClayedGlowstone.set(MetaItemAdder.initItem(73));
+        GTNLItemList.QuantumDisk.set(MetaItemAdder.initItem(74));
+        GTNLItemList.NeutroniumBoule.set(
+            MetaItemAdder.initItem(75, new String[] { StatCollector.translateToLocal("Tooltip_NeutroniumBoule_00") }));
+        GTNLItemList.NeutroniumWafer.set(
+            MetaItemAdder.initItem(76, new String[] { StatCollector.translateToLocal("Tooltip_NeutroniumWafer_00") }));
+        GTNLItemList.HighlyAdvancedSocWafer.set(
+            MetaItemAdder
+                .initItem(77, new String[] { StatCollector.translateToLocal("Tooltip_HighlyAdvancedSocWafer_00") }));
+        GTNLItemList.HighlyAdvancedSoc.set(
+            MetaItemAdder
+                .initItem(78, new String[] { StatCollector.translateToLocal("Tooltip_HighlyAdvancedSoc_00") }));
+        GTNLItemList.ZnFeAlClCatalyst.set(MetaItemAdder.initItem(79));
+        GTNLItemList.BlackLight
+            .set(MetaItemAdder.initItem(80, new String[] { StatCollector.translateToLocal("Tooltip_BlackLight_00") }));
+        GTNLItemList.SteamgateDialingDevice.set(
+            MetaItemAdder
+                .initItem(81, new String[] { StatCollector.translateToLocal("Tooltip_SteamgateDialingDevice_00") }));
+        GTNLItemList.SteamgateChevron.set(MetaItemAdder.initItem(82));
+        GTNLItemList.SteamgateChevronUpgrade.set(MetaItemAdder.initItem(83));
+        GTNLItemList.SteamgateIrisBlade.set(MetaItemAdder.initItem(84));
+        GTNLItemList.SteamgateIrisUpgrade.set(MetaItemAdder.initItem(85));
+        GTNLItemList.SteamgateHeatContainmentPlate.set(
+            MetaItemAdder.initItem(
+                86,
+                new String[] { StatCollector.translateToLocal("Tooltip_SteamgateHeatContainmentPlate_00") }));
+        GTNLItemList.SteamgateFrame.set(
+            MetaItemAdder.initItem(87, new String[] { StatCollector.translateToLocal("Tooltip_SteamgateFrame_00") }));
+        GTNLItemList.SteamgateCoreCrystal.set(
+            MetaItemAdder
+                .initItem(88, new String[] { StatCollector.translateToLocal("Tooltip_SteamgateCoreCrystal_00") }));
+        GTNLItemList.HydraulicMotor.set(MetaItemAdder.initItem(89));
+        GTNLItemList.HydraulicPiston.set(MetaItemAdder.initItem(90));
+        GTNLItemList.HydraulicPump.set(
+            MetaItemAdder.initItem(91, new String[] { StatCollector.translateToLocal("Tooltip_HydraulicPump_00") }));
+        GTNLItemList.HydraulicArm.set(MetaItemAdder.initItem(92));
+        GTNLItemList.HydraulicConveyor.set(
+            MetaItemAdder
+                .initItem(93, new String[] { StatCollector.translateToLocal("Tooltip_HydraulicConveyor_00") }));
+        GTNLItemList.HydraulicRegulator.set(
+            MetaItemAdder.initItem(
+                94,
+                new String[] { StatCollector.translateToLocal("Tooltip_HydraulicRegulator_00"),
+                    StatCollector.translateToLocal("Tooltip_HydraulicRegulator_01"),
+                    StatCollector.translateToLocal("Tooltip_HydraulicRegulator_02") }));
+        GTNLItemList.HydraulicVaporGenerator.set(MetaItemAdder.initItem(95));
+        GTNLItemList.HydraulicSteamJetSpewer.set(MetaItemAdder.initItem(96));
+        GTNLItemList.HydraulicSteamReceiver.set(MetaItemAdder.initItem(97));
+        GTNLItemList.HydraulicSteamValve.set(
+            MetaItemAdder
+                .initItem(98, new String[] { StatCollector.translateToLocal("Tooltip_HydraulicSteamValve_00") }));
+        AnimatedTooltipHandler.addItemTooltip(
+            GTNLItemList.HydraulicSteamValve.get(1),
+            AnimatedTooltipHandler.buildTextWithAnimatedEnd(AnimatedTooltipHandler.text("Tips: 瑶光Alkaid要的")));
+        GTNLItemList.HydraulicSteamRegulator.set(
+            MetaItemAdder
+                .initItem(99, new String[] { StatCollector.translateToLocal("Tooltip_HydraulicSteamRegulator_00") }));
+        AnimatedTooltipHandler.addItemTooltip(
+            GTNLItemList.HydraulicSteamRegulator.get(1),
+            AnimatedTooltipHandler.buildTextWithAnimatedEnd(AnimatedTooltipHandler.text("Tips: 瑶光Alkaid要的")));
+        GTNLItemList.SadBapyCatToken.set(
+            MetaItemAdder.initItem(100, new String[] { StatCollector.translateToLocal("Tooltip_SadBapyCatToken_00") }));
+        GTNLItemList.CompressedSteamTurbine.set(
+            MetaItemAdder
+                .initItem(101, new String[] { StatCollector.translateToLocal("Tooltip_CompressedSteamTurbine_00") }));
+        GTNLItemList.SteelTurbine.set(
+            MetaItemAdder.initItem(102, new String[] { StatCollector.translateToLocal("Tooltip_SteelTurbine_00") }));
+        GTNLItemList.PipelessSteamCover.set(
+            MetaItemAdder.initItem(
+                103,
+                new String[] { StatCollector.translateToLocal("Tooltip_PipelessSteamCover_00"),
+                    StatCollector.translateToLocal("Tooltip_PipelessSteamCover_01"),
+                    StatCollector.translateToLocal("Tooltip_PipelessSteamCover_02"),
+                    StatCollector.translateToLocal("Tooltip_PipelessSteamCover_03"),
+                    StatCollector.translateToLocal("Tooltip_PipelessSteamCover_04") }));
+        GTNLItemList.IronTurbine.set(
+            MetaItemAdder.initItem(104, new String[] { StatCollector.translateToLocal("Tooltip_IronTurbine_00") }));
+        GTNLItemList.BronzeTurbine.set(
+            MetaItemAdder.initItem(105, new String[] { StatCollector.translateToLocal("Tooltip_BronzeTurbine_00") }));
+        GTNLItemList.VoidCover.set(
+            MetaItemAdder.initItem(
+                106,
+                new String[] { StatCollector.translateToLocal("Tooltip_VoidCover_00"),
+                    StatCollector.translateToLocal("Tooltip_VoidCover_01"),
+                    StatCollector.translateToLocal("Tooltip_VoidCover_02"),
+                    StatCollector.translateToLocal("Tooltip_VoidCover_03") }));
+
+        for (int i = 0; i < 14; i++) {
+            GTNLItemList.WIRELESS_ENERGY_COVER[i].set(ItemList.WIRELESS_ENERGY_COVERS[i].get(1));
+
+            GTNLItemList.WIRELESS_ENERGY_COVER_4A[i].set(
+                MetaItemAdder.initItem(
+                    107 + i,
+                    new String[] { StatCollector.translateToLocal("Tooltip_WirelessEnergyCover4A_00"),
+                        StatCollector.translateToLocal("Tooltip_WirelessEnergyCover4A_01"),
+                        StatCollector.translateToLocal("Tooltip_WirelessEnergyCover4A_02"),
+                        StatCollector.translateToLocal("Tooltip_WirelessEnergyCover4A_03"),
+                        StatCollector.translateToLocalFormatted(
+                            "Tooltip_WirelessEnergyCover4A_04",
+                            GTUtility.formatNumbers(GTValues.V[i + 1]),
+                            GTValues.VN[i + 1]) }));
+        }
+
+        GTNLItemList.ExoticCircuitBoards.set(MetaItemAdder.initItem(121));
+        GTNLItemList.ExoticSurroundingCPU.set(MetaItemAdder.initItem(122));
+        GTNLItemList.ExoticWafer.set(MetaItemAdder.initItem(123));
+        GTNLItemList.ExoticChip.set(MetaItemAdder.initItem(124));
+        GTNLItemList.ExoticRAMWafer.set(MetaItemAdder.initItem(125));
+        GTNLItemList.ShatteredSingularity.set(MetaItemAdder.initItem(126));
+        GTNLItemList.TransdimensionalMnemonicMatrix.set(
+            MetaItemAdder.initItem(
+                127,
+                new String[] { StatCollector.translateToLocal("Tooltip_TransdimensionalMnemonicMatrix_00"),
+                    StatCollector.translateToLocal("Tooltip_TransdimensionalMnemonicMatrix_01") }));
+        GTNLItemList.EssentiaUpgradeEmpty.set(MetaItemAdder.initItem(128));
+        GTNLItemList.EssentiaUpgradeAir.set(MetaItemAdder.initItem(129));
+        GTNLItemList.EssentiaUpgradeThermal.set(MetaItemAdder.initItem(130));
+        GTNLItemList.EssentiaUpgradeUnstable.set(MetaItemAdder.initItem(131));
+        GTNLItemList.EssentiaUpgradeVictus.set(MetaItemAdder.initItem(132));
+        GTNLItemList.EssentiaUpgradeTainted.set(MetaItemAdder.initItem(133));
+        GTNLItemList.EssentiaUpgradeMechanics.set(MetaItemAdder.initItem(134));
+        GTNLItemList.EssentiaUpgradeSpirit.set(MetaItemAdder.initItem(135));
+        GTNLItemList.EssentiaUpgradeRadiation.set(MetaItemAdder.initItem(136));
+        GTNLItemList.EssentiaUpgradeElectric.set(MetaItemAdder.initItem(137));
+
+        GTNLItemList.ManaElectricProspectorTool.set(ElectricProspectorTool.initItem(0, 10, 9999));
+        GTNLItemList.DebugElectricProspectorTool.set(ElectricProspectorTool.initItem(1, 50, Integer.MAX_VALUE));
+    }
+
+    public static void registry() {
+        registryItems();
+        registryMetaItems();
+        registryOreDictionary();
+        registryOreBlackList();
+        registrySuspiciousStewFlower();
+
+        AnimatedTooltipHandler.addItemTooltip(
+            new ItemStack(ItemLoader.satietyRing, 1),
+            AnimatedTooltipHandler
+                .buildTextWithAnimatedEnd(AnimatedTooltipHandler.text("Most machine recipe by zero_CM")));
+    }
+
+    public static void registrySuspiciousStewFlower() {
+        // 蒲公英
+        registerFlower(Blocks.yellow_flower, 0, new PotionEffect(Potion.field_76443_y.id, 7));
+        // 罂粟
+        registerFlower(Blocks.red_flower, 0, new PotionEffect(Potion.nightVision.id, 100));
+        // 兰花
+        registerFlower(Blocks.red_flower, 1, new PotionEffect(Potion.field_76443_y.id, 7));
+        // 绒球葱
+        registerFlower(Blocks.red_flower, 2, new PotionEffect(Potion.fireResistance.id, 60));
+        // 蓝花美耳草
+        registerFlower(Blocks.red_flower, 3, new PotionEffect(Potion.blindness.id, 220));
+        // 郁金香
+        registerFlower(Blocks.red_flower, 4, new PotionEffect(Potion.weakness.id, 140));
+        registerFlower(Blocks.red_flower, 5, new PotionEffect(Potion.weakness.id, 140));
+        registerFlower(Blocks.red_flower, 6, new PotionEffect(Potion.weakness.id, 140));
+        registerFlower(Blocks.red_flower, 7, new PotionEffect(Potion.weakness.id, 140));
+        // 滨菊
+        registerFlower(Blocks.red_flower, 8, new PotionEffect(Potion.regeneration.id, 140));
+    }
+
+    public static void registryOreDictionary() {
+
+        GTOreDictUnificator
+            .registerOre(OrePrefixes.circuit.get(Materials.ULV), GTNLItemList.CircuitResonaticULV.get(1));
+        GTOreDictUnificator.registerOre(OrePrefixes.circuit.get(Materials.LV), GTNLItemList.CircuitResonaticLV.get(1));
+        GTOreDictUnificator.registerOre(OrePrefixes.circuit.get(Materials.MV), GTNLItemList.CircuitResonaticMV.get(1));
+        GTOreDictUnificator.registerOre(OrePrefixes.circuit.get(Materials.HV), GTNLItemList.CircuitResonaticHV.get(1));
+        GTOreDictUnificator.registerOre(OrePrefixes.circuit.get(Materials.EV), GTNLItemList.CircuitResonaticEV.get(1));
+        GTOreDictUnificator.registerOre(OrePrefixes.circuit.get(Materials.IV), GTNLItemList.CircuitResonaticIV.get(1));
+        GTOreDictUnificator
+            .registerOre(OrePrefixes.circuit.get(Materials.LuV), GTNLItemList.CircuitResonaticLuV.get(1));
+        GTOreDictUnificator
+            .registerOre(OrePrefixes.circuit.get(Materials.ZPM), GTNLItemList.CircuitResonaticZPM.get(1));
+        GTOreDictUnificator.registerOre(OrePrefixes.circuit.get(Materials.UV), GTNLItemList.CircuitResonaticUV.get(1));
+        GTOreDictUnificator
+            .registerOre(OrePrefixes.circuit.get(Materials.UHV), GTNLItemList.CircuitResonaticUHV.get(1));
+        GTOreDictUnificator
+            .registerOre(OrePrefixes.circuit.get(Materials.UEV), GTNLItemList.CircuitResonaticUEV.get(1));
+        GTOreDictUnificator
+            .registerOre(OrePrefixes.circuit.get(Materials.UIV), GTNLItemList.CircuitResonaticUIV.get(1));
+
+        GTOreDictUnificator.registerOre(OrePrefixes.circuit.get(Materials.ULV), GTNLItemList.VerySimpleCircuit.get(1));
+        GTOreDictUnificator.registerOre(OrePrefixes.circuit.get(Materials.LV), GTNLItemList.SimpleCircuit.get(1));
+        GTOreDictUnificator.registerOre(OrePrefixes.circuit.get(Materials.MV), GTNLItemList.BasicCircuit.get(1));
+        GTOreDictUnificator.registerOre(OrePrefixes.circuit.get(Materials.HV), GTNLItemList.AdvancedCircuit.get(1));
+        GTOreDictUnificator.registerOre(OrePrefixes.circuit.get(Materials.EV), GTNLItemList.EliteCircuit.get(1));
+
+        GTOreDictUnificator.registerOre("record", GTNLItemList.RecordSus.get(1));
+        GTOreDictUnificator.registerOre("record", GTNLItemList.RecordLavaChicken.get(1));
+        GTOreDictUnificator.registerOre("record", GTNLItemList.RecordNewHorizons.get(1));
+    }
+
+    public static void registryOreBlackList() {
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.CircuitResonaticULV.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.CircuitResonaticLV.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.CircuitResonaticMV.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.CircuitResonaticHV.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.CircuitResonaticEV.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.CircuitResonaticIV.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.CircuitResonaticLuV.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.CircuitResonaticZPM.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.CircuitResonaticUV.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.CircuitResonaticUHV.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.CircuitResonaticUEV.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.CircuitResonaticUIV.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.VerySimpleCircuit.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.SimpleCircuit.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.BasicCircuit.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.AdvancedCircuit.get(1));
+        GTOreDictUnificator.addToBlacklist(GTNLItemList.EliteCircuit.get(1));
+    }
+}

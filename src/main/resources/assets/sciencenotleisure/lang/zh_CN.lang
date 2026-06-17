@@ -1,0 +1,3785 @@
+itemGroup.GTNotLeisureItem=GT不再业余：物品
+itemGroup.GTNotLeisureMachine=GT不再业余：机器
+itemGroup.GTNotLeisureBlock=GT不再业余：方块
+itemGroup.GTNotLeisurePlayerDoll=GT不再业余：玩偶
+StructuralReconstructionPlan=结构代替计划
+AppliedEnergistics2=应用能源2
+
+Welcome_GTNL_00=欢迎来到GT Not Leisure！
+Welcome_GTNL_01=如果你是第一次安装这个模组，请仔细检查配置文件
+Welcome_GTNL_02=本模组添加了大量的机器和新的配方
+Welcome_GTNL_03=如果你不想看到部分消息，请在配置文件关闭
+Welcome_GTNL_ModInstall= 已安装！
+Welcome_GTNL_DeleteRecipe=配方移除已启用，注意部分配方可能与原版不一致
+Welcome_GTNL_Debug=GTNL Debug模式已启用
+Welcome_GTNL_RecipeOutputChance_00=GTNL 电压配方概率修改已启用
+Welcome_GTNL_RecipeOutputChance_01=当前每级增加概率：%s
+Welcome_GTNL_reload=配置文件已重新加载！
+
+Tooltip_Adder=添加模组：
+Tooltip_ChangeAdder=修改模组：
+Tooltip_NoMobsSpawnInThisBlock=生物不会在这个方块上生成
+Tooltip_NoTileEntitySpawnInThisBlock=这不是一个实体！
+Tooltip_PressShift=§r按住 §6Shift §r查看更多信息
+Tooltip_PressCtrl=§r按住 §6Ctrl §r查看更多信息
+Tooltip_Damage=耐久：%s/%s
+Info_Render_Enabled=开启渲染
+Info_Render_Disabled=关闭渲染
+Info_ShowPattern_Enabled=§a在接口终端显示
+Info_ShowPattern_Disabled=§c在接口终端隐藏
+
+commands.kill.success.single=杀死了%s
+commands.kill.success.multiple=杀死了%s个实体
+
+GT5U.gui.text.parallel_overflow=§4并行溢出
+GT5U.gui.text.parallel_zero=§4并行不足，检查你的输入是否满足配方或机器要求
+GT5U.gui.text.crash=§4很抱歉，你的机器出现了一些问题……        如果要寻求帮助，请把错误报告和日志文件发给对方，而不是发送这个窗口的照片或者截图或者文本。
+
+gtnl.gui.config.general=GTNL 总览配置
+gtnl.gui.config.general.debug=调试设置
+gtnl.gui.config.general.debug.tooltip=GTNL 开发与调试相关选项
+gtnl.gui.config.general.effect=效果设置
+gtnl.gui.config.general.effect.tooltip=玩家状态与特殊效果配置
+gtnl.gui.config.general.item=物品设置
+gtnl.gui.config.general.item.tooltip=各类自定义物品的功能配置
+gtnl.gui.config.general.machine=机器设置
+gtnl.gui.config.general.machine.tooltip=调整多方块机器与单机参数
+gtnl.gui.config.general.message=消息设置
+gtnl.gui.config.general.message.tooltip=登录、提示与广播消息配置
+gtnl.gui.config.general.other=其他设置
+gtnl.gui.config.general.other.tooltip=不属于以上分类的杂项调整
+gtnl.gui.config.general.recipe=配方设置
+gtnl.gui.config.general.recipe.tooltip=配方添加、删除与耗时调整
+gtnl.gui.config.general.super_creeper=超级苦力怕
+gtnl.gui.config.general.super_creeper.tooltip=配置具有增强 AI 的苦力怕行为
+gtnl.gui.config.general.tickrate=刻率设置
+gtnl.gui.config.general.tickrate.tooltip=调整服务器运行速度与同步
+
+gtnl.gui.config.general.debug.enabledebugmode=调试模式
+gtnl.gui.config.general.debug.enabledebugmode.tooltip=启用调试日志输出
+gtnl.gui.config.general.debug.enablequest=加载GTNL任务
+gtnl.gui.config.general.debug.enablequest.tooltip=启用GTNL任务添加，添加尚未完成的任务
+
+gtnl.gui.config.general.effect.enableghostlyshape=启用幽灵形态
+gtnl.gui.config.general.effect.enableghostlyshape.tooltip=当玩家死亡重生时，给予玩家幽灵形态效果
+
+gtnl.gui.config.general.item.player_doll=玩家玩偶
+gtnl.gui.config.general.item.player_doll.enablecustomskin=自定义玩家皮肤
+gtnl.gui.config.general.item.player_doll.enablecustomskin.tooltip=启用玩偶的自定义皮肤
+gtnl.gui.config.general.item.player_doll.enableregistermaxtierglass=注册玩偶为MAX玻璃
+gtnl.gui.config.general.item.player_doll.enableregistermaxtierglass.tooltip=使玩偶可作为MAX等级玻璃使用
+
+gtnl.gui.config.general.item.vein_miner_pickaxe=矿脉挖掘镐
+gtnl.gui.config.general.item.vein_miner_pickaxe.maxamount=最大数量
+gtnl.gui.config.general.item.vein_miner_pickaxe.maxamount.tooltip=设置矿脉挖掘镐的最大连锁方块数量
+gtnl.gui.config.general.item.vein_miner_pickaxe.maxrange=最大范围
+gtnl.gui.config.general.item.vein_miner_pickaxe.maxrange.tooltip=设置矿脉挖掘镐的最大挖掘距离
+
+gtnl.gui.config.general.item.stick=纸板
+gtnl.gui.config.general.item.stick.enablestickitem=纸板物品
+gtnl.gui.config.general.item.stick.enablestickitem.tooltip=启用纸板假物品与方块
+
+gtnl.gui.config.general.item.steam_rocket=蒸汽火箭
+gtnl.gui.config.general.item.steam_rocket.idschematicrocketsteam=蒸汽火箭图纸页面 ID
+gtnl.gui.config.general.item.steam_rocket.idschematicrocketsteam.tooltip=蒸汽火箭图纸页面的唯一 ID
+gtnl.gui.config.general.item.steam_rocket.nasaworkbenchsteamrocket=NASA 工作台 GUI ID
+gtnl.gui.config.general.item.steam_rocket.nasaworkbenchsteamrocket.tooltip=打开蒸汽火箭专用的 NASA 工作台时使用的 GUI ID
+
+gtnl.gui.config.general.machine.beamFormerEnergyConsume=ME光束成型器能量消耗
+gtnl.gui.config.general.machine.beamFormerEnergyConsume.tooltip=ME光束成型器的能量消耗（单位 AE/t）
+gtnl.gui.config.general.machine.beamFormerLength=ME光束成型器激光最大长度
+gtnl.gui.config.general.machine.beamFormerLength.tooltip=ME光束成型器激光的最大长度（单位 方块）
+
+gtnl.gui.config.general.machine.allowMainFacingInteraction=允许从机器正面进行交互
+gtnl.gui.config.general.machine.allowMainFacingInteraction.tooltip=启用后，可以从机器正面进行交互（类似 GTM 行为）
+gtnl.gui.config.general.machine.enablehatchinterfaceterminalenhance=输入仓接口终端显示增强
+gtnl.gui.config.general.machine.enablehatchinterfaceterminalenhance.tooltip=增强输入仓和输入总线在接口终端的显示，使其支持机器的当前配方池和虚拟编程电路
+gtnl.gui.config.general.machine.enableintegratedorefactorychange=集成矿石处理厂改动
+gtnl.gui.config.general.machine.enableintegratedorefactorychange.tooltip=启用后可提升并行，并可使用激光仓
+gtnl.gui.config.general.machine.enablelaserhatch=部分机器能否使用激光仓
+gtnl.gui.config.general.machine.enablelaserhatch.tooltip=开启后部分受限的机器可以使用激光仓
+gtnl.gui.config.general.machine.enablepurificationplantbuff=净水厂强化
+gtnl.gui.config.general.machine.enablepurificationplantbuff.tooltip=启用净水厂强化，增加无线模式与更高并行
+gtnl.gui.config.general.machine.enablerecipeoutputchance=配方概率产出增加
+gtnl.gui.config.general.machine.enablerecipeoutputchance.tooltip=当机器电压大于配方电压时，增加概率物品的产出几率
+gtnl.gui.config.general.machine.enablevoidminertweak=虚空采矿场调整
+gtnl.gui.config.general.machine.enablevoidminertweak.tooltip=启用虚空采矿场调整，可放入维度方块指定目标维度
+gtnl.gui.config.general.machine.recipeoutputchance=配方产物概率
+gtnl.gui.config.general.machine.recipeoutputchance.tooltip=修改每高过配方一级电压，增加的产物概率
+
+gtnl.gui.config.general.machine.quantum_computer=量子计算机
+gtnl.gui.config.general.machine.quantum_computer.maxmultiblocksize=多方块结构最大尺寸
+gtnl.gui.config.general.machine.quantum_computer.maxmultiblocksize.tooltip=量子计算机多方块结构允许的最大尺寸
+gtnl.gui.config.general.machine.quantum_computer.maxmultithreader=最大多线程处理器数量
+gtnl.gui.config.general.machine.quantum_computer.maxmultithreader.tooltip=量子计算机中允许的最大量子计算机多线程处理器数量
+gtnl.gui.config.general.machine.quantum_computer.maxdataentangler=最大数据纠缠器数量
+gtnl.gui.config.general.machine.quantum_computer.maxdataentangler.tooltip=量子计算机中允许的最大量子数据纠缠器数量
+
+gtnl.gui.config.general.machine.meteor_miner=坠星采矿场
+gtnl.gui.config.general.machine.meteor_miner.meteorminermaxblockpercycle=单周期最大方块数
+gtnl.gui.config.general.machine.meteor_miner.meteorminermaxblockpercycle.tooltip=设置坠星采矿场每个周期可破坏的方块数量
+gtnl.gui.config.general.machine.meteor_miner.meteorminermaxrowpercycle=单周期最大行数
+gtnl.gui.config.general.machine.meteor_miner.meteorminermaxrowpercycle.tooltip=设置坠星采矿场每个周期可破坏的方块行数
+
+gtnl.gui.config.general.machine.artificial_star=真·湮灭发电机
+gtnl.gui.config.general.machine.artificial_star.eueverydepletedexcitednaquadahfuelrod=激发的混合硅岩燃料棒产出
+gtnl.gui.config.general.machine.artificial_star.eueverydepletedexcitednaquadahfuelrod.tooltip=设置每个激发的混合硅岩燃料棒产生的 EU 。单位 MAX
+gtnl.gui.config.general.machine.artificial_star.enabledefaultrender=真·湮灭发电机默认渲染
+gtnl.gui.config.general.machine.artificial_star.enabledefaultrender.tooltip=默认开启真·湮灭发电机渲染
+gtnl.gui.config.general.machine.artificial_star.eueveryenhancementcore=无暇核心产出
+gtnl.gui.config.general.machine.artificial_star.eueveryenhancementcore.tooltip=设置每个无暇核心产生的 EU ，单位 MAX
+gtnl.gui.config.general.machine.artificial_star.secondsofartificialstarprogresscycletime=真·湮灭发电机周期秒数
+gtnl.gui.config.general.machine.artificial_star.secondsofartificialstarprogresscycletime.tooltip=设置真·湮灭发电机单次运行周期的秒数
+
+gtnl.gui.config.general.machine.eternal_gregtech_workshop=永恒格雷工坊
+gtnl.gui.config.general.machine.eternal_gregtech_workshop.spiralrender=螺旋渲染
+gtnl.gui.config.general.machine.eternal_gregtech_workshop.spiralrender.tooltip=启用永恒格雷工坊的螺旋渲染效果，类似 DNA
+
+gtnl.gui.config.general.machine.portal_to_alfheim=精灵传送法阵
+gtnl.gui.config.general.machine.portal_to_alfheim.bigboom=大型爆炸
+gtnl.gui.config.general.machine.portal_to_alfheim.bigboom.tooltip=关闭后，将把精灵传送法阵的爆炸削弱到类似 TNT 的程度
+
+gtnl.gui.config.general.message.enableshowaddmods=显示加载模组
+gtnl.gui.config.general.message.enableshowaddmods.tooltip=启用向玩家显示已加载模组列表
+gtnl.gui.config.general.message.enableshowjoinmessage=加入欢迎消息
+gtnl.gui.config.general.message.enableshowjoinmessage.tooltip=启用玩家加入世界时的欢迎信息
+
+gtnl.gui.config.general.other.enabledeathincompletemessage=死亡未完成消息
+gtnl.gui.config.general.other.enabledeathincompletemessage.tooltip=玩家死亡时发送未完成的聊天消息
+gtnl.gui.config.general.other.enablesaturationheal=饱食度治疗
+gtnl.gui.config.general.other.enablesaturationheal.tooltip=启用饱食度治疗调整，在不满血时消耗饱食度快速回血
+gtnl.gui.config.general.other.not_enough_items=NEI 物品管理器
+gtnl.gui.config.general.other.not_enough_items.enablespecialcheaticon=特殊作弊图标
+gtnl.gui.config.general.other.not_enough_items.enablespecialcheaticon.tooltip=启用特殊作弊模式按钮渲染
+gtnl.gui.config.general.other.not_enough_items.specialicontype=特殊图标渲染类型
+gtnl.gui.config.general.other.not_enough_items.specialicontype.tooltip=指定作弊按钮的渲染类型
+
+gtnl.gui.config.general.recipe.enableassemblinglinerecipestimechange=装配线配方时间调整
+gtnl.gui.config.general.recipe.enableassemblinglinerecipestimechange.tooltip=大幅减少部分装配线配方所需时间
+gtnl.gui.config.general.recipe.enablechamberrecipesbuff=对撞靶室配方强化
+gtnl.gui.config.general.recipe.enablechamberrecipesbuff.tooltip=强化所有高能束流聚焦对撞靶室相关配方
+gtnl.gui.config.general.recipe.enabledeleterecipe=删除配方
+gtnl.gui.config.general.recipe.enabledeleterecipe.tooltip=启用删除配方，移除一些原版的配方
+gtnl.gui.config.general.recipe.enableshowdelrecipetitle=显示配方删除标题提示
+gtnl.gui.config.general.recipe.enableshowdelrecipetitle.tooltip=启用后玩家进入世界时显示大标题提示
+gtnl.gui.config.general.recipe.enablesomethingrecipe=添加一些配方
+gtnl.gui.config.general.recipe.enablesomethingrecipe.tooltip=启用一些廉价的配方
+
+gtnl.gui.config.general.super_creeper.movespeed=移动速度
+gtnl.gui.config.general.super_creeper.movespeed.tooltip=苦力怕的移动速度倍率
+gtnl.gui.config.general.super_creeper.allowcreeperexplosionbypassgamerule=爆炸无视游戏规则
+gtnl.gui.config.general.super_creeper.allowcreeperexplosionbypassgamerule.tooltip=允许苦力怕爆炸无视 mobGriefing 规则
+gtnl.gui.config.general.super_creeper.blockfindradius=方块搜索范围
+gtnl.gui.config.general.super_creeper.blockfindradius.tooltip=搜索方块的半径范围
+gtnl.gui.config.general.super_creeper.blocktargetinterval=方块目标扫描间隔
+gtnl.gui.config.general.super_creeper.blocktargetinterval.tooltip=扫描目标方块的刻间隔
+gtnl.gui.config.general.super_creeper.burningexplosiontimer=燃烧爆炸计时
+gtnl.gui.config.general.super_creeper.burningexplosiontimer.tooltip=苦力怕因燃烧而爆炸前的刻数
+gtnl.gui.config.general.super_creeper.creeperspeedbonusscale=速度增益倍率
+gtnl.gui.config.general.super_creeper.creeperspeedbonusscale.tooltip=值越高，苦力怕越靠近目标时加速越明显
+gtnl.gui.config.general.super_creeper.defaulttargetblocks=目标方块 ID
+gtnl.gui.config.general.super_creeper.defaulttargetblocks.tooltip=苦力怕扫描的目标方块列表
+gtnl.gui.config.general.super_creeper.enablecreeperburningexplosion=燃烧爆炸
+gtnl.gui.config.general.super_creeper.enablecreeperburningexplosion.tooltip=启用苦力怕在燃烧时爆炸
+gtnl.gui.config.general.super_creeper.enablecreeperfindspider=寻找蜘蛛
+gtnl.gui.config.general.super_creeper.enablecreeperfindspider.tooltip=启用苦力怕寻找附近蜘蛛并骑乘
+gtnl.gui.config.general.super_creeper.enablecreeperhurtbycreeperexplosion=被苦力怕伤害爆炸
+gtnl.gui.config.general.super_creeper.enablecreeperhurtbycreeperexplosion.tooltip=苦力怕被其他苦力怕伤害时触发爆炸
+gtnl.gui.config.general.super_creeper.enablecreeperigniteddeathexplosion=点燃死亡爆炸
+gtnl.gui.config.general.super_creeper.enablecreeperigniteddeathexplosion.tooltip=苦力怕在点燃状态下被击杀会立刻爆炸
+gtnl.gui.config.general.super_creeper.enablecreeperkilledbycreeperexplosion=被苦力怕击杀爆炸
+gtnl.gui.config.general.super_creeper.enablecreeperkilledbycreeperexplosion.tooltip=苦力怕被另一只苦力怕击杀时触发爆炸
+gtnl.gui.config.general.super_creeper.enablesupercreeper=超级苦力怕
+gtnl.gui.config.general.super_creeper.enablesupercreeper.tooltip=启用超级苦力怕，可寻找箱子等
+gtnl.gui.config.general.super_creeper.explosionpower=爆炸威力
+gtnl.gui.config.general.super_creeper.explosionpower.tooltip=苦力怕的爆炸威力
+gtnl.gui.config.general.super_creeper.explosiontriggerrange=爆炸触发距离
+gtnl.gui.config.general.super_creeper.explosiontriggerrange.tooltip=超级苦力怕在此距离内会触发爆炸
+gtnl.gui.config.general.super_creeper.playerfindradius=玩家搜索范围
+gtnl.gui.config.general.super_creeper.playerfindradius.tooltip=搜索玩家的半径范围
+gtnl.gui.config.general.super_creeper.playertargetinterval=玩家目标扫描间隔
+gtnl.gui.config.general.super_creeper.playertargetinterval.tooltip=扫描目标玩家的刻间隔
+gtnl.gui.config.general.super_creeper.spiderfindradius=蜘蛛搜索范围
+gtnl.gui.config.general.super_creeper.spiderfindradius.tooltip=苦力怕搜索蜘蛛的半径
+gtnl.gui.config.general.super_creeper.spidermovespeed=蜘蛛移动速度
+gtnl.gui.config.general.super_creeper.spidermovespeed.tooltip=苦力怕骑乘时蜘蛛的移动速度
+gtnl.gui.config.general.super_creeper.spidertargetinterval=蜘蛛目标扫描间隔
+gtnl.gui.config.general.super_creeper.spidertargetinterval.tooltip=苦力怕扫描蜘蛛目标的间隔
+
+gtnl.gui.config.general.tickrate.defaulttickrate=默认刻率
+gtnl.gui.config.general.tickrate.defaulttickrate.tooltip=默认刻率，游戏始终以此值初始化
+gtnl.gui.config.general.tickrate.maxtickrate=最高刻率
+gtnl.gui.config.general.tickrate.maxtickrate.tooltip=来自服务器的最大刻率，防止刻率过高
+gtnl.gui.config.general.tickrate.mintickrate=最低刻率
+gtnl.gui.config.general.tickrate.mintickrate.tooltip=来自服务器的最小刻率，防止刻率过低
+
+gtnl.gui.config.general.minecraft.enableKillEnhance=增强 /kill 指令
+gtnl.gui.config.general.minecraft.enableKillEnhance.tooltip=增强 /kill 指令，支持现代目标选择器并改进其行为。
+
+nei.bookmark.ae_retrieve_item=自AE取出物品
+nei.bookmark.ae_start_craft=向AE请求合成
+nei.bookmark.ae_no_craft=此物品无对应合成
+
+error.rc.cpu=§6这个CPU正在工作！
+
+text.SuperInterface.page=页码：%d/%d
+text.SuperInterface.tooltip.0=上一页
+text.SuperInterface.tooltip.1=下一页
+
+channels.sciencenotleisure.structure_render=决定是否应该渲染并放置该结构，防止结构过大引起的卡顿。
+channels.sciencenotleisure.component_casing=决定部件装配线外壳等级。最低为§6部件装配线外壳(LV)§r等级1，最高为§6部件装配线外壳(MAX)§r等级14。
+
+death.attack.damage.gtnl.crushing=%1$s 被绞碎了
+death.attack.damage.gtnl.infinity=%1$s 被抹杀了存在
+death.attack.damage.gtnl.portalExplode=%1$s 被精灵传送法阵反噬了
+death.attack.damage.gtnl.awe=%1$s §c§l没能完成§r§d§l紫罗兰的洗礼。
+
+Info_SteamNetwork_00=玩家 §9%s§7 没有无线蒸汽网络.
+Info_SteamNetwork_01=玩家 §9%s§7 的无线蒸汽网络中有 §c%sL§7 蒸汽.
+Info_SteamNetwork_02=玩家 §9%s§7 当前在 §9%s§7 的无线蒸汽网络.
+Info_VoltageChanceBonus_00=电压概率加成：§3%s%% §7(机器电压：%s，配方电压：%s) 
+
+Info_Dimension_Override=维度覆盖为：
+
+CleanroomMetadata.0=需要超净间环境
+CleanroomMetadata.1=需要无菌环境
+CleanroomMetadata.2=需要绝对洁净环境
+
+HatchCustomFluid_00=为多方块机器输入流体
+HatchCustomFluid_01=容量：
+HatchCustomFluid_02=允许的流体：
+
+Info_PlasmaForge_00=§b已启用衰减阻挡
+
+achievement.gtnl.welcome=GT不再业余
+achievement.gtnl.welcome.desc=由此开始
+achievement.gtnl.installAllCommunityMod=私货大王
+achievement.gtnl.installAllCommunityMod.desc=你就是玩私货玩的
+
+tc.research_category.gtnl=GTNL：随想魔法
+tc.research_name.gtnl.welcome=你的新起点
+tc.research_text.gtnl.welcome=并不友善
+tc.research_text.gtnl.welcome.1=欢迎来到奇思妙想的新世界！
+
+tc.research_name.gtnl.timeStopPocketWatch=岁月静滞怀表
+tc.research_text.gtnl.timeStopPocketWatch=掌握时间的秘密
+tc.research_text.gtnl.timeStopPocketWatch.0=在古老的时间学派手稿中，有关「岁月静滞怀表」的记载寥寥无几。据说，它最早是由一位厌倦战争与喧嚣的炼金术士打造，他渴望在流逝中捕捉永恒。怀表的构造并不复杂，真正的难点在于为其注入“停滞”的本质。传闻整个仪式必须在月相最黯淡之夜进行，四周环绕以安静的时空晶体与沉默的金属，施术者的每一缕意念都必须精确控制，否则整个注魔仪式会使时间本身反噬施法者。若仪式成功，便可暂时将世界之流冻结于此刻，但切记：时间从不会真正被掌控，它只是在等待反扑的时机。
+
+tc.research_name.gtnl.largeEssentiaGenerator=奥术世界的内燃引擎
+tc.research_text.gtnl.largeEssentiaGenerator=它会造成咒波污染吗?
+tc.research_text.gtnl.largeEssentiaGenerator.0=你发现源质内蕴含的能量超乎你的想象.有没有用这些源质发电的方法呢?<BR><BR>LEG(大型源质发电机)可以根据动力仓自动调整其输出电压. 扩散单元决定了LEG可接受的最高仓室等级.
+tc.research_text.gtnl.largeEssentiaGenerator.1=目前只有以下源质可以无需升级,直接转化为能量:<BR><BR>Terra:800EU<BR><BR>Aqua:5000EU<BR><BR>Ordo:12000EU<BR><BR>Lux:13000EU<BR><BR>Tempestas:61200EU<BR><BR>Gelum:3900EU<BR><BR>Vitreus:2000EU<BR><BR>Potentia:25600EU<BR><BR>Permutatio:6000EU<BR><BR>Metallum:2600EU
+tc.research_text.gtnl.largeEssentiaGenerator.2=Tenebrae:9000EU<BR><BR>Praecantatio:36000EU<BR><BR>Herba:2600EU<BR><BR>Arbor:4500EU<BR><BR>Bestia:1000EU<BR><BR>Messis:9800EU<BR><BR>Perfodio:1300EU<BR><BR>Instrumentum:1200EU<BR><BR>Meto:3600EU<BR><BR>Tutamen:6200EU<BR><BR>Fabrico:1100EU
+tc.research_text.gtnl.largeEssentiaGenerator.3=Pannus:600EU<BR><BR>Vinculum:500EU<BR><BR>Magneto:108000EU<BR><BR>Vesania:1EU<BR><BR>Primordium:217000<BR><BR>Gula:64000EU<BR><BR>Tempus:142857EU<BR><BR>如果想用其他源质作为燃料,你需要为你的发电机加装相应升级.
+
+tc.research_name.gtnl.essentiaUpgradeEmpty=升级你的发电机
+tc.research_text.gtnl.essentiaUpgradeEmpty=让我们来试试一些更危险的源质.
+tc.research_text.gtnl.essentiaUpgradeEmpty.0=空白升级!我感觉它有无限可能.<BR><BR>除了几种特殊源质,大部分源质需要额外流体帮助其在单元中扩散或提高燃烧效率.而没有这些特殊流体,源质将阻塞单元的缝隙,造成效率低下甚至无法输出.你可以为一台大型源质发电机安装多种升级.<BR><BR>计算流体消耗速度的公式如下:<BR>基础消耗速度*源质系数*已消耗源质量
+
+tc.research_name.gtnl.essentiaUpgradeAir=源质：AIR
+tc.research_text.gtnl.essentiaUpgradeAir=我可以在风中感受到它.
+tc.research_text.gtnl.essentiaUpgradeAir.0=这类源质与空气具有很高的亲和性,需要空气辅助其扩散.<BR><BR>我们可以使用更浓缩的液态空气以进一步提高源质效率.<BR><BR>基础消耗速度为160L/秒.
+tc.research_text.gtnl.essentiaUpgradeAir.1=可用源质:<BR><BR>Aer:10000EU;系数:x1.0<BR><BR>Motus:20000EU;系数:x0.5<BR><BR>Volatus:56000EU;系数:x2.0<BR><BR>Auram:42000EU;系数:x2.7<BR><BR>需要流体:<BR><BR>空气:效率:x1.0<BR><BR>液态空气:效率:x1.5
+
+tc.research_name.gtnl.essentiaUpgradeThermal=源质：THERMAL
+tc.research_text.gtnl.essentiaUpgradeThermal=熔融.
+tc.research_text.gtnl.essentiaUpgradeThermal.0=来自这类源质的能量无法完全被转化为电能,部分能量会被转化为热能,并加热扩散单元.<BR><BR>所以需要冷却液以保证发电机的稳定运行,而更好的冷却液可以使源质安全地释放更多能量.<BR><BR>基础消耗速度为40L/秒.
+tc.research_text.gtnl.essentiaUpgradeThermal.1=可用源质:<BR><BR>Ignis:16000EU;系数:x1.0<BR><BR>Aequalitas:300000EU;系数:x7.0<BR><BR>Volatus:56000EU;系数:x2.0<BR><BR>Infernus:35700EU;系数:x3.0<BR><BR>Ira:82600EU;系数:x5.0
+tc.research_text.gtnl.essentiaUpgradeThermal.2=需要流体:<BR><BR>水:效率:x0.5<BR><BR>蒸馏水:效率:x1.0<BR><BR>碎冰:效率:x1.2<BR><BR>IC2冷却液:效率:x1.5<BR><BR>极寒之凛冰:效率:x5.0<BR><BR>超级冷却液:效率:x9.0
+
+tc.research_name.gtnl.essentiaUpgradeUnstable=源质：UNSTABLE
+tc.research_text.gtnl.essentiaUpgradeUnstable=混沌之心.
+tc.research_text.gtnl.essentiaUpgradeUnstable.0=这类源质易与空气发生反应,往往会破坏扩散单元.<BR><BR>所以需要使用惰性气体保护扩散单元.<BR><BR>气体惰性越高,源质就能安全地释放越多能量.<BR><BR>基础消耗速度为80L/秒.
+tc.research_text.gtnl.essentiaUpgradeUnstable.1=可用源质:<BR><BR>Perditio:4500EU;系数:x1.0<BR><BR>Vacuos:8200EU;系数:x1.5<BR><BR>Venenum:17000EU;系数:x2.0<BR><BR>Telum:14200EU;系数:x2.5<BR><BR>Terminus:300000EU;系数:x10.0
+tc.research_text.gtnl.essentiaUpgradeUnstable.2=需要流体:<BR><BR>氮:效率:x1.0<BR><BR>氦:效率:x2.0<BR><BR>氖:效率:x2.2<BR><BR>氩:效率:x2.5<BR><BR>氪:效率:x3.0<BR><BR>氙:效率:x4.0
+
+tc.research_name.gtnl.essentiaUpgradeVictus=源质：VICTUS
+tc.research_text.gtnl.essentiaUpgradeVictus=它会流血吗?
+tc.research_text.gtnl.essentiaUpgradeVictus.0=这类源质蕴含生命的本质.<BR><BR>大部分无法直接转化为能量,但你可以为其提供生命本质,大大增强它们的转化率.<BR><BR>基础消耗速度为360L/秒.
+tc.research_text.gtnl.essentiaUpgradeVictus.1=可用源质:<BR><BR>Victus:20000EU;系数:x1.0<BR><BR>Spiritus:37600EU;系数:x0.7<BR><BR>Sano:24600EU;系数:x1.2<BR><BR>Corpus:5200EU;系数:x0.9<BR><BR>Humanus:16700EU;系数:x1.3<BR><BR>Fames:17600EU;系数:x1.1<BR><BR>Gloria:120000EU;系数:x0.6
+tc.research_text.gtnl.essentiaUpgradeVictus.2=可选流体:<BR><BR>液态XP:效率:x2.0<BR><BR>生命本质:效率:x6.0
+
+tc.research_name.gtnl.essentiaUpgradeTainted=源质：TAINTED
+tc.research_text.gtnl.essentiaUpgradeTainted=恶行易施
+tc.research_text.gtnl.essentiaUpgradeTainted.0=这类源质内含黑暗的能量.运行时可能产生咒波污染.<BR><BR>你可以为其提供净化之水或死亡之水...这会产生两种不同的效果.<BR><BR>净化之水可以净化源质,大大提升输出能量,且不会产生咒波污染.<BR><BR>死亡之水无法溶解源质,但将其加入已扩散的源质可以产生很棒的效果:源质的基础燃值越低,释放的黑暗能量越多.
+tc.research_text.gtnl.essentiaUpgradeTainted.1=基础消耗速度为60L/秒.
+tc.research_text.gtnl.essentiaUpgradeTainted.2=可用源质:<BR><BR>Mortuus:7200EU;系数:x1.0<BR><BR>Alienis:9700EU;系数:x1.7<BR><BR>Vitium:4700EU;系数:x10.0<BR><BR>Exanimis:9000EU;系数:x1.2
+tc.research_text.gtnl.essentiaUpgradeTainted.3=可选流体:<BR><BR>净化之水:效率:x60.0<BR><BR>死亡之水:效率:x(25000/基础燃值)^4
+
+tc.research_name.gtnl.essentiaUpgradeMechanics=源质：MECHANICS
+tc.research_text.gtnl.essentiaUpgradeMechanics=由以太驱动.
+tc.research_text.gtnl.essentiaUpgradeMechanics.0=这类源质必须处于快速流动中才能释放能量.<BR><BR>需要润滑油来为源质提供足够的流动性<BR><BR>基础消耗速度为400L/秒.
+tc.research_text.gtnl.essentiaUpgradeMechanics.1=用源质:<BR><BR>Iter:16000EU<BR><BR>Machina:61200EU<BR><BR>Limus:11800EU<BR><BR>系数均为x1.0
+tc.research_text.gtnl.essentiaUpgradeMechanics.2=需要流体:<BR><BR>润滑油:效率:x1.0
+
+tc.research_name.gtnl.essentiaUpgradeSpririt=源质：SPRITE
+tc.research_text.gtnl.essentiaUpgradeSpririt=机中之脑
+tc.research_text.gtnl.essentiaUpgradeSpririt.0=精神类的源质的直接产能很低.只有用水心或虚伪泪水激活后,它们才能展示正在的能量.<BR><BR>当扩散单元的稳定点较低时,虚伪泪水可以从源质中激发出更多能量.而稳定点较高时,只能用水心才能激发出源质的真正能量.<BR><BR>基础消耗速度为40L/秒.
+tc.research_text.gtnl.essentiaUpgradeSpririt.1=可用源质:<BR><BR>Cognitio:2200EU;系数:x1.2<BR><BR>Sensus:1400EU;系数:x0.7<BR><BR>Lucrum:6000EU;系数:x2.0<BR><BR>Strontio:200EU;系数:x0.03<BR><BR>Nebrisum:24300EU;系数:x2.0<BR><BR>Luxuria:79200EU;系数:x3.7<BR><BR>Superbia:10900EU;系数:x2.1<BR><BR>Invidia:7700EU;系数:x1.0<BR><BR>Desidia:600EU;系数:x0.1
+tc.research_text.gtnl.essentiaUpgradeSpririt.2=可选流体:<BR><BR>虚伪泪水:效率:x15x(1+100/稳定点)<BR><BR>水心:效率:x10x(1+稳定点/100)<BR><BR>简而言之,稳定点超过150后,水心的效率更高.
+
+tc.research_name.gtnl.essentiaUpgradeRadiation=源质：RADIATION
+tc.research_text.gtnl.essentiaUpgradeRadiation=原子之心
+tc.research_text.gtnl.essentiaUpgradeRadiation.0=用这类源质发电类似于用核燃料发电,不同之处在于源质是纯粹的"放射性"属性,而核燃料还有些乱七八糟的东西.<BR><BR>但是,提升核燃料输出的方法同样适用于此,可以直接提升源质释放的能量.<BR><BR>基础消耗速度为120L/秒.
+tc.research_text.gtnl.essentiaUpgradeRadiation.1=可用源质:<BR><BR>Radio:238000EU;系数:x1.0<BR><BR>Astrum:118000EU;系数:x0.5
+tc.research_text.gtnl.essentiaUpgradeRadiation.2=可选流体:<BR><BR>熔融铯:效率:x2.0<BR><BR>熔融铀-235:效率:x3.0<BR><BR>熔融硅岩:效率:x4.0<BR><BR>熔融原子分离催化剂:效率:x16.0
+
+tc.research_name.gtnl.essentiaUpgradeElectric=源质：ELECTRIC
+tc.research_text.gtnl.essentiaUpgradeElectric=以电…生电?
+tc.research_text.gtnl.essentiaUpgradeElectric.0=ELECTRUM源质本身就代表了电力!<BR><BR>发电机的动力仓电压越高,ELECTRUM源质被越强的电势差影响,发电量就越高.
+tc.research_text.gtnl.essentiaUpgradeElectric.1=可用源质:Electrum<BR><BR>能量公式:<BR>8x(3.0^动力仓等级)EU
+
+Tooltip_ResearchStation_00=在GUI内标记物品来指定研究目标
+
+Tooltip_PurificationPlant_00=当连接绝对重子完美净化单元且不安装能源仓时将进入无线模式
+Tooltip_PurificationPlant_01=在无线模式下，所有连接此净水厂的净化单元最大并行提升为Long
+Tooltip_PurificationPlant_02=同时可以从总成获取物品和流体
+
+BeamlinePipeMirror=束流波导管
+Tooltip_BeamlinePipeMirror_00=粒子偏转管道
+Tooltip_BeamlinePipeMirror_01=§b允许拐弯
+
+EnergyTransferNode=万用通量传输节点
+Tooltip_EnergyTransferNode_00=§9有源变压器的好帮手！
+Tooltip_EnergyTransferNode_01=将能量进行分流/合流
+Tooltip_EnergyTransferNode_02=最大电压和电流取决于传入的最大参数
+Tooltip_EnergyTransferNode_03=同时支持线缆和激光真空管
+Tooltip_EnergyTransferNode_04=如果能源仓/激光靶仓小于最大电压，将会爆炸！
+Tooltip_EnergyTransferNode_05=只能直线接收EU
+Tooltip_EnergyTransferNode_06=必须染色才会工作
+Tooltip_EnergyTransferNode_07=使用软锤切换传输模式
+Info_EnergyTransferNode_00=当前最大通过电压：%s
+Info_EnergyTransferNode_01=当前最大通过电流：%s
+Info_EnergyTransferNode_02=当前正面朝向：%s
+Info_EnergyTransferNode_03_Out=当前模式：合流
+Info_EnergyTransferNode_03_In=当前模式：分流
+
+SuperVoidBus=超级虚空总线
+
+SuperVoidHatch=超级虚空仓
+
+OriginalInputHatch=输入仓(蒸汽)
+Tooltip_OriginalInputHatch_00=为多方块机器输入流体
+Tooltip_OriginalInputHatch_01=手持螺丝刀右键以切换输入过滤
+Tooltip_OriginalInputHatch_02=容量：%s升
+
+OriginalOutputHatch=输出仓(蒸汽)
+Tooltip_OriginalOutputHatch_00=为多方块机器输出流体
+Tooltip_OriginalOutputHatch_01=容量：%s升
+Tooltip_OriginalOutputHatch_02=用螺丝刀右键以限制自动输出
+Tooltip_OriginalOutputHatch_03=可以被设定为仅输出/仅不输出 物品/蒸汽/流体
+Tooltip_OriginalOutputHatch_04=被设定过的输出仓在多方块中拥有更高的优先级
+
+VaultPortHatch=保险库多方块输入/输出总成
+Tooltip_VaultPortHatch_00=保险库的一站式访问节点
+
+TypeFilteredInputBusME=过滤存储输入总线(ME)
+SuperTypeFilteredInputBusME=超级过滤存储输入总线(ME)
+Tooltip_TypeFilteredInputBusME_00=为多方块机器输入匹配物品(进阶)
+Tooltip_TypeFilteredInputBusME_01=仓室等级：
+Tooltip_TypeFilteredInputBusME_02=直接从ME网络抽取物品
+Tooltip_TypeFilteredInputBusME_03=可标记%s种物品
+Tooltip_TypeFilteredInputBusME_04=手持剪线钳右键以改变仓室与ME网络的连接模式
+Tooltip_TypeFilteredInputBusME_05=配置可使用闪存复制/粘贴
+Tooltip_TypeFilteredInputBusME_06=ME自动拉取模式将会自动标记ME网络中的前%s种物品，每5秒更新一次.
+Tooltip_TypeFilteredInputBusME_07=使用螺丝刀切换，或在GUI配置.
+Tooltip_TypeFilteredInputBusME_08=在GUI配置 "自动拉取" 的最小堆叠数与快速配方检查.
+Tooltip_TypeFilteredInputBusME_09=警告：快速配方检查可能会很卡. 请谨慎使用.
+Info_TypeFilteredInputBusME_ModID=模组ID
+Info_TypeFilteredInputBusME_ItemName=物品ID
+Info_TypeFilteredInputBusME_ItemMeta=物品meta值
+Info_TypeFilteredInputBusME_Filtered=过滤：
+Info_TypeFilteredInputBusME_Filtered_Set=§a%s:%s@%s§r
+Info_TypeFilteredInputBusME_Filtered_Unset=§7未设置§r
+Info_TypeFilteredInputBusME_Online=§a设备开启§r
+Info_TypeFilteredInputBusME_Offline=§c设备离线：%s§r
+
+OredictInputBusME=矿辞存储输入总线(ME)
+SuperOredictInputBusME=超级矿辞存储输入总线(ME)
+Tooltip_OredictInputBusME_00=为多方块机器输入矿辞物品(进阶)
+Tooltip_OredictInputBusME_01=仓室等级：
+Tooltip_OredictInputBusME_02=直接从ME网络抽取物品
+Tooltip_OredictInputBusME_03=可标记%s种物品
+Tooltip_OredictInputBusME_04=手持剪线钳右键以改变仓室与ME网络的连接模式
+Tooltip_OredictInputBusME_05=配置可使用闪存复制/粘贴
+Tooltip_OredictInputBusME_06=ME自动拉取模式将会自动标记ME网络中的前%s种物品，每5秒更新一次.
+Tooltip_OredictInputBusME_07=使用螺丝刀切换，或在GUI配置.
+Tooltip_OredictInputBusME_08=在GUI配置 "自动拉取" 的最小堆叠数与快速配方检查.
+Tooltip_OredictInputBusME_09=警告：快速配方检查可能会很卡. 请谨慎使用.
+Info_OredictInputBusME_Oredict=矿辞：
+Info_OredictInputBusME_Oredict_Set=§a%s§r
+Info_OredictInputBusME_Oredict_Unset=§7未设置§r
+Info_OredictInputBusME_Online=§a设备开启§r
+Info_OredictInputBusME_Offline=§c设备离线：%s§r
+
+SuperDualInputHatchME=超级存储输入总成(ME)
+AdvancedSuperDualInputHatchME=进阶超级存储输入总成(ME)
+Tooltip_SuperDualInputHatchME_00=为多方块机器输入物品和流体(进阶)
+Tooltip_SuperDualInputHatchME_01=仓室等级：
+Tooltip_SuperDualInputHatchME_02=直接从ME网络抽取物品和流体
+Tooltip_SuperDualInputHatchME_03=可标记100种物品和流体
+Tooltip_SuperDualInputHatchME_04=手持剪线钳右键以改变仓室与ME网络的连接模式
+Tooltip_SuperDualInputHatchME_05=配置可使用闪存复制/粘贴
+Tooltip_AdvancedSuperDualInputHatchME_00=ME自动拉取模式将会自动标记ME网络中的前100种物品和流体，每5秒更新一次.
+Tooltip_AdvancedSuperDualInputHatchME_01=使用螺丝刀切换，或在GUI配置.
+Tooltip_AdvancedSuperDualInputHatchME_02=在GUI配置 "自动拉取" 的最小堆叠数与快速配方检查.
+Tooltip_AdvancedSuperDualInputHatchME_03=警告：快速配方检查可能会很卡. 请谨慎使用.
+Info_AdvancedSuperDualInputHatchME_ExceedIntMax=拉取数量超过Int, 查看Tooltip获取真实数量！
+Info_AdvancedSuperDualInputHatchME_IntMax=最大拉取数量 (单位：Int.MAX)
+Info_AdvancedSuperDualInputHatchME_IntMaxTooltip=设置所能拉取的最大数量，数字越大卡顿越大. 请谨慎使用.
+Info_SuperDualInputHatchME_00=设置物品指定抽取数量
+Info_SuperDualInputHatchME_01=设置流体指定抽取数量
+Info_SuperDualInputHatchME_02=槽位：
+Info_SuperDualInputHatchME_03=物品最小数量
+Info_SuperDualInputHatchME_04=流体最小数量
+
+SuperInputBusME=超级存储输入总线(ME)
+AdvancedSuperInputBusME=进阶超级存储输入总线(ME)
+Tooltip_SuperInputBusME_00=为多方块机器输入物品(进阶)
+Tooltip_SuperInputBusME_01=仓室等级：
+Tooltip_SuperInputBusME_02=直接从ME网络抽取物品
+Tooltip_SuperInputBusME_03=可标记100种物品
+Tooltip_SuperInputBusME_04=手持剪线钳右键以改变仓室与ME网络的连接模式
+Tooltip_SuperInputBusME_05=配置可使用闪存复制/粘贴
+Tooltip_AdvancedSuperInputBusME_00=ME自动拉取模式将会自动标记ME网络中的前100种物品，每5秒更新一次.
+Tooltip_AdvancedSuperInputBusME_01=使用螺丝刀切换，或在GUI配置.
+Tooltip_AdvancedSuperInputBusME_02=在GUI配置 "自动拉取" 的最小堆叠数与快速配方检查.
+Tooltip_AdvancedSuperInputBusME_03=警告：快速配方检查可能会很卡. 请谨慎使用.
+
+SuperInputHatchME=超级存储输入仓(ME)
+AdvancedSuperInputHatchME=进阶超级存储输入仓(ME)
+Tooltip_SuperInputHatchME_00=为多方块机器输入流体(进阶)
+Tooltip_SuperInputHatchME_01=仓室等级：
+Tooltip_SuperInputHatchME_02=直接从ME网络抽取流体
+Tooltip_SuperInputHatchME_03=可标记100种流体
+Tooltip_SuperInputHatchME_04=手持剪线钳右键以改变仓室与ME网络的连接模式
+Tooltip_SuperInputHatchME_05=配置可使用闪存复制/粘贴
+Tooltip_AdvancedSuperInputHatchME_00=ME自动拉取模式将会自动标记ME网络中的前100种流体，每5秒更新一次.
+Tooltip_AdvancedSuperInputHatchME_01=使用螺丝刀切换，或在GUI配置.
+Tooltip_AdvancedSuperInputHatchME_02=在GUI配置 "自动拉取" 的最小堆叠数与快速配方检查，调整流体槽位刷新时间并启用快速配方检查.
+Tooltip_AdvancedSuperInputHatchME_03=警告：快速配方检查可能会很卡. 请谨慎使用.
+Info_SuperInputHatchME_00=设置指定抽取数量
+Info_SuperInputHatchME_01=槽位：
+
+EnergyHatchMAX=MAX能源仓
+
+EnergyHatchLV4A=4安LV能源仓
+EnergyHatchLV16A=16安LV能源仓
+EnergyHatchLV64A=64安LV能源仓
+
+EnergyHatchMV4A=4安MV能源仓
+EnergyHatchMV16A=16安MV能源仓
+EnergyHatchMV64A=64安MV能源仓
+
+EnergyHatchHV4A=4安HV能源仓
+EnergyHatchHV16A=16安HV能源仓
+EnergyHatchHV64A=64安HV能源仓
+
+EnergyHatchMAX4A=4安MAX能源仓
+EnergyHatchMAX16A=16安MAX能源仓
+EnergyHatchMAX64A=64安MAX能源仓
+
+DynamoHatchMAX=MAX动力仓
+
+DynamoHatchLV4A=4安LV动力仓
+DynamoHatchLV16A=16安LV动力仓
+DynamoHatchLV64A=64安LV动力仓
+
+DynamoHatchMV4A=4安MV动力仓
+DynamoHatchMV16A=16安MV动力仓
+DynamoHatchMV64A=64安MV动力仓
+
+DynamoHatchHV4A=4安HV动力仓
+DynamoHatchHV16A=16安HV动力仓
+DynamoHatchHV64A=64安HV动力仓
+
+DynamoHatchMAX4A=4安MAX动力仓
+DynamoHatchMAX16A=16安MAX动力仓
+DynamoHatchMAX64A=64安MAX动力仓
+
+LaserEnergyHatchIV4194304A=IV 4,194,304A/t 激光靶仓
+LaserEnergyHatchIV16777216A=IV 16,777,216A/t 激光靶仓
+
+LaserEnergyHatchLuV4194304A=LuV 4,194,304A/t 激光靶仓
+LaserEnergyHatchLuV16777216A=LuV 16,777,216A/t 激光靶仓
+
+LaserEnergyHatchZPM4194304A=ZPM 4,194,304A/t 激光靶仓
+LaserEnergyHatchZPM16777216A=ZPM 16,777,216A/t 激光靶仓
+
+LaserEnergyHatchUV4194304A=UV 4,194,304A/t 激光靶仓
+LaserEnergyHatchUV16777216A=UV 16,777,216A/t 激光靶仓
+
+LaserEnergyHatchUHV4194304A=UHV 4,194,304A/t 激光靶仓
+LaserEnergyHatchUHV16777216A=UHV 16,777,216A/t 激光靶仓
+
+LaserEnergyHatchUEV4194304A=UEV 4,194,304A/t 激光靶仓
+LaserEnergyHatchUEV16777216A=UEV 16,777,216A/t 激光靶仓
+
+LaserEnergyHatchUIV4194304A=UIV 4,194,304A/t 激光靶仓
+LaserEnergyHatchUIV16777216A=UIV 16,777,216A/t 激光靶仓
+
+LaserEnergyHatchUMV16777216A=UMV 16,777,216A/t 激光靶仓
+
+LaserEnergyHatchMAX256A=MAX 256A/t 激光靶仓
+LaserEnergyHatchMAX1024A=MAX 1,024A/t 激光靶仓
+LaserEnergyHatchMAX4096A=MAX 4,096A/t 激光靶仓
+LaserEnergyHatchMAX16384A=MAX 16,384A/t 激光靶仓
+LaserEnergyHatchMAX65536A=MAX 65,536A/t 激光靶仓
+LaserEnergyHatchMAX262144A=MAX 262,144A/t 激光靶仓
+LaserEnergyHatchMAX1048576A=MAX 1,048,576A/t 激光靶仓
+LaserEnergyHatchMAX4194304A=MAX 4,194,304A/t 激光靶仓
+LaserEnergyHatchMAX16777216A=MAX 16,777,216A/t 激光靶仓
+
+LaserDynamoHatchIV4194304A=IV 4,194,304A/t 激光源仓
+LaserDynamoHatchIV16777216A=IV 16,777,216A/t 激光源仓
+
+LaserDynamoHatchLuV4194304A=LuV 4,194,304A/t 激光源仓
+LaserDynamoHatchLuV16777216A=LuV 16,777,216A/t 激光源仓
+
+LaserDynamoHatchZPM4194304A=ZPM 4,194,304A/t 激光源仓
+LaserDynamoHatchZPM16777216A=ZPM 16,777,216A/t 激光源仓
+
+LaserDynamoHatchUV4194304A=UV 4,194,304A/t 激光源仓
+LaserDynamoHatchUV16777216A=UV 16,777,216A/t 激光源仓
+
+LaserDynamoHatchUHV4194304A=UHV 4,194,304A/t 激光源仓
+LaserDynamoHatchUHV16777216A=UHV 16,777,216A/t 激光源仓
+
+LaserDynamoHatchUEV4194304A=UEV 4,194,304A/t 激光源仓
+LaserDynamoHatchUEV16777216A=UEV 16,777,216A/t 激光源仓
+
+LaserDynamoHatchUIV4194304A=UIV 4,194,304A/t 激光源仓
+LaserDynamoHatchUIV16777216A=UIV 16,777,216A/t 激光源仓
+
+LaserDynamoHatchUMV16777216A=UMV 16,777,216A/t 激光源仓
+
+LaserDynamoHatchMAX256A=MAX 256A/t 激光源仓
+LaserDynamoHatchMAX1024A=MAX 1,024A/t 激光源仓
+LaserDynamoHatchMAX4096A=MAX 4,096A/t 激光源仓
+LaserDynamoHatchMAX16384A=MAX 16,384A/t 激光源仓
+LaserDynamoHatchMAX65536A=MAX 65,536A/t 激光源仓
+LaserDynamoHatchMAX262144A=MAX 262,144A/t 激光源仓
+LaserDynamoHatchMAX1048576A=MAX 1,048,576A/t 激光源仓
+LaserDynamoHatchMAX4194304A=MAX 4,194,304A/t 激光源仓
+LaserDynamoHatchMAX16777216A=MAX 16,777,216A/t 激光源仓
+
+WirelessEnergyHatchLV4A=4安LV无线能源仓
+WirelessEnergyHatchLV16A=16安LV无线能源仓
+WirelessEnergyHatchLV64A=64安LV无线能源仓
+
+WirelessEnergyHatchMV4A=4安MV无线能源仓
+WirelessEnergyHatchMV16A=16安MV无线能源仓
+WirelessEnergyHatchMV64A=64安MV无线能源仓
+
+WirelessEnergyHatchHV4A=4安HV无线能源仓
+WirelessEnergyHatchHV16A=16安HV无线能源仓
+WirelessEnergyHatchHV64A=64安HV无线能源仓
+
+WirelessEnergyHatchIV256A=256安IV无线能源仓
+WirelessEnergyHatchIV1024A=1024安IV无线能源仓
+WirelessEnergyHatchIV4096A=4096安IV无线能源仓
+WirelessEnergyHatchIV16384A=16384安IV无线能源仓
+WirelessEnergyHatchIV65536A=65536安IV无线能源仓
+WirelessEnergyHatchIV262144A=262144安IV无线能源仓
+WirelessEnergyHatchIV1048576A=1048576安IV无线能源仓
+WirelessEnergyHatchIV4194304A=4194304安IV无线能源仓
+WirelessEnergyHatchIV16777216A=16777216安IV无线能源仓
+
+WirelessEnergyHatchLuV256A=256安LuV无线能源仓
+WirelessEnergyHatchLuV1024A=1024安LuV无线能源仓
+WirelessEnergyHatchLuV4096A=4096安LuV无线能源仓
+WirelessEnergyHatchLuV16384A=16384安LuV无线能源仓
+WirelessEnergyHatchLuV65536A=65536安LuV无线能源仓
+WirelessEnergyHatchLuV262144A=262144安LuV无线能源仓
+WirelessEnergyHatchLuV1048576A=1048576安LuV无线能源仓
+WirelessEnergyHatchLuV4194304A=4194304安LuV无线能源仓
+WirelessEnergyHatchLuV16777216A=16777216安LuV无线能源仓
+
+WirelessEnergyHatchZPM256A=256安ZPM无线能源仓
+WirelessEnergyHatchZPM1024A=1024安ZPM无线能源仓
+WirelessEnergyHatchZPM4096A=4096安ZPM无线能源仓
+WirelessEnergyHatchZPM16384A=16384安ZPM无线能源仓
+WirelessEnergyHatchZPM65536A=65536安ZPM无线能源仓
+WirelessEnergyHatchZPM262144A=262144安ZPM无线能源仓
+WirelessEnergyHatchZPM1048576A=1048576安ZPM无线能源仓
+WirelessEnergyHatchZPM4194304A=4194304安ZPM无线能源仓
+WirelessEnergyHatchZPM16777216A=16777216安ZPM无线能源仓
+
+WirelessEnergyHatchUV256A=256安UV无线能源仓
+WirelessEnergyHatchUV1024A=1024安UV无线能源仓
+WirelessEnergyHatchUV4096A=4096安UV无线能源仓
+WirelessEnergyHatchUV16384A=16384安UV无线能源仓
+WirelessEnergyHatchUV65536A=65536安UV无线能源仓
+WirelessEnergyHatchUV262144A=262144安UV无线能源仓
+WirelessEnergyHatchUV1048576A=1048576安UV无线能源仓
+WirelessEnergyHatchUV4194304A=4194304安UV无线能源仓
+WirelessEnergyHatchUV16777216A=16777216安UV无线能源仓
+
+WirelessEnergyHatchUHV256A=256安UHV无线能源仓
+WirelessEnergyHatchUHV1024A=1024安UHV无线能源仓
+WirelessEnergyHatchUHV4096A=4096安UHV无线能源仓
+WirelessEnergyHatchUHV16384A=16384安UHV无线能源仓
+WirelessEnergyHatchUHV65536A=65536安UHV无线能源仓
+WirelessEnergyHatchUHV262144A=262144安UHV无线能源仓
+WirelessEnergyHatchUHV1048576A=1048576安UHV无线能源仓
+WirelessEnergyHatchUHV4194304A=4194304安UHV无线能源仓
+WirelessEnergyHatchUHV16777216A=16777216安UHV无线能源仓
+
+WirelessEnergyHatchUEV256A=256安UEV无线能源仓
+WirelessEnergyHatchUEV1024A=1024安UEV无线能源仓
+WirelessEnergyHatchUEV4096A=4096安UEV无线能源仓
+WirelessEnergyHatchUEV16384A=16384安UEV无线能源仓
+WirelessEnergyHatchUEV65536A=65536安UEV无线能源仓
+WirelessEnergyHatchUEV262144A=262144安UEV无线能源仓
+WirelessEnergyHatchUEV1048576A=1048576安UEV无线能源仓
+WirelessEnergyHatchUEV4194304A=4194304安UEV无线能源仓
+WirelessEnergyHatchUEV16777216A=16777216安UEV无线能源仓
+
+WirelessEnergyHatchUIV256A=256安UIV无线能源仓
+WirelessEnergyHatchUIV1024A=1024安UIV无线能源仓
+WirelessEnergyHatchUIV4096A=4096安UIV无线能源仓
+WirelessEnergyHatchUIV16384A=16384安UIV无线能源仓
+WirelessEnergyHatchUIV65536A=65536安UIV无线能源仓
+WirelessEnergyHatchUIV262144A=262144安UIV无线能源仓
+WirelessEnergyHatchUIV1048576A=1048576安UIV无线能源仓
+WirelessEnergyHatchUIV4194304A=4194304安UIV无线能源仓
+WirelessEnergyHatchUIV16777216A=16777216安UIV无线能源仓
+
+WirelessEnergyHatchUMV256A=256安UMV无线能源仓
+WirelessEnergyHatchUMV1024A=1024安UMV无线能源仓
+WirelessEnergyHatchUMV4096A=4096安UMV无线能源仓
+WirelessEnergyHatchUMV16384A=16384安UMV无线能源仓
+WirelessEnergyHatchUMV65536A=65536安UMV无线能源仓
+WirelessEnergyHatchUMV262144A=262144安UMV无线能源仓
+WirelessEnergyHatchUMV1048576A=1048576安UMV无线能源仓
+WirelessEnergyHatchUMV4194304A=4194304安UMV无线能源仓
+WirelessEnergyHatchUMV16777216A=16777216安UMV无线能源仓
+
+WirelessEnergyHatchMAX256A=256安MAX无线能源仓
+WirelessEnergyHatchMAX1024A=1024安MAX无线能源仓
+WirelessEnergyHatchMAX4096A=4096安MAX无线能源仓
+WirelessEnergyHatchMAX16384A=16384安MAX无线能源仓
+WirelessEnergyHatchMAX65536A=65536安MAX无线能源仓
+WirelessEnergyHatchMAX262144A=262144安MAX无线能源仓
+WirelessEnergyHatchMAX1048576A=1048576安MAX无线能源仓
+WirelessEnergyHatchMAX4194304A=4194304安MAX无线能源仓
+WirelessEnergyHatchMAX16777216A=16777216安MAX无线能源仓
+
+HumongousWirelessEnergyHatch=鸿蒙无线能源仓
+
+HumongousWirelessDynamoHatch=鸿蒙无线动力仓
+Tooltip_WirelessMultiDynamoHatch_00=§7将能量存储于全局网络中，上限为2^(2^31)EU.
+Tooltip_WirelessMultiDynamoHatch_01=§7不连接导线，此方块可以为网络接收EU.
+Tooltip_WirelessMultiDynamoHatch_02=支持激光和线缆连接
+
+ExplosionDynamoHatch=爆炸动力仓
+Tooltip_ExplosionDynamoHatch_00=概念神！
+
+Tooltip_WirelessEnergyCover4A_00=§7将能量存储于全局网络中，上限为2^(2^31)EU.
+Tooltip_WirelessEnergyCover4A_01=§7不连接导线，此覆盖板可以从网络中抽取EU.
+Tooltip_WirelessEnergyCover4A_02=无视电压限制 (不会造成爆炸).
+Tooltip_WirelessEnergyCover4A_03=电流：§e4A§7
+Tooltip_WirelessEnergyCover4A_04=输入电压：§a%s (§7%s§r§a)
+
+VoidCover=虚空覆盖板
+Tooltip_VoidCover_00=如同虚空总成一样！
+Tooltip_VoidCover_01=立刻抹除所有匹配的内容物
+Tooltip_VoidCover_02=必须配置才能工作
+Tooltip_VoidCover_03=可通过按钮切换销毁输入输出槽
+Info_VoidCover_00=按下销毁输入槽，松开销毁输出槽
+
+PipelessSteamCover=无管蒸汽覆盖板
+Tooltip_PipelessSteamCover_00=§b§o你忆起梦中那片无形的蒸汽之海……
+Tooltip_PipelessSteamCover_01=§b§o无需管道，蒸汽仿佛顺着空气本身流淌.
+Tooltip_PipelessSteamCover_02=§b§o你不知道它如何做到，只知道它正将水的力量尽数传递给你.
+Tooltip_PipelessSteamCover_03=将蒸汽存储于全局网络中，上限为2^(2^31)L.
+Tooltip_PipelessSteamCover_04=不连接管道，此覆盖板可以从网络中抽取蒸汽.
+Info_PipelessSteamCover_00=切换到 %s
+Info_PipelessSteamCover_01=蒸汽类型
+
+PipelessSteamHatch=无管蒸汽仓
+Tooltip_PipelessSteamHatch_00=§b§o它从哪儿来的? 能从看似虚无的地方提取蒸汽，
+Tooltip_PipelessSteamHatch_01=§b§o甚至无需任何管道，你开始怀疑自己对烧水的理解.
+Tooltip_PipelessSteamHatch_02=§b§o但可以确定的是：这可能仍然不够……
+PipelessJetstreamHatch=无管喷流仓
+Tooltip_PipelessJetstreamHatch_00=§b§o你梦中回忆起"无线能源仓"，却不记得有这种力量.
+Tooltip_PipelessJetstreamHatch_01=§b§o通过利用强大的除湿能力，你发现了方法，
+Tooltip_PipelessJetstreamHatch_02=§b§o能将水的能量发挥到前所未有的高度……
+Tooltip_PipelessSteamEnergyHatch_00=将蒸汽存储于全局网络中，上限为2^(2^31)L.
+Tooltip_PipelessSteamEnergyHatch_01=不连接管道，此方块可以从网络中抽取蒸汽.
+
+PipelessSteamVent=无管蒸汽排气口
+Tooltip_PipelessSteamVent_00=§b§o梦中你记起了什么"无线动力仓"，大概是这么叫的.
+Tooltip_PipelessSteamVent_01=§b§o虽记不起它的用途，但此物与其极其相似.
+Tooltip_PipelessSteamVent_02=§b§o可你曾嘲笑它的无用……如今这东西却如此好用.
+PipelessJetstreamVent=无管喷流排气口
+Tooltip_PipelessJetstreamVent_00=§b§o你曾听说过一种名为"蒸汽之门"的装置，研究中你仍不明其意.
+Tooltip_PipelessJetstreamVent_01=§b§o这东西神秘而宏伟，你尚不清楚要付出多少才能造出它.
+Tooltip_PipelessJetstreamVent_02=§b§o但可以肯定的是，你将需要大量蒸汽，而这个排气口是关键所在……
+Tooltip_PipelessSteamDynamoHatch_00=将蒸汽存储于全局网络中，上限为2^(2^31)L.
+Tooltip_PipelessSteamDynamoHatch_01=不连接管道，此方块可以为网络接收蒸汽.
+
+ManaTank=魔力缸
+Tooltip_ManaTank_00=可以从附近的魔力池和魔力花抽取魔力
+Tooltip_ManaTank_01=如果检查到永恒魔力池，将直接填满
+Tooltip_ManaTank_02=转换比例为1： 1
+Tooltip_ManaTank_03=使用螺丝刀右键来切换模式
+Mode_ManaTank_00=从魔力池抽取魔力到魔力缸
+Mode_ManaTank_01=从魔力缸抽取魔力到魔力池
+
+ManaDynamoHatchLV=稀释魔力动力仓
+ManaDynamoHatchHV=魔力动力仓
+ManaDynamoHatchIV=神话动力仓
+ManaDynamoHatchZPM=盖亚动力仓
+Tooltip_ManaDynamoHatch_00=可以从附近的魔力池和魔力花抽取魔力
+Tooltip_ManaDynamoHatch_01=将魔力转换为EU
+Tooltip_ManaDynamoHatch_02=基础效率：1mana / %sEU
+Tooltip_ManaDynamoHatch_03=流体容量：%sL
+Tooltip_ManaDynamoHatch_04=使用螺丝刀右键来切换模式
+Mode_ManaDynamoHatch_00=从魔力能源仓抽取魔力到魔力池
+Mode_ManaDynamoHatch_01=从魔力池抽取魔力到魔力能源仓
+Info_ManaDynamoHatch_00=存储魔力：
+
+ManaEnergyHatchLV=稀释魔力能源仓
+ManaEnergyHatchHV=魔力能源仓
+ManaEnergyHatchIV=神话能源仓
+ManaEnergyHatchZPM=盖亚能源仓
+Tooltip_ManaEnergyHatch_00=可以将魔力填充到附近的魔力池
+Tooltip_ManaEnergyHatch_01=将EU转换为魔力
+Tooltip_ManaEnergyHatch_02=基础效率：%sEU / 1mana
+Tooltip_ManaEnergyHatch_03=流体容量：%sL
+Info_ManaEnergyHatch_00=存储魔力：
+
+TapDynamoHatchLV=动能动力仓
+Tooltip_TapDynamoHatch_00=有钱能使鬼推磨！
+Tooltip_TapDynamoHatch_01=点击推动动力仓发电
+
+BigSteamInputHatch=大型蒸汽仓
+AllSteamCapacity=总蒸汽数量：
+
+OutputBusMEProxy=输出总线镜像(ME)
+Tooltip_OutputBusMEProxy_00=从多方块机器输出物品
+Tooltip_OutputBusMEProxy_01=直接存储到ME系统
+Tooltip_OutputBusMEProxy_02=默认能够缓存1600个物品
+Tooltip_OutputBusMEProxy_03=插入存储元件以改变缓存大小
+Tooltip_OutputBusMEProxy_04=手持剪线钳右键以改变仓室与ME网络的连接模式
+Tooltip_OutputBusMEProxy_05=对插入的存储元件进行分区以对可接受的输出进行过滤
+Tooltip_OutputBusMEProxy_06=使用闪存链接到目标输出总线(ME)
+
+OutputHatchMEProxy=输出仓镜像(ME)
+Tooltip_OutputHatchMEProxy_00=从多方块机器输出流体
+Tooltip_OutputHatchMEProxy_01=直接存储到ME系统
+Tooltip_OutputHatchMEProxy_02=默认能够缓存128kL流体
+Tooltip_OutputHatchMEProxy_03=插入流体存储元件以改变缓存大小
+Tooltip_OutputHatchMEProxy_04=手持剪线钳右键以改变仓室与ME网络的连接模式
+Tooltip_OutputHatchMEProxy_05=对插入的存储元件进行分区以对可接受的输出进行过滤
+Tooltip_OutputHatchMEProxy_06=使用闪存链接到目标输出仓(ME)
+
+SuperCraftingInputHatchME=超级样板输入总成 (ME)
+SuperCraftingInputBusME=超级样板输入总线 (ME)
+Tooltip_SuperCraftingInputHatchME_00=为多方块机器输入物品
+Tooltip_SuperCraftingInputHatchME_01=样板槽位：360
+Tooltip_SuperCraftingInputHatchME_01_00=仓室等级：§5UEV
+Tooltip_SuperCraftingInputHatchME_01_01=仓室等级：§dLuV
+Tooltip_SuperCraftingInputHatchME_02=根据放入其中的样板对接ME系统处理，为每个样板提供输入隔离
+Tooltip_SuperCraftingInputHatchME_03_00=支持包含流体的样板
+Tooltip_SuperCraftingInputHatchME_03_01=不支持包含流体的样板
+Tooltip_SuperCraftingInputHatchME_04=手持剪线钳右键以改变仓室与ME网络的连接模式
+Tooltip_SuperCraftingInputHatchME_05=已保存连接数据到闪存
+Tooltip_SuperCraftingInputHatchME_06=对样板槽鼠标中键可打开独立“不消耗物品”槽
+Button_Tooltip_SuperCraftingInputHatchME_00=放置"不消耗物品"
+Button_Tooltip_SuperCraftingInputHatchME_01=将所有的已存储物品返回到AE网络
+Button_Tooltip_SuperCraftingInputHatchME_02_00=样板优化：允许
+Button_Tooltip_SuperCraftingInputHatchME_02_01=样板优化：关闭
+
+SuperCraftingInputProxy=超级样板输入镜像
+Tooltip_SuperCraftingInputProxy_00=超级样板输入总成/总线的镜像端
+Tooltip_SuperCraftingInputProxy_01=将所绑定的超级样板输入总成/总线的内容物共享过来，不需要连接me网络
+Tooltip_SuperCraftingInputProxy_02=闪存左键点击超级样板输入总成/总线，然后右键点击超级样板输入镜像完成链接绑定
+Tooltip_SuperCraftingInputProxy_03=支持原版样板输入总成/总线！
+Tooltip_SuperCraftingInputProxy_04=连接到 
+Tooltip_SuperCraftingInputProxy_05_00=已连接
+Tooltip_SuperCraftingInputProxy_05_01=无连接
+Chat_SuperCraftingInputProxy_00_00=这个超级样板输入镜像已连接到位于此坐标的超级样板输入总成/总线：
+Chat_SuperCraftingInputProxy_00_01=这个超级样板输入镜像已连接到位于此坐标的样板输入总成/总线：
+Chat_SuperCraftingInputProxy_01=这个超级样板输入镜像没有连接到任何超级样板输入总成/总线
+Chat_SuperCraftingInputProxy_02=连接成功
+Chat_SuperCraftingInputProxy_03=连接失败
+
+HumongousSolidifierHatch=巨型固化仓
+Tooltip_HumongousSolidifierHatch_00=为§e流体塑形机§r带模具输入流体
+Tooltip_HumongousSolidifierHatch_01=容量：2147483647 L
+
+DebugEnergyHatch=Debug能源仓
+Tooltip_DebugEnergyHatch_00=凭空而生的能量
+Tooltip_DebugEnergyHatch_01=§9无限能源的生产/消耗设备
+Tooltip_DebugEnergyHatch_02=§9它们从何而来?
+NEI.DebugEnergyHatchRecipe.01=§o我从哪里来?(需要同时安装7个模组方可出现此配方)
+
+ParallelControllerHatchLV=并行控制仓 (LV)
+ParallelControllerHatchMV=并行控制仓 (MV)
+ParallelControllerHatchHV=并行控制仓 (HV)
+ParallelControllerHatchEV=并行控制仓 (EV)
+ParallelControllerHatchIV=并行控制仓 (IV)
+ParallelControllerHatchLuV=并行控制仓 (LuV)
+ParallelControllerHatchZPM=并行控制仓 (ZPM)
+ParallelControllerHatchUV=并行控制仓 (UV)
+ParallelControllerHatchUHV=并行控制仓 (UHV)
+ParallelControllerHatchUEV=并行控制仓 (UEV)
+ParallelControllerHatchUIV=并行控制仓 (UIV)
+ParallelControllerHatchUMV=并行控制仓 (UMV)
+ParallelControllerHatchUXV=并行控制仓 (UXV)
+ParallelControllerHatchMAX=并行控制仓 (MAX)
+Tooltip_ParallelControllerHatch_00=为多方块机器提供最大并行
+Tooltip_ParallelControllerHatch_01=允许同时处理至多%s个配方 
+Tooltip_ParallelControllerHatch_02=§d速度：+%s %%
+Tooltip_ParallelControllerHatch_03=§5EU消耗：-%s %%
+Info_ParallelControllerHatch_00=并行
+
+AutoConfigurationMaintenanceHatch=可配置自动维护仓
+SterileConfigurationMaintenanceHatch=可配置无菌维护仓
+HumongousConfigurationMaintenanceHatch=可配置鸿蒙维护仓
+Tooltip_AutoConfigurationMaintenanceHatch_00=用于自动维护多方块机器
+Tooltip_AutoConfigurationMaintenanceHatch_01=它能掌控一切，除了自己.
+Tooltip_AutoConfigurationMaintenanceHatch_02=§b无私奉献！
+Info_ConfigurationMaintenanceHatch_00=配置机器处理耗时，单位：%%
+
+ConfigurationDroneDownLinkHatch=可配置无人机下行模块
+Tooltip_ConfigurationDroneDownLinkHatch_00=通过无人机维护多方块机器
+Tooltip_ConfigurationDroneDownLinkHatch_01=§m确实有点贪心
+Tooltip_ConfigurationDroneDownLinkHatch_02=§b俺也一样！
+
+NinefoldInputHatchEV=九重输入仓 (EV)
+NinefoldInputHatchIV=九重输入仓 (IV)
+NinefoldInputHatchLuV=九重输入仓 (LuV)
+NinefoldInputHatchZPM=九重输入仓 (ZPM)
+NinefoldInputHatchUV=九重输入仓 (UV)
+NinefoldInputHatchUHV=九重输入仓 (UHV)
+NinefoldInputHatchUEV=九重输入仓 (UEV)
+NinefoldInputHatchUIV=九重输入仓 (UIV)
+NinefoldInputHatchUMV=九重输入仓 (UMV)
+NinefoldInputHatchUXV=九重输入仓 (UXV)
+NinefoldInputHatchMAX=九重输入仓 (MAX)
+HumongousNinefoldInputHatch=巨型九重输入仓
+Tooltip_NinefoldInputHatch_00=为多方块机器输入流体
+Tooltip_NinefoldInputHatch_01=容量：
+Tooltip_NinefoldInputHatch_02=可容纳 %s 种流体
+
+QuadrupleOutputHatchEV=四重输出仓 (EV)
+NinefoldOutputHatchEV=九重输出仓 (EV)
+Tooltip_DualOutputHatch_00=为多方块机器输出流体
+Tooltip_DualOutputHatch_01=容量：
+Tooltip_DualOutputHatch_02_00=可容纳
+Tooltip_DualOutputHatch_02_01=种流体
+
+DualInputHatchLV=输入总成 (LV)
+DualInputHatchMV=输入总成 (MV)
+DualInputHatchHV=输入总成 (HV)
+DualInputHatchEV=输入总成 (EV)
+DualInputHatchIV=输入总成 (IV)
+DualInputHatchLuV=输入总成 (LuV)
+DualInputHatchZPM=输入总成 (ZPM)
+DualInputHatchUV=输入总成 (UV)
+DualInputHatchUHV=输入总成 (UHV)
+DualInputHatchUEV=输入总成 (UEV)
+DualInputHatchUIV=输入总成 (UIV)
+DualInputHatchUMV=输入总成 (UMV)
+DualInputHatchUXV=输入总成 (UXV)
+DualInputHatchMAX=输入总成 (MAX)
+Tooltip_DualInputHatch_00=为多方块机器输入物品和流体
+Tooltip_DualInputHatch_01=物品槽位数量：
+Tooltip_DualInputHatch_02_00=流体容量：共
+Tooltip_DualInputHatch_02_01=个流体槽，每个
+
+HumongousOutputBusLV=巨型输出总线 (LV)
+HumongousOutputBusMV=巨型输出总线 (MV)
+HumongousOutputBusHV=巨型输出总线 (HV)
+HumongousOutputBusEV=巨型输出总线 (EV)
+HumongousOutputBusIV=巨型输出总线 (IV)
+HumongousOutputBusLuV=巨型输出总线 (LuV)
+HumongousOutputBusZPM=巨型输出总线 (ZPM)
+HumongousOutputBusUV=巨型输出总线 (UV)
+HumongousOutputBusUHV=巨型输出总线 (UHV)
+HumongousOutputBusUEV=巨型输出总线 (UEV)
+HumongousOutputBusUIV=巨型输出总线 (UIV)
+HumongousOutputBusUMV=巨型输出总线 (UMV)
+HumongousOutputBusUXV=巨型输出总线 (UXV)
+HumongousOutputBusMAX=巨型输出总线 (MAX)
+Tooltip_HumongousOutputBus_00=从多方块机器输出物品
+Tooltip_HumongousOutputBus_01=物品槽位数量：
+Tooltip_HumongousOutputBus_02=手持闪存左键以保存过滤配置
+Tooltip_HumongousOutputBus_03=手持闪存右键以加载过滤配置
+
+HumongousDualInputHatchLV=巨型输入总成 (LV)
+HumongousDualInputHatchMV=巨型输入总成 (MV)
+HumongousDualInputHatchHV=巨型输入总成 (HV)
+HumongousDualInputHatchEV=巨型输入总成 (EV)
+HumongousDualInputHatchIV=巨型输入总成 (IV)
+HumongousDualInputHatchLuV=巨型输入总成 (LuV)
+HumongousDualInputHatchZPM=巨型输入总成 (ZPM)
+HumongousDualInputHatchUV=巨型输入总成 (UV)
+HumongousDualInputHatchUHV=巨型输入总成 (UHV)
+HumongousDualInputHatchUEV=巨型输入总成 (UEV)
+HumongousDualInputHatchUIV=巨型输入总成 (UIV)
+HumongousDualInputHatchUMV=巨型输入总成 (UMV)
+HumongousDualInputHatchUXV=巨型输入总成 (UXV)
+HumongousDualInputHatchMAX=巨型输入总成 (MAX)
+Button_Tooltip_HumongousDualInputHatch_00=将所有的已存储内容返回到面前容器
+
+DebugDataAccessHatch=Debug数据访问仓
+Tooltip_DebugDataAccessHatch_00=多方块机器的数据访问接口
+Tooltip_DebugDataAccessHatch_01=添加所有装配线配方的闪存
+
+SuperDataAccessHatch=超级数据访问仓
+Tooltip_SuperDataAccessHatch_00=增加81个额外的格子以放置闪存
+
+SteamTurbineLV=基础蒸汽轮机
+SteamTurbineMV=进阶蒸汽轮机
+SteamTurbineHV=进阶蒸汽轮机 II
+Tooltip_SteamTurbine_00=将蒸汽转换为EU
+Tooltip_SteamTurbine_01=基础效率：2L蒸汽/EU
+Tooltip_SteamTurbine_02=燃料效率：%s%%
+Tooltip_SteamTurbine_03=流体容量：%sL
+
+GasTurbineLV=基础燃气轮机
+GasTurbineMV=进阶燃气轮机
+GasTurbineHV=进阶燃气轮机 II
+Tooltip_GasTurbine_00=需要可燃气体
+Tooltip_GasTurbine_01=燃料效率：%s%%
+Tooltip_GasTurbine_02=流体容量：%sL
+
+DieselGeneratorLV=基础内燃发电机
+DieselGeneratorMV=进阶内燃发电机
+DieselGeneratorHV=进阶内燃发电机 II
+Tooltip_DieselGenerator_00=需要液体燃料
+Tooltip_DieselGenerator_01=燃料效率：%s%%
+Tooltip_DieselGenerator_02=流体容量：%sL
+
+DebugResearchStation=Debug研究站
+Tooltip_DebugResearchStation_00=立即扫描研究站配方，无需能量
+
+Replicator=复制器
+Enchanting=附魔器
+
+LootBagRedemption=兑奖机
+Tooltip_LootBagRedemption_00=§3你觉得手气不错！
+Tooltip_LootBagRedemption_01=自动化抽取战利品袋
+Tooltip_LootBagRedemption_02=自带过滤垃圾战利品池
+Tooltip_LootBagRedemption_03=在特殊槽放入物品指定必定产出的物品
+Tooltip_LootBagRedemption_04=每次运行需要消耗4个技术员币
+Tooltip_LootBagRedemption_05=会从更高级的战利品袋里获得额外的自定奖励(每高一级额外获得3倍)
+
+GasCollectorLV=基础集气室
+GasCollectorMV=进阶集气室
+GasCollectorHV=进阶集气室 II
+GasCollectorEV=进阶集气室 III
+GasCollectorIV=精英集气室
+GasCollectorLuV=精英集气室 II
+GasCollectorZPM=精英集气室 III
+GasCollectorUV=终极集气室
+GasCollectorUHV=史诗集气室
+GasCollectorUEV=史诗集气室 II
+GasCollectorUIV=史诗集气室 III
+GasCollectorUMV=史诗集气室 IV
+GasCollectorUXV=传奇集气室
+GasCollectorRecipeType=集气室
+Tooltip_GasCollector_00=从空气中收集种类各异的气体
+Tooltip_GasCollector_01=从大气层中收集种类各异的气体
+Tooltip_GasCollector_02=从太阳系中收集种类各异的气体
+Tooltip_GasCollector_03=从宇宙中收集种类各异的气体
+
+SteamAssemblerBronze=蒸汽组装机
+SteamAssemblerSteel=高压蒸汽组装机
+Tooltip_SteamAssembler_00=复仇者们，集结！ 
+
+BW_GlasBlocks2.1.name=调律源金强化硼玻璃方块
+BW_GlasBlocks2.2.name=简并夸克胶子等离子体强化硼玻璃方块
+
+tile.MetaCasing.0.name=测试机械方块
+tile.MetaCasing.1.name=蒸汽装配机械方块
+tile.MetaCasing.2.name=散热片
+tile.MetaCasing.3.name=切片刀
+tile.MetaCasing.4.name=中子管道方块
+tile.MetaCasing.5.name=中子齿轮箱机械方块
+tile.MetaCasing.6.name=激光冷却机械方块
+tile.MetaCasing.7.name=防冻隔热机械方块
+tile.MetaCasing.8.name=二硅化钼线圈
+tile.MetaCasing.9.name=充能光伏方块
+tile.MetaCasing.10.name=高级光伏方块
+tile.MetaCasing.11.name=脉冲光伏方块
+tile.MetaCasing.12.name=钨钢齿轮箱机械方块
+tile.MetaCasing.13.name=维度稳定机械方块
+tile.MetaCasing.14.name=压力平衡机械方块
+tile.MetaCasing.15.name=ABS超固态外壳
+tile.MetaCasing.16.name=引力聚焦方块
+tile.MetaCasing.17.name=盖亚稳定力场机械方块
+tile.MetaCasing.18.name=超能核心
+tile.MetaCasing.19.name=化学防护机械方块
+tile.MetaCasing.20.name=高能机械方块
+tile.MetaCasing.21.name=蒸汽之门外环方块
+tile.MetaCasing.22.name=蒸汽之门导标方块
+tile.MetaCasing.23.name=铁质加固木料
+tile.MetaCasing.24.name=青铜加固木料
+tile.MetaCasing.25.name=钢质加固木料
+tile.MetaCasing.26.name=青铁管道方块
+tile.MetaCasing.27.name=青钢封装机械方块
+tile.MetaCasing.28.name=液压装配机械方块
+tile.MetaCasing.29.name=超高压青铁机械方块
+tile.MetaCasing.30.name=青铁镀层机械方块
+tile.MetaCasing.31.name=蒸汽压缩管道方块
+tile.MetaCasing02.0.name=抗震安全外壳
+tile.MetaCasing02.1.name=工业蒸汽机械方块
+tile.MetaCasing02.2.name=进阶工业蒸汽机械方块
+tile.MetaCasing02.3.name=不锈钢齿轮箱机械方块
+tile.MetaCasing02.4.name=装配矩阵框架
+tile.MetaCasing02.5.name=装配矩阵墙壁
+tile.MetaCasing02.6.name=装配矩阵样板核心
+Tooltip_AssemblerMatrixPatternCore_00=每个提供72样板槽
+tile.MetaCasing02.7.name=装配矩阵合成核心
+Tooltip_AssemblerMatrixCrafterCore_00=每个提供2,048并行
+tile.MetaCasing02.8.name=装配矩阵奇点合成核心
+Tooltip_AssemblerMatrixSingularityCrafterCore_00=每个提供2,147,483,647并行
+tile.MetaCasing02.9.name=装配矩阵速度核心
+Tooltip_AssemblerMatrixSpeedCore_00=每安装一个时间减半
+tile.MetaCasing02.10.name=量子计算机外壳
+Tooltip_QuantumComputerCasing_00=用于搭建量子计算机的最外层。最大尺寸为 %sx%sx%s。
+tile.MetaCasing02.11.name=量子合成单元
+tile.MetaCasing02.12.name=128M量子计算机合成存储器
+tile.MetaCasing02.13.name=256M量子计算机合成存储器
+tile.MetaCasing02.14.name=量子数据纠缠器
+Tooltip_QuantumComputerDataEntangler_00=量子计算机的合成存储容量变为 4 倍。每个量子计算机中最多放置 %s 个。
+tile.MetaCasing02.15.name=量子计算机加速器
+Tooltip_QuantumComputerAccelerator_00=每个加速器提供 16384 个并行处理线程。
+tile.MetaCasing02.16.name=量子计算机多线程处理器
+Tooltip_QuantumComputerMultiThreader_00=量子计算机的并行线程数变为 4 倍。每个量子计算机中最多放置 %s 个。
+tile.MetaCasing02.17.name=量子计算机核心
+Tooltip_QuantumComputerCore_00=提供 256M 合成存储空间和 16384 并行处理线程。
+tile.MetaCasing02.18.name=装配矩阵Debug合成核心
+Tooltip_AssemblerMatrixDebugCrafterCore_00=每个提供9,223,372,036,854,775,807并行
+tile.MetaCasing02.19.name=量子计算机奇点核心
+Tooltip_QuantumComputerSingularityCore_00=将量子计算机的合成存储容量锁定为9.22E
+tile.MetaCasing02.20.name=压缩熔炉机械方块
+
+tile.MetaBlock.0.name=测试方块
+tile.MetaBlock.1.name=§d新视野线圈
+tile.MetaBlock.2.name=§d星门线圈
+tile.MetaBlock.3.name=黑色灯
+tile.MetaBlock.4.name=黑色灯
+tile.MetaBlock.5.name=粉色灯
+tile.MetaBlock.6.name=粉色灯
+tile.MetaBlock.7.name=红色灯
+tile.MetaBlock.8.name=红色灯
+tile.MetaBlock.9.name=橙色灯
+tile.MetaBlock.10.name=橙色灯
+tile.MetaBlock.11.name=黄色灯
+tile.MetaBlock.12.name=黄色灯
+tile.MetaBlock.13.name=绿色灯
+tile.MetaBlock.14.name=绿色灯
+tile.MetaBlock.15.name=黄绿色灯
+tile.MetaBlock.16.name=黄绿色灯
+tile.MetaBlock.17.name=蓝色灯
+tile.MetaBlock.18.name=蓝色灯
+tile.MetaBlock.19.name=淡蓝色灯
+tile.MetaBlock.20.name=淡蓝色灯
+tile.MetaBlock.21.name=青色灯
+tile.MetaBlock.22.name=青色灯
+tile.MetaBlock.23.name=棕色灯
+tile.MetaBlock.24.name=棕色灯
+tile.MetaBlock.25.name=品红色灯
+tile.MetaBlock.26.name=品红色灯
+tile.MetaBlock.27.name=紫色灯
+tile.MetaBlock.28.name=紫色灯
+tile.MetaBlock.29.name=灰色灯
+tile.MetaBlock.30.name=灰色灯
+tile.MetaBlock.31.name=淡灰色灯
+tile.MetaBlock.32.name=淡灰色灯
+tile.MetaBlock.33.name=白色灯
+tile.MetaBlock.34.name=白色灯
+tile.MetaBlock.35.name=§b炽骨立方块
+tile.MetaBlock.36.name=压缩星门线圈
+tile.MetaBlock.37.name=压缩星门线圈-一重
+tile.MetaBlock.38.name=压缩星门线圈-二重
+tile.MetaBlock.39.name=压缩星门线圈-三重
+tile.MetaBlock.40.name=压缩星门线圈-四重
+tile.MetaBlock.41.name=压缩星门线圈-五重
+tile.MetaBlock.42.name=压缩星门线圈-六重
+tile.MetaBlock.43.name=压缩星门线圈-七重
+tile.MetaBlock.44.name=压缩星门线圈-八重
+tile.MetaBlock.45.name=压缩星门线圈-九重
+
+tile.MetaBlockGlow.0.name=强化萤石机械方块
+tile.MetaBlockGlow.1.name=黑色灯
+tile.MetaBlockGlow.2.name=黑色灯
+tile.MetaBlockGlow.3.name=粉色灯
+tile.MetaBlockGlow.4.name=粉色灯
+tile.MetaBlockGlow.5.name=红色灯
+tile.MetaBlockGlow.6.name=红色灯
+tile.MetaBlockGlow.7.name=橙色灯
+tile.MetaBlockGlow.8.name=橙色灯
+tile.MetaBlockGlow.9.name=黄色灯
+tile.MetaBlockGlow.10.name=黄色灯
+tile.MetaBlockGlow.11.name=绿色灯
+tile.MetaBlockGlow.12.name=绿色灯
+tile.MetaBlockGlow.13.name=黄绿色灯
+tile.MetaBlockGlow.14.name=黄绿色灯
+tile.MetaBlockGlow.15.name=蓝色灯
+tile.MetaBlockGlow.16.name=蓝色灯
+tile.MetaBlockGlow.17.name=淡蓝色灯
+tile.MetaBlockGlow.18.name=淡蓝色灯
+tile.MetaBlockGlow.19.name=青色灯
+tile.MetaBlockGlow.20.name=青色灯
+tile.MetaBlockGlow.21.name=棕色灯
+tile.MetaBlockGlow.22.name=棕色灯
+tile.MetaBlockGlow.23.name=品红色灯
+tile.MetaBlockGlow.24.name=品红色灯
+tile.MetaBlockGlow.25.name=紫色灯
+tile.MetaBlockGlow.26.name=紫色灯
+tile.MetaBlockGlow.27.name=灰色灯
+tile.MetaBlockGlow.28.name=灰色灯
+tile.MetaBlockGlow.29.name=淡灰色灯
+tile.MetaBlockGlow.30.name=淡灰色灯
+tile.MetaBlockGlow.31.name=白色灯
+tile.MetaBlockGlow.32.name=白色灯
+
+tile.MetaBlockGlass.0.name=盖亚玻璃
+tile.MetaBlockGlass.1.name=泰拉玻璃
+tile.MetaBlockGlass.2.name=聚变玻璃
+tile.MetaBlockGlass.3.name=浓缩筛网
+
+tile.MetaBlockColumn.0.name=砖砌青铜外壳
+tile.MetaBlockColumn.1.name=砖砌钢外壳
+tile.MetaBlockColumn.2.name=粉碎轮
+tile.MetaBlockColumn.3.name=太阳能沸腾单元
+tile.MetaBlockColumn.4.name=青铜机器框架
+tile.MetaBlockColumn.5.name=钢机器框架
+
+tile.CompressedStargateTier0.name=压缩星门
+tile.CompressedStargateTier1.name=压缩星门-一重
+tile.CompressedStargateTier2.name=压缩星门-二重
+tile.CompressedStargateTier3.name=压缩星门-三重
+tile.CompressedStargateTier4.name=压缩星门-四重
+tile.CompressedStargateTier5.name=压缩星门-五重
+tile.CompressedStargateTier6.name=压缩星门-六重
+tile.CompressedStargateTier7.name=压缩星门-七重
+tile.CompressedStargateTier8.name=压缩星门-八重
+tile.CompressedStargateTier9.name=压缩星门-九重
+
+tile.EnderElevatorBlock.name=末影电梯 (方块)
+tile.EnderElevatorSlab.name=末影电梯 (台阶)
+tile.EnderElevatorCarpet.name=末影电梯 (地毯)
+Tooltip_EnderElevator_00=让实体在距离最近的两个相同颜色电梯之间上下传送
+Tooltip_EnderElevator_01=传送最高256格，水平64格，不可同高度平移
+Tooltip_EnderElevator_02=跳跃向上，潜行向下
+Tooltip_EnderElevator_03=手持染料对其右键点击可以改变电梯颜色为染料颜色
+Tooltip_EnderElevator_04=手持伪装方块对电梯右击可以伪装电梯。空手时潜行右击移除伪装
+
+tile.SearedLadder.name=焦黑梯子
+Tooltip_SearedLadder_00=§o“可供攀爬的冶炼炉建材。”
+Tooltip_SearedLadder_01=由Circulation_添加
+
+tile.WaterCandle.name=水蜡烛
+gtnl.potion.battle=战斗
+
+tile.CardboardBox.name=纸箱
+Tooltip_CardBoardBox_00_Yes=方块数据：是
+Tooltip_CardBoardBox_00_No=方块数据：否
+Tooltip_CardBoardBox_01=方块：
+Tooltip_CardBoardBox_02=元数据：
+Tooltip_CardBoardBox_03=方块实体：
+
+tile.LaserBeacon.name=激光诱导信标
+Tooltip_LaserBeacon=利用强大的电流产生高精度激光
+
+tile.RealArtificialStarRenderer.name=真·湮灭发电机渲染器
+tile.NanoPhagocytosisPlantRenderer.name=纳米吞噬厂渲染器
+tile.EternalGregTechWorkshopRenderer.name=永恒格雷工坊渲染器
+
+tile.lootgames.sdk_activator.name=数独
+tile.lootgames.sdk_master.name=数独
+Info_Sudoku_00=剩余：%d
+Info_Sudoku_01=上次点击时间：%d
+
+tile.EssentiaHatch.name=源质输入仓
+Tooltip_EssentiaHatch_00=手持源质罐子右键以设置过滤
+Tooltip_EssentiaHatch_01=空手Shift右键以重置过滤
+Info_EssentiaHatch_00=成功锁定为 %s
+Info_EssentiaHatch_01=已清除
+
+tile.PlayerDoll.name=玩偶
+Tooltip_PlayerDoll_00=设置正版玩家名
+Tooltip_PlayerDoll_01=确认
+Tooltip_PlayerDoll_02=设置在线皮肤链接
+Tooltip_PlayerDoll_03=切换披风/鞘翅渲染
+Tooltip_PlayerDoll_04=设置在线披风链接
+Waila_TileEntityPlayerDoll_00=正版玩家名：
+Waila_TileEntityPlayerDoll_01=在线皮肤链接：
+Waila_TileEntityPlayerDoll_02=在线披风链接：
+Waila_TileEntityPlayerDoll_03=披风/鞘翅渲染：
+Waila_TileEntityPlayerDoll_03_Off=不渲染披风/鞘翅
+Waila_TileEntityPlayerDoll_03_Cape=渲染披风
+Waila_TileEntityPlayerDoll_03_Elytra=渲染鞘翅
+
+tile.blockGiantBrickuoiaSapling.name=§c巨型红砖树苗
+Tooltip_GiantBrickuoiaSapling_00=§o你们的科学家过于专注于‘能不能做到’，
+Tooltip_GiantBrickuoiaSapling_01=§o而没有停下来思考‘是否应该去做’
+Tooltip_GiantBrickuoiaSapling_02=§r§f作者：High§7Pres§8sure§dRaven
+
+tile.PlayerLeash.name=拴绳结界
+entity.sciencenotleisure.PlayerLeashKnot.name=拴绳结界
+Tooltip_PlayerLeash_00=创造一个强大的拴绳立场，允许放置其方块的玩家在一定范围内飞行
+
+tile.DirePatternEncoder.name=终极样板编码台
+container.DirePatternEncoder=终极样板编码台
+
+item.PartSuperInterface.name=超级ME接口
+tile.SuperInterface.name=超级ME接口
+container.SuperInterface=超级ME接口
+
+item.PartActiveFormationPlane.name=ME主动成型面板
+
+item.PartBeamFormer.name=ME光束成型器
+text.beam_former.hide=已隐藏光束。
+text.beam_former.show=已显示光束。
+
+tile.BeamFormer.name=ME光束成型器
+
+tile.MEChisel.name=ME雕凿机
+container.MEChisel=ME雕凿机
+text.me_chisel.gui.parallel=设置样板并行
+
+tile.DimensionRespawnAnchor.name=维度重生锚
+Info_DimensionRespawnAnchor_NoBedOrAnchor=你的床或已充能的重生锚不存在或已被阻挡
+Info_DimensionRespawnAnchor_SetSpawn=重生点已设置
+
+item.ElectricProspectorTool.0.name=魔力传送探矿仪
+item.ElectricProspectorTool.1.name=Debug传送探矿仪
+Info_DetravScanner_TP=传送至矿脉：%s (%s，%s)
+
+item.MetaItem.0.name=愚人脸
+Tooltip_TrollFace_00=Never Gonna Give You Up~
+item.MetaItem.1.name=§b激发的混合硅岩燃料棒
+Tooltip_DepletedExcitedNaquadahFuelRod_00=§o硅岩基燃料的最终形态。
+item.MetaItem.2.name=§e炽骨立方
+Tooltip_BlazeCube_00=§8§o火焰风暴。
+item.MetaItem.3.name=§d无瑕核心
+Tooltip_EnhancementCore_00=§8§o补全之路！ 
+item.MetaItem.4.name=蓄水覆盖板
+item.MetaItem.5.name=激活的盖亚水晶
+item.MetaItem.6.name=精密蒸汽构件
+item.MetaItem.7.name=坠星采矿场I图纸
+Tooltip_MeteorMinerSchematicI_00=启用坠星采矿场I所需的图纸
+item.MetaItem.8.name=坠星采矿场II图纸
+Tooltip_MeteorMinerSchematicII_00=启用坠星采矿场II所需的图纸
+item.MetaItem.9.name=原始磁共振电路
+Tooltip_CircuitResonaticULV_00=一个原始的电路板
+Tooltip_CircuitResonaticULV_01=§fULV-Tier
+item.MetaItem.10.name=基础磁共振电路
+Tooltip_CircuitResonaticLV_00=一个基础的电路板
+Tooltip_CircuitResonaticLV_01=LV-Tier
+item.MetaItem.11.name=进阶磁共振电路
+Tooltip_CircuitResonaticMV_00=一个不错的电路板
+Tooltip_CircuitResonaticMV_01=§6MV-Tier
+item.MetaItem.12.name=先进磁共振电路
+Tooltip_CircuitResonaticHV_00=一个进阶电路板
+Tooltip_CircuitResonaticHV_01=§eHV-Tier
+item.MetaItem.13.name=数据磁共振电路
+Tooltip_CircuitResonaticEV_00=一个高级电路板
+Tooltip_CircuitResonaticEV_01=§8EV-Tier
+item.MetaItem.14.name=精英磁共振电路
+Tooltip_CircuitResonaticIV_00=一个精英电路板
+Tooltip_CircuitResonaticIV_01=§aIV-Tier
+item.MetaItem.15.name=大师磁共振电路
+Tooltip_CircuitResonaticLuV_00=一个大师电路板
+Tooltip_CircuitResonaticLuV_01=§dLuV-Tier
+item.MetaItem.16.name=顶级磁共振电路
+Tooltip_CircuitResonaticZPM_00=一个顶级电路板
+Tooltip_CircuitResonaticZPM_01=§bZPM-Tier
+item.MetaItem.17.name=超导磁共振电路
+Tooltip_CircuitResonaticUV_00=一个超级电路板
+Tooltip_CircuitResonaticUV_01=§2UV-Tier
+item.MetaItem.18.name=终极磁共振电路
+Tooltip_CircuitResonaticUHV_00=一个终极电路板
+Tooltip_CircuitResonaticUHV_01=§4UHV-Tier
+item.MetaItem.19.name=生物磁共振电路
+Tooltip_CircuitResonaticUEV_00=一个生物电路板
+Tooltip_CircuitResonaticUEV_01=§5UEV-Tier
+item.MetaItem.20.name=光学磁共振电路
+Tooltip_CircuitResonaticUIV_00=一个光学电路板
+Tooltip_CircuitResonaticUIV_01=§l§1UIV-Tier
+item.MetaItem.21.name=极简控制电路
+Tooltip_VerySimpleCircuit_00=一个极简电路板
+Tooltip_VerySimpleCircuit_01=§fULV-Tier
+item.MetaItem.22.name=简单控制电路
+Tooltip_SimpleCircuit_00=一个简单的电路板
+Tooltip_SimpleCircuit_01=LV-Tier
+item.MetaItem.23.name=基础控制电路
+Tooltip_BasicCircuit_00=一个基础电路板
+Tooltip_BasicCircuit_01=§6MV-Tier
+item.MetaItem.24.name=高级控制电路
+Tooltip_AdvancedCircuit_00=一个高级电路板
+Tooltip_AdvancedCircuit_01=§eHV-Tier
+item.MetaItem.25.name=精英控制电路
+Tooltip_EliteCircuit_00=一个精英电路板
+Tooltip_EliteCircuit_01=§8EV-Tier
+item.MetaItem.26.name=星门奇点
+item.MetaItem.27.name=压缩星门奇点
+item.MetaItem.28.name=生物贴片电容
+item.MetaItem.29.name=生物贴片二极管
+item.MetaItem.30.name=生物贴片电感
+item.MetaItem.31.name=生物贴片电阻
+item.MetaItem.32.name=生物贴片晶体管
+item.MetaItem.33.name=寰宇贴片电容
+item.MetaItem.34.name=寰宇贴片二极管
+item.MetaItem.35.name=寰宇贴片电感
+item.MetaItem.36.name=寰宇贴片电阻
+item.MetaItem.37.name=寰宇贴片晶体管
+item.MetaItem.38.name=异星贴片电容
+item.MetaItem.39.name=异星贴片二极管
+item.MetaItem.40.name=异星贴片电感
+item.MetaItem.41.name=异星贴片电阻
+item.MetaItem.42.name=异星贴片晶体管
+item.MetaItem.43.name=超时空贴片电容
+item.MetaItem.44.name=超时空贴片二极管
+item.MetaItem.45.name=超时空贴片电感
+item.MetaItem.46.name=超时空贴片电阻
+item.MetaItem.47.name=超时空贴片晶体管
+item.MetaItem.48.name=LV并行控制核心
+Tooltip_LVParallelControllerCore_00=§d速度：+1%
+Tooltip_LVParallelControllerCore_01=§5EU消耗：-2%
+Tooltip_LVParallelControllerCore_02=§b并行：0
+item.MetaItem.49.name=MV并行控制核心
+Tooltip_MVParallelControllerCore_00=§d速度：+2%
+Tooltip_MVParallelControllerCore_01=§5EU消耗：-4%
+Tooltip_MVParallelControllerCore_02=§b并行：1
+item.MetaItem.50.name=HV并行控制核心
+Tooltip_HVParallelControllerCore_00=§d速度：+4%
+Tooltip_HVParallelControllerCore_01=§5EU消耗：-6%
+Tooltip_HVParallelControllerCore_02=§b并行：4
+item.MetaItem.51.name=EV并行控制核心
+Tooltip_EVParallelControllerCore_00=§d速度：+6%
+Tooltip_EVParallelControllerCore_01=§5EU消耗：-8%
+Tooltip_EVParallelControllerCore_02=§b并行：16
+item.MetaItem.52.name=IV并行控制核心
+Tooltip_IVParallelControllerCore_00=§d速度：+8%
+Tooltip_IVParallelControllerCore_01=§5EU消耗：-10%
+Tooltip_IVParallelControllerCore_02=§b并行：64
+item.MetaItem.53.name=LuV并行控制核心
+Tooltip_LuVParallelControllerCore_00=§d速度：+10%
+Tooltip_LuVParallelControllerCore_01=§5EU消耗：-12%
+Tooltip_LuVParallelControllerCore_02=§b并行：256
+item.MetaItem.54.name=ZPM并行控制核心
+Tooltip_ZPMParallelControllerCore_00=§d速度：+12%
+Tooltip_ZPMParallelControllerCore_01=§5EU消耗：-14%
+Tooltip_ZPMParallelControllerCore_02=§b并行：1024
+item.MetaItem.55.name=UV并行控制核心
+Tooltip_UVParallelControllerCore_00=§d速度：+14%
+Tooltip_UVParallelControllerCore_01=§5EU消耗：-16%
+Tooltip_UVParallelControllerCore_02=§b并行：4096
+item.MetaItem.56.name=UHV并行控制核心
+Tooltip_UHVParallelControllerCore_00=§d速度：+16%
+Tooltip_UHVParallelControllerCore_01=§5EU消耗：-18%
+Tooltip_UHVParallelControllerCore_02=§b并行：16384
+item.MetaItem.57.name=UEV并行控制核心
+Tooltip_UEVParallelControllerCore_00=§d速度：+18%
+Tooltip_UEVParallelControllerCore_01=§5EU消耗：-20%
+Tooltip_UEVParallelControllerCore_02=§b并行：65536
+item.MetaItem.58.name=UIV并行控制核心
+Tooltip_UIVParallelControllerCore_00=§d速度：+20%
+Tooltip_UIVParallelControllerCore_01=§5EU消耗：-22%
+Tooltip_UIVParallelControllerCore_02=§b并行：262144
+item.MetaItem.59.name=UMV并行控制核心
+Tooltip_UMVParallelControllerCore_00=§d速度：+22%
+Tooltip_UMVParallelControllerCore_01=§5EU消耗：-24%
+Tooltip_UMVParallelControllerCore_02=§b并行：1048576
+item.MetaItem.60.name=UXV并行控制核心
+Tooltip_UXVParallelControllerCore_00=§d速度：+24%
+Tooltip_UXVParallelControllerCore_01=§5EU消耗：-26%
+Tooltip_UXVParallelControllerCore_02=§b并行：4194304
+item.MetaItem.61.name=MAX并行控制核心
+Tooltip_MAXParallelControllerCore_00=§d速度：+26%
+Tooltip_MAXParallelControllerCore_01=§5EU消耗：-28%
+Tooltip_MAXParallelControllerCore_02=§b并行：16777216
+Tooltip_ParallelControllerCore_Deprecated_00=已弃用！将在2.9删除，请使用并行控制仓
+Tooltip_ParallelControllerCore_Deprecated_01=如果你遇到部分无法安装并行控制仓的机器，请提交issue
+
+item.MetaItem.62.name=§7传闻 - 娜迦之书
+item.MetaItem.63.name=§b都市之星 - 暮色之书
+item.MetaItem.64.name=§6都市怪谈 - 巫妖之书
+item.MetaItem.65.name=§9都市传说 - 米诺陶之书
+item.MetaItem.66.name=§9都市传说 - 九头蛇之书
+item.MetaItem.67.name=§a都市恶疾 - 幻影骑士之书
+item.MetaItem.68.name=§a都市恶疾 - 暮色恶魂之书
+item.MetaItem.69.name=§a都市恶疾 - 雪人首领之书
+item.MetaItem.70.name=§5都市梦魇 - 冰雪女王之书
+item.MetaItem.71.name=§c终焉之书 - 终焉之书
+item.MetaItem.72.name=§5都市梦魇 - 巨人之书
+item.MetaItem.73.name=黏土荧石粉
+item.MetaItem.74.name=量子磁盘
+item.MetaItem.75.name=中子掺杂的单晶硅
+Tooltip_NeutroniumBoule_00=电路板原料
+item.MetaItem.76.name=中子掺杂的晶圆
+Tooltip_NeutroniumWafer_00=电路板原料
+item.MetaItem.77.name=HASoC晶圆
+Tooltip_HighlyAdvancedSocWafer_00=电路板原料
+item.MetaItem.78.name=HASoC芯片
+Tooltip_HighlyAdvancedSoc_00=高度先进芯片级系统
+item.MetaItem.79.name=锌-铁-铝-氯混合催化剂
+item.MetaItem.80.name=黑光灯
+Tooltip_BlackLight_00=§8长波§d紫外线§8光源
+item.MetaItem.81.name=蒸汽之门拨号装置
+Tooltip_SteamgateDialingDevice_00=连接蒸汽之门以进行传送
+item.MetaItem.82.name=蒸汽之门三角部件
+item.MetaItem.83.name=蒸汽之门导标升级
+item.MetaItem.84.name=蒸汽之门虹膜叶片
+item.MetaItem.85.name=蒸汽之门虹膜升级
+item.MetaItem.86.name=蒸汽之门辐射防护板
+Tooltip_SteamgateHeatContainmentPlate_00=完美的温度稳定性…
+item.MetaItem.87.name=蒸汽之门框架部件
+Tooltip_SteamgateFrame_00=无数交错咬合的齿轮…
+item.MetaItem.88.name=蒸汽之门核心水晶
+Tooltip_SteamgateCoreCrystal_00=由纯净凝结蒸汽打造的晶体…
+item.MetaItem.89.name=液压马达
+item.MetaItem.90.name=液压活塞
+item.MetaItem.91.name=液压泵
+Tooltip_HydraulicPump_00=作覆盖板时，1,048,576升/t(20,971,520升/秒)
+item.MetaItem.92.name=液压机械臂
+item.MetaItem.93.name=液压传送带
+Tooltip_HydraulicConveyor_00=16 组物品每 1/20 秒(作覆盖板时)
+item.MetaItem.94.name=液压流体校准器
+Tooltip_HydraulicRegulator_00=可以调节为至多20,971,520升/秒(作覆盖板时)
+Tooltip_HydraulicRegulator_01=每次右键/螺丝刀右键/Shift+螺丝刀右键
+Tooltip_HydraulicRegulator_02=可以调整流速1/16/256升/秒
+item.MetaItem.95.name=液压蒸汽发生器
+item.MetaItem.96.name=液压蒸汽发射器
+item.MetaItem.97.name=液压蒸汽接收器
+item.MetaItem.98.name=液压蒸汽阀
+Tooltip_HydraulicSteamValve_00=作覆盖板时，16,777,216升/t(335,544,320升/秒)
+item.MetaItem.99.name=液压蒸汽校准器
+Tooltip_HydraulicSteamRegulator_00=作覆盖板时，16,777,216升/t(335,544,320升/秒)
+item.MetaItem.100.name=SadBapyCat 代币
+Tooltip_SadBapyCatToken_00=:sadbapycat:
+item.MetaItem.101.name=压缩蒸汽涡轮
+Tooltip_CompressedSteamTurbine_00=无限吞吐量
+item.MetaItem.102.name=钢涡轮
+Tooltip_SteelTurbine_00=稳如长桌
+item.MetaItem.103.name=无管蒸汽覆盖板
+item.MetaItem.104.name=铁涡轮
+Tooltip_IronTurbine_00=结实耐用
+item.MetaItem.105.name=青铜涡轮
+Tooltip_BronzeTurbine_00=古朴厚重
+item.MetaItem.106.name=虚空覆盖板
+item.MetaItem.107.name=4安 LV无线能源覆盖板
+item.MetaItem.108.name=4安 MV无线能源覆盖板
+item.MetaItem.109.name=4安 HV无线能源覆盖板
+item.MetaItem.110.name=4安 EV无线能源覆盖板
+item.MetaItem.111.name=4安 IV无线能源覆盖板
+item.MetaItem.112.name=4安 LuV无线能源覆盖板
+item.MetaItem.113.name=4安 ZPM无线能源覆盖板
+item.MetaItem.114.name=4安 UV无线能源覆盖板
+item.MetaItem.115.name=4安 UHV无线能源覆盖板
+item.MetaItem.116.name=4安 UEV无线能源覆盖板
+item.MetaItem.117.name=4安 UIV无线能源覆盖板
+item.MetaItem.118.name=4安 UMV无线能源覆盖板
+item.MetaItem.119.name=4安 UXV无线能源覆盖板
+item.MetaItem.120.name=4安 MAX无线能源覆盖板
+item.MetaItem.121.name=异星电路基板
+item.MetaItem.122.name=异星环绕CPU
+item.MetaItem.123.name=异星晶圆
+item.MetaItem.124.name=异星芯片
+item.MetaItem.125.name=异星RAM晶圆
+item.MetaItem.126.name=破碎奇点
+item.MetaItem.127.name=超维记忆矩阵
+Tooltip_TransdimensionalMnemonicMatrix_00=支持跨维度记忆稳定的设备。
+Tooltip_TransdimensionalMnemonicMatrix_01=在DTPF上阻挡折扣衰减。
+item.MetaItem.128.name=源质升级：EMPTY
+item.MetaItem.129.name=源质升级：AIR
+item.MetaItem.130.name=源质升级：THERMAL
+item.MetaItem.131.name=源质升级：UNSTABLE
+item.MetaItem.132.name=源质升级：VICTUS
+item.MetaItem.133.name=源质升级：TAINTED
+item.MetaItem.134.name=源质升级：MECHANICS
+item.MetaItem.135.name=源质升级：SPIRIT
+item.MetaItem.136.name=源质升级：RADIATION
+item.MetaItem.137.name=源质升级：ELECTRIC
+
+item.SuspiciousStew.name=迷之炖菜
+
+item.DireCraftPattern.name=终极合成样板
+
+item.SteamRocket.name=蒸汽火箭
+Tooltip_SteamRocket_00=需要熔融压缩蒸汽作为燃料
+Tooltip_SteamRocket_01=你就是玩缺氧玩的！
+entity.GalacticraftCore.SteamRocket.name=蒸汽火箭
+schematic.rocketSteam.name=火箭(蒸汽)
+
+item.DebugItem.name=调试物品 (Debug)
+
+item.TestItem.name=测试物品
+Tooltip_Testitem_00=如果你看到了这个Tooltip
+Tooltip_Testitem_01=欢迎来到§d§oGT不再业余！
+Tooltip_Testitem_02=这是一个基于§b§o GT:Leisure (格雷科技：休闲版)
+Tooltip_Testitem_03=以及§e§o GT:Odyssey (格雷科技：奥德赛)(尚未推出！) §r§7两个整合包
+Tooltip_Testitem_04=为GTNH添加§d§o额外游戏内容§r§7的模组
+Tooltip_Testitem_05=包含的许多不同阶段的机器和内容
+Tooltip_Testitem_06=部分配方也会得到修改
+Tooltip_Testitem_07=§r这是一个专注于添加游戏内容的模组
+Tooltip_Testitem_08=§r请不要把此模组任何数值相较于别的模组进行比较
+Tooltip_Testitem_09=§r包含任何重复性质的机器等
+Tooltip_Testitem_10=这是§d更加侧重于为原版GTNH添加内容的模组！
+Tooltip_Testitem_11=§f§l如果你遇到了什么问题或者想提出意见，请在Github提交issue
+Tooltip_Testitem_12=本模组添加的机器meta值从21000开始
+Tooltip_Testitem_13=§c§l另外提醒：不要拿着这个物品右键！
+
+item.WirelessUpgradeChip.name=无线升级芯片
+Tooltip_WirelessUpgradeChip_00=为部分机器开启无线电网模式
+Tooltip_WirelessUpgradeChip_01=对已经安装升级的机器无效
+
+item.Stick.name=纸板
+Tooltip_Stick_00=§5§o仔细检查，%s是一个由纸板做的假东西，希望你能得到一张收据
+Tooltip_Stick_01=§5§o仔细检查，%s是一个由附魔的纸板做的假东西，希望你能得到一张收据
+
+item.PortableItem.0.name=便携工作台
+item.PortableItem.1.name=高级便携工作台
+item.PortableItem.2.name=便携熔炉
+item.PortableItem.3.name=便携铁砧
+item.PortableItem.4.name=便携末影箱
+item.PortableItem.5.name=便携附魔台
+item.PortableItem.6.name=便携压缩箱子
+item.PortableItem.7.name=便携无尽箱子
+item.PortableItem.8.name=便携铜箱子
+item.PortableItem.9.name=便携铁箱子
+item.PortableItem.10.name=便携银箱子
+item.PortableItem.11.name=便携钢箱子
+item.PortableItem.12.name=便携金箱子
+item.PortableItem.13.name=便携钻石箱子
+item.PortableItem.14.name=便携水晶箱子
+item.PortableItem.15.name=便携黑曜石箱子
+item.PortableItem.16.name=便携下界合金箱子
+item.PortableItem.17.name=便携玄钢箱子
+
+item.VeinMiningPickaxe.name=矿脉挖掘镐
+Tooltip_VeinMiningPickaxe_00=最大方块间隔：%s
+Tooltip_VeinMiningPickaxe_01=最大连锁数量：%s
+Tooltip_VeinMiningPickaxe_PreciseMode_On=§a精确模式已开启
+Tooltip_VeinMiningPickaxe_PreciseMode_Off=§r精确模式已关闭
+
+item.NetherTeleporter.name=下界传送仪
+Info_NetherTeleporter_Cooldown=剩余冷却时间：
+Info_NetherTeleporter_Warning=没有安全的落脚点！
+
+item.CircuitIntegratedPlus.name=突破编程电路
+
+item.NullPointerException.name=java.lang.NullPointerException
+
+item.KFCFamily.name=疯狂星期四
+Tooltip_KFCFamily_00=§o疯狂星期四，v我50！
+gtnl.potion.perfect_physique=完美体魄
+
+item.SlimeSaddle.name=粘鞍
+entity.sciencenotleisure.SaddleSlime.name=皇家史莱姆
+
+item.InfinityTorch.name=无尽火把
+item.InfinityWaterBucket.name=无底水桶
+item.InfinityLavaBucket.name=无底岩浆桶
+item.InfinityHoneyBucket.name=无底蜂蜜桶
+item.InfinityShimmerBucket.name=无底微光桶
+item.SuperstrongSponge.name=超强吸收棉
+
+item.HoneyBucket.name=蜂蜜桶
+tile.honey.name=蜂蜜
+fluid.honey=蜂蜜
+
+item.ShimmerBucket.name=微光桶
+tile.shimmer.name=微光
+fluid.shimmer=微光
+gtnl.potion.shimmering=微光闪烁
+gtnl.recipe.ShimmerRecipes=微光嬗变
+
+gtnl.potion.ghostly_shape=幽灵形态
+Info_GhostlyShape_Cancel=你的某个行为使你退出了幽灵形态
+
+item.SatietyRing.name=饱食指环
+item.SuperReachRing.name=超级触物指环
+item.RejectionRing.name=排斥指环
+Tooltip_RejectionRing_00=不要碰我……你会后悔的……
+item.RoyalGel.name=皇家凝胶
+item.LuckyHorseshoe.name=幸运马掌
+item.PhysicsCape.name=物理学披风
+Tooltip_PhysicsCape_00=利用强大的切割磁感线进行发电！
+
+item.InfinityFuelRod.name=燃料棒(无尽)
+item.InfinityFuelRodDepleted.name=枯竭燃料棒(无尽)
+Tooltip_FuelRod_00=耐久：%d/%d
+Tooltip_FuelRod_01=具有MOX特性 | MOX系数：%d
+Tooltip_FuelRod_02=基础产热(heta/s)：%d/%d/%d
+Tooltip_FuelRod_03=基础发电功率(EU/t)：%d/%d/%d
+
+item.FakeItemSiren.name=警报器
+
+item.TwilightSword.name=§6薄暝
+Tooltip_TwilightSword_00=§6§o大鸟那永不闭合的眼睛
+Tooltip_TwilightSword_01=§b§o高鸟那能衡量一切的罪恶的天平
+Tooltip_TwilightSword_02=§c§o小鸟那能吞噬一切的巨口
+Tooltip_TwilightSword_03=§r§o这三者守护着黑森林的和平。
+Tooltip_TwilightSword_04=§r§o而那些能够同时驾驭这三者的人也能带来和平。
+Tooltip_TwilightSword_05=§r§cALEPH§r级E.G.O.武器
+Tooltip_TwilightSword_06=§r同时受到多种攻击增益
+Tooltip_TwilightSword_07=§r生命值低于10时基础伤害翻倍
+Tooltip_TwilightSword_08=§r攻击实体轮流使用四种强力的攻击
+Tooltip_TwilightSword_09=§r长按右键触发特殊攻击
+Tooltip_TwilightSword_10=§oModel by IceyArk
+entity.sciencenotleisure.ArrowCustom.name=薄暝之箭
+
+item.TimeStopPocketWatch.name=岁月静滞怀表
+
+item.record.sus.desc=AU - Software Update Services
+item.record.new_horizons.desc=Aviators - Sweet Dreams (Bonus Track)
+item.record.lava_chicken.desc=Hyper Potions - Lava Chicken
+
+item.InfinityCell.name=ME无限%s存储元件
+item.InfinityCell.unknown=未知的ME无限存储元件
+InfinityCell.dye.name=染料
+InfinityCell.dye.fluid.name=流体染料
+InfinityCell.stone.name=石材
+Tooltip_InfinityCell_Contents=内含物品：
+
+item.milledNaquadahEnriched.name=研磨富集硅岩矿
+item.FrothNaquadahenrichedflotation=富集硅岩浮选泡沫单元
+item.FrothNaquadahenrichedflotation.name=富集硅岩浮选泡沫单元
+gtplusplus.fluid.naquadahenrichedfroth=富集硅岩泡沫
+fluid.froth.naquadahenrichedflotation=富集硅岩泡沫
+
+gt.blockmachines.wire.stargate.01.name=1x%material导线
+gt.blockmachines.wire.stargate.02.name=2x%material导线
+gt.blockmachines.wire.stargate.04.name=4x%material导线
+gt.blockmachines.wire.stargate.08.name=8x%material导线
+gt.blockmachines.wire.stargate.12.name=12x%material导线
+gt.blockmachines.wire.stargate.16.name=16x%material导线
+gt.blockmachines.cable.stargate.01.name=1x%material线缆
+gt.blockmachines.cable.stargate.02.name=2x%material线缆
+gt.blockmachines.cable.stargate.04.name=4x%material线缆
+gt.blockmachines.cable.stargate.08.name=8x%material线缆
+gt.blockmachines.cable.stargate.12.name=12x%material线缆
+gt.blockmachines.cable.stargate.16.name=16x%material线缆
+gt.blockmachines.gt_pipe_blue_alloy.name=%material流体管道
+gt.blockmachines.gt_pipe_blue_alloy_huge.name=巨型%material流体管道
+gt.blockmachines.gt_pipe_blue_alloy_large.name=大型%material流体管道
+gt.blockmachines.gt_pipe_blue_alloy_small.name=小型%material流体管道
+gt.blockmachines.gt_pipe_blue_alloy_tiny.name=微型%material流体管道
+gt.blockmachines.gt_pipe_compressedsteam.name=%material流体管道
+gt.blockmachines.gt_pipe_compressedsteam_huge.name=巨型%material流体管道
+gt.blockmachines.gt_pipe_compressedsteam_large.name=大型%material流体管道
+gt.blockmachines.gt_pipe_compressedsteam_small.name=小型%material流体管道
+gt.blockmachines.gt_pipe_compressedsteam_tiny.name=微型%material流体管道
+gt.blockmachines.gt_pipe_stronze.name=%material流体管道
+gt.blockmachines.gt_pipe_stronze_huge.name=巨型%material流体管道
+gt.blockmachines.gt_pipe_stronze_large.name=大型%material流体管道
+gt.blockmachines.gt_pipe_stronze_small.name=小型%material流体管道
+gt.blockmachines.gt_pipe_stronze_tiny.name=微型%material流体管道
+gt.blockmachines.gt_pipe_breel.name=%material流体管道
+gt.blockmachines.gt_pipe_breel_huge.name=巨型%material流体管道
+gt.blockmachines.gt_pipe_breel_large.name=大型%material流体管道
+gt.blockmachines.gt_pipe_breel_small.name=小型%material流体管道
+gt.blockmachines.gt_pipe_breel_tiny.name=微型%material流体管道
+bw.itemtype.plateSuperdense=超致密%material板
+bw.itemtype.nanite=%material纳米蜂群
+
+Tooltip_Lamp_NoGlow=无光照
+Tooltip_Lamp_Borderless=无边框
+
+RFRRRecipes.1=可望不可及，不是么? 
+PTARRecipes.1=精灵不喜欢面包。
+
+MachineTierTooltip=机器等级：
+ParallelTooltip=并行：
+HighPressureTooltipNotice=高压模式下处理速度和蒸汽消耗翻倍
+Info_SteamMachine_00=超频次数
+
+Tooltip_GTMMultiMachine_00=比相同电压的机器快67%
+Tooltip_GTMMultiMachine_01=只需要使用配方要求功率的80%
+Tooltip_GTMMultiMachine_02=初始并行为8
+Tooltip_GTMMultiMachine_03=在控制器内放入并行控制核心来提升最大并行数和减少耗电！ 
+
+Tooltip_WirelessEnergyMultiMachine_00=比相同电压的机器快400%
+Tooltip_WirelessEnergyMultiMachine_01=只需要使用配方要求功率的60%
+Tooltip_WirelessEnergyMultiMachine_02=初始并行为8
+Tooltip_WirelessEnergyMultiMachine_03=在控制器内放入并行控制核心来提升最大并行数和减少耗电！ 
+Tooltip_WirelessEnergyMultiMachine_04=并行控制核心将额外提供16倍的并行！ 
+Tooltip_WirelessEnergyMultiMachine_05=加速由加算改为乘算，每级提供75%的加速
+Tooltip_WirelessEnergyMultiMachine_06=无线模式下支持跨配方并行
+Tooltip_WirelessEnergyMultiMachine_07=机器可进行§c无损超频§7
+Tooltip_WirelessEnergyMultiMachine_08=安装无线升级将额外提供500%加速和20%耗电减免
+Tooltip_WirelessEnergyMultiMachine_09=不安装能源仓且安装无线升级将自动进入无线模式
+Tooltip_WirelessEnergyMultiMachine_10=无线模式下电压为并行控制核心等级 + 1，电流为 4 ^ (等级 + 1) - 2
+Waila_WirelessUpgrade=已安装无线升级
+Waila_WirelessMode=无线模式
+Waila_CurrentEuCost=当前EU消耗
+Waila_CurrentSteamCost=当前蒸汽消耗
+
+VoidMinerRecipeType=§e采矿机§r
+Tooltip_VoidMiner_01=消耗功率：%s EU/t
+Tooltip_VoidMiner_02=可以提供 §b20L/次§7 的惰性气体以提高§6产量
+Tooltip_VoidMiner_03=§d氖§7 : §64x§7
+Tooltip_VoidMiner_04=§b氪§7 : §68x§7
+Tooltip_VoidMiner_05=§3氙§7 : §616x§7
+Tooltip_VoidMiner_06=§9鿫§7 : §664x§7
+Tooltip_VoidMiner_07=根据建造所在维度，每秒将产出 %s 个矿石。
+Tooltip_VoidMiner_08=将矿石放入输入总线以设置白名单/黑名单
+Tooltip_VoidMiner_09=黑名单或非白名单矿石将被§4销毁§r。
+Tooltip_VoidMiner_10=总电流不得超过256安
+Tooltip_VoidMinerI_Casing_00=§620§fx §7坚实铱锇机械方块
+Tooltip_VoidMinerI_Casing_01=§642§fx§7 铱锇合金框架
+Tooltip_VoidMinerI_Casing_02=§66§fx§7 铱锇合金机械方块
+Tooltip_VoidMinerI_Casing_03=§66§fx§7 强化铱锇合金机械方块
+Tooltip_VoidMinerII_Casing_00=§629§fx§7 黑钚采矿机械方块
+Tooltip_VoidMinerII_Casing_01=§620§fx§7 黑钚物品管道方块
+Tooltip_VoidMinerII_Casing_02=§672§fx§7 硅岩合金框架
+Tooltip_VoidMinerII_Casing_03=§610§fx§7 硅岩合金机械方块
+Tooltip_VoidMinerII_Casing_04=§69§fx§7 硅岩合金机械方块
+Tooltip_VoidMinerIII_Casing_00=§647§fx§7 中子采矿机械方块
+Tooltip_VoidMinerIII_Casing_01=§68§fx§7 黑钚物品管道方块
+Tooltip_VoidMinerIII_Casing_02=§672§fx§7 精金框架
+Tooltip_VoidMinerIII_Casing_03=§620§fx§7 铱机械方块
+Tooltip_VoidMinerIII_Casing_04=§636§fx§7 强化铱机械方块
+Tooltip_VoidMiner_Casing_00=%s+，任意底层机械方块
+Tooltip_VoidMiner_Casing_01=任意底层机械方块
+Tooltip_VoidMiner_Casing_02=矿石，可选，任意底层机械方块
+Tooltip_VoidMiner_Casing_03=稀有气体，可选，任意底层机械方块
+
+IntegratedOreFactoryRecipeType=矿石处理厂，IOF
+Tooltip_IntegratedOreFactory_01=它很强(OP)。我是说，它是矿石处理厂。
+Tooltip_IntegratedOreFactory_02=一步完成所有矿石处理。
+Tooltip_IntegratedOreFactory_03=一次至多可处理(65536 * 最大电压)个矿石。
+Tooltip_IntegratedOreFactory_04=每个矿石消耗30EU/t、2升润滑油、200升蒸馏水。
+Tooltip_IntegratedOreFactory_05=处理时间取决于模式。
+Tooltip_IntegratedOreFactory_06=使用螺丝刀切换模式。
+Tooltip_IntegratedOreFactory_07=手持螺丝刀Shift+右键以销毁石粉。
+Tooltip_IntegratedOreFactory_08=正面第三层中央
+Tooltip_IntegratedOreFactory_Casing_00=强化镀铱机械方块
+Tooltip_IntegratedOreFactory_Casing_01=洁净不锈钢机械方块
+Tooltip_IntegratedOreFactory_Casing_02=防爆玻璃
+Tooltip_IntegratedOreFactory_Casing_03=钨钢管道方块
+Tooltip_IntegratedOreFactory_Casing_04=钨钢框架
+Tooltip_IntegratedOreFactory_Casing_05=钢齿轮箱机械方块
+Tooltip_IntegratedOreFactory_Casing_06=能源仓(底层机械方块)
+Tooltip_IntegratedOreFactory_Casing_07=维护仓(底层机械方块)
+Tooltip_IntegratedOreFactory_Casing_08=输入总线(输入矿石/粉碎矿石)
+Tooltip_IntegratedOreFactory_Casing_09=输入仓(输入润滑油/蒸馏水/化学浸洗剂)
+Tooltip_IntegratedOreFactory_Casing_10=消声仓(输出污染)
+Tooltip_IntegratedOreFactory_Casing_11=输出总线(输出产物)
+
+NameAdvancedMassFabricator=进阶质量发生器
+AdvancedMassFabricatorRecipeType=质量发生器
+Tooltip_AdvancedMassFabricator_Casing=任意元素约束机械方块
+
+NameMegaVacuumDryingFurnace=巨型真空干燥炉
+MegaVacuumDryingFurnaceRecipeType=真空炉 / 脱水机 / 冷阱 / 反应堆熔盐加工厂
+MegaVacuumDryingFurnace_Mode_0=真空炉
+MegaVacuumDryingFurnace_Mode_1=脱水机
+MegaVacuumDryingFurnace_Mode_2=冷阱
+MegaVacuumDryingFurnace_Mode_3=反应堆熔盐加工厂
+Tooltip_MegaVacuumDryingFurnace_00=每超过配方温度900K，耗能均将乘以95%(不计超频)
+Tooltip_MegaVacuumDryingFurnace_01=每超过配方温度1800K，将进行一次无损超频
+Tooltip_MegaVacuumDryingFurnace_02=超过MV后的每一级电压，都会将温度提高100K
+Tooltip_MegaVacuumDryingFurnace_Casing=任意超能机械方块
+
+NameMassFabricator=质量发生器
+MassFabricatorRecipeType=质量发生器
+Tooltip_MassFabricator_Casing=任意ZPM机械方块
+
+NameQuantumComputer=量子计算机
+QuantumComputerRecipeType=CPU
+Tooltip_QuantumComputer_00=可以像常规的CPU一样执行合成任务
+Tooltip_QuantumComputer_01=只要容量足够，量子计算机可以同时执行的合成任务数量不限
+Tooltip_QuantumComputer_02=不同任务之间可以共享并行数量
+Tooltip_QuantumComputer_03=量子计算机会在接收到合成任务时，自行“分配”出一个小CPU
+Tooltip_QuantumComputer_04=容量 = 该合成任务的占用，并行数 = 该量子计算机的并行数
+Tooltip_QuantumComputer_05=分配出的小CPU会占用量子计算机的剩余容量。在还有足够的剩余容量时可不断分配，直到容量不足
+Tooltip_QuantumComputer_06=在合成任务完成时，分配出的小CPU会重新“回收”进量子计算机中，作为空余容量
+Tooltip_QuantumComputer_07=可以在AE的终端中观察到量子计算机创建新CPU
+Tooltip_QuantumComputer_08=耗能与常规CPU一致
+Tooltip_QuantumComputer_09=不需要开机，这台机器成型即可使用
+Tooltip_QuantumComputer_10=所有内部方块必须为合成存储器或并行处理单元！
+Tooltip_QuantumComputer_11=§c在量子计算机的外表面上，不能放置任何可用于构成量子计算机的方块，否则会导致量子计算机失效
+Tooltip_QuantumComputer_12=§c量子计算机被破坏时会尝试获取上方AE网络退回CPU内材料，如果失败将不会保留！
+Info_QuantumComputer_00=结构大小：%sx%sx%s
+Info_QuantumComputer_01=并行线程：%s / 已使用：%s (%s)
+Info_QuantumComputer_02=可存储：%s / 已使用：%s (%s)
+Info_QuantumComputer_03=设置量子计算机自定义名称
+
+NameAssemblerMatrix=装配矩阵
+AssemblerMatrixRecipeType=分子装配室
+Tooltip_AssemblerMatrix_00=固定运行时间为40tick
+Tooltip_AssemblerMatrix_01=每并行耗电2EU
+Tooltip_AssemblerMatrix_02=无法超频
+Tooltip_AssemblerMatrix_03=必须内部全部填满核心/墙壁才能成型！
+Tooltip_AssemblerMatrix_04=最多只能安装5个加速核心
+Tooltip_AssemblerMatrix_05=安装奇点合成核心且不安装能源仓时自动进入无线模式
+Tooltip_AssemblerMatrix_06=可放置终极合成样板来合成终极合成配方
+Info_AssemblerMatrix_00=§7当前样板数量：%s/%s
+Info_AssemblerMatrix_01=样板倍率控制面板
+Info_AssemblerMatrix_02=当前倍率
+Info_AssemblerMatrix_03=设置装配矩阵自定义名称
+AssemblerMatrix_Mode_0=输入模式
+AssemblerMatrix_Mode_1=输出模式
+AssemblerMatrix_Mode_2=运行模式
+
+NameFuelRefiningComplex=燃料精炼复合体
+FuelRefiningComplexRecipeType=燃料精炼复合体
+gtnl.recipe.FuelRefiningComplexRecipes=燃料精炼复合体
+FuelRefiningMetadata=需要%s级线圈
+
+NameAtomicEnergyExcitationPlant=原子能激发工厂
+AtomicEnergyExcitationPlantRecipeType=燃料精炼复合体
+Tooltip_AtomicEnergyExcitationPlant_00=每超过配方温度900K，耗能均将乘以95%(不计超频)
+Tooltip_AtomicEnergyExcitationPlant_01=每超过配方温度1800K，将进行一次无损超频
+Tooltip_AtomicEnergyExcitationPlant_02=使用剪线钳开启/关闭动画特效
+
+NameSwarmCore=蜂群之心
+SwarmCoreRecipeType=纳米锻炉
+Tooltip_SwarmCore_00=§o§l§d神的上升↗↗↗爱来自1987
+Tooltip_SwarmCore_01=升级机器来使用更高级的配方！
+Tooltip_SwarmCore_02=固定电压为MAX
+Tooltip_SwarmCore_Casing=任意放射硅岩合金机械方块
+Info_SwarmCore_00=纳米锻炉升级
+Info_SwarmCore_01=锻炉等级：%s
+
+NameFurnaceArray=熔炉组
+FurnaceArrayRecipeType=熔炉
+Tooltip_FurnaceArray_00=§o§6我说2048熔炉组比工业熔炉数值，因为熔炉组每消耗8个圆石就能加1并行
+Tooltip_FurnaceArray_01=初始最大并行为1，每输入一个熔炉，最大并行加1
+Tooltip_FurnaceArray_02=每输入32煤炭，永久点燃一个熔炉，使最大可用并行加1
+Tooltip_FurnaceArray_03=固定运行时间为5秒
+Tooltip_FurnaceArray_04=每个熔炉按照期望的运行速度产生不可思议的效果
+Info_FurnaceArray_00=大家快来看 %s, %s, %s 的%s设计的%sms延迟熔炉！
+Info_FurnaceArray_01=当前熔炉数量：%s
+Info_FurnaceArray_02=当前煤炭数量：%s
+
+NameHorizontalCompressor=卧式压缩机
+HorizontalCompressorRecipeType=压缩机
+Tooltip_HorizontalCompressor_00=升级机器来启用黑洞压缩机！
+Tooltip_HorizontalCompressor_Casing=任意强化钨钢机械方块
+Info_HorizontalCompressor_00=黑洞压缩机升级
+
+NameLargeHammer=大型锻造锤
+LargeHammerRecipeType=锻造锤
+Tooltip_LargeHammer_00=比相同电压的机器快150%
+Tooltip_LargeHammer_Casing=任意强化镍铬机械方块
+
+NameDraconicFusionCrafting=神龙聚合装置
+DraconicFusionCraftingRecipeType=聚合装置
+Tooltip_DraconicFusionCrafting_00=比龙研聚合装置快100%
+Tooltip_DraconicFusionCrafting_01=只需要使用配方要求功率的50%
+Tooltip_DraconicFusionCrafting_02=当机械方块等级超过4时开启§c无损超频§7
+Tooltip_DraconicFusionCrafting_Casing=任意背景辐射吸收机械方块
+
+NameLuvKuangBiaoOneGiantNuclearFusionReactor=狂飙一号巨型聚变反应堆控制电脑
+NameZpmKuangBiaoTwoGiantNuclearFusionReactor=狂飙二号巨型聚变反应堆控制电脑
+NameUvKuangBiaoThreeGiantNuclearFusionReactor=狂飙三号巨型聚变反应堆控制电脑
+NameUhvKuangBiaoFourGiantNuclearFusionReactor=狂飙四号巨型聚变反应堆控制电脑
+NameUevKuangBiaoFiveGiantNuclearFusionReactor=狂飙五号巨型聚变反应堆控制电脑
+KuangBiaoOneGiantNuclearFusionReactorRecipeType=聚变反应堆
+Tooltip_KuangBiaoOneGiantNuclearFusionReactor_00=§r它所模拟的，是亘古不变的光芒
+Tooltip_KuangBiaoOneGiantNuclearFusionReactor_01=比同等级聚变反应堆快%s%%
+Tooltip_KuangBiaoOneGiantNuclearFusionReactor_02=只需要使用配方要求功率的%s%%
+Tooltip_KuangBiaoOneGiantNuclearFusionReactor_03=无需消耗配方启动能量，但你仍然需要相应的启动能量来开机
+Tooltip_KuangBiaoOneGiantNuclearFusionReactor_04=储能上限：
+Tooltip_KuangBiaoOneGiantNuclearFusionReactor_05=当配方需求电压超过%s§r§7时，无法进行聚变
+Tooltip_KuangBiaoOneGiantNuclearFusionReactor_06=使用剪线钳开启/关闭动画特效
+Tooltip_KuangBiaoTwoGiantNuclearFusionReactor_Casing=任意聚变机械方块
+
+NameIsaMill=艾萨研磨机
+gtnl.recipe.IsaMillRecipes=湿法碾磨
+IsaMillMetadata.0=需要铝研磨球
+IsaMillMetadata.1=需要皂石研磨球
+IsaMillRecipeType=湿法碾磨
+Tooltip_IsaMill_00=工业级湿法碾磨
+Tooltip_IsaMill_01=玻璃等级限制了能源仓等级，UHV玻璃解锁所有等级
+Tooltip_IsaMill_Casing=任意艾萨研磨外围机械方块
+
+NameFlotationCellRegulator=工业浮选机
+gtnl.recipe.CellRegulatorRecipes=浮选
+FlotationCellRegulatorRecipeType=浮选
+Tooltip_FlotationCellRegulator_00=玻璃等级限制了能源仓等级，UHV玻璃解锁所有等级
+Tooltip_FlotationCellRegulator_Casing=任意哈斯特洛伊合金-X结构方块
+
+NameVacuumDryingFurnace=真空干燥炉
+VacuumDryingFurnaceRecipeType=真空炉 / 脱水机 / 冷阱 / 反应堆熔盐加工厂
+VacuumDryingFurnace_Mode_0=真空炉
+VacuumDryingFurnace_Mode_1=脱水机
+VacuumDryingFurnace_Mode_2=冷阱
+VacuumDryingFurnace_Mode_3=反应堆熔盐加工厂
+Tooltip_VacuumDryingFurnace_00=比相同电压的机器快150%
+Tooltip_VacuumDryingFurnace_01=只需要使用配方要求功率的60%
+Tooltip_VacuumDryingFurnace_02=每超过配方温度900K，耗能均将乘以95%(不计超频)
+Tooltip_VacuumDryingFurnace_03=每超过配方温度1800K，将进行一次无损超频
+Tooltip_VacuumDryingFurnace_04=超过MV后的每一级电压，都会将温度提高100K
+Tooltip_VacuumDryingFurnace_05=配方为冷阱或反应堆熔盐加工厂时额外提供1000%的加速(乘算叠加)
+Tooltip_VacuumDryingFurnace_Casing=任意真空机械方块
+
+NameResourceCollectionModule=太空电梯资源采集模块
+gtnl.recipe.SpaceMinerRecipes=太空采矿
+gtnl.recipe.SpaceDrillRecipes=太空钻井
+ResourceCollectionModuleMetadata.0=需要采矿无人机MK-VIII x 16
+ResourceCollectionModuleMetadata.1=需要采矿无人机MK-IX x 16
+ResourceCollectionModuleMetadata.2=需要采矿无人机MK-X x 16
+ResourceCollectionModuleMetadata.3=需要采矿无人机MK-XI x 16
+ResourceCollectionModuleMetadata.4=需要采矿无人机MK-XII x 16
+ResourceCollectionModuleMetadata.5=需要采矿无人机MK-XIII x 16
+ResourceCollectionModuleRecipeType=太空采矿 / 太空钻井
+ResourceCollectionModule_Mode_0=太空采矿
+ResourceCollectionModule_Mode_1=太空钻井
+Tooltip_ResourceCollectionModule_00=将太空采矿和太空钻井功能添加到太空电梯
+Tooltip_ResourceCollectionModule_01=§d§l一飞冲天
+Tooltip_ResourceCollectionModule_Casing=任意太空电梯基座机械方块
+GT5U.gui.text.no_mining_drone=§7未找到采矿无人机
+
+NameSuperSpaceElevator=超级太空电梯
+SuperSpaceElevatorRecipeType=太空电梯
+Tooltip_SuperSpaceElevator_00=§d§l连接星辰
+Tooltip_SuperSpaceElevator_01=每级加速轨道提供112模块数量
+Tooltip_SuperSpaceElevator_02=加速轨道等级限制了模块等级
+Tooltip_SuperSpaceElevator_03=每个模块有各自独立的输入输出空间，除了能量
+Tooltip_SuperSpaceElevator_04=本控制器接收能量供应并将能量分发
+Tooltip_SuperSpaceElevator_05=MK-III及以上加速轨道可开启无线模式
+Tooltip_SuperSpaceElevator_06=当主结构未安装能源仓时自动进入无线模式
+Tooltip_SuperSpaceElevator_07=关闭控制器即可暂停所有模块
+Tooltip_SuperSpaceElevator_Casing=任意太空电梯基座机械方块
+Info_SuperSpaceElevator_00=已检测到附属层数：
+
+NameRocketAssembler=火箭组装厂
+gtnl.recipe.RocketAssemblerRecipes=火箭组装厂
+RocketAssemblerRecipeType=火箭组装厂
+Tooltip_RocketAssembler_00=§d§l我有一个航天梦
+Tooltip_RocketAssembler_01=使用剪线钳开启/关闭动画特效
+Tooltip_RocketAssembler_Casing=任意洁净不锈钢机械方块
+NEI.RocketAssembler.specialValue=需要%s阶火箭NASA工作台图纸
+
+NameSteamItemVault=蒸汽物品保险库
+SteamItemVaultRecipeType=物品保险库
+Tooltip_SteamItemVault_00=原始科技保险库，最多可容纳%s种不同的物品！
+Tooltip_SteamItemVault_01=物品总容量的1/%s作为每种物品的容量
+Tooltip_SteamItemVault_02=使用螺丝刀右键控制器方块可开启过量销毁功能
+Tooltip_SteamItemVault_03=兼容输出总线过滤
+Tooltip_SteamItemVault_04=可以通过三录仪获取存储物品的信息
+Tooltip_SteamItemVault_05=物品总容量：%s
+Tooltip_SteamItemVault_Casing=任意抗震安全外壳
+Info_SteamItemVault_StoredItems=已存储物品：
+Info_SteamItemVault_StoredItems_NULL=无效
+Info_SteamItemVault_OperationalData=操作数据
+Info_SteamItemVault_ItemUsed=物品已用容量：%s
+Info_SteamItemVault_ItemTotal=物品总容量：%s
+Info_SteamItemVault_PerItemCapacity=每物品容量：%s
+Info_SteamItemVault_ItemUsedTypes=物品已用类型：%s
+Info_SteamItemVault_ItemTotalTypes=物品总类型：%s
+Info_SteamItemVault_RunningCost=运行成本：%d EU/t
+Info_SteamItemVault_AutoVoiding=自动销毁：%b
+
+NameSingularityDataHub=奇点数据中枢
+SingularityDataHubRecipeType=保险库
+Tooltip_SingularityDataHub_00=§9§o由展开的维度编织而成的仓库
+Tooltip_SingularityDataHub_01=无限存储物品和流体！
+Tooltip_SingularityDataHub_02=不再兼容输出总线和输出仓，只允许输入
+Tooltip_SingularityDataHub_03=必须使用保险库多方块输入/输出总成
+Tooltip_SingularityDataHub_04=默认运行能耗1A UHV
+Tooltip_SingularityDataHub_05=不安装能源仓将自动进入无线模式
+Tooltip_SingularityDataHub_06=可以通过三录仪获取存储物品的信息
+Tooltip_SingularityDataHub_07=使用螺丝刀右键控制器方块可开启过量销毁功能
+Tooltip_SingularityDataHub_Casing=任意抗震安全外壳
+Info_SingularityDataHub_StoredItems=已存储物品：
+Info_SingularityDataHub_StoredItems_NULL=无效
+Info_SingularityDataHub_StoredFluids=已存储流体：
+Info_SingularityDataHub_StoredFluids_NULL=无效
+Info_SingularityDataHub_OperationalData=操作数据
+Info_SingularityDataHub_ItemUsed=物品已用容量：%s
+Info_SingularityDataHub_ItemTotal=物品总容量：%s
+Info_SingularityDataHub_PerItemCapacity=每物品容量：%s
+Info_SingularityDataHub_ItemUsedTypes=物品已用类型：%s
+Info_SingularityDataHub_ItemTotalTypes=物品总类型：%s
+Info_SingularityDataHub_FluidUsed=流体已用容量：%s
+Info_SingularityDataHub_FluidTotal=流体总容量：%s
+Info_SingularityDataHub_PerFluidCapacity=每流体容量：%s
+Info_SingularityDataHub_FluidUsedTypes=流体已用类型：%s
+Info_SingularityDataHub_FluidTotalTypes=流体总类型：%s
+Info_SingularityDataHub_RunningCost=运行成本：%d EU/t
+Info_SingularityDataHub_AutoVoiding=自动销毁：%b
+
+NameSteamElevator=蒸汽楼梯
+SteamElevatorRecipeType=蒸汽楼梯
+Tooltip_SteamElevator_00=§a§l通向天空的楼梯?
+Tooltip_SteamElevator_01=每个模块有各自独立的输入输出空间，除了蒸汽
+Tooltip_SteamElevator_02=本控制器接收蒸汽供应并将蒸汽分发
+Tooltip_SteamElevator_03=当主结构未安装蒸汽输入仓时自动进入无线模式
+Tooltip_SteamElevator_04=关闭控制器即可暂停所有模块
+Tooltip_SteamElevator_Casing=任意砖砌钢外壳
+
+NameSteamGreenhouseModule=蒸汽温室种植模块
+SteamGreenhouseModuleRecipeType=作物农场
+Tooltip_SteamGreenhouseModule_00=§a§l农场主的致富经.
+Tooltip_SteamGreenhouseModule_01=将温室功能添加到蒸汽楼梯
+Tooltip_SteamGreenhouseModule_02=不再需要肥料和除草剂！ 
+Tooltip_SteamGreenhouseModule_03=每株作物消耗16000L水
+Tooltip_SteamGreenhouseModule_04=运行时间固定为60秒
+Tooltip_SteamGreenhouseModule_05=无法超频
+
+NameSteamOilDrillModuleI=蒸汽流体钻机模块 I
+NameSteamOilDrillModuleII=蒸汽流体钻机模块 II
+NameSteamOilDrillModuleIII=蒸汽流体钻机模块 III
+SteamOilDrillModuleRecipeType=泵
+Tooltip_SteamOilDrillModuleI_00=§a§l霉菌来袭！
+Tooltip_SteamOilDrillModuleII_00=§a§l地底两万里
+Tooltip_SteamOilDrillModuleIII_00=§a§l上知天文，下至地里
+Tooltip_SteamOilDrillModule_00=将流体钻机功能添加到蒸汽楼梯
+Tooltip_SteamOilDrillModule_01=开采当前维度的所有地下流体类型
+Tooltip_SteamOilDrillModule_02=随机抽取最多%s种流体
+Tooltip_SteamOilDrillModule_03=每次可能抽取%s~%sL
+Tooltip_SteamOilDrillModule_04=基础工作周期：%st
+
+NameSteamApiaryModule=蒸汽蜜蜂养殖模块
+SteamApiaryModuleRecipeType=气动蜂箱
+Tooltip_SteamApiaryModule_00=§a§l高压力让蜜蜂工作§0§m内卷§a§l更卖力.
+Tooltip_SteamApiaryModule_01=将蜂箱功能添加到蒸汽楼梯
+Tooltip_SteamApiaryModule_02=蜜蜂的理想(?)家园
+Tooltip_SteamApiaryModule_03=固定运行时间为30秒
+Tooltip_SteamApiaryModule_04=每次超频，可放入数翻倍，功率*4
+Tooltip_SteamApiaryModule_05=基础数量为8
+
+NameSteamBeeBreedingModule=蒸汽蜜蜂繁殖模块
+SteamBeeBreedingModuleRecipeType=蜜蜂繁殖
+Tooltip_SteamBeeBreedingModule_00=§a§l让蜜蜂感受灼♂热的爱吧.
+Tooltip_SteamBeeBreedingModule_01=将蜜蜂繁殖功能添加到蒸汽楼梯
+Tooltip_SteamBeeBreedingModule_02=在控制器内放入蜂后
+Tooltip_SteamBeeBreedingModule_03=它会缓慢生产卑贱种公主蜂
+Tooltip_SteamBeeBreedingModule_04=每次运行消耗128蜂王浆
+Tooltip_SteamBeeBreedingModule_05=基础运行时间：10分钟
+
+NameSteamEntityCrusherModule=蒸汽屠宰场模块
+SteamEntityCrusherModuleRecipeType=气动刷怪笼
+Tooltip_SteamEntityCrusherModule_00=§a§l使用高温蒸汽熔炼怪物.
+Tooltip_SteamEntityCrusherModule_01=将屠宰场功能添加到蒸汽楼梯
+Tooltip_SteamEntityCrusherModule_02=每次运行有2%的概率双倍产出
+Tooltip_SteamEntityCrusherModule_03=每多一个同一种刷怪笼，概率+0.5%
+Tooltip_SteamEntityCrusherModule_04=最大增加34%的概率
+Tooltip_SteamEntityCrusherModule_05=作为代价，默认时间加倍，功率减半
+Tooltip_SteamEntityCrusherModule_06=无法超频
+
+NameSteamOreProcessorModule=蒸汽矿石处理模块
+SteamOreProcessorModuleRecipeType=微缩矿石处理厂
+Tooltip_SteamOreProcessorModule_00=§a§l你有想过它存在的意义吗？
+Tooltip_SteamOreProcessorModule_01=将矿石处理功能添加到蒸汽楼梯
+Tooltip_SteamOreProcessorModule_02=一步完成所有矿石处理
+Tooltip_SteamOreProcessorModule_03=一次至多可处理8个矿石
+Tooltip_SteamOreProcessorModule_04=每个矿石消耗128L蒸汽/t、1升润滑油、10升蒸馏水
+Tooltip_SteamOreProcessorModule_05=处理时间固定为128tick
+Tooltip_SteamOreProcessorModule_06=设置电路板来翻倍并行和耗电
+Tooltip_SteamOreProcessorModule_07=使用螺丝刀切换模式
+Tooltip_SteamOreProcessorModule_08=手持螺丝刀Shift+右键以销毁石粉
+Info_SteamOreProcessorModule_00=实际并行：
+
+NameSteamMonsterRepellentModuleI=蒸汽敌对生物驱逐模块 I
+NameSteamMonsterRepellentModuleII=蒸汽敌对生物驱逐模块 II
+NameSteamMonsterRepellentModuleIII=蒸汽敌对生物驱逐模块 III
+SteamMonsterRepellentModuleRecipeType=敌对生物驱逐器
+Tooltip_SteamMonsterRepellentModuleI_00=§a§l它通过发出巨大的噪音来赶走怪物...和你一天的好心情.
+Tooltip_SteamMonsterRepellentModuleII_00=§a§l你听不到它，但怪物听得一清二楚.
+Tooltip_SteamMonsterRepellentModuleIII_00=§a§l这机器让怪物自己报警跑路.
+Tooltip_SteamMonsterRepellentModule_00=将敌对生物驱逐功能添加到蒸汽楼梯
+Tooltip_SteamMonsterRepellentModule_01=创建一个力场阻止怪物的生成
+Tooltip_SteamMonsterRepellentModule_02=只在机器运行的时候阻止
+Tooltip_SteamMonsterRepellentModule_03=生效范围：
+
+NameSteamFlightModule=蒸汽飞行模块
+SteamFlightModuleRecipeType=飞行
+Tooltip_SteamFlightModule_00=§a§l蒸汽是人类进步的阶梯 - 高尔哈基米
+Tooltip_SteamFlightModule_01=将飞行功能添加到蒸汽楼梯
+Tooltip_SteamFlightModule_02=消耗蒸汽赋予你自由飞行的能力
+Tooltip_SteamFlightModule_03=调整超频次数来消耗更多蒸汽扩大范围
+Tooltip_SteamFlightModule_04=生效范围：64 * 超频次数
+
+NameSteamWeatherModule=蒸汽天气更替模块
+gtnl.recipe.SteamWeatherModuleRecipes=天气更替
+NEI.SteamWeather.specialValue.1=切换天气为晴天
+NEI.SteamWeather.specialValue.2=切换天气为雨天
+NEI.SteamWeather.specialValue.3=切换天气为雷暴
+SteamWeatherModuleRecipeType=天气更替
+Tooltip_SteamWeatherModule_00=§a§l恩里克·普奇...这就是我的替身...「Weather Report！」
+Tooltip_SteamWeatherModule_01=将天气更替功能添加到蒸汽楼梯
+Tooltip_SteamWeatherModule_02=输入特定材料切换天气，持续1小时
+
+NameSteamBeaconModuleI=蒸汽信标模块 I
+NameSteamBeaconModuleII=蒸汽信标模块 II
+NameSteamBeaconModuleIII=蒸汽信标模块 III
+SteamBeaconModuleRecipeType=信标
+Tooltip_SteamBeaconModuleI_00=§a§l村民向您分享了原始信标技术！
+Tooltip_SteamBeaconModuleII_00=§a§l将蒸汽嬗变成药水分子...
+Tooltip_SteamBeaconModuleIII_00=§a§l宇宙没有义务让你理解...喵！
+Tooltip_SteamBeaconModule_00=将信标功能添加到蒸汽楼梯
+Tooltip_SteamBeaconModule_01=通入蒸汽来启用大范围的药水效果
+Tooltip_SteamBeaconModule_02=生效范围：
+Tooltip_SteamBeaconModule_03=在GUI中配置要释放的药水效果
+Tooltip_SteamBeaconModule_04=调整超频次数来提高药水效果等级
+Info_SteamBeaconModule_00=配置信标效果
+Info_SteamBeaconModule_01=确定
+Info_SteamBeaconModule_02=当前启用效果：
+Info_SteamBeaconModule_Effect_00=速度
+Info_SteamBeaconModule_Effect_01=力量
+Info_SteamBeaconModule_Effect_02=跳跃提升
+Info_SteamBeaconModule_Effect_03=抗性提升
+Info_SteamBeaconModule_Effect_04=生命恢复
+Info_SteamBeaconModule_Effect_05=夜视
+Info_SteamBeaconModule_Effect_06=急迫
+Info_SteamBeaconModule_Effect_07=防火
+Info_SteamBeaconModule_Effect_08=水下呼吸
+Info_SteamBeaconModule_Effect_09=扭曲守护
+Info_SteamBeaconModule_Effect_10=羽翼
+Info_SteamBeaconModule_Effect_11=灵气创生
+Tooltip_SteamElevatorModule_Casing=任意脱氧钢机械方块
+
+NameLargeMixer=大型搅拌罐
+LargeMixerRecipeType=搅拌机
+Tooltip_LargeMixer_00=比相同电压的机器快275%
+Tooltip_LargeMixer_01=只需要使用配方要求功率的80%
+Tooltip_LargeMixer_Casing=任意储罐拓展方块
+
+NameMegaMixer=巨型搅拌机
+MegaMixerRecipeType=搅拌机
+Tooltip_MegaMixer_00=比相同电压的机器快400%
+Tooltip_MegaMixer_01=只需要使用配方要求功率的60%
+Tooltip_MegaMixer_02=开启配方锁定后，给予两次无损超频，功率要求变为80%
+Tooltip_MegaMixer_03=配方锁定后连续运行将加速至700%
+Tooltip_MegaMixer_Casing=任意强化镀铱机械方块
+
+NameCompoundDistillationFractionator=复合式蒸馏分馏塔
+CompoundDistillationFractionatorRecipeType=蒸馏塔 / 蒸馏室
+CompoundDistillationFractionator_Mode_0=蒸馏塔
+CompoundDistillationFractionator_Mode_1=蒸馏室
+Tooltip_CompoundDistillationFractionator_Casing=稳定化硅岩净水厂机械方块
+
+NameMegaWiremill=特大线材轧机
+MegaWiremillRecipeType=线缆轧机
+Tooltip_MegaWiremill_00=每级线圈等级额外提供15%的加速(乘算叠加)
+Tooltip_MegaWiremill_Casing=任意隔热机械方块
+
+NameChemicalComplex=化工复合体
+ChemicalComplexRecipeType=化学反应釜
+Tooltip_ChemicalComplex_00=每级线圈等级额外提供15%的加速(乘算叠加)
+Tooltip_ChemicalComplex_Casing=任意化学惰性机械方块
+
+NameGiantFlotationTank=巨型浮游选矿池
+GiantFlotationTankRecipeType=浮选
+Tooltip_GiantFlotationTank_Casing=任意哈斯特洛伊-X结构方块
+
+NameMoltenCore=熔火之心
+MoltenCoreRecipeType=流体加热器
+Tooltip_MoltenCore_00=每级线圈等级额外提供15%的加速(乘算叠加)
+Tooltip_MoltenCore_Casing=任意强化镀铱机械方块
+
+NameCrystalBuilder=晶体构建者
+CrystalBuilderRecipeType=高压釜
+Tooltip_CrystalBuilder_00=每级线圈等级额外提供15%的加速(乘算叠加)
+Tooltip_CrystalBuilder_Casing=任意分子机械方块
+
+NameMegaBrewer=巨型酿造厂
+MegaBrewerRecipeType=酿造室 / 发酵槽
+Tooltip_MegaBrewer_00=每级线圈等级额外提供15%的加速(乘算叠加)
+MegaBrewer_Mode_0=酿造室
+MegaBrewer_Mode_1=发酵槽
+Tooltip_MegaBrewer_Casing=任意热抑制机械方块
+
+NameLargeDistillery=大型分馏蒸馏厂
+LargeDistilleryRecipeType=蒸馏塔 / 蒸馏室
+LargeDistillery_Mode_0=蒸馏塔
+LargeDistillery_Mode_1=蒸馏室
+Tooltip_LargeDistillery_00=比相同电压的机器快400%
+Tooltip_LargeDistillery_01=只需要使用配方要求功率的50%
+Tooltip_LargeDistillery_Casing=任意储罐拓展方块
+
+NameLargeRockCrusher=大型碎岩机
+gtnl.recipe.IndustrialRockCrusherRecipes=工业碎岩机
+LargeRockCrusherRecipeType=工业碎岩机
+Tooltip_LargeRockCrusher_00=需要在输入仓中放入水和岩浆
+Tooltip_LargeRockCrusher_Casing=任意坚实铱锇机械方块
+
+NameLargeMacerationTower=大型研磨塔
+LargeMacerationTowerRecipeType=粉碎机
+Tooltip_LargeMacerationTower_00=比相同电压的机器快100%
+Tooltip_LargeMacerationTower_Casing=任意坚实铱锇机械方块
+
+NameLargeSiftingFunnel=大型筛选漏斗
+LargeSiftingFunnelRecipeType=筛选机
+Tooltip_LargeSiftingFunnel_00=比相同电压的机器快400%
+Tooltip_LargeSiftingFunnel_01=只需要使用配方要求功率的60%
+Tooltip_LargeSiftingFunnel_Casing=任意离心机机械方块
+
+NameLargeGasCollector=大型集气室
+gtnl.recipe.GasCollectorRecipes=集气室
+LargeGasCollectorRecipeType=集气室
+Tooltip_LargeGasCollector_00=集气室的大型版本
+Tooltip_LargeGasCollector_01=最大并行数为1,000,000
+Tooltip_LargeGasCollector_02=在主世界，末地，下界无需输入物品也可运行
+Tooltip_LargeGasCollector_Casing=任意脱氧钢机械方块
+
+NameLargeCutter=大型切割机
+LargeCutterRecipeType=切割机 / 切片机
+Tooltip_LargeCutter_00=比相同电压的机器快225%
+Tooltip_LargeCutter_01=只需要使用配方要求功率的50%
+Tooltip_LargeCutter_Casing=任意切割机框架
+LargeCutter_Mode_0=切割机
+LargeCutter_Mode_1=切片机
+
+NameLargeBrewer=大型酿造厂
+LargeBrewerRecipeType=酿造室 / 发酵槽 / 流体加热器
+Tooltip_LargeBrewer_00=比相同电压的机器快125%
+LargeBrewer_Mode_0=酿造室
+LargeBrewer_Mode_1=发酵槽
+LargeBrewer_Mode_2=流体加热器
+Tooltip_LargeBrewer_Casing=任意焦炉机械方块
+
+NameElectrocellGenerator=电化学电池发电机
+gtnl.recipe.ElectrocellGeneratorRecipes=电化学反应
+NEI.ElectrocellGenerator.specialValue=发电系数：%s
+ElectrocellGeneratorMetadata=基础发电量：%s EU/t
+ElectrocellGeneratorRecipeType=电化学反应
+Tooltip_ElectrocellGenerator_00=干净环保且高效！
+Tooltip_ElectrocellGenerator_01=在左侧输入正极，右侧输入负极
+Tooltip_ElectrocellGenerator_02=每秒消耗对应数量的酸，输出副产物
+Tooltip_ElectrocellGenerator_03=如果没有酸输入，发电量将大幅下降！
+Tooltip_ElectrocellGenerator_04=同时只能输入一种酸
+Tooltip_ElectrocellGenerator_05=当酸超过一定数量可以根据发电系数多消耗多产出
+Tooltip_ElectrocellGenerator_Casing=任意脱氧钢机械方块
+
+NameLargeNaquadahReactor=大型硅岩反应堆
+NameHyperNaquadahReactor=超能硅岩反应堆
+NameAdvancedHyperNaquadahReactor=进阶超能硅岩反应堆
+gtnl.recipe.NaquadahReactorRecipes=硅岩反应
+NaquadahReactorMetadata.0=需要超能硅岩反应堆
+NaquadahReactorMetadata.1=需要进阶超能硅岩反应堆
+NaquadahReactorRecipeType=硅岩反应
+NEI.NaquadahReactorRecipes.specialValue=产能功率：
+Tooltip_LargeNaquadahReactor_00=固定并行为%s
+Tooltip_LargeNaquadahReactor_01=可以在配方开始的时候输入氧气
+Tooltip_LargeNaquadahReactor_02=这会让时间减少%s倍，功率翻%s倍
+Tooltip_LargeNaquadahReactor_03=代价是每秒会消耗%sL的氧气
+Tooltip_LargeNaquadahReactor_Casing=任意放射硅岩合金机械方块
+Tooltip_HyperNaquadahReactor_00=固定并行为%s
+Tooltip_HyperNaquadahReactor_01=可以在配方开始的时候输入硅岩气
+Tooltip_HyperNaquadahReactor_02=这会让时间减少%s倍，功率翻%s倍
+Tooltip_HyperNaquadahReactor_03=代价是每秒会消耗%sL的硅岩气
+Tooltip_HyperNaquadahReactor_Casing=任意硅岩合金聚合机械方块
+Tooltip_AdvancedHyperNaquadahReactor_00=固定并行为%s
+Tooltip_AdvancedHyperNaquadahReactor_01=可以在配方开始的时候输入熔融时空
+Tooltip_AdvancedHyperNaquadahReactor_02=这会让时间减少%s倍，功率翻%s倍
+Tooltip_AdvancedHyperNaquadahReactor_03=代价是每秒会消耗%sL的熔融时空
+Tooltip_AdvancedHyperNaquadahReactor_04=不安装动力仓将自动进入无线模式
+Tooltip_AdvancedHyperNaquadahReactor_Casing=任意硅岩合金聚合机械方块
+Info_NaquadahReactor_00=产能功率：
+Info_NaquadahReactor_01=使用额外气体加速
+Info_NaquadahReactor_02=产能功率(无线模式)：
+Info_NaquadahReactor_03=强制进入无线模式
+
+NameGrandAssemblyLine=大型装配线
+GrandAssemblyLineRecipeType=无序装配线
+gtnl.recipe.GrandAssemblyLineSpecialRecipes=装配线防冲突识别
+Tooltip_GrandAssemblyLine_00=§r§l让亨利·福特也黯然失色。
+Tooltip_GrandAssemblyLine_01=§r以惊人的速度组装硬件。
+Tooltip_GrandAssemblyLine_02=不再需要按顺序输入物品
+Tooltip_GrandAssemblyLine_03=机器可进行跨配方处理！ 
+Tooltip_GrandAssemblyLine_04=默认只能安装一个普通或多安能源仓！
+Tooltip_GrandAssemblyLine_05=安装UHV及以上的并行控制核心解除能源仓限制
+Tooltip_GrandAssemblyLine_06=安装UIV及以上的并行控制核心解锁§c无损超频§7
+Tooltip_GrandAssemblyLine_07=安装UMV及以上的并行控制核心将额外提供500%的耗电减免和1900%的加速(乘算叠加)
+Tooltip_GrandAssemblyLine_08=安装UMV及以上的并行控制核心且未不安装能源仓将自动进入无线模式
+Tooltip_GrandAssemblyLine_Casing=任意进阶电子计算机械方块或防爆玻璃
+Info_GrandAssemblyLine_00=设置超频允许最小时间
+
+NamePrecisionAssembler=精密组装机
+PreciseAssemblerRecipeType=组装机 / 精密组装机
+PreciseAssembler_Mode_0=组装机
+PreciseAssembler_Mode_1=精密组装机
+Tooltip_PreciseAssembler_00=比相同电压的机器快125%
+Tooltip_PreciseAssembler_01=机械方块等级决定了能源仓最大等级，UHV机械方块解锁所有等级
+Tooltip_PreciseAssembler_02=并行数：2 ^ 玻璃等级 + 精密电子单元机械方块等级 * 64
+Tooltip_PreciseAssembler_03=当精密电子单元机械方块等级大于3时，开启§c无损超频§7
+Tooltip_PreciseAssembler_Casing=任意精密机械方块
+
+NameDecayHastener=衰变加速器
+gtnl.recipe.DecayHastenerRecipes=衰变扭曲
+DecayHastenerRecipeType=衰变扭曲
+Tooltip_DecayHastener_00=加速与截停衰变链的任意部分
+Tooltip_DecayHastener_01=§9§o逝者如斯，我们便筑坝截流，开闸放洪
+Tooltip_DecayHastener_Casing=任意放射硅岩合金机械方块
+
+NameWoodDistillation=木化工厂
+gtnl.recipe.WoodDistillationRecipes=集成木质生物质热解
+WoodDistillationRecipeType=集成木质生物质热解
+Tooltip_WoodDistillation_00=最终产出：配方输出 * 电压等级 * 2
+Tooltip_WoodDistillation_Casing=任意隔热机械方块
+
+NameLargePyrolyseOven=大型热解炉
+LargePyrolyseOvenRecipeType=焦炉
+Tooltip_LargePyrolyseOven_Casing=任意洁净不锈钢机械方块
+
+NameLargePacker=大型打包机
+LargePackerRecipeType=打包机 / 解包器
+LargePacker_Mode_0=打包机
+LargePacker_Mode_1=解包器
+Tooltip_LargePacker_00=比相同电压的机器快500%
+Tooltip_LargePacker_01=只需要使用配方要求功率的50%
+Tooltip_LargePacker_Casing=任意强化钨钢机械方块
+
+NameSteamgate=蒸汽之门基础方块
+Tooltip_Steamgate_00=§b§o不可思议的机器。
+Tooltip_Steamgate_01=必须使用蒸汽之门拨号装置连接到另一座蒸汽之门。
+Tooltip_Steamgate_02=左键单击以保存蒸汽之门数据。右键单击以连接到另一座蒸汽之门。
+Tooltip_Steamgate_03=右键单击已连接的蒸汽之门以进行传送。
+Tooltip_Steamgate_04=已保存蒸汽之门数据
+Tooltip_Steamgate_05=成功拨号到蒸汽之门
+Tooltip_Steamgate_06=无法拨号到蒸汽之门
+
+NameLargeAlloySmelter=大型合金炉
+LargeAlloySmelterRecipeType=合金炉
+Tooltip_LargeAlloySmelter_00=每级线圈额外提供2%的加速和耗电减免！
+Tooltip_LargeAlloySmelter_Casing=任意隔热机械方块
+
+NameMolecularTransformer=分子重组仪
+gtnl.recipe.MolecularTransformerRecipes=物质重组
+MolecularTransformerRecipeType=物质重组
+Tooltip_MolecularTransformer_Casing=任意化学惰性机械方块
+
+NameLargeIndustrialLathe=大型工业车床
+LargeIndustrialLatheRecipeType=车床
+Tooltip_LargeIndustrialLathe_00=比相同电压的机器快125%
+Tooltip_LargeIndustrialLathe_Casing=任意强化镍铬机械方块
+
+NameLargeMaterialPress=大型挤压机
+LargeMaterialPressRecipeType=压缩机
+Tooltip_LargeMaterialPress_00=比相同电压的机器快150%
+Tooltip_LargeMaterialPress_01=安装UV及以上的并行控制核心来支持热等静压装置
+Tooltip_LargeMaterialPress_Casing=任意强化镍铬机械方块
+
+NameLargeWiremill=大型线材工厂
+LargeWiremillRecipeType=线缆轧机
+Tooltip_LargeWiremill_00=比相同电压的机器快225%
+Tooltip_LargeWiremill_01=只需要使用配方要求功率的60%
+Tooltip_LargeWiremill_Casing=任意强化镍铬机械方块
+
+NameLargeBender=大型卷板机
+LargeBenderRecipeType=卷板机
+Tooltip_LargeBender_00=比相同电压的机器快500%
+Tooltip_LargeBender_01=只需要使用配方要求功率的80%
+Tooltip_LargeBender_Casing=任意强化镍铬机械方块
+
+NameLargeExtruder=大型压模机
+LargeExtruderRecipeType=压模机
+Tooltip_LargeExtruder_00=比相同电压的机器快275%
+Tooltip_LargeExtruder_01=只需要使用配方要求功率的80%
+Tooltip_LargeExtruder_Casing=任意强化镍铬机械方块
+
+NameLargeArcSmelter=大型电弧炉
+LargeArcSmelterRecipeType=电弧炉 / 等离子电弧炉
+LargeArcSmelter_Mode_0=电弧炉
+LargeArcSmelter_Mode_1=等离子电弧炉
+Tooltip_LargeArcSmelter_00=比相同电压的机器快300%
+Tooltip_LargeArcSmelter_01=只需要使用配方要求功率的80%
+Tooltip_LargeArcSmelter_Casing=任意冶炼炉机械方块
+
+NameLargeForming=大型冲压机
+LargeFormingRecipeType=冲压机床
+Tooltip_LargeForming_00=比相同电压的机器快500%
+Tooltip_LargeForming_01=只需要使用配方要求功率的80%
+Tooltip_LargeForming_Casing=任意强化镍铬机械方块
+
+NameLargeElectrolyzer=大型电解槽
+LargeElectrolyzerRecipeType=电解机
+Tooltip_LargeElectrolyzer_00=比相同电压的机器快200%
+Tooltip_LargeElectrolyzer_01=只需要使用配方要求功率的80%
+Tooltip_LargeElectrolyzer_Casing=任意电解机机械方块
+
+NamePCBFactory=PCB工厂
+PCBFactoryRecipeType=PCB工厂
+Tooltip_PCBFactory_00=比相同电压的机器快200%
+Tooltip_PCBFactory_01=只需要使用配方要求功率的80%
+Tooltip_PCBFactory_02=无视生物仓升级要求
+Tooltip_PCBFactory_03=固定双倍产出
+Tooltip_PCBFactory_04=机器开机时固定消耗7500L蒸馏水/5s
+Tooltip_PCBFactory_05=每并行消耗对应配方等级的100L低级净化水/50L高级净化水
+Tooltip_PCBFactory_06=机器等级每高出配方等级一级，净化水消耗减半
+Tooltip_PCBFactory_07=机器等级每提高一级，速度+10%，要求功率-10%
+Tooltip_PCBFactory_08=当机器等级超过3时开启§c无损超频§7
+Tooltip_PCBFactory_09=需要使用纳米蜂群提高结构等级，中子->银->金
+Tooltip_PCBFactory_10=只能从顶部输入蒸馏水和净化水
+Tooltip_PCBFactory_Casing=任意镀铱机械方块
+Info_PCBFactory_00=机器等级：
+Info_PCBFactory_01=T4机器等级升级
+
+NameLargeElectromagnet=大型电磁工厂
+LargeElectromagnetRecipeType=电磁离析机 / 两级磁化机
+LargeElectromagnet_Mode_0=电磁离析机
+LargeElectromagnet_Mode_1=两级磁化机
+Tooltip_LargeElectromagnet_Casing=任意电解机机械方块
+
+NameMegaBathTank=巨型浸洗池
+MegaBathTankRecipeType=洗矿池 / 简易洗矿池 / 化学浸洗机
+MegaBathTank_Mode_0=洗矿池
+MegaBathTank_Mode_1=简易洗矿池
+MegaBathTank_Mode_2=化学浸洗机
+Tooltip_MegaBathTank_Casing=任意强化无菌净水厂机械方块
+
+NameLargeChemicalBath=大型化学浸洗机
+LargeChemicalBathRecipeType=洗矿池 / 简易洗矿池 / 化学浸洗机
+LargeChemicalBath_Mode_0=洗矿池
+LargeChemicalBath_Mode_1=简易洗矿池
+LargeChemicalBath_Mode_2=化学浸洗机
+Tooltip_LargeChemicalBath_00=比相同电压的机器快400%
+Tooltip_LargeChemicalBath_01=只需要使用配方要求功率的80%
+Tooltip_LargeChemicalBath_Casing=任意洗矿厂机械方块
+
+NameLargeAutoclave=大型高压结晶釜
+LargeAutoclaveRecipeType=高压釜
+Tooltip_LargeAutoclave_Casing=任意洗矿厂机械方块
+
+NameLargeSolidifier=大型固化阵列
+LargeSolidifierRecipeType=流体固化器
+Tooltip_LargeSolidifier_00=比相同电压的机器快300%
+Tooltip_LargeSolidifier_Casing=任意洗矿厂机械方块
+
+NameMegaCanner=特大装罐机
+MegaCannerRecipeType=装罐机 / 流体装罐机
+MegaCanner_Mode_0=装罐机
+MegaCanner_Mode_1=流体装罐机
+Tooltip_MegaCanner_Casing=任意洗矿厂机械方块
+
+NameLargeCanning=大型装罐机
+LargeCanningRecipeType=装罐机 / 流体装罐机
+LargeCanning_Mode_0=装罐机
+LargeCanning_Mode_1=流体装罐机
+Tooltip_LargeCanning_00=比相同电压的机器快233%
+Tooltip_LargeCanning_01=只需要使用配方要求功率的50%
+Tooltip_LargeCanning_Casing=任意洗矿厂机械方块
+
+NameLargeExtractor=大型提取机
+LargeExtractorRecipeType=提取机 / 流体提取机
+LargeExtractor_Mode_0=提取机
+LargeExtractor_Mode_1=流体提取机
+Tooltip_LargeExtractor_00=比相同电压的机器快150%
+Tooltip_LargeExtractor_01=只需要使用配方要求功率的60%
+Tooltip_LargeExtractor_Casing=任意洗矿厂机械方块
+
+NameLargeCentrifuge=大型离心机组
+LargeCentrifugeRecipeType=离心机 / 热力离心机
+LargeCentrifuge_Mode_0=离心机
+LargeCentrifuge_Mode_1=热力离心机
+Tooltip_LargeCentrifuge_01=比相同电压的机器快160%
+Tooltip_LargeCentrifuge_Casing=任意离心机机械方块
+
+NameLargeBioLab=大型生物实验室
+gtnl.recipe.LargeBioLabRecipes=大型生物实验室
+LargeBioLabRecipeType=大型生物实验室
+Tooltip_LargeBioLab_00=§o这绝对违背了老虎机的原则！
+Tooltip_LargeBioLab_Casing=任意超能硅岩强化无菌净水厂机械方块
+
+NameLargeAssembler=大型组装厂
+LargeAssemblerRecipeType=组装机
+Tooltip_LargeAssembler_00=能源仓限制了机器工作的电压等级+1
+Tooltip_LargeAssembler_01=玻璃等级限制了能源仓等级，UHV玻璃解锁所有等级
+Tooltip_LargeAssembler_02=比相同电压的机器快200%
+Tooltip_LargeAssembler_Casing=任意批量生产框架
+
+NameFishingGround=渔场
+gtnl.recipe.FishingGroundRecipes=渔场
+FishingGroundRecipeType=渔场
+Tooltip_FishingGround_00=把珠海渔场和藻类农场结合在一起！
+Tooltip_FishingGround_Casing=任意哈斯特洛伊-X结构方块
+
+NameLargeEngravingLaser=大型激光蚀刻机
+LargeEngravingLaserRecipeType=激光蚀刻机
+Tooltip_LargeEngravingLaser_00=比相同电压的机器快250%
+Tooltip_LargeEngravingLaser_01=只需要使用配方要求功率的80%
+Tooltip_LargeEngravingLaser_02=玻璃等级限制了能源仓等级，UHV玻璃解锁所有等级
+Tooltip_LargeEngravingLaser_Casing=任意激光抑制机械方块
+
+NameElectricImplosionCompressor=电力聚爆压缩机
+ElectricImplosionCompressorRecipeType=电动聚爆压缩机
+Tooltip_ElectricImplosionCompressor_Casing=任意强化钨钢机械方块
+
+NameMatterFabricator=物质生成机
+MatterFabricatorRecipeType=物质生成机
+gtnl.recipe.MatterFabricatorRecipes=物质生成机
+NEI.MatterFabricatorRecipes.01=任意材料锭
+NEI.MatterFabricatorRecipes.02=任意材料宝石
+NEI.MatterFabricatorRecipes.03=任意材料方块
+
+NameEyeOfHarmonyInjector=鸿蒙之眼注入器
+EyeOfHarmonyInjectorRecipeType=§b鸿蒙之眼注入器
+Tooltip_EyeOfHarmonyInjector_00=以强大的宇宙力量注入气体！
+Tooltip_EyeOfHarmonyInjector_01=这太令人兴奋了！
+Tooltip_EyeOfHarmonyInjector_02=直接操纵鸿蒙之眼来灌注流体
+Tooltip_EyeOfHarmonyInjector_03=支持所有输入仓！
+Tooltip_EyeOfHarmonyInjector_04=在GUI内配置最大输入阈值
+Tooltip_EyeOfHarmonyInjector_05=§e爱来自Korosensei :)
+Tooltip_EyeOfHarmonyInjector_Casing=任意超能机械方块
+Tooltip_EyeOfHarmonyInjector_HeliumParametrization=§b氦气最大输入阈值
+Tooltip_EyeOfHarmonyInjector_HydrogenParametrization=§b氢气最大输入阈值
+Tooltip_EyeOfHarmonyInjector_RawStarMatterParametrization=§b浓缩原始恒星等离子体混合物最大输入阈值
+Info_EyeOfHarmonyInjector_00=独立配置最大输入数量
+Info_EyeOfHarmonyInjector_01=目标坐标：
+Info_EyeOfHarmonyInjector_02=点击高亮鸿蒙之眼坐标
+Info_EyeOfHarmonyInjector_03=打开鸿蒙之眼独立配置面板
+Info_EyeOfHarmonyInjector_04=§a自动调配
+Info_EyeOfHarmonyInjector_Title=§9鸿蒙之眼状态
+
+NameReactionFurnace=反应炉
+ReactionFurnaceRecipeType=熔炉
+Tooltip_ReactionFurnace_00=总并行数：并行控制核心提供的并行 * 8192 - 1
+Tooltip_ReactionFurnace_01=无线模式处理时间固定为128tick
+Tooltip_ReactionFurnace_Casing=任意强化镀铱机械方块
+
+NameElementCopying=元素复制机
+ElementCopyingRecipeType=元素复制
+Tooltip_ElementCopying_00=固定运行时间为20tick
+Tooltip_ElementCopying_01=无法超频
+Tooltip_ElementCopying_02=所有复制所需UU物质数量均减少10倍
+Tooltip_ElementCopying_Casing=任意分子机械方块
+Info_ElementCopying_00=已选择种类：%s，使用UU物质：%s L，耗电：%s EU
+
+NameHandOfJohnDavisonRockefeller=洛克菲勒之手
+HandOfJohnDavisonRockefellerRecipeType=化工厂
+Tooltip_HandOfJohnDavisonRockefeller_00=§8§o来自埃克森美孚中央曲线的神秘机器。
+Tooltip_HandOfJohnDavisonRockefeller_01=§8§o不幸的是，它在压裂中央有限曲线。
+Tooltip_HandOfJohnDavisonRockefeller_02=每增加一级玻璃或电压等级，EU消耗乘以95%
+Tooltip_HandOfJohnDavisonRockefeller_03=每增加一级玻璃或电压等级，速度加快2.5%
+Tooltip_HandOfJohnDavisonRockefeller_04=无视配方要求的等级！
+Tooltip_HandOfJohnDavisonRockefeller_Casing=任意压力抑制机械方块
+
+NameFastNeutronBreederReactor=快中子增殖堆
+gtnl.recipe.ElectricNeutronActivatorRecipes=电力中子活化器
+FastNeutronBreederReactorRecipeType=衰变加速器 / 电力中子活化器 / 粒子加速器
+FastNeutronBreederReactor_Mode_0=衰变加速器
+FastNeutronBreederReactor_Mode_1=电力中子活化器
+FastNeutronBreederReactor_Mode_2=粒子加速器
+Tooltip_FastNeutronBreederReactor_Casing=任意批量生产框架
+
+NameBrickedBlastFurnace=砖高炉
+BrickBlastFurnaceRecipeType=§c跃§6进§e一§a号§b原§9始§d高§5炉
+Tooltip_BrickBlastFurnace_00=用于炼钢或一般的热冶金
+Tooltip_BrickBlastFurnace_01=不同于原来的砖高炉，现在使用仓室进行物品交互
+Tooltip_BrickBlastFurnace_02=获益于炉身的改进，
+Tooltip_BrickBlastFurnace_03=现在原始高炉的任意配方仅需§l§c6.4§r秒！
+Tooltip_BrickBlastFurnace_04=代价是造价比以前昂贵了§l§c8§r倍
+Tooltip_BrickBlastFurnace_Casing_00=355x 耐火砖
+Tooltip_BrickBlastFurnace_Casing_01=387x 石砖
+Tooltip_BrickBlastFurnace_Casing_02=70x 青铜框架
+Tooltip_BrickBlastFurnace_Casing_03=24x 青铜燃烧室
+Tooltip_BrickBlastFurnace_Casing_04=16x 镀铜砖块
+
+NameSteamGateAssembler=蒸汽至臻先驱者
+gtnl.recipe.SteamGateAssemblerRecipes=液压动力精密制造
+SteamGateAssemblerRecipeType=无界造物核心
+Tooltip_SteamGateAssembler_00=§b§o管道与齿轮的亵渎混合体，暴躁地吞噬着浩瀚蒸汽。
+Tooltip_SteamGateAssembler_01=§b§o无数压力在每个精密调校的仓室内涌动，维持着机械的至高平衡。
+Tooltip_SteamGateAssembler_02=§b§o是什么样的疯狂驱使着某人打造如此机械奇迹? 这究竟承载着怎样的宏伟构想? 
+Tooltip_SteamGateAssembler_03=作者：§d§oSteam§f§oIs§d§oThe§f§oNumber
+
+NameMegaSteamCompressor=超级蒸汽压缩机
+MegaSteamCompressorRecipeType=超级压缩
+Tooltip_MegaSteamCompressor_00=拥有256并行
+Tooltip_MegaSteamCompressor_01=§b§o喷射超乎想象的高压蒸汽流，以强力压缩材料。
+Tooltip_MegaSteamCompressor_02=§b§o可制造超致密金属板……
+Tooltip_MegaSteamCompressor_03=作者：§d§oSteam§f§oIs§d§oThe§f§oNumber
+
+NameSteamExtractinator=蒸汽精萃机
+gtnl.recipe.SteamExtractinatorRecipes=萃取
+SteamExtractinatorRecipeType=资源萃取
+Tooltip_SteamExtractinator_00=蒸发不同泥浆中的杂质，以生成可用材料
+Tooltip_SteamExtractinator_01=一次可处理多达4个物品
+Tooltip_SteamExtractinator_02=§b§o从蒸汽到岩石，压力的力量或许能带来无限财富！
+Tooltip_SteamExtractinator_Casing_00=顶部青铜机械方块
+Tooltip_SteamExtractinator_Casing_01=底部青铜机械方块
+Tooltip_SteamExtractinator_Casing_02=上下之间青铜机械方块
+
+NameMegaSolarBoiler=巨型高压太阳能锅炉
+MegaSolarBoilerRecipeType=太阳能锅炉
+Tooltip_MegaSolarBoiler_00=也许鸿蒙之眼能够提供足够的银子来支撑这庞然大物
+Tooltip_MegaSolarBoiler_01=产生 96,000 升/秒的蒸汽
+Tooltip_MegaSolarBoiler_02=§b§o每秒产生的蒸汽比你的Steam游戏库里未游玩的游戏还要多
+
+NameSteamCactusWonder=仙人掌奇迹
+gtnl.recipe.CactusWonderFakeRecipes=献给仙人掌神的供奉
+SteamCactusWonderRecipeType=仙人掌祝福之庙
+Tooltip_SteamCactusWonder_00=燃烧仙人掌焦炭和仙人掌炭，以产生越来越高效的蒸汽
+Tooltip_SteamCactusWonder_01=仙人掌奇迹每秒都会消耗所有储存的供奉
+Tooltip_SteamCactusWonder_02=仙人掌之神将保存它们的价值，并以蒸汽祝福回馈她忠诚的狂热信徒
+Tooltip_SteamCactusWonder_03=一次只能接受一种类型的供奉
+Tooltip_SteamCactusWonder_04=需要在沙子上种植成熟的仙人掌才能成型
+Tooltip_SteamCactusWonder_05=§b§o仙人掌🙏
+Tooltip_SteamCactusWonder_06=提供价值：
+CactusWonderMetadata=提供价值：
+
+NameSteamCarpenter=蒸汽木匠
+gtnl.recipe.SteamCarpenterRecipes=蒸汽工艺
+SteamCarpenterRecipeType=木匠
+Tooltip_SteamCarpenter_00=§b§o高效地将木材切割成多种形态
+Tooltip_SteamCarpenter_01=作者：§d§oSteam§f§oIs§d§oThe§f§oNumber
+
+NameSteamLavaMaker=超级石头加热器
+gtnl.recipe.LavaMaker=蒸汽蒸融
+SteamLavaMakerRecipeType=超级加热
+Tooltip_SteamLavaMaker_00=可一次熔化最多 4 块石头
+Tooltip_SteamLavaMaker_01=§b§o提高温度
+Tooltip_SteamLavaMaker_02=作者：§d§oSteam§f§oIs§d§oThe§f§oNumber
+Tooltip_SteamLavaMaker_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameSteamManufacturer=蒸汽制造商
+gtnl.recipe.SteamManufacturerRecipes=液压制造
+SteamManufacturerRecipeType=组装机
+Tooltip_SteamManufacturer_00=拥有4并行
+Tooltip_SteamManufacturer_01=以组装的方式组装组件
+Tooltip_SteamManufacturer_02=§b§o奴隶劳动? 在我的 GTNH 里绝不可能！
+
+NameSteamRockBreaker=蒸汽造石机
+gtnl.recipe.RockBreakerRecipes=碎石机
+SteamRockBreakerRecipeType=碎石机
+Tooltip_SteamRockBreaker_00=像碎石机一样工作，但更大
+Tooltip_SteamRockBreaker_01=电路板1 = 圆石，电路板2 = 石头，电路板3 = 黑曜石
+Tooltip_SteamRockBreaker_02=一次可处理多达8配方
+Tooltip_SteamRockBreaker_03=§b§o石石石石石石石石石石石石石石石石石石石石头头头头头头头头头头头头头头头头头头头头
+Tooltip_SteamRockBreaker_04=§b§o注意结构共用：>
+Tooltip_SteamRockBreaker_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameSteamWoodcutter=蒸汽树场
+gtnl.recipe.WoodcutterRecipes=伐木场
+SteamWoodcutterRecipeType=伐木场
+Tooltip_SteamWoodcutter_00=§b§o从树苗缓慢生长成树木
+Tooltip_SteamWoodcutter_01=作者：§d§oSteam§f§oIs§d§oThe§f§oNumber
+
+NameSteamFusionReactor=超高压反应堆
+gtnl.recipe.SteamFusionReactorRecipes=高压反应堆
+SteamFusionMetadata.0=需要压缩超高压聚变反应堆
+SteamFusionReactorRecipeType=高压反应堆
+GT5U.gui.text.metadata.steamfusion=需要压缩超高压反应堆
+Tooltip_SteamFusionReactor_00=将蒸汽与热流体结合，以达到更高的温度
+Tooltip_SteamFusionReactor_01=需要蒸汽才能运作? 不，但也算是
+Tooltip_SteamFusionReactor_02=§b§o这是什么? 聚变? 哈哈哈，别闹了，再讲个笑话吧！
+Tooltip_SteamFusionReactor_Casing=1-8，玻璃相邻的方块
+
+NameHighPressureSteamFusionReactor=压缩超高压反应堆
+HighPressureSteamFusionReactorRecipeType=高压反应堆
+Tooltip_HighPressureSteamFusionReactor_00=青铁与蒸汽的融合，从未被设想过
+Tooltip_HighPressureSteamFusionReactor_01=满足你所有的压力需求
+Tooltip_HighPressureSteamFusionReactor_02=一次可处理多达256配方
+Tooltip_HighPressureSteamFusionReactor_03=§b§o天啊，你到底做了什么
+Tooltip_HighPressureSteamFusionReactor_Casing=1-8，玻璃相邻的方块
+
+NameSteamInfernalCokeOven=炼狱焦炉
+gtnl.recipe.InfernalCockRecipes=焦炉但是超模
+SteamInfernalCokeOvenRecipeType=焦炉
+Tooltip_SteamInfernalCokeOven_00=比粘土高炉更高效运作
+Tooltip_SteamInfernalCokeOven_01=每连续工作5秒，速度提升1%，最高可达600%
+Tooltip_SteamInfernalCokeOven_02=§b§o太棒了！
+
+NamePrimitiveBrickKiln=直焰窑
+gtnl.recipe.PrimitiveBrickKilnRecipes=原始土窑
+PrimitiveBrickKilnRecipeType=原始土窑
+Tooltip_PrimitiveBrickKiln_00=景德镇品质认证！
+Tooltip_PrimitiveBrickKiln_01=一次可处理多达8个物品
+Tooltip_PrimitiveBrickKiln_Casing=任意耐火砖
+
+NameLargeSteamCircuitAssembler=大型蒸汽电路组装机
+LargeSteamCircuitAssemblerRecipeType=电路组装机
+Tooltip_LargeSteamCircuitAssembler_00=比同等级的单方块组装机快11%
+Tooltip_LargeSteamCircuitAssembler_01=仅消耗正常需求125%的蒸汽
+Tooltip_LargeSteamCircuitAssembler_02=一次可处理多达16个物品
+Tooltip_LargeSteamCircuitAssembler_03=原始科技！ 
+Tooltip_LargeSteamCircuitAssembler_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamMixer=大型蒸汽搅拌机
+LargeSteamMixerRecipeType=搅拌机
+Tooltip_LargeSteamMixer_00=比同等级的单方块搅拌机慢33%
+Tooltip_LargeSteamMixer_01=一次可处理多达8个物品
+Tooltip_LargeSteamMixer_02=在控制器内放入不锈钢齿轮来解锁HV配方
+Tooltip_LargeSteamMixer_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamCentrifuge=大型蒸汽离心机
+LargeSteamCentrifugeRecipeType=离心机
+Tooltip_LargeSteamCentrifuge_00=比同等级的单方块离心机快43%
+Tooltip_LargeSteamCentrifuge_01=仅消耗正常需求100%的蒸汽
+Tooltip_LargeSteamCentrifuge_02=一次可处理多达16个物品
+Tooltip_LargeSteamCentrifuge_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamHammer=大型蒸汽锻造锤
+LargeSteamHammerRecipeType=锻造锤
+Tooltip_LargeSteamHammer_00=比同等级的单方块锻造锤快33%
+Tooltip_LargeSteamHammer_01=仅消耗正常需求75%的蒸汽
+Tooltip_LargeSteamHammer_02=一次可处理多达32个物品
+Tooltip_LargeSteamHammer_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamCompressor=大型蒸汽压缩机
+LargeSteamCompressorRecipeType=压缩机
+Tooltip_LargeSteamCompressor_00=比同等级的单方块压缩机快100%
+Tooltip_LargeSteamCompressor_01=仅消耗正常需求80%的蒸汽
+Tooltip_LargeSteamCompressor_02=一次可处理多达16个物品
+Tooltip_LargeSteamCompressor_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamSifter=大型蒸汽筛选机
+LargeSteamSifterRecipeType=筛选机
+Tooltip_LargeSteamSifter_00=比同等级的单方块筛选机快33%
+Tooltip_LargeSteamSifter_01=仅消耗正常需求80%的蒸汽
+Tooltip_LargeSteamSifter_02=一次可处理多达16个物品
+Tooltip_LargeSteamSifter_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamExtruder=大型蒸汽压模机
+LargeSteamExtruderRecipeType=压模机
+Tooltip_LargeSteamExtruder_00=比同等级的单方块压模机快11%
+Tooltip_LargeSteamExtruder_01=仅消耗正常需求95%的蒸汽
+Tooltip_LargeSteamExtruder_02=一次可处理多达8个物品
+Tooltip_LargeSteamExtruder_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamBending=大型蒸汽卷板机
+LargeSteamBendingRecipeType=卷板机
+Tooltip_LargeSteamBending_00=比同等级的单方块卷板机快5%
+Tooltip_LargeSteamBending_01=仅消耗正常需求95%的蒸汽
+Tooltip_LargeSteamBending_02=一次可处理多达8个物品
+Tooltip_LargeSteamBending_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamCutting=大型蒸汽切割机
+LargeSteamCuttingRecipeType=切割机
+Tooltip_LargeSteamCutting_00=比同等级的单方块切割机快11%
+Tooltip_LargeSteamCutting_01=仅消耗正常需求95%的蒸汽
+Tooltip_LargeSteamCutting_02=一次可处理多达8个物品
+Tooltip_LargeSteamCutting_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamLathe=大型蒸汽车床
+LargeSteamLatheRecipeType=车床
+Tooltip_LargeSteamLathe_00=比同等级的单方块车床快11%
+Tooltip_LargeSteamLathe_01=仅消耗正常需求95%的蒸汽
+Tooltip_LargeSteamLathe_02=一次可处理多达8个物品
+Tooltip_LargeSteamLathe_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameRareEarthCentrifugal=稀土离心机
+gtnl.recipe.RareEarthCentrifugalRecipes=稀土离心
+RareEarthCentrifugalRecipeType=稀土离心
+Tooltip_RareEarthCentrifugal_Casing=任意分子抑制机械方块
+
+NameAdvancedRareEarthCentrifugal=进阶稀土离心机
+AdvancedRareEarthCentrifugalRecipeType=稀土离心
+Tooltip_AdvancedRareEarthCentrifugal_Casing=任意镀铱机械方块
+
+NameEdenGarden=“伊甸”生态奇点
+EdenGardenRecipeType=作物农场
+Tooltip_EdenGarden_00=§e§o神说：“陆地上要生出草木和各种蔬菜。” 
+Tooltip_EdenGarden_01=§e§o于是大地生出了草木，出现了各种瓜果蔬菜
+Tooltip_EdenGarden_02=§e§o籽实累累，整个大地上一片生机盎然。
+Tooltip_EdenGarden_03=比极限工业温室快100倍！ 
+Tooltip_EdenGarden_04=所有IC2作物将获得完美属性
+Tooltip_EdenGarden_05=不再需要肥料和除草剂！ 
+Tooltip_EdenGarden_06=每株作物消耗2000L水
+Tooltip_EdenGarden_Casing=任意电力压缩机机械方块
+Info_EdenGarden_00=运行时无法输入种子！
+Info_EdenGarden_01=运行模式：%s
+Info_EdenGarden_02=设置模式(输入)
+Info_EdenGarden_03=设置模式(输出)
+Info_EdenGarden_04=最大槽位数：§a%s§r
+Info_EdenGarden_05=已用槽位数：%s%s§r
+Info_EdenGarden_06=种子类型过多，无法运行！
+Info_EdenGarden_07=种子数量过多，无法运行！
+Info_EdenGarden_Inventory=物品栏
+Info_EdenGarden_Status=状态
+Info_EdenGarden_Configuration=机器设置
+Info_EdenGarden_SetupMode=设置模式
+Info_EdenGarden_Operating=运行
+Info_EdenGarden_Input=输入
+Info_EdenGarden_Output=输出
+Info_EdenGarden_Disabled=关闭
+Info_EdenGarden_Enabled=开启
+Info_EdenGarden_IC2Mode=IC2模式
+Info_EdenGarden_NoHumidityMode=无湿度模式
+Info_EdenGarden_SetupPhase_Working=机器运行时无法启用/关闭设置模式！
+Info_EdenGarden_SetupPhase_Change=模式已切换为
+Info_EdenGarden_SetupPhase_Invalid=无效模式，请报告给开发者！
+Info_EdenGarden_Mode_Working=机器运行时无法切换模式！
+Info_EdenGarden_Mode_HasSeeds=机器内存在种子时无法切换温室模式！
+Info_EdenGarden_Mode_Change=已切换模式为：%s
+Info_EdenGarden_NoHumidityMode_Enabled=无湿度模式已开启
+Info_EdenGarden_NoHumidityMode_Disabled=无湿度模式已关闭
+
+NameGenerationEarthEngine=初代目行星发动机
+GenerationEarthEngineRecipeType=聚变反应堆
+gtnl.recipe.RecombinationFusionReactorRecipes=重聚变反应堆
+gtnl.recipe.GenerationEarthEngineRecipeType=重聚变反应堆
+Tooltip_GenerationEarthEngine_00=尽管多年过去了，它仍然屹立不倒
+Tooltip_GenerationEarthEngine_01=人类技术巅峰之作！ 
+Tooltip_GenerationEarthEngine_Casing=任意批量生产框架
+
+NameBloodSoulSacrificialArray=血魂祭祀阵
+gtnl.recipe.BloodDemonInjectionRecipes=血魔注入
+gtnl.recipe.FallingTowerRecipes=模拟坠星标位
+gtnl.recipe.AlchemicChemistrySetRecipes=秘法炼金
+NEI.BloodSoulSacrificialArray.specialValue=需要LP：%s
+GT5U.gui.text.metadata.blood=需要更多LP
+BloodSoulSacrificialArray.LPNetwork=LP网络已存储数量：
+BloodSoulSacrificialArray_Mode_0=血魔注入
+BloodSoulSacrificialArray_Mode_1=模拟坠星标位
+BloodSoulSacrificialArray_Mode_2=秘法炼金
+BloodSoulSacrificialArrayRecipeType=血魔注入 / 模拟坠星标位 / 秘法炼金
+Tooltip_BloodSoulSacrificialArray_00=§4§o献祭你的灵魂…
+Tooltip_BloodSoulSacrificialArray_01=并行控制核心将额外提供4倍并行！
+Tooltip_BloodSoulSacrificialArray_02=耗电减免改为LP消耗减免
+Tooltip_BloodSoulSacrificialArray_03=直接从机器所有者的LP网络抽取LP
+Tooltip_BloodSoulSacrificialArray_04=放入阿蒙克气血宝珠无视所有LP消耗
+Tooltip_BloodSoulSacrificialArray_05=使用剪线钳右键主机来开关坠星渲染
+Tooltip_BloodSoulSacrificialArray_Casing=左前右方的黑钚采矿机械方块
+BloodSoulSacrificialArray_Render_Enabled=开启坠星渲染
+BloodSoulSacrificialArray_Render_Disabled=关闭坠星渲染
+
+NameTeleportationArrayToAlfheim=精灵传送法阵
+FluidManaInputHatch=魔力输入仓
+gtnl.recipe.PortalToAlfheimRecipes=精灵传送门
+gtnl.recipe.NatureSpiritArrayRecipes=自然灵阵
+gtnl.recipe.ManaInfusionRecipes=魔力灌注
+gtnl.recipe.RuneAltarRecipes=符文祭坛
+TeleportationArrayToAlfheim_Mode_0=精灵传送门
+TeleportationArrayToAlfheim_Mode_1=自然灵阵
+TeleportationArrayToAlfheim_Mode_2=魔力灌注
+TeleportationArrayToAlfheim_Mode_3=符文祭坛
+TeleportationArrayToAlfheimRecipeType=精灵传送门 / 自然灵阵 / 魔力灌注 / 符文祭坛
+Tooltip_TeleportationArrayToAlfheim_00=传说这个法阵可以稳定传输大量的物资
+Tooltip_TeleportationArrayToAlfheim_01=需要液态魔力输入仓
+Tooltip_TeleportationArrayToAlfheim_02=每秒消耗100L液态魔力进行工作
+Tooltip_TeleportationArrayToAlfheim_03=在控制器内放入永恒魔力池或阿斯加德蒲公英来启用无限魔力
+Tooltip_TeleportationArrayToAlfheim_Casing=任意放射硅岩合金机械方块
+
+NameLapotronChip=兰波顿工厂
+gtnl.recipe.LapotronChipRecipeType=兰波顿工厂
+gtnl.recipe.LapotronChipRecipes=兰波顿工厂
+Tooltip_LapotronChip_00=正在制作中
+Tooltip_LapotronChip_01=可以用于迅速搭建基础基地
+Tooltip_LapotronChip_Casing=任意放射硅岩合金机械方块
+
+NameHighwayToHell=超生高速
+gtnl.recipe.ExtremeExtremeEntityCrusherRecipes=极·工业屠宰场
+HighwayToHellRecipeType=工业屠宰场
+Tooltip_HighwayToHell_00=§2克隆曾只是野心家的妄想，
+Tooltip_HighwayToHell_01=§2而如今，已成为噩梦般的现实。
+Tooltip_HighwayToHell_02=玻璃等级限制了能源仓等级，UMV玻璃解锁所有等级
+Tooltip_HighwayToHell_03=每提高一级涡轮等级，产出概率+1%
+Info_HighwayToHell_00=正在使用静态涡轮纹理
+Info_HighwayToHell_01=正在使用动态涡轮纹理
+Tooltip_HighwayToHell_Casing=任意放射硅岩合金机械方块
+
+NameSupercomputingCenter=运算中心
+SupercomputingCenterRecipeType=量子计算机
+Tooltip_SupercomputingCenter_00=用于生成算力(以及热量)
+Tooltip_SupercomputingCenter_01=可以持续输入极寒之凛冰来降低热量
+Tooltip_SupercomputingCenter_02=代价是每个机箱的热量会增加机箱算力 / 256
+Tooltip_SupercomputingCenter_03=每个机箱额外提供16倍算力
+Tooltip_SupercomputingCenter_04=如果输入极寒之凛冰，算力额外增加16倍
+Tooltip_SupercomputingCenter_05=使用螺丝刀切换无线模式
+Tooltip_SupercomputingCenter_06=不安装能源仓将自动进入无线电网模式
+Tooltip_SupercomputingCenter_Casing=提示方块：1号
+
+NameHighPerformanceComputationArray=高性能计算阵列
+HighPerformanceComputationArrayRecipeType=量子计算机
+Tooltip_HighPerformanceComputationArray_00=用于生成算力(以及热量)
+Tooltip_HighPerformanceComputationArray_01=需要持续输入超级冷却液来降低热量
+Tooltip_HighPerformanceComputationArray_02=成型后会显示一系列的指示器
+Tooltip_HighPerformanceComputationArray_03=不同的指示器会给予不同的性能调整
+Tooltip_HighPerformanceComputationArray_04=使用螺丝刀切换无线模式
+Tooltip_HighPerformanceComputationArray_Casing_00=未定元解析器 X
+Tooltip_HighPerformanceComputationArray_Casing_01=任意电子计算机械方块(最前或最后一片)
+Tooltip_HighPerformanceComputationArray_Casing_02=数据接口
+Tooltip_HighPerformanceComputationArray_Casing_03=计算机箱
+Tooltip_HighPerformanceComputationArray_Casing_04=任意进阶电子计算机械方块，除外侧
+HPCA_Info_00=结构长度
+HPCA_Info_01=当前最大热量
+HPCA_Info_02=生成算力
+HPCA_Info_03=当前消耗冷却剂数量
+
+NameNeutroniumWireCutting=中子丝线切割机
+NeutroniumWireCuttingRecipeType=切割机
+Tooltip_NeutroniumWireCutting_00=每级玻璃等级额外提供5%的加速和耗电减免(乘算叠加)
+Tooltip_NeutroniumWireCutting_Casing=任意超能硅岩强化无菌净水厂机械方块
+
+NameTransliminalOasis=超限绿洲
+TransliminalOasisRecipeType=伐木场
+Tooltip_TransliminalOasis_00=每级玻璃等级额外提供5%的加速和耗电减免(乘算叠加)
+Tooltip_TransliminalOasis_Casing=任意压力抑制机械方块
+
+NameHighEnergyLaserLathe=高能激光车床
+HighEnergyLaserLatheRecipeType=车床
+Tooltip_HighEnergyLaserLathe_00=每级玻璃等级额外提供5%的加速和耗电减免(乘算叠加)
+Tooltip_HighEnergyLaserLathe_Casing=任意镀铱机械方块
+
+NameSuperconductingElectromagnetism=超导电磁工厂
+SuperconductingElectromagnetismRecipeType=电磁离析机 / 两级磁化机
+SuperconductingElectromagnetism_Mode_0=电磁离析机
+SuperconductingElectromagnetism_Mode_1=两级磁化机
+Tooltip_SuperconductingElectromagnetism_00=每级玻璃等级额外提供5%的加速和耗电减免(乘算叠加)
+Tooltip_SuperconductingElectromagnetism_Casing=任意分子机械方块
+
+NameFieldForgePress=力场锻压机
+FieldForgePressRecipeType=锻造锤
+Tooltip_FieldForgePress_Casing=任意分子机械方块
+
+NameHeavyRolling=重型辊轧机
+HeavyRollingRecipeType=卷板机
+Tooltip_HeavyRolling_00=每级线圈等级额外提供15%的加速(乘算叠加)
+Tooltip_HeavyRolling_Casing=任意冶炼炉机械方块
+
+NameSuperconductingMagneticPresser=超导磁驱冲击装置
+SuperconductingMagneticPresserRecipeType=冲压机床
+Tooltip_SuperconductingMagneticPresser_00=每级玻璃等级额外提供5%的加速和耗电减免(乘算叠加)
+Tooltip_SuperconductingMagneticPresser_Casing=任意镀铱机械方块
+
+NameMagneticConfinementDimensionalityShockDevice=磁约束维度震荡装置
+MagneticConfinementDimensionalityShockDeviceRecipeType=超维度搅拌机
+Tooltip_MagneticConfinementDimensionalityShockDevice_00=§e演奏宇宙的弦理论乐章
+Tooltip_MagneticConfinementDimensionalityShockDevice_01=自带2,147,483,647并行
+Tooltip_MagneticConfinementDimensionalityShockDevice_02=默认拥有无线升级
+Tooltip_MagneticConfinementDimensionalityShockDevice_03=无线模式固定电压为MAX+1，电流为MAX
+
+NameNanitesCircuitAssemblyFactory=纳米蜂群电路组装厂
+NanitesCircuitAssemblyFactoryRecipeType=电路组装机
+Tooltip_NanitesCircuitAssemblyFactory_Casing=任意放射硅岩合金机械方块
+
+NameAetronPressor=以太压铸机
+AetronPressorRecipeType=压模机
+Tooltip_AetronPressor_Casing=任意分子机械方块
+
+NameVortexMatterCentrifuge=旋涡物质离心器
+VortexMatterCentrifugeRecipeType=离心机
+Tooltip_VortexMatterCentrifuge_Casing=任意分子机械方块
+
+NameNanoAssemblerMarkL=纳米组装机Mark-50
+NanoAssemblerMarkLRecipeType=精密组装机
+Tooltip_NanoAssemblerMarkL_00=每级部件装配线外壳等级额外提供10%的加速和耗电减免(乘算叠加)
+Tooltip_NanoAssemblerMarkL_01=部件装配线外壳等级决定了能源仓最大等级 + 3，UIV装配线外壳解锁所有等级
+Tooltip_NanoAssemblerMarkL_Casing=任意镀铱机械方块
+
+NameNanoPhagocytosisPlant=纳米吞噬厂
+NanoPhagocytosisPlantRecipeType=粉碎机 / 湿法碾磨
+NanoPhagocytosisPlant_Mode_0=粉碎机
+NanoPhagocytosisPlant_Mode_1=湿法碾磨
+Tooltip_NanoPhagocytosisPlant_00=使用纳米蜂群无情的撕碎一切
+Tooltip_NanoPhagocytosisPlant_01=每级电压等级额外提供25%的加速和耗电减免(乘算叠加)
+Tooltip_NanoPhagocytosisPlant_Casing=任意超能硅岩强化无菌净水厂机械方块
+
+NameMagneticEnergyReactionFurnace=磁能反应炉
+MagneticEnergyReactionFurnaceRecipeType=电弧炉 / 等离子电弧炉
+MagneticEnergyReactionFurnace_Mode_0=电弧炉
+MagneticEnergyReactionFurnace_Mode_1=等离子电弧炉
+Tooltip_MagneticEnergyReactionFurnace_00=电容器满负荷运作中
+Tooltip_MagneticEnergyReactionFurnace_01=每级线圈等级额外提供20%的加速和耗电减免(乘算叠加)
+Tooltip_MagneticEnergyReactionFurnace_Casing=任意电弧炉机械方块
+
+NamePhaseChangeCube=相变魔方
+PhaseChangeCubeRecipeType=提取机 / 流体提取机 / 流体固化器
+PhaseChangeCube_Mode_0=提取机
+PhaseChangeCube_Mode_1=流体提取机
+PhaseChangeCube_Mode_2=流体固化器
+Tooltip_PhaseChangeCube_00=每级线圈等级额外提供20%的加速和耗电减免(乘算叠加)
+Tooltip_PhaseChangeCube_Casing=任意超能机械方块
+
+NameCompoundExtremeCoolingUnit=复合式极端冷却装置
+gtnl.recipe.PlasmaCondensationRecipes=等离子冷凝
+CompoundExtremeCoolingUnitRecipeType=真空冷冻机 / 等离子冷凝
+CompoundExtremeCoolingUnit_Mode_0=真空冷冻机
+CompoundExtremeCoolingUnit_Mode_1=等离子冷凝
+Tooltip_CompoundExtremeCoolingUnit_00=每级玻璃额外提供5%的加速和耗电减免(乘算叠加)
+Tooltip_CompoundExtremeCoolingUnit_Casing=任意防冻机械方块
+
+NameIntegratedAssemblyFacility=综合组装车间
+IntegratedAssemblyFacilityRecipeType=组装机 / 部件装配线
+IntegratedAssemblyFacility_Mode_0=组装机
+IntegratedAssemblyFacility_Mode_1=部件装配线
+Tooltip_IntegratedAssemblyFacility_00=每级玻璃和部件装配线外壳等级额外提供5%的加速和耗电减免(乘算叠加)
+Tooltip_IntegratedAssemblyFacility_01=部件装配线外壳等级决定了能源仓最大等级 + 3，UIV装配线外壳解锁所有等级
+Tooltip_IntegratedAssemblyFacility_02=部件装配线配方不获得16倍并行加成
+Tooltip_IntegratedAssemblyFacility_Casing=任意强化镀铱机械方块
+Info_IntegratedAssemblyFacility_00=部件装配线升级
+
+NameEngravingLaserPlant=激光蚀刻工厂
+gtnl.recipe.PrecisionLaserEngraverRecipes=精密激光蚀刻
+EngravingLaserPlantRecipeType=激光蚀刻机 / 精密激光蚀刻
+EngravingLaserPlant_Mode_0=激光蚀刻机
+EngravingLaserPlant_Mode_1=精密激光蚀刻
+Tooltip_EngravingLaserPlant_00=每级玻璃和部件装配线外壳等级额外提供5%的加速和耗电减免(乘算叠加)
+Tooltip_EngravingLaserPlant_01=部件装配线外壳等级决定了能源仓最大等级 + 3，UIV装配线外壳解锁所有等级
+Tooltip_EngravingLaserPlant_02=精密激光蚀刻配方不获得16倍并行加成
+Tooltip_EngravingLaserPlant_Casing=任意强化镀铱机械方块
+Info_EngravingLaserPlant_00=精密激光蚀刻升级
+
+NameNanitesIntegratedProcessingCenter=纳米集成加工中心
+gtnl.recipe.NanitesIntegratedProcessingRecipes=纳米统合工坊
+NanitesIntegratedProcessingMetadata.0=需要生物工程模块
+NanitesIntegratedProcessingMetadata.1=需要矿石萃取模块
+NanitesIntegratedProcessingMetadata.2=需要聚合物扭曲模块
+NanitesIntegratedProcessingCenterRecipeType=纳米统合工坊
+Tooltip_NanitesIntegratedProcessingCenter_00=我们先进的纳米蜂群生产技术已经完全超越了老式的化工产线
+Tooltip_NanitesIntegratedProcessingCenter_01=安装对应模块解锁对应配方
+Tooltip_NanitesIntegratedProcessingCenter_02=每级线圈等级额外提供10%的加速和耗电减免(乘算叠加)
+Tooltip_NanitesIntegratedProcessingCenter_Casing=任意放射硅岩合金机械方块
+GT5U.gui.text.missing_bio_module=§d需要生物工程模块
+GT5U.gui.text.missing_ore_module=§d需要矿石萃取模块
+GT5U.gui.text.missing_pol_module=§d需要聚合物扭曲模块
+
+NameBioengineeringModule=生物工程模块
+NamePolymerTwistingModule=聚合物扭曲模块
+NameOreExtractionModule=矿石萃取模块
+Tooltip_NanitesBaseModule_Casing=提示方块：1号
+
+NameEternalGregTechWorkshop=永恒格雷工坊
+gtnl.recipe.EternalGregTechWorkshopUpgradeRecipes=永恒格雷工坊模块升级
+EternalGregTechWorkshopRecipeType=永恒格雷工坊中央控制中心
+Tooltip_EternalGregTechWorkshop_Casing=提示方块：1号
+EGTW_UpdateStructureCheck=更新模块连接状态
+EGTW_ExtraModule=额外结构：
+EGTW_ExtraModule_On=已启用
+EGTW_ExtraModule_Off=启用失败
+EGTW_EnableExtraModule=启用额外结构
+EGTW_MachineTier=机器等级：
+EGTW_MachineRunning=§a机器运行中
+EGTW_MachineStandby=机器待机中
+EGTW_MachineIncomplete=§c结构不成型
+
+NameEGTWFusionModule=永恒格雷工坊 - 聚变模块
+EGTWFusionModuleRecipeType=聚变反应堆
+Tooltip_EGTWFusionModule_Casing=提示方块：1号
+
+NameETGWEyeOfHarmonyModule=永恒格雷工坊 - 鸿蒙之眼模块
+ETGWEyeOfHarmonyModuleRecipeType=鸿蒙之眼
+Tooltip_ETGWEyeOfHarmonyModule_00=比鸿蒙之眼快900%
+Tooltip_ETGWEyeOfHarmonyModule_01=固定基础成功率为80%
+Tooltip_ETGWEyeOfHarmonyModule_02=每次失败后成功率额外提高10%
+Tooltip_ETGWEyeOfHarmonyModule_03=成功后重置额外成功率
+Tooltip_ETGWEyeOfHarmonyModule_04=使用电路板进行激光超频
+Tooltip_ETGWEyeOfHarmonyModule_05=产出EU固定为配方显示的100倍
+Tooltip_ETGWEyeOfHarmonyModule_06=保留溢出比成功率惩罚
+Tooltip_ETGWEyeOfHarmonyModule_07=固定并行为2097152
+Tooltip_ETGWEyeOfHarmonyModule_08=默认使用浓缩原始恒星等离子体混合物，使用螺丝刀右键切换回氢氦
+Tooltip_ETGWEyeOfHarmonyModule_09=仓室检查和鸿蒙之眼一致
+Tooltip_ETGWEyeOfHarmonyModule_10=允许执行所有配方
+Tooltip_ETGWEyeOfHarmonyModule_Casing=提示方块：1号
+
+gtnl.recipe.PlasmaCentrifugeRecipes=等离子离心机
+
+NameFOGAlloySmelterModule=太阳炽热合金炉
+FOGAlloySmelterModuleRecipeType=合金炉
+Tooltip_FOGAlloySmelterModule_00=这是诸神之锻炉的一个模块
+Tooltip_FOGAlloySmelterModule_01=必须安装于诸神之锻炉上才能工作.
+Tooltip_FOGAlloySmelterModule_02=用于聚焦温度下的合金冶炼.
+Tooltip_FOGAlloySmelterModule_03=诸神之锻炉的第五种模块，能够将材料直接精炼成合金
+Tooltip_FOGAlloySmelterModule_04=即使没有高温，它也仍然可以胜任工作.
+Tooltip_FOGAlloySmelterModule_05=它不需要诸神之锻炉的升级.
+Tooltip_FOGAlloySmelterModule_06=这一模块拥有最快的处理速度.
+
+NameFOGAlloyBlastSmelterModule=太阳聚焦融合核心
+FOGAlloyBlastSmelterModuleRecipeType=合金冶炼炉
+Tooltip_FOGAlloyBlastSmelterModule_00=这是诸神之锻炉的一个模块
+Tooltip_FOGAlloyBlastSmelterModule_01=必须安装于诸神之锻炉上才能工作.
+Tooltip_FOGAlloyBlastSmelterModule_02=用于在高度聚焦温度下的合金冶炼.
+Tooltip_FOGAlloyBlastSmelterModule_03=诸神之锻炉的第六种模块，利用极高的温度将材料融化，
+Tooltip_FOGAlloyBlastSmelterModule_04=将其搅拌并直接融合为液态合金.
+Tooltip_FOGAlloyBlastSmelterModule_05=它拥有无损超频的能力.
+Tooltip_FOGAlloyBlastSmelterModule_06=这一模块专注于高效处理材料.
+
+NameFOGExtractorModule=太阳热离精粹机
+FOGExtractorModuleRecipeType=提取机 / 流体提取机
+fog.button.fluidmode.tooltip.01=提取机
+fog.button.fluidmode.tooltip.02=流体提取机
+Tooltip_FOGExtractorModule_00=这是诸神之锻炉的一个模块
+Tooltip_FOGExtractorModule_01=必须安装于诸神之锻炉上才能工作.
+Tooltip_FOGExtractorModule_02=用于在不同温度下的精准提取.
+Tooltip_FOGExtractorModule_03=诸神之锻炉的第七种模块，利用精准的温度控制提取成品，
+Tooltip_FOGExtractorModule_04=以难以想象的速度处理材料.
+Tooltip_FOGExtractorModule_05=所需的处理模式可在GUI中选择.
+Tooltip_FOGExtractorModule_06=这一模块专注于无限的并行处理.
+
+NameFOGSolarMuonCatalystModule=太阳μ子催化器
+gtnl.recipe.SolarMuonCatalystRecipes=太阳μ子催化器
+SolorMuonCatalystMetadata.0=需要神锻三环和全部升级
+GT5U.gui.text.not_enough_upgrade=所需要求不足
+FOGSolarMuonCatalystModuleRecipeType=物质催化器
+Tooltip_FOGSolarMuonCatalystModule_00=这是诸神之锻炉的一个模块
+Tooltip_FOGSolarMuonCatalystModule_01=必须安装于诸神之锻炉上才能工作.
+Tooltip_FOGSolarMuonCatalystModule_02=用于在极端温差下重组物质.
+Tooltip_FOGSolarMuonCatalystModule_03=诸神之锻炉的第八种模块，通过μ子使原子核更紧密的并拢.
+Tooltip_FOGSolarMuonCatalystModule_04=加速物质直达时间的尽头.
+Tooltip_FOGSolarMuonCatalystModule_05=它需要最高等级的诸神之锻炉.
+Tooltip_FOGSolarMuonCatalystModule_06=这一模块专注于高效物质异化.
+
+Tooltip_FOGModule_Casing_00= 奇点强化恒星屏蔽机械方块
+Tooltip_FOGModule_Casing_01= 无界引力隔绝机械方块
+Tooltip_FOGModule_Casing_02= 海珀珍线圈方块
+Tooltip_FOGModule_Casing_03= 天体物质引导机械方块
+Tooltip_FOGModule_Casing_04= 恒星能量抽取机械方块
+
+NameCrackerHub=裂解反应枢纽
+CrackerHubRecipeType=石油裂化机
+Tooltip_CrackerHub_00=线圈等级每高出2级，产出+10%
+Tooltip_CrackerHub_01=每级玻璃等级额外提供5%的加速和耗电减免(乘算叠加)
+Tooltip_CrackerHub_Casing=任意放射硅岩合金机械方块
+
+NameLargeSteamCrusher=大型蒸汽破碎机
+LargeSteamCrusherRecipeType=粉碎机
+Tooltip_LargeSteamCrusher_00=比同等级的单方块粉碎机快900%
+Tooltip_LargeSteamCrusher_01=仅消耗正常需求80%的蒸汽
+Tooltip_LargeSteamCrusher_02=一次可处理多达128个物品
+Tooltip_LargeSteamCrusher_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamExtractor=大型蒸汽提取机
+LargeSteamExtractorRecipeType=提取机
+Tooltip_LargeSteamExtractor_00=比同等级的单方块提取机快33%
+Tooltip_LargeSteamExtractor_01=仅消耗正常需求90%的蒸汽
+Tooltip_LargeSteamExtractor_02=一次可处理多达16个物品
+Tooltip_LargeSteamExtractor_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameComponentAssembler=部件组装机
+ComponentAssemblerRecipeType=部件装配线
+Tooltip_ComponentAssembler_00=比相同电压的机器快100%
+Tooltip_ComponentAssembler_01=只需要使用配方要求功率的80%
+Tooltip_ComponentAssembler_02=批量组装基础部件(马达，泵)等
+Tooltip_ComponentAssembler_03=§e部件装配线外壳§r等级最高为UV
+Tooltip_ComponentAssembler_04=支持升压和超频
+Tooltip_ComponentAssembler_05=最多安装2个能源仓！ 
+Tooltip_ComponentAssembler_06=玻璃等级限制了能源仓等级，UV玻璃解锁所有等级
+Tooltip_ComponentAssembler_07=§o效率碾压其他组装机/装配线！ 
+Tooltip_ComponentAssembler_Casing=任意脱氧钢机械方块
+
+NameLargeBoilerBronze=大型青铜锅炉
+NameLargeBoilerSteel=大型钢锅炉
+NameLargeBoilerTitanium=大型钛锅炉
+NameLargeBoilerTungstenSteel=大型钨钢锅炉
+LargeBoilerRecipeType=锅炉
+Tooltip_LargeBoilerBronze_00=每块煤炭将以64000升/秒的速率产生共计128000升的蒸汽
+Tooltip_LargeBoilerSteel_00=每块煤炭将以128000升/秒的速率产生共计128000升的蒸汽
+Tooltip_LargeBoilerTitanium_00=每块煤炭将以256000升/秒的速率产生共计1024000升的蒸汽
+Tooltip_LargeBoilerTungstenSteel_00=每块煤炭将以512000升/秒的速率产生共计2048000升的蒸汽
+Tooltip_LargeBoiler_00=无需预热
+Tooltip_LargeBoiler_Casing_00=任意机械方块
+Tooltip_LargeBoiler_Casing_01=任意燃烧室机械方块
+
+NameAdvancedInfiniteDriller=进阶无尽油气钻机
+AdvancedInfiniteDrillerRecipeType=进阶无尽油气钻机
+Tooltip_AdvancedInfiniteDriller_00=利用维度技术和坚不可摧的钻头无情的抽取星球的每一份血液
+Tooltip_AdvancedInfiniteDriller_01=更加高级的无尽流体钻井
+Tooltip_AdvancedInfiniteDriller_02=可以更加高效的抽取流体，与此同时钻机需要一定温度来启动，可以通入烈焰之炽焱来升温
+Tooltip_AdvancedInfiniteDriller_03=钻头等级：宇宙中子态素-1 无尽-2 超时空金属-3 时空-4
+Tooltip_AdvancedInfiniteDriller_04=钻机在不同的工作温度下会产生热量，产热公式为 (钻头等级 * 温度 / 2000)
+Tooltip_AdvancedInfiniteDriller_05=随着温度提升，效率也会提升. 当温度超过临界值，钻头将会融毁
+Tooltip_AdvancedInfiniteDriller_06=可以通入不同的流体来降温，可用冷却液如下. 冷却固定消耗为200kL / 5t
+Tooltip_AdvancedInfiniteDriller_07=蒸馏水 1K
+Tooltip_AdvancedInfiniteDriller_08=液态氧 2K
+Tooltip_AdvancedInfiniteDriller_09=液态氦 4K
+Tooltip_AdvancedInfiniteDriller_10=极寒之凛冰 40K
+Tooltip_AdvancedInfiniteDriller_11=烈焰之炽焱消耗公式为 (当前温度^1.3)
+Tooltip_AdvancedInfiniteDriller_12=放入对应的维度标记方块来抽取流体，支持多种！ 
+Tooltip_AdvancedInfiniteDriller_Casing=任意放射硅岩合金机械方块
+Info_AdvancedInfiniteDriller_00=§r当前温度：§e%s§rK
+
+NameLargeSteamFurnace=大型蒸汽熔炉
+LargeSteamFurnaceRecipeType=熔炉
+Tooltip_LargeSteamFurnace_00=比同等级的单方块熔炉快900%
+Tooltip_LargeSteamFurnace_01=仅消耗正常需求50%的蒸汽
+Tooltip_LargeSteamFurnace_02=一次可处理多达128个物品
+Tooltip_LargeSteamFurnace_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamFormingPress=大型蒸汽冲压机床
+LargeSteamFormingPressRecipeType=冲压机床
+Tooltip_LargeSteamFormingPress_00=比同等级的单方块冲压机床快25%
+Tooltip_LargeSteamFormingPress_01=仅消耗正常需求90%的蒸汽
+Tooltip_LargeSteamFormingPress_02=一次可处理多达16个物品
+Tooltip_LargeSteamFormingPress_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamAlloySmelter=大型蒸汽铸形炉
+LargeSteamAlloySmelterRecipeType=合金炉
+Tooltip_LargeSteamAlloySmelter_00=比同等级的单方块合金炉快43%
+Tooltip_LargeSteamAlloySmelter_01=仅消耗正常需求80%的蒸汽
+Tooltip_LargeSteamAlloySmelter_02=一次可处理多达16个物品
+Tooltip_LargeSteamAlloySmelter_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamOreWasher=大型蒸汽洗矿机
+LargeSteamOreWasherRecipeType=洗矿机 / 简易洗矿池
+LargeSteamOreWasher_Mode_0=洗矿机
+LargeSteamOreWasher_Mode_1=简易洗矿池
+Tooltip_LargeSteamOreWasher_00=比同等级的单方块洗矿机快1900%
+Tooltip_LargeSteamOreWasher_01=仅消耗正常需求60%的蒸汽
+Tooltip_LargeSteamOreWasher_02=一次可处理多达32个物品
+Tooltip_LargeSteamOreWasher_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamThermalCentrifuge=大型蒸汽热力离心机
+LargeSteamThermalCentrifugeRecipeType=热力离心
+Tooltip_LargeSteamThermalCentrifuge_00=比同等级的单方块热力离心机快300%
+Tooltip_LargeSteamThermalCentrifuge_01=仅消耗正常需求80%的蒸汽
+Tooltip_LargeSteamThermalCentrifuge_02=一次可处理多达32个物品
+Tooltip_LargeSteamThermalCentrifuge_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameSteamCracking=蒸汽裂化机
+SteamCrackingRecipeType=蒸汽裂化
+gtnl.recipe.SteamCrackerRecipes=蒸汽裂化
+Tooltip_SteamCracking_00=将含硫烃热裂解成蒸汽裂化烃
+Tooltip_SteamCracking_01=比化学反应釜更有效率
+Tooltip_SteamCracking_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NameLargeSteamChemicalBath=大型蒸汽化学浸洗机
+LargeSteamChemicalBathRecipeType=化学浸洗机
+Tooltip_LargeSteamChemicalBath_00=比同等级的单方块化学浸洗机快25%
+Tooltip_LargeSteamChemicalBath_01=仅消耗正常需求80%的蒸汽
+Tooltip_LargeSteamChemicalBath_02=一次可处理多达16个物品
+Tooltip_LargeSteamChemicalBath_Casing=任意镀铜砖块或脱氧钢机械方块
+
+NamePrimitiveDistillationTower=原始蒸馏塔
+PrimitiveDistillationTowerRecipeType=蒸馏塔
+Tooltip_PrimitiveDistillationTower_00=只能输出6种流体！ 
+Tooltip_PrimitiveDistillationTower_01=仅消耗正常需求75%的蒸汽
+Tooltip_PrimitiveDistillationTower_Casing_01=任意钢制燃烧室
+Tooltip_PrimitiveDistillationTower_Casing_02=任意脱氧钢机械方块
+
+NameCheatOreProcessingFactory=作弊者的究极集成矿处
+gtnl.recipe.CheatOreProcessingRecipes=作弊者的快速处理
+CheatOreProcessingFactoryRecipeType=给作弊者的快速矿物处理
+
+NameMeteorMiner=坠星采矿场
+MeteorMinerRecipeType=坠星采矿
+Tooltip_MeteorMiner_00=为了正常工作，坠星中心的高度必须比多方块结构最高点至少高出1个方块
+Tooltip_MeteorMiner_01=激光将从坠星中心开始，在XZ轴方向上对半径50个方块范围内的区域进行开采
+Tooltip_MeteorMiner_02=所有涉及的区块必须被强加载
+Tooltip_MeteorMiner_03=激光将根据陨石自动设置其作用半径，
+Tooltip_MeteorMiner_04=如果找不到任何陨石，它将等待陨石生成，
+Tooltip_MeteorMiner_05=同时考虑到陨石中心正上方的方块(类似于守卫者玻璃)
+Tooltip_MeteorMiner_06=重置按钮可以在不改变半径的情况下重启机器
+Tooltip_MeteorMiner_07=§c§l等级I
+Tooltip_MeteorMiner_08=每个周期开采一个方块
+Tooltip_MeteorMiner_09=默认时运等级为0，可以通过在输入总线中放入特殊的镐来增加时运等级：
+Tooltip_MeteorMiner_10=时运II：炽心镐
+Tooltip_MeteorMiner_11=时运III：约束之镐
+Tooltip_MeteorMiner_12=时运IV：泰拉粉碎者
+Tooltip_MeteorMiner_13=§c§l等级II
+Tooltip_MeteorMiner_14=始终为时运V
+Tooltip_MeteorMiner_15=每个周期开采一排方块
+Tooltip_MeteorMiner_16=只能安装1个ULV输入总线！
+Tooltip_MeteorMiner_17=§9§l终于，有像样的坠星自动化了！
+Tooltip_MeteorMiner_Casing_01_01=坠星仪式上方第二层的中心
+Tooltip_MeteorMiner_Casing_01_02=任意围绕控制器的太阳能塔机械方块
+Tooltip_MeteorMiner_Casing_01_03=控制器下方
+Tooltip_MeteorMiner_Casing_02_01=坠星仪式的最高层
+Tooltip_MeteorMiner_Casing_02_02=任意在控制器下方的中子采矿机械方块
+Info_MeteorMiner_00=机器等级：
+Info_MeteorMiner_01=时运等级：
+MeteorMiner_Render_Enabled=开启激光渲染
+MeteorMiner_Render_Disabled=关闭激光渲染
+GT5U.gui.text.meteor_mining=§d正在挖矿！ 
+GT5U.gui.text.meteor_waiting=§d等待坠星…
+GT5U.gui.text.meteor_reset=§d重置完成！ 
+GT5U.gui.text.missing_schematic=§d缺失设计图
+
+NameDesulfurizer=脱硫机
+gtnl.recipe.DesulfurizerRecipes=脱硫
+DesulfurizerRecipeType=脱硫
+Tooltip_Desulfurizer_00=每提升一个线圈等级，并行加8
+Tooltip_Desulfurizer_01=每提升一个线圈等级，处理速度提升10%
+Tooltip_Desulfurizer_Casing=任意洁净不锈钢机械方块
+
+NameDigester=煮解池
+DigesterRecipeType=煮解池
+GT5U.gui.text.no_nitricacid=§7缺失硝酸
+Tooltip_Digester_00=提升线圈等级来获得更高的速度加成和耗电减免！ 
+Tooltip_Digester_01=超过MV后的每一级电压，都会将温度提高100K
+Tooltip_Digester_Casing=任意强化钨钢机械方块
+
+NameIncubator=培养缸
+IncubatorRecipeType=细菌培养缸
+Tooltip_Incubator_00=不再需要保持输出仓半满！
+Tooltip_Incubator_01=固定并行为4
+Tooltip_Incubator_02=玻璃等级限制了能源仓等级，UHV玻璃解锁所有等级
+Tooltip_Incubator_RadioHatch=放射仓
+Tooltip_Incubator_Casing=任意塑料混凝土方块
+
+NameLargeIncubator=大型培养缸
+LargeIncubatorRecipeType=细菌培养缸
+Tooltip_LargeIncubator_00=比相同电压的单方块机器快400%
+Tooltip_LargeIncubator_01=只需要使用配方要求功率的60%
+Tooltip_LargeIncubator_02=不再需要保持输出仓半满
+Tooltip_LargeIncubator_03=无视玻璃等级要求和精确剂量要求
+Tooltip_LargeIncubator_04=并行数：4 * 培养皿数量 + 2 * 电压等级 * 玻璃等级
+Tooltip_LargeIncubator_RadioHatch=放射仓
+Tooltip_LargeIncubator_Casing=任意塑料混凝土方块
+
+NameMicroorganismMaster=微生物之主
+gtnl.recipe.MicroorganismMasterRecipes=微生物之主
+MicroorganismMasterRecipeType=细菌培养缸
+Tooltip_MicroorganismMaster_00=每级玻璃等级额外提供5%的加速和耗电减免(乘算叠加)
+Tooltip_MicroorganismMaster_01=不再需要保持输出仓半满
+Tooltip_MicroorganismMaster_02=无视玻璃等级要求和剂量要求
+Tooltip_MicroorganismMaster_Casing=任意化学惰性机械方块
+
+NameMantleCrusher=地层撕裂者
+MantleCrusherRecipeType=工业碎岩机
+Tooltip_MantleCrusher_00=需要在输入仓中放入水和岩浆
+Tooltip_MantleCrusher_Casing=任意放射硅岩合金机械方块
+
+NameSmartSiftingHub=智能筛选中枢
+SmartSiftingHubRecipeType=筛选机
+Tooltip_SmartSiftingHub_Casing=任意放射硅岩合金机械方块
+
+NameGiantElectrochemicalWorkstation=巨型电化学工作站
+GiantElectrochemicalWorkstationRecipeType=电解机
+Tooltip_GiantElectrochemicalWorkstation_00=每级线圈等级额外提供15%的加速(乘算叠加)
+Tooltip_GiantElectrochemicalWorkstation_Casing=任意放射硅岩合金机械方块
+
+NameExtremeElectricFurnace=极限电炉
+ExtremeElectricFurnaceRecipeType=合金炉
+Tooltip_ExtremeElectricFurnace_00=每级线圈等级额外提供15%的加速(乘算叠加)
+Tooltip_ExtremeElectricFurnace_Casing=任意超能硅岩强化无菌净水厂机械方块
+
+NameKerrNewmanHomogenizer=克尔·纽曼均质仪
+KerrNewmanHomogenizerRecipeType=搅拌机
+Tooltip_KerrNewmanHomogenizer_Casing=任意强化镀铱机械方块
+
+NameDissolutionCore=溶解核心
+DissolutionCoreRecipeType=溶解罐 / 煮解池
+DissolutionCore_Mode_0=溶解罐
+DissolutionCore_Mode_1=煮解池
+Tooltip_DissolutionCore_00=每级线圈等级额外提供15%的加速(乘算叠加)
+Tooltip_DissolutionCore_01=无视比例要求和热容要求
+Tooltip_DissolutionCore_Casing=任意放射硅岩合金机械方块
+
+NameGeminiContainmentSystem=双子星封装系统
+GeminiContainmentSystemRecipeType=打包机 / 解包器
+GeminiContainmentSystem_Mode_0=打包机
+GeminiContainmentSystem_Mode_1=解包器
+Tooltip_GeminiContainmentSystem_00=每级线圈等级额外提供15%的加速(乘算叠加)
+Tooltip_GeminiContainmentSystem_Casing=任意强化镀铱机械方块
+
+NameExtremeCompressor=极限压缩装置
+ExtremeCompressorRecipeType=电动聚爆压缩机 / 中子态素压缩机
+ExtremeCompressor_Mode_0=电动聚爆压缩机
+ExtremeCompressor_Mode_1=中子态素压缩机
+Tooltip_ExtremeCompressor_Casing=任意强化镀铱机械方块
+
+NameDataCenter=数据中心
+DataCenterRecipeType=数据库
+Tooltip_DataCenter_00=你的个人网络存储器
+Tooltip_DataCenter_01=每个数据访问仓耗电1,024EU/t
+Tooltip_DataCenter_02=每个发送接口耗电30,720EU/t
+Tooltip_DataCenter_03=使用螺丝刀切换无线模式
+Tooltip_DataCenter_Casing=任意电子计算机械方块
+
+NameAlloyBlastSmelter=合金冶炼炉
+AlloyBlastSmelterRecipeType=合金冶炼炉
+Tooltip_AlloyBlastSmelter_00=每超过配方温度900K，耗能均将乘以95%(不计超频)
+Tooltip_AlloyBlastSmelter_01=每超过配方温度1800K，将进行一次无损超频
+Tooltip_AlloyBlastSmelter_02=超过MV后的每一级电压，都会将温度提高100K
+Tooltip_AlloyBlastSmelter_03=固定并行为16
+Tooltip_AlloyBlastSmelter_04=在控制器内放入并行控制核心来减少耗电！ 
+Tooltip_AlloyBlastSmelter_05=能源仓限制了机器工作的电压等级
+Tooltip_AlloyBlastSmelter_Casing=任意冶炼炉机械方块
+
+NameMegaAlloyBlastSmelter=巨型合金冶炼炉
+MegaAlloyBlastSmelterRecipeType=合金冶炼炉
+Tooltip_MegaAlloyBlastSmelter_00=比合金冶炼炉快100%
+Tooltip_MegaAlloyBlastSmelter_01=只需要使用配方要求功率的80%
+Tooltip_MegaAlloyBlastSmelter_02=每超过配方温度900K，耗能均将乘以95%(不计超频)
+Tooltip_MegaAlloyBlastSmelter_03=每级玻璃等级将额外提供2%概率的双倍产出！ 
+Tooltip_MegaAlloyBlastSmelter_04=每级线圈等级额外提供2%的耗电减免和2%的加速！ 
+Tooltip_MegaAlloyBlastSmelter_05=超过MV后的每一级电压，都会将温度提高100K
+Tooltip_MegaAlloyBlastSmelter_Casing=任意冶炼炉机械方块
+
+NamePetrochemicalPlant=石化工厂
+gtnl.recipe.PetrochemicalPlantRecipes=石化工厂
+PetrochemicalPlantRecipeType=石化工厂
+Tooltip_PetrochemicalPlant_00=每提升一个线圈等级，并行加40
+Tooltip_PetrochemicalPlant_01=最终产出：配方输出 * 线圈等级 * 电压等级 * 6
+Tooltip_PetrochemicalPlant_02=§c§l随着技术的精进，提取不应只有一点点
+Tooltip_PetrochemicalPlant_Casing=任意压力抑制机械方块
+Tooltip_PetrochemicalPlant_Muffler=任意顶部压力抑制机械方块
+
+NameLargeEssentiaGenerator=大型源质发电机
+LargeEssentiaGeneratorRecipeType=源质发电机
+Tooltip_LargeEssentiaGenerator_00=可能某些神秘使会对它感到不安…
+Tooltip_LargeEssentiaGenerator_01=将源质转化为能量！
+Tooltip_LargeEssentiaGenerator_02=扩散单元决定本机器可接受的最高仓室等级
+Tooltip_LargeEssentiaGenerator_03=支持普通动力仓和至多64A的多安动力仓
+Tooltip_LargeEssentiaGenerator_04=每安装一个源质升级，动力仓限制最大电流翻倍
+Tooltip_LargeEssentiaGenerator_05=自IV起电压等级每提高一级，动力仓限制最大电流翻倍
+Tooltip_LargeEssentiaGenerator_06=你可以在魔导手册中读到更多信息.
+Tooltip_LargeEssentiaGenerator_Casing=提示方块：1号
+Tooltip_LargeEssentiaGenerator_EssentiaInputHatch=源质输入仓
+Info_LargeEssentiaGenerator_00= 已安装！
+
+NameLargeCircuitAssembler=大型电路组装设施
+LargeCircuitAssemblerRecipeType=电路组装机
+Tooltip_LargeCircuitAssembler_00=玻璃等级限制了能源仓等级，UV玻璃解锁所有等级
+Tooltip_LargeCircuitAssembler_01=只能安装一个能源仓！ 
+Tooltip_LargeCircuitAssembler_Casing=任意多功能机械方块
+
+NameSpaceAssembler=太空组装机
+SpaceAssemblerRecipeType=太空组装机
+Tooltip_SpaceAssembler_00=§d§l字面意义上的在太空组装
+Tooltip_SpaceAssembler_01=必须在空间站运行！
+Tooltip_SpaceAssembler_02=每级玻璃额外提供10%的加速(乘算叠加)
+Tooltip_SpaceAssembler_Casing=任意进阶电子计算机械方块
+GT5U.gui.text.not_in_space_station=不在空间站！
+
+NameSmeltingMixingFurnace=合金搅拌炉
+SmeltingMixingFurnaceRecipeType=合金搅拌 / 超维度等离子锻炉
+gtnl.recipe.SmeltingMixingFurnaceRecipes=合金搅拌
+SmeltingMixingFurnace_Mode_0=合金搅拌
+SmeltingMixingFurnace_Mode_1=超维度等离子锻炉
+Tooltip_SmeltingMixingFurnace_00=§9§l以极高效的方式操纵物质
+Tooltip_SmeltingMixingFurnace_01=§9§l使合金的制作摆脱冶炼的桎梏
+Tooltip_SmeltingMixingFurnace_02=在控制器放入超维校准矩阵来启用超维度等离子锻炉配方
+Tooltip_SmeltingMixingFurnace_03=超维度等离子锻炉配方固定电压为MAX
+Tooltip_SmeltingMixingFurnace_Casing=任意超能机械方块
+
+NameProcessingArrayGTNL=处理阵列：重生
+ProcessingArrayRecipeType=处理阵列
+Tooltip_ProcessingArray_00=让其中的机器如同放置在世界中一样运行
+Tooltip_ProcessingArray_01=在控制器GUI中放置至多64个GT单方块机器
+Tooltip_ProcessingArray_02=请注意，供电为其内机器耗电总和
+Tooltip_ProcessingArray_03=使用螺丝刀启用独立输入总线功能
+Tooltip_ProcessingArray_04=对特定机器无效
+Tooltip_ProcessingArray_05=只需要配方要求功率的90%
+Tooltip_ProcessingArray_06=配方时间为原先的 (100 - (线圈等级 + 1) * 3) %
+Tooltip_ProcessingArray_07=并行数：单方块GT机器数量 * 2 + 电压等级 * 4 + 线圈等级 * 4
+Tooltip_ProcessingArray_08=能源仓等级不可高过控制器GUI内的GT单方块机器等级+4！
+Tooltip_ProcessingArray_Casing=任意加强钛机械方块
+
+NameEnergyInfuser=能量注入仪
+EnergyInfuserRecipeType=能量注入仪
+Tooltip_EnergyInfuser_00=比原版的能量注入仪更快！
+Tooltip_EnergyInfuser_01=可用于为物品充电(无损)
+Tooltip_EnergyInfuser_02=提供UU物质可修复物品
+Tooltip_EnergyInfuser_03=充电时将存储在机器内部
+Tooltip_EnergyInfuser_04=使用螺丝刀右键立即输出所有物品
+Tooltip_EnergyInfuser_05=不安装能源仓将自动进入无线模式
+Tooltip_EnergyInfuser_Casing=任意分子机械方块
+Info_EnergyInfuser_00=立即输出所有物品
+
+NameChemicalPlant=化工厂
+ChemicalPlantRecipeType=化学反应釜
+Tooltip_ChemicalPlant_00=线圈等级每高出白铜一级能耗与速度均将乘以95%
+Tooltip_ChemicalPlant_01=并行数不高于1024
+Tooltip_ChemicalPlant_Casing=任意化学惰性机械方块
+
+NameVacuumFreezer=真空冷冻机
+VacuumFreezerRecipeType=真空冷冻机
+Tooltip_VacuumFreezer_00=比原版的真空冷冻机快33%
+Tooltip_VacuumFreezer_01=并行数 = 8 + 2 * 电压等级
+Tooltip_VacuumFreezer_02=支持两次免费的§c无损超频§7！
+Tooltip_VacuumFreezer_Casing=任意防冻机械方块
+
+NameBlazeBlastFurnace=烈焰高炉
+FluidBlazeInputHatch=烈焰输入仓
+BlazeBlastFurnaceRecipeType=工业高炉
+Tooltip_BlazeBlastFurnace_00=比工业高炉快200%
+Tooltip_BlazeBlastFurnace_01=只需要使用配方要求功率的75%
+Tooltip_BlazeBlastFurnace_02=最大并行数固定为64
+Tooltip_BlazeBlastFurnace_03=在控制器内放入炽骨立方将并行提高到256
+Tooltip_BlazeBlastFurnace_04=需每秒提供10x配方电压等级^2的熔融烈焰
+Tooltip_BlazeBlastFurnace_05=放入炽骨立方后消耗乘以4倍
+Tooltip_BlazeBlastFurnace_06=超过MV后的每一级电压，都会将温度提高100K
+Tooltip_BlazeBlastFurnace_Casing_00=任意冶炼炉机械方块
+Tooltip_BlazeBlastFurnace_Casing_01=顶部中心炽焱高炉机械方块
+
+NameColdIceFreezer=寒冰冷冻机
+FluidIceInputHatch=碎冰输入仓
+ColdIceFreezerRecipeType=凛冰冷冻机
+Tooltip_ColdIceFreezer_00=比真空冷冻机快150%！ 
+Tooltip_ColdIceFreezer_01=只需要使用配方要求功率的80%
+Tooltip_ColdIceFreezer_02=最大并行数固定为128
+Tooltip_ColdIceFreezer_03=需每秒提供10x配方电压等级^2的碎冰
+Tooltip_ColdIceFreezer_Casing_00=任意防冻机械方块
+Tooltip_ColdIceFreezer_Casing_01=顶部中心防冻机械方块
+
+NameIndustrialArcaneAssembler=工业奥术装配室
+gtnl.recipe.IndustrialShapedArcaneCraftingRecipes=工业奥术装配室
+gtnl.recipe.IndustrialInfusionCraftingRecipes=工业注魔矩阵
+IndustrialArcaneAssemblerRecipeType=工业奥术装配室 / 工业注魔矩阵
+IndustrialArcaneAssembler_Mode_0=工业奥术装配室
+IndustrialArcaneAssembler_Mode_1=工业注魔矩阵
+Tooltip_IndustrialArcaneAssembler_00=§d§o通过强大的科技手段，我们终于掌握了那无比神秘的魔法
+Tooltip_IndustrialArcaneAssembler_01=固定并行为2147483647
+Tooltip_IndustrialArcaneAssembler_02=需要在控制器放入水晶缠绕宇宙中子态素法杖来成型！ 
+Tooltip_EnergeticIndustrialArcaneAssembler_Casing=任意压力抑制机械方块
+
+NameLibraryOfRuina=§e废墟图书馆
+gtnl.recipe.TheTwilightForestRecipes=永夜暮色
+LibraryOfRuinaRecipeType=永夜暮色
+Tooltip_LibraryOfRuina_00=§8§o打破了那暮色森林的永夜
+Tooltip_LibraryOfRuina_01=§8§o一件件事物变成了一本本书籍
+Tooltip_LibraryOfRuina_02=§8§o图书馆将永存
+Tooltip_LibraryOfRuina_03=§8§o光耀，孤寂，无尽
+Tooltip_LibraryOfRuina_04=§8§o满腹稀世书籍
+Tooltip_LibraryOfRuina_05=§8§o无用，不灭，隐秘
+Tooltip_LibraryOfRuina_06=§8§o正于此地，愿您找到想要的书。
+Tooltip_LibraryOfRuina_07=需要在控制器内放入暮色传送门激活水晶
+Tooltip_LibraryOfRuina_09=7869x 抗热三元金属机械方块
+Tooltip_LibraryOfRuina_10=3883x 太空电梯支持结构方块
+Tooltip_LibraryOfRuina_11=2159x 超高密度空间弯曲机械方块
+Tooltip_LibraryOfRuina_12=2515x 聚变玻璃
+Tooltip_LibraryOfRuina_13=737x 重力稳定机械方块
+Tooltip_LibraryOfRuina_14=936x 加速器屏蔽机械方块
+Tooltip_LibraryOfRuina_15=578x 维度稳定机械方块
+Tooltip_LibraryOfRuina_16=174x 压缩机机械方块
+Tooltip_LibraryOfRuina_Casing=任意加速器屏蔽机械方块
+
+NameEnergeticPhotovoltaicPowerStation=充能光伏电站
+NameAdvancedPhotovoltaicPowerStation=高级光伏电站
+NameVibrantPhotovoltaicPowerStation=脉冲光伏电站
+PhotovoltaicPowerStationRecipeType=光伏电站
+Tooltip_PhotovoltaicPowerStation_00=根据头顶是否遮挡和天气输出EU
+Tooltip_PhotovoltaicPowerStation_01=需提供每秒功率/4L的蒸馏水保持运行
+Tooltip_EnergeticPhotovoltaicPowerStation_Casing=任意脱氧钢机械方块
+Tooltip_AdvancedPhotovoltaicPowerStation_Casing=任意加强钛机械方块
+Tooltip_VibrantPhotovoltaicPowerStation_Casing=任意强化钨钢机械方块
+
+NameNineIndustrialMultiMachine=大明科技
+NineIndustrialMultiMachineRecipeType=水浒传
+Tooltip_NineIndustrialMultiMachine_00=只比正常的机器速度快∞%
+Tooltip_NineIndustrialMultiMachine_01=仅能使用配方要求功率的0%
+Tooltip_NineIndustrialMultiMachine_02=只有2147483647并行
+Tooltip_NineIndustrialMultiMachine_03=默认运行时间锁定为6.4秒
+Tooltip_NineIndustrialMultiMachine_04=开启批处理后运行时间锁定为1t，配方输出数量均为2147483647
+Tooltip_NineIndustrialMultiMachine_05=不安装能源仓将自动进入无线模式
+Tooltip_NineIndustrialMultiMachine_06=无线模式下支持跨配方和配方类型并行
+Tooltip_NineIndustrialMultiMachine_07=免责声明：不保证所有配方可以正常运行
+Tooltip_NineIndustrialMultiMachine_Mode_0=被逼造反，聚义梁山
+Tooltip_NineIndustrialMultiMachine_Mode_1=黄泥岗劫取贪官赃银
+Tooltip_NineIndustrialMultiMachine_Mode_2=雪夜杀仇，投奔水泊
+Tooltip_NineIndustrialMultiMachine_Mode_3=力大无穷，显英雄本色
+Tooltip_NineIndustrialMultiMachine_Mode_4=景阳冈三拳打死猛虎
+Tooltip_NineIndustrialMultiMachine_Mode_5=醉酒闹寺，拳打僧众
+Tooltip_NineIndustrialMultiMachine_Mode_6=杀仇人，走投无路
+Tooltip_NineIndustrialMultiMachine_Mode_7=救林冲于险境
+Tooltip_NineIndustrialMultiMachine_Mode_8=街头受辱，显英雄孤苦
+Tooltip_NineIndustrialMultiMachine_Mode_9=巧计拉拢卢俊义
+Tooltip_NineIndustrialMultiMachine_Mode_10=血战救兄，豪气冲天
+Tooltip_NineIndustrialMultiMachine_Mode_11=因情被陷，走投无路
+Tooltip_NineIndustrialMultiMachine_Mode_12=机智除恶僧
+Tooltip_NineIndustrialMultiMachine_Mode_13=揭发奸情，快意恩仇
+Tooltip_NineIndustrialMultiMachine_Mode_14=水战英勇沉敌船
+Tooltip_NineIndustrialMultiMachine_Mode_15=力挫巨汉，显机巧
+Tooltip_NineIndustrialMultiMachine_Mode_16=斩奸夫淫妇
+Tooltip_NineIndustrialMultiMachine_Mode_17=脚快如飞，传递军机
+Tooltip_NineIndustrialMultiMachine_Mode_18=连战三次，终破庄院
+Tooltip_NineIndustrialMultiMachine_Mode_19=大军征伐，威震四方
+Tooltip_NineIndustrialMultiMachine_Mode_20=鏖战江南，众将折损惨重
+Tooltip_NineIndustrialMultiMachine_Mode_21=杀人放火，不拘法度
+Tooltip_NineIndustrialMultiMachine_Mode_22=谋略定江山
+Tooltip_NineIndustrialMultiMachine_Mode_23=家奴背叛，坠入牢狱
+Tooltip_NineIndustrialMultiMachine_Mode_24=豪侠舍财助义
+Tooltip_NineIndustrialMultiMachine_Mode_25=四处漂泊
+Tooltip_NineIndustrialMultiMachine_Mode_26=武艺无双，收降名将
+Tooltip_NineIndustrialMultiMachine_Mode_27=智勇双全
+Tooltip_NineIndustrialMultiMachine_Mode_28=接受朝廷诏书
+Tooltip_NineIndustrialMultiMachine_Mode_29=飞石百发百中
+Tooltip_NineIndustrialMultiMachine_Mode_30=天生水性，屡建奇功
+Tooltip_NineIndustrialMultiMachine_Mode_31=投奔义军
+Tooltip_NineIndustrialMultiMachine_Mode_32=兵临城下，威震敌军
+Tooltip_NineIndustrialMultiMachine_Mode_33=官军屡屡失利
+Tooltip_NineIndustrialMultiMachine_Mode_34=天罡地煞齐聚
+Tooltip_NineIndustrialMultiMachine_Mode_35=梁山泊传奇落幕
+NineIndustrialMultiMachine_Mode_0=被逼造反，聚义梁山
+NineIndustrialMultiMachine_Mode_1=黄泥岗劫取贪官赃银
+NineIndustrialMultiMachine_Mode_2=雪夜杀仇，投奔水泊
+NineIndustrialMultiMachine_Mode_3=力大无穷，显英雄本色
+NineIndustrialMultiMachine_Mode_4=景阳冈三拳打死猛虎
+NineIndustrialMultiMachine_Mode_5=醉酒闹寺，拳打僧众
+NineIndustrialMultiMachine_Mode_6=杀仇人，走投无路
+NineIndustrialMultiMachine_Mode_7=救林冲于险境
+NineIndustrialMultiMachine_Mode_8=街头受辱，显英雄孤苦
+NineIndustrialMultiMachine_Mode_9=巧计拉拢卢俊义
+NineIndustrialMultiMachine_Mode_10=血战救兄，豪气冲天
+NineIndustrialMultiMachine_Mode_11=因情被陷，走投无路
+NineIndustrialMultiMachine_Mode_12=机智除恶僧
+NineIndustrialMultiMachine_Mode_13=揭发奸情，快意恩仇
+NineIndustrialMultiMachine_Mode_14=水战英勇沉敌船
+NineIndustrialMultiMachine_Mode_15=力挫巨汉，显机巧
+NineIndustrialMultiMachine_Mode_16=斩奸夫淫妇
+NineIndustrialMultiMachine_Mode_17=脚快如飞，传递军机
+NineIndustrialMultiMachine_Mode_18=连战三次，终破庄院
+NineIndustrialMultiMachine_Mode_19=大军征伐，威震四方
+NineIndustrialMultiMachine_Mode_20=鏖战江南，众将折损惨重
+NineIndustrialMultiMachine_Mode_21=杀人放火，不拘法度
+NineIndustrialMultiMachine_Mode_22=谋略定江山
+NineIndustrialMultiMachine_Mode_23=家奴背叛，坠入牢狱
+NineIndustrialMultiMachine_Mode_24=豪侠舍财助义
+NineIndustrialMultiMachine_Mode_25=四处漂泊
+NineIndustrialMultiMachine_Mode_26=武艺无双，收降名将
+NineIndustrialMultiMachine_Mode_27=智勇双全
+NineIndustrialMultiMachine_Mode_28=接受朝廷诏书
+NineIndustrialMultiMachine_Mode_29=飞石百发百中
+NineIndustrialMultiMachine_Mode_30=天生水性，屡建奇功
+NineIndustrialMultiMachine_Mode_31=投奔义军
+NineIndustrialMultiMachine_Mode_32=兵临城下，威震敌军
+NineIndustrialMultiMachine_Mode_33=官军屡屡失利
+NineIndustrialMultiMachine_Mode_34=天罡地煞齐聚
+NineIndustrialMultiMachine_Mode_35=梁山泊传奇落幕
+Tooltip_NineIndustrialMultiMachine_Casing=任意多功能机械方块
+
+NameMegaBlastFurnace=巨型工业高炉
+Tooltip_MegaBlastFurnaceRecipeType=工业高炉
+Tooltip_MegaBlastFurnace_00=每超过配方温度900K，耗能均将乘以95%(不计超频)
+Tooltip_MegaBlastFurnace_01=每超过配方温度1800K，将进行一次无损超频
+Tooltip_MegaBlastFurnace_02=超过MV后的每一级电压，都会将温度提高100K
+Tooltip_MegaBlastFurnace_03=并行控制核心额外提供4倍并行！
+Tooltip_MegaBlastFurnace_04=比工业高炉快400%
+Tooltip_MegaBlastFurnace_05=安装UEV及以上的并行控制核心解锁§c无损超频§7
+Tooltip_MegaBlastFurnace_Casing_00=任意冶炼炉机械方块
+Tooltip_MegaBlastFurnace_Casing_01=顶部中心放射硅岩合金机械方块
+
+NameElectricBlastFurnace=电力工业高炉
+Tooltip_ElectricBlastFurnaceRecipeType=工业高炉
+Tooltip_ElectricBlastFurnace_00=比工业高炉快25%
+Tooltip_ElectricBlastFurnace_01=只需要使用配方要求功率的90%
+Tooltip_ElectricBlastFurnace_02=每超过配方温度900K，耗能均将乘以95%(不计超频)
+Tooltip_ElectricBlastFurnace_03=每超过配方温度1800K，将进行一次无损超频
+Tooltip_ElectricBlastFurnace_04=超过MV后的每一级电压，都会将温度提高100K
+Tooltip_ElectricBlastFurnace_05=每提升一个电压等级或线圈等级，每次运行可以多处理两个物品
+Tooltip_ElectricBlastFurnace_Casing_00=任意隔热机械方块
+Tooltip_ElectricBlastFurnace_Casing_01=顶部中心格栅机械方块
+
+NamePlatinumBasedTreatment=铂族工业统合枢纽
+PlatinumBasedTreatmentRecipes=单步铂处理
+gtnl.recipe.PlatinumBasedTreatmentRecipes=单步铂处理
+Tooltip_PlatinumBasedTreatment_00=§o拯救千万格雷人于铂处理的水深火热之中
+Tooltip_PlatinumBasedTreatment_01=§o无数萌新盼望的单步铂处理
+Tooltip_PlatinumBasedTreatment_02=初始并行为8
+Tooltip_PlatinumBasedTreatment_03=线圈等级每提高一级，配方时间和耗电减少5%
+Tooltip_PlatinumBasedTreatment_04=玻璃等级限制了能源仓等级，UHV玻璃解锁所有等级
+Tooltip_PlatinumBasedTreatment_05=电压每提高一级，并行 +4
+Tooltip_PlatinumBasedTreatment_Casing_00=任意多功能机械方块
+Tooltip_PlatinumBasedTreatment_Casing_01=消声仓位置请参考多方块结构投影
+
+NameShallowChemicalCoupling=浅层化学耦合
+ShallowChemicalCouplingRecipes=浅层化学耦合
+gtnl.recipe.ShallowChemicalCouplingRecipes=浅层化学耦合
+Tooltip_ShallowChemicalCoupling_00=§7§o基于分子层面操控的化学反应设备
+Tooltip_ShallowChemicalCoupling_01=§7§o通过直接操控分子化学键来避免繁杂的多步化学反应
+Tooltip_ShallowChemicalCoupling_02=线圈等级每提高一级，配方时间和耗电乘以85%
+Tooltip_ShallowChemicalCoupling_03=玻璃等级限制了能源仓等级，UHV玻璃解锁所有等级
+Tooltip_ShallowChemicalCoupling_Casing_00=任意化学防护机械方块
+
+NameTreeDiagram=树状图设计者
+TreeDiagramRecipes=超高度并列演算处理器
+gtnl.recipe.CircuitNanitesDataRecipes=演算处理器蜂群系数
+CircuitNanitesDataMetadata.0=EU减免：
+CircuitNanitesDataMetadata.1=运行速度：
+CircuitNanitesDataMetadata.2=失败率：
+CircuitNanitesDataMetadata.3=双倍产出几率：
+CircuitNanitesDataMetadata.4=并行：
+CircuitNanitesDataMetadata.5=允许升压次数：
+gtnl.recipe.TreeDiagramRecipes=演算模拟
+Tooltip_TreeDiagram_00=§c§o
+Tooltip_TreeDiagram_Casing_00=任意中子采矿机械方块
+
+NameWhiteNightGenerator=白夜发电机
+Tooltip_WhiteNightGenerator_MachineType=§d§l紫罗兰的洗礼
+Tooltip_WhiteNightGenerator_00=§f§l§o起来吧，我的仆从，欢唱着迎接我的到来。
+Tooltip_WhiteNightGenerator_01=§r对大面积的实体造成伤害并发电，实体被造成伤害次数过多将会§c直接击杀
+Tooltip_WhiteNightGenerator_02=§r如果同一种实体类型的被造成伤害次数过多将会直接跳过这种实体！
+Tooltip_WhiteNightGenerator_03=§r血量低于一定值将会被§c直接击杀
+Tooltip_WhiteNightGenerator_04=§r并对机器的所有者造成一次 §c5*实体击杀数量 §r的魔法伤害并施加若干debuff
+Tooltip_WhiteNightGenerator_05=§r此机器有一个§c逆卡巴拉计数器§r，上限为3，每次机器运行时减一，需要维护时会产生红石信号
+Tooltip_WhiteNightGenerator_06=§r红石信号强度将解释为一个从0到15的4位二进制数
+Tooltip_WhiteNightGenerator_07=§r将最低位标记为位4，最高位为位1
+Tooltip_WhiteNightGenerator_08=§r位1：§e§o侦测到工作指令系统故障
+Tooltip_WhiteNightGenerator_09=§r如果该位为1，则最低位标记为位1，最高位为位4
+Tooltip_WhiteNightGenerator_10=§r输出的信号不是位1调整后的！
+Tooltip_WhiteNightGenerator_11=§r位2：§6§o侦测到逆卡巴拉能量大崩溃
+Tooltip_WhiteNightGenerator_12=§r如果该位为1，则应该输入对应的抑制流体
+Tooltip_WhiteNightGenerator_13=§r要确定插入哪种流体，请将位1和位3解释为一个2位二进制数
+Tooltip_WhiteNightGenerator_14=§r0：10000L熔融中子 / 1：7500L熔融无尽 / 2：5000L时空 / 3：2500L磁物质
+Tooltip_WhiteNightGenerator_15=§r位3：§7§o滴答…滴答…
+Tooltip_WhiteNightGenerator_16=§r如果该位为1，则应该输入5000000L净化水
+Tooltip_WhiteNightGenerator_17=§r使用更高等级的净化水可以提高判断时的概率！
+Tooltip_WhiteNightGenerator_18=§r输出倍增：5级：2% / 6级：3% / 7级：4% / 8级：5%
+Tooltip_WhiteNightGenerator_19=§r位4：§c§o血雾弥漫，尸横遍野。
+Tooltip_WhiteNightGenerator_20=§r如果该位为1，则应该输入100000L的血和1个无瑕核心
+Tooltip_WhiteNightGenerator_21=§r无位：§o纯真的自我
+Tooltip_WhiteNightGenerator_22=§r光之树
+Tooltip_WhiteNightGenerator_23=§r机器能量过载，需要输入10000L扩大化空间流体
+Tooltip_WhiteNightGenerator_24=§r维护失败后检查结果将会立即变为§c§o差！
+Tooltip_WhiteNightGenerator_25=§r维护成功后会进行35次概率判断，§o每次判断间隔2秒
+Tooltip_WhiteNightGenerator_26=§r如果判断次数未能在当前运行时全部完成，则剩下没有判断次数的立即为否
+Tooltip_WhiteNightGenerator_27=§r基础概率为§c45%§r，在主机内放入更高等级的立场发生器来提高概率
+Tooltip_WhiteNightGenerator_28=§r§o随着累计检查次数的增加，判断时间和概率均会有一定的增幅
+Tooltip_WhiteNightGenerator_29=§r§c§o每有5个实体被击杀将会使逆卡巴拉计数器立即减1
+Tooltip_WhiteNightGenerator_30=§r§c§o如果机器运行时没有对任何实体造成伤害将会使逆卡巴拉计数器立即减1
+Tooltip_WhiteNightGenerator_31=§r检查结果为§a§o优(26~35)§r时将产出大量电并给玩家回满血和施加buff，然后将逆卡巴拉计数器加1
+Tooltip_WhiteNightGenerator_32=§r为§e§o良(6~15)§r时产出较少电量并给玩家恢复5血，有50%的概率将逆卡巴拉计数器加1
+Tooltip_WhiteNightGenerator_33=§r为§c§o差(0~15)§r时会赋予玩家debuff然后随机生成几个怪物并关机
+Tooltip_WhiteNightGenerator_34=§r§c每10次维护将会使逆卡巴拉熔毁等级加1§r，最高等级为10，每级会让概率判断的成功率下降1%
+Tooltip_WhiteNightGenerator_35=§r每当逆卡巴拉熔毁等级增加时，该机器会进入§c逆卡巴拉能量熔毁状态§r，需要立即对机器进行维护，限时1分钟
+Tooltip_WhiteNightGenerator_36=§r如果在§c逆卡巴拉能量熔毁状态§r下没有进行一次维护，倒计时结束后逆卡巴拉计数器会立即降到0
+Tooltip_WhiteNightGenerator_37=§r随着逆卡巴拉熔毁等级上升，会生成§o黎明，正午，黄昏，午夜§r等考验
+Tooltip_WhiteNightGenerator_38=§r考验的类型包括§a绿色§r，§6琥珀色§r，§d紫罗兰§r，§c血色§r，§9靛蓝色
+Tooltip_WhiteNightGenerator_39=§r如果§c逆卡巴拉熔毁等级达到10§r，则所有考验类型均会变为§o惨白§r，难度和回报均会大幅提升
+Tooltip_WhiteNightGenerator_40=§r完成考验会产生当前机器每秒EU功率乘以总耗时的一部分：
+Tooltip_WhiteNightGenerator_41=§r黎明：10%
+Tooltip_WhiteNightGenerator_42=§r正午：15%
+Tooltip_WhiteNightGenerator_43=§r黄昏：20%
+Tooltip_WhiteNightGenerator_44=§r午夜：25%
+Tooltip_WhiteNightGenerator_45=§r§c当逆卡巴拉计数器为0时会触发一次大型爆炸造成五千亿污染
+Tooltip_WhiteNightGenerator_46=§r§c生成大量怪物、11只末影龙和1只凋灵，直到范围内检查不到凋灵和末影龙时才能重新开机
+Tooltip_WhiteNightGenerator_47=§r§c在范围内的玩家会受到500魔法伤害+5000物理伤害
+Tooltip_WhiteNightGenerator_48=§r运行时每秒产生§a2147483647 * 对所有实体造成的总伤害 * 实体种类 * 500§r的EU，需要在主机放入力场发生器来完成结构检查
+Tooltip_WhiteNightGenerator_49=§r运行时间固定为500秒
+Tooltip_WhiteNightGenerator_50=§r§0§o§m安装终末螺旋来无视上述机制
+Tooltip_WhiteNightGenerator_51=§r§c§o注意，机器运行时内部会产生EU缓存，破坏会立即引发爆炸！
+gtnl.potion.awe=§r§f§l敬畏§r
+Awe_Cancel_01=§f§l不要害怕，我与你同在。除非我允许，否则你永远都不能离开。
+Awe_Cancel_02_01=§f§l不要否认我的存在，我就在你的眼前。
+Awe_Cancel_02_02=§f§l我的事迹，无人知晓，无处可寻。
+Awe_Kick=§f§l！！！ 不知所措 ！！！
+
+NameRealArtificialStar=真·湮灭发电机
+gtnl.recipe.ArtificialStarGeneratingRecipes=真·湮灭发电机
+Tooltip_RealArtificialStar_MachineType=真·湮灭发电机
+Tooltip_RealArtificialStar_00=§d§l只是替换了TST的结构，其余功能一致
+Tooltip_RealArtificialStar_01=§d§l你只需要让正反质子束从两端静静地穿
+Tooltip_RealArtificialStar_02=§d§l 过磁场进入约束球就可以了，轻松愉快！
+Tooltip_RealArtificialStar_03=它简单的外形归功于理论的优雅.
+Tooltip_RealArtificialStar_04=实际产生能量受三种等级方块影响.
+Tooltip_RealArtificialStar_05=同时，更高等级会提高回收原料的概率.
+Tooltip_RealArtificialStar_06=保持连续运行也会提高能量输出.
+Tooltip_RealArtificialStar_07=只允许且必须安装一个输入总线.
+Tooltip_RealArtificialStar_08=能量将直接输出到无线EU网络.
+Tooltip_RealArtificialStar_09=使用剪线钳开启/关闭动画特效.
+Tooltip_RealArtificialStar_02_01=输出系数 = 时间场等级^0.25 * 空间场等级^0.25 * 1.588186^(稳定场等级 - 2)
+Tooltip_RealArtificialStar_02_02=实际输出EU = 配方数值 * 输出系数 * 连续运行奖励系数
+Tooltip_RealArtificialStar_02_03=原料回收概率 = 时间场等级 * 空间场等级 * 稳定场等级 / 1000
+Tooltip_RealArtificialStar_02_04=输入的燃料将会一次性消耗掉，然后运行 6.4s (默认)，并输出对应数值的 EU.
+Tooltip_RealArtificialStar_02_05=在连续运行时，每次运行连续运行奖励系数提高 1% .
+Tooltip_RealArtificialStar_02_06=连续运行奖励系数最大值 150% ，中断后降到 100% .
+Tooltip_RealArtificialStarInfo_01=17604x 硅岩合金机械方块
+Tooltip_RealArtificialStarInfo_02=11539x 极端密度空间弯曲机械方块
+Tooltip_RealArtificialStarInfo_03=2839x 屏蔽加速器机械方块
+Tooltip_RealArtificialStarInfo_04=1336x 戴森球能量接收基座机械方块
+Tooltip_RealArtificialStarInfo_05=1021x 压缩聚变线圈方块MK-II
+Tooltip_RealArtificialStarInfo_06=977x 维度桥接方块或压缩时空场发生器
+Tooltip_RealArtificialStarInfo_07=628x 戴森球控制中心基座机械方块
+Tooltip_RealArtificialStarInfo_08=555x 时空扭曲机械方块或稳定立场发生器
+Tooltip_RealArtificialStarInfo_09=253x 量子玻璃
+Tooltip_RealArtificialStarInfo_10=213x 戴森球控制中心环形机械方块
+Tooltip_RealArtificialStarInfo_11=152x 终极遏制场发生器或时间膨胀场发生器
+Tooltip_RealArtificialStarInfo_12=26x 维度注入机械方块
+Tooltip_RealArtificialStarInfo_13=输入总线：任意维度注入机械方块
+Tooltip_RealArtificialStarInfo_14=输出总线：任意维度注入机械方块
+Info_RealArtificialStar_00=当前发电：
+Info_RealArtificialStar_01=连续运行奖励
+Info_RealArtificialStar_02=发电倍率
+Info_RealArtificialStar_03=空间场等级
+Info_RealArtificialStar_04=时间场等级
+Info_RealArtificialStar_05=稳定场等级
+Info_RealArtificialStar_06=回收原料几率
+NEI.RealAntimatterFuelRodGeneratingRecipe.01=有概率回收部分材料. 概率受模块等级影响.
+NEI.RealArtificialStarGeneratingRecipes.specialValue=产生：
+
+gui.AssemblerMatrix.button.upload_pattern=上传样板至当前网络中可用的§9装配矩阵§r。
+text.AssemblerMatrix.tooltip.0=网络已有类似的合成样板,已跳过上传并返还空白样板！
+
+text.CraftComplete.tooltip.0=§5自动合成完毕！
+text.CraftComplete.tooltip.1=%s %s, 用时 %s
+gtnl.ui.controllerUpgrade.previewNext=查看下一阶段材料
+gtnl.ui.controllerUpgrade.backToCurrent=返回上一阶段材料

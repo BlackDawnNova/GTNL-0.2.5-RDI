@@ -1,0 +1,160 @@
+package com.science.gtnl.common.recipe.gtnl;
+
+import static thaumcraft.common.config.ConfigItems.itemJarNode;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import com.science.gtnl.api.IRecipePool;
+import com.science.gtnl.common.material.GTNLRecipeMaps;
+import com.science.gtnl.common.recipe.thaumcraft.TCRecipeTools;
+import com.science.gtnl.utils.recipes.RecipeBuilder;
+
+import cpw.mods.fml.common.registry.GameRegistry;
+import gregtech.api.enums.Mods;
+import gregtech.api.enums.TierEU;
+import gregtech.api.interfaces.IRecipeMap;
+import gregtech.api.util.GTUtility;
+
+public class ShapedArcaneCraftingRecipes implements IRecipePool {
+
+    public Set<Item> skips;
+
+    private static final List<String> BLACKLISTED_OREDICT_NAMES = Arrays.asList(
+        "craftingToolScrewdriver",
+        "craftingToolHardHammer",
+        "craftingToolSaw",
+        "craftingSoftHammer",
+        "craftingToolWrench",
+        "craftingToolFile",
+        "craftingToolCrowbar",
+        "craftingToolWireCutter",
+        "craftingToolBlade");
+
+    public boolean shouldSkip(Item item) {
+        if (null == skips) {
+            skips = new HashSet<>();
+            skips.add(itemJarNode);
+            if (Mods.ThaumicBases.isModLoaded()) {
+                Item revolver = GameRegistry.findItem(Mods.ThaumicBases.ID, "revolver");
+                if (null != revolver) {
+                    skips.add(revolver);
+                }
+            }
+            if (Mods.Gadomancy.isModLoaded()) {
+                Item itemEtherealFamiliar = GameRegistry.findItem(Mods.Gadomancy.ID, "ItemEtherealFamiliar");
+                if (null != itemEtherealFamiliar) {
+                    skips.add(itemEtherealFamiliar);
+                }
+            }
+        }
+
+        return skips.contains(item);
+    }
+
+    @Override
+    public void loadRecipes() {
+        TCRecipeTools.getShapedArcaneCraftingRecipe();
+        TCRecipeTools.getShapelessArcaneCraftingRecipe();
+
+        IRecipeMap IAA = GTNLRecipeMaps.IndustrialShapedArcaneCraftingRecipes;
+
+        // Shaped
+        for (TCRecipeTools.ShapedArcaneCraftingRecipe recipe : TCRecipeTools.ShapedAR) {
+            if (shouldSkip(
+                recipe.getOutput()
+                    .getItem())) {
+                continue;
+            }
+
+            List<ItemStack> inputItems = new ArrayList<>();
+            for (Object input : recipe.getInputItems()) {
+                if (input instanceof ItemStack) {
+                    ItemStack copy = ((ItemStack) input).copy();
+                    copy.stackSize = 1;
+                    inputItems.add(copy);
+                } else if (input instanceof List) {
+                    List<ItemStack> oreDictItems = (List<ItemStack>) input;
+                    if (!oreDictItems.isEmpty() && !isOreDictBlacklisted(oreDictItems.get(0))) {
+                        ItemStack copy = oreDictItems.get(0)
+                            .copy();
+                        copy.stackSize = 1;
+                        inputItems.add(copy);
+                    }
+                }
+            }
+
+            if (inputItems.size() == 1) inputItems.add(GTUtility.getIntegratedCircuit(1));
+
+            ItemStack output = recipe.getOutput()
+                .copy();
+            output.stackSize = 1;
+
+            RecipeBuilder.builder()
+                .ignoreCollision()
+                .clearInvalid()
+                .itemInputsUnified(InfusionCraftingRecipes.checkInputSpecial(inputItems.toArray(new ItemStack[0])))
+                .itemOutputs(output)
+                .duration(20)
+                .eut(TierEU.RECIPE_LV)
+                .addTo(IAA);
+        }
+
+        // Shapeless
+        for (TCRecipeTools.ShapelessArcaneCraftingRecipe recipe : TCRecipeTools.ShaplessAR) {
+            if (shouldSkip(
+                recipe.getOutput()
+                    .getItem())) {
+                continue;
+            }
+
+            List<ItemStack> inputItems = new ArrayList<>();
+            for (Object input : recipe.getInputItems()) {
+                if (input instanceof ItemStack) {
+                    ItemStack copy = ((ItemStack) input).copy();
+                    copy.stackSize = 1;
+                    inputItems.add(copy);
+                } else if (input instanceof List) {
+                    List<ItemStack> oreDictItems = (List<ItemStack>) input;
+                    if (!oreDictItems.isEmpty() && !isOreDictBlacklisted(oreDictItems.get(0))) {
+                        ItemStack copy = oreDictItems.get(0)
+                            .copy();
+                        copy.stackSize = 1;
+                        inputItems.add(copy);
+                    }
+                }
+            }
+
+            ItemStack output = recipe.getOutput()
+                .copy();
+            output.stackSize = 1;
+
+            RecipeBuilder.builder()
+                .ignoreCollision()
+                .clearInvalid()
+                .itemInputsUnified(InfusionCraftingRecipes.checkInputSpecial(inputItems.toArray(new ItemStack[0])))
+                .itemOutputs(output)
+                .duration(20)
+                .eut(TierEU.RECIPE_LV)
+                .addTo(IAA);
+        }
+    }
+
+    private boolean isOreDictBlacklisted(ItemStack itemStack) {
+        int[] oreIDs = OreDictionary.getOreIDs(itemStack);
+        for (int oreID : oreIDs) {
+            String oreName = OreDictionary.getOreName(oreID);
+            if (BLACKLISTED_OREDICT_NAMES.contains(oreName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}

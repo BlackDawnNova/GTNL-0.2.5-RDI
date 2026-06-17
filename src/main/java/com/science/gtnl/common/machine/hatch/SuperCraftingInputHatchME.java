@@ -1,0 +1,1491 @@
+package com.science.gtnl.common.machine.hatch;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import com.glodblock.github.common.item.ItemFluidDrop;
+import com.glodblock.github.common.item.ItemFluidPacket;
+import com.google.common.collect.ImmutableList;
+import com.gtnewhorizons.modularui.api.drawable.IDrawable;
+import com.gtnewhorizons.modularui.api.drawable.UITexture;
+import com.gtnewhorizons.modularui.api.math.Alignment;
+import com.gtnewhorizons.modularui.api.math.Size;
+import com.gtnewhorizons.modularui.api.screen.ModularWindow;
+import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
+import com.gtnewhorizons.modularui.common.widget.ButtonWidget;
+import com.gtnewhorizons.modularui.common.widget.CycleButtonWidget;
+import com.gtnewhorizons.modularui.common.widget.FakeSyncWidget;
+import com.gtnewhorizons.modularui.common.widget.Scrollable;
+import com.gtnewhorizons.modularui.common.widget.SlotGroup;
+import com.gtnewhorizons.modularui.common.widget.SlotWidget;
+import com.science.gtnl.ScienceNotLeisure;
+import com.science.gtnl.api.mixinHelper.IMultiblockRecipeMap;
+import com.science.gtnl.config.MainConfig;
+import com.science.gtnl.utils.enums.GTNLItemList;
+
+import appeng.api.AEApi;
+import appeng.api.implementations.ICraftingPatternItem;
+import appeng.api.implementations.IPowerChannelState;
+import appeng.api.networking.GridFlags;
+import appeng.api.networking.IGridNode;
+import appeng.api.networking.crafting.ICraftingPatternDetails;
+import appeng.api.networking.crafting.ICraftingProvider;
+import appeng.api.networking.crafting.ICraftingProviderHelper;
+import appeng.api.networking.events.MENetworkCraftingPatternChange;
+import appeng.api.networking.security.BaseActionSource;
+import appeng.api.networking.security.IActionHost;
+import appeng.api.networking.security.MachineSource;
+import appeng.api.storage.IMEMonitor;
+import appeng.api.storage.data.IAEFluidStack;
+import appeng.api.storage.data.IAEItemStack;
+import appeng.api.util.AECableType;
+import appeng.api.util.AEColor;
+import appeng.api.util.DimensionalCoord;
+import appeng.api.util.IInterfaceViewable;
+import appeng.core.AppEng;
+import appeng.core.sync.GuiBridge;
+import appeng.helpers.ICustomNameObject;
+import appeng.items.misc.ItemEncodedPattern;
+import appeng.items.tools.quartz.ToolQuartzCuttingKnife;
+import appeng.me.GridAccessException;
+import appeng.me.cache.CraftingGridCache;
+import appeng.me.helpers.AENetworkProxy;
+import appeng.me.helpers.IGridProxyable;
+import appeng.util.IWideReadableNumberConverter;
+import appeng.util.PatternMultiplierHelper;
+import appeng.util.Platform;
+import appeng.util.ReadableNumberConverter;
+import cpw.mods.fml.common.registry.GameRegistry;
+import gregtech.api.enums.Dyes;
+import gregtech.api.enums.GTValues;
+import gregtech.api.enums.ItemList;
+import gregtech.api.enums.SoundResource;
+import gregtech.api.enums.Textures;
+import gregtech.api.gui.modularui.GTUITextures;
+import gregtech.api.interfaces.IConfigurationCircuitSupport;
+import gregtech.api.interfaces.IMEConnectable;
+import gregtech.api.interfaces.ITexture;
+import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
+import gregtech.api.interfaces.modularui.IAddGregtechLogo;
+import gregtech.api.interfaces.modularui.IAddUIWidgets;
+import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.api.logic.ProcessingLogic;
+import gregtech.api.metatileentity.BaseTileEntity;
+import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.implementations.MTEHatchInputBus;
+import gregtech.api.objects.GTDualInputPattern;
+import gregtech.api.objects.XSTR;
+import gregtech.api.render.TextureFactory;
+import gregtech.api.util.GTUtility;
+import gregtech.api.util.extensions.ArrayExt;
+import gregtech.common.config.Gregtech;
+import gregtech.common.tileentities.machines.IDualInputHatch;
+import gregtech.common.tileentities.machines.IDualInputHatchWithPattern;
+import gregtech.common.tileentities.machines.IDualInputInventory;
+import gregtech.common.tileentities.machines.IDualInputInventoryWithPattern;
+import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import lombok.Getter;
+import mcp.mobius.waila.api.IWailaConfigHandler;
+import mcp.mobius.waila.api.IWailaDataAccessor;
+
+public class SuperCraftingInputHatchME extends MTEHatchInputBus implements IConfigurationCircuitSupport,
+    IAddGregtechLogo, IAddUIWidgets, IPowerChannelState, ICraftingProvider, IGridProxyable, IDualInputHatchWithPattern,
+    ICustomNameObject, IInterfaceViewable, IMEConnectable, IMultiblockRecipeMap {
+
+    // Each pattern slot in the crafting input hatch has its own internal inventory
+    public static class PatternSlot<P extends IMetaTileEntity & IDualInputHatch>
+        implements IDualInputInventoryWithPattern {
+
+        public final P parentMTE;
+        public final ItemStack pattern;
+        @Getter
+        public final ICraftingPatternDetails patternDetails;
+        public final GTUtility.ItemId patternItemId;
+
+        public final int slotIndex;
+
+        public final List<ItemStack> itemInventory;
+        public final List<FluidStack> fluidInventory;
+
+        public PatternSlot(ItemStack pattern, P parent, int index) {
+            this(pattern, null, parent, index);
+        }
+
+        public PatternSlot(ItemStack pattern, NBTTagCompound nbt, P parent, int index) {
+            this.pattern = pattern;
+            this.parentMTE = parent;
+            this.patternDetails = ((ICraftingPatternItem) Objects.requireNonNull(pattern.getItem())).getPatternForItem(
+                pattern,
+                parent.getBaseMetaTileEntity()
+                    .getWorld());
+            this.slotIndex = index;
+            this.itemInventory = new ArrayList<>();
+            this.fluidInventory = new ArrayList<>();
+            this.patternItemId = GTUtility.ItemId.create(pattern);
+
+            if (nbt == null) return;
+            NBTTagList inv = nbt.getTagList("inventory", Constants.NBT.TAG_COMPOUND);
+            for (int i = 0; i < inv.tagCount(); i++) {
+                NBTTagCompound tagItemStack = inv.getCompoundTagAt(i);
+                ItemStack item = GTUtility.loadItem(tagItemStack);
+                if (item != null) {
+                    if (item.stackSize > 0) {
+                        itemInventory.add(item);
+                    }
+                } else {
+                    ScienceNotLeisure.LOG.warn(
+                        "An error occurred while loading contents of ME Super Crafting Input Bus. This item has been voided: {}",
+                        tagItemStack);
+                }
+            }
+            NBTTagList fluidInv = nbt.getTagList("fluidInventory", Constants.NBT.TAG_COMPOUND);
+            for (int i = 0; i < fluidInv.tagCount(); i++) {
+                NBTTagCompound tagFluidStack = fluidInv.getCompoundTagAt(i);
+                FluidStack fluid = FluidStack.loadFluidStackFromNBT(tagFluidStack);
+                if (fluid != null) {
+                    if (fluid.amount > 0) {
+                        fluidInventory.add(fluid);
+                    }
+                } else {
+                    ScienceNotLeisure.LOG.warn(
+                        "An error occurred while loading contents of ME Super Crafting Input Bus. This fluid has been voided: {}",
+                        tagFluidStack);
+                }
+            }
+        }
+
+        public ItemStack[] getNonNullManualInventory() {
+            int base = MAX_INV_COUNT + this.slotIndex * 9;
+
+            int nonNullCount = 0;
+            for (int i = 0; i < 9; i++) {
+                ItemStack stack = parentMTE.getRealInventory()[base + i];
+                if (stack != null && stack.stackSize > 0) {
+                    nonNullCount++;
+                }
+            }
+
+            if (nonNullCount == 0) return GTValues.emptyItemStackArray;
+
+            ItemStack[] res = new ItemStack[nonNullCount];
+            int current = 0;
+            for (int i = 0; i < 9; i++) {
+                ItemStack stack = parentMTE.getRealInventory()[base + i];
+                if (stack != null && stack.stackSize > 0) {
+                    res[current++] = stack;
+                }
+            }
+            return res;
+        }
+
+        public boolean hasChanged(ItemStack newPattern, World world) {
+            return newPattern == null || patternDetails == null
+                || (!ItemStack.areItemStacksEqual(pattern, newPattern) && !this.patternDetails.equals(
+                    ((ICraftingPatternItem) Objects.requireNonNull(pattern.getItem()))
+                        .getPatternForItem(newPattern, world)));
+        }
+
+        public void updateSlotItems() {
+            for (int i = itemInventory.size() - 1; i >= 0; i--) {
+                ItemStack itemStack = itemInventory.get(i);
+                if (itemStack == null || itemStack.stackSize <= 0) {
+                    itemInventory.remove(i);
+                }
+            }
+        }
+
+        public void updateSlotFluids() {
+            for (int i = fluidInventory.size() - 1; i >= 0; i--) {
+                FluidStack fluidStack = fluidInventory.get(i);
+                if (fluidStack == null || fluidStack.amount <= 0) {
+                    fluidInventory.remove(i);
+                }
+            }
+        }
+
+        public boolean isManualItemEmpty() {
+            int base = MAX_INV_COUNT + this.slotIndex * 9;
+
+            for (int i = 0; i < 9; i++) {
+                if (parentMTE.getRealInventory()[base + i] != null) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public boolean isItemEmpty() {
+            updateSlotItems();
+            return itemInventory.isEmpty() && isManualItemEmpty();
+        }
+
+        public boolean isFluidEmpty() {
+            updateSlotFluids();
+            return fluidInventory.isEmpty();
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return isItemEmpty() && isFluidEmpty();
+        }
+
+        @Override
+        public ItemStack[] getItemInputs() {
+            if (isItemEmpty()) return GTValues.emptyItemStackArray;
+            return ArrayUtils.addAll(itemInventory.toArray(new ItemStack[0]), getNonNullManualInventory());
+        }
+
+        @Override
+        public FluidStack[] getFluidInputs() {
+            if (isEmpty()) return GTValues.emptyFluidStackArray;
+            return fluidInventory.toArray(new FluidStack[0]);
+        }
+
+        @Override
+        public GTDualInputPattern getPatternInputs() {
+            GTDualInputPattern dualInputs = new GTDualInputPattern();
+
+            ItemStack[] inputItems = this.parentMTE.getSharedItems();
+            FluidStack[] inputFluids = GTValues.emptyFluidStackArray;
+
+            for (IAEItemStack singleInput : this.patternDetails.getInputs()) {
+                if (singleInput == null) continue;
+                ItemStack singleInputItemStack = singleInput.getItemStack();
+                if (singleInputItemStack.getItem() instanceof ItemFluidDrop) {
+                    FluidStack fluidStack = ItemFluidDrop.getFluidStack(singleInputItemStack);
+                    if (fluidStack != null) inputFluids = ArrayUtils.addAll(inputFluids, fluidStack);
+                } else {
+                    inputItems = ArrayUtils.addAll(inputItems, singleInputItemStack);
+                }
+            }
+
+            inputItems = ArrayUtils.addAll(inputItems, getNonNullManualInventory());
+
+            dualInputs.inputItems = inputItems;
+            dualInputs.inputFluid = inputFluids;
+            return dualInputs;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            PatternSlot<?> that = (PatternSlot<?>) o;
+            return Objects.equals(pattern, that.pattern);
+        }
+
+        @Override
+        public int hashCode() {
+            return patternItemId.hashCode();
+        }
+
+        /**
+         * Try to refund the items and fluids back.
+         * <p>
+         * Push all the items and fluids back to the AE network first.
+         * If shouldDrop is true, the remaining are dropped to the world (the fluids are dropped as AE2FC fluid drop).
+         * Otherwise, they are still left in the inventory.
+         */
+        public void refund(AENetworkProxy proxy, BaseActionSource src, boolean shouldDrop) throws GridAccessException {
+            IMEMonitor<IAEItemStack> sg = proxy.getStorage()
+                .getItemInventory();
+            for (ItemStack itemStack : itemInventory) {
+                if (itemStack == null || itemStack.stackSize == 0) continue;
+                IAEItemStack rest = Platform.poweredInsert(
+                    proxy.getEnergy(),
+                    sg,
+                    AEApi.instance()
+                        .storage()
+                        .createItemStack(itemStack),
+                    src);
+                itemStack.stackSize = rest != null && rest.getStackSize() > 0 ? (int) rest.getStackSize() : 0;
+
+                if (Gregtech.machines.allowCribDropItems && shouldDrop && itemStack.stackSize > 0) {
+                    World world = parentMTE.getBaseMetaTileEntity()
+                        .getWorld();
+                    EntityItem entityItem = new EntityItem(
+                        world,
+                        parentMTE.getBaseMetaTileEntity()
+                            .getXCoord() + XSTR.XSTR_INSTANCE.nextFloat() * 0.8F
+                            + 0.1F,
+                        parentMTE.getBaseMetaTileEntity()
+                            .getYCoord() + XSTR.XSTR_INSTANCE.nextFloat() * 0.8F
+                            + 0.1F,
+                        parentMTE.getBaseMetaTileEntity()
+                            .getZCoord() + XSTR.XSTR_INSTANCE.nextFloat() * 0.8F
+                            + 0.1F,
+                        GTUtility.copy(itemStack));
+                    entityItem.motionX = XSTR.XSTR_INSTANCE.nextGaussian() * 0.05;
+                    entityItem.motionY = XSTR.XSTR_INSTANCE.nextGaussian() * 0.25;
+                    entityItem.motionZ = XSTR.XSTR_INSTANCE.nextGaussian() * 0.05;
+                    world.spawnEntityInWorld(entityItem);
+
+                    itemStack.stackSize = 0;
+                }
+            }
+            IMEMonitor<IAEFluidStack> fsg = proxy.getStorage()
+                .getFluidInventory();
+            for (FluidStack fluidStack : fluidInventory) {
+                if (fluidStack == null || fluidStack.amount == 0) continue;
+                IAEFluidStack rest = Platform.poweredInsert(
+                    proxy.getEnergy(),
+                    fsg,
+                    AEApi.instance()
+                        .storage()
+                        .createFluidStack(fluidStack),
+                    src);
+                fluidStack.amount = rest != null && rest.getStackSize() > 0 ? (int) rest.getStackSize() : 0;
+
+                if (Gregtech.machines.allowCribDropItems && shouldDrop && fluidStack.amount > 0) {
+                    World world = parentMTE.getBaseMetaTileEntity()
+                        .getWorld();
+
+                    ItemStack fluidPacketItemStack = ItemFluidPacket.newStack(fluidStack);
+                    if (fluidPacketItemStack == null) continue;
+
+                    EntityItem entityItem = new EntityItem(
+                        world,
+                        parentMTE.getBaseMetaTileEntity()
+                            .getXCoord() + XSTR.XSTR_INSTANCE.nextFloat() * 0.8F
+                            + 0.1F,
+                        parentMTE.getBaseMetaTileEntity()
+                            .getYCoord() + XSTR.XSTR_INSTANCE.nextFloat() * 0.8F
+                            + 0.1F,
+                        parentMTE.getBaseMetaTileEntity()
+                            .getZCoord() + XSTR.XSTR_INSTANCE.nextFloat() * 0.8F
+                            + 0.1F,
+                        fluidPacketItemStack);
+                    entityItem.motionX = XSTR.XSTR_INSTANCE.nextGaussian() * 0.05;
+                    entityItem.motionY = XSTR.XSTR_INSTANCE.nextGaussian() * 0.25;
+                    entityItem.motionZ = XSTR.XSTR_INSTANCE.nextGaussian() * 0.05;
+                    world.spawnEntityInWorld(entityItem);
+                }
+            }
+        }
+
+        public void insertItem(ItemStack inserted) {
+            for (ItemStack itemStack : itemInventory) {
+                if (GTUtility.areStacksEqual(inserted, itemStack)) {
+                    if (itemStack.stackSize > Integer.MAX_VALUE - inserted.stackSize) {
+                        inserted.stackSize -= Integer.MAX_VALUE - itemStack.stackSize;
+                        itemStack.stackSize = Integer.MAX_VALUE;
+                    } else {
+                        itemStack.stackSize += inserted.stackSize;
+                        return;
+                    }
+                }
+            }
+            if (inserted.stackSize > 0) {
+                itemInventory.add(inserted);
+            }
+        }
+
+        public void insertFluid(FluidStack inserted) {
+            for (FluidStack fluidStack : fluidInventory) {
+                if (GTUtility.areFluidsEqual(inserted, fluidStack)) {
+                    if (fluidStack.amount > Integer.MAX_VALUE - inserted.amount) {
+                        inserted.amount -= Integer.MAX_VALUE - fluidStack.amount;
+                        fluidStack.amount = Integer.MAX_VALUE;
+                    } else {
+                        fluidStack.amount += inserted.amount;
+                        return;
+                    }
+                }
+            }
+            if (inserted.amount > 0) {
+                fluidInventory.add(inserted);
+            }
+        }
+
+        public boolean insertItemsAndFluids(InventoryCrafting inventoryCrafting) {
+            for (int i = 0; i < inventoryCrafting.getSizeInventory(); ++i) {
+                ItemStack itemStack = inventoryCrafting.getStackInSlot(i);
+                if (itemStack == null) continue;
+
+                if (itemStack.getItem() instanceof ItemFluidPacket) { // insert fluid
+                    FluidStack fluidStack = ItemFluidPacket.getFluidStack(itemStack);
+                    if (fluidStack != null) insertFluid(fluidStack);
+                } else { // insert item
+                    insertItem(itemStack);
+                }
+            }
+            return true;
+        }
+
+        public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+            nbt.setTag("pattern", pattern.writeToNBT(new NBTTagCompound()));
+
+            NBTTagList itemInventoryNbt = new NBTTagList();
+            for (ItemStack itemStack : this.itemInventory) {
+                itemInventoryNbt.appendTag(GTUtility.saveItem(itemStack));
+            }
+            nbt.setTag("inventory", itemInventoryNbt);
+
+            NBTTagList fluidInventoryNbt = new NBTTagList();
+            for (FluidStack fluidStack : fluidInventory) {
+                fluidInventoryNbt.appendTag(fluidStack.writeToNBT(new NBTTagCompound()));
+            }
+            nbt.setTag("fluidInventory", fluidInventoryNbt);
+
+            return nbt;
+        }
+    }
+
+    public static UITexture OVERLAY_BUTTON_X2 = UITexture
+        .fullImage(ScienceNotLeisure.RESOURCE_ROOT_ID, "gui/overlay_button/x2");
+    public static int MAX_PATTERN_COUNT = 40 * 9;
+    public static int SLOT_MANUAL_SIZE = 81;
+    public static int MAX_INV_COUNT = MAX_PATTERN_COUNT + SLOT_MANUAL_SIZE + 1;
+    public static int SLOT_CIRCUIT = MAX_PATTERN_COUNT;
+    public static int SLOT_MANUAL_START = SLOT_CIRCUIT + 1;
+    public static int MANUAL_SLOT_WINDOW = 400;
+    public BaseActionSource requestSource = null;
+    public @Nullable AENetworkProxy gridProxy = null;
+    public List<ProcessingLogic> processingLogics = new ArrayList<>();
+    public boolean showPattern = true;
+
+    // holds all internal inventories
+    @SuppressWarnings("unchecked") // Java doesn't allow to create an array of a generic type.
+    public PatternSlot<SuperCraftingInputHatchME>[] internalInventory = new PatternSlot[MAX_PATTERN_COUNT];
+    public int lastNonNullIndex = -1;
+
+    // a hash map for faster lookup of pattern slots, not necessarily all valid.
+    public Map<ICraftingPatternDetails, PatternSlot<SuperCraftingInputHatchME>> patternDetailsPatternSlotMap = new HashMap<>(
+        MAX_PATTERN_COUNT);
+
+    public boolean needPatternSync = true;
+    public boolean justHadNewItems = false;
+
+    public String customName = "";
+    public boolean supportFluids;
+    public boolean additionalConnection = false;
+    public boolean disablePatternOptimization = false;
+
+    public SuperCraftingInputHatchME(int aID, String aName, String aNameRegional, boolean supportFluids) {
+        super(
+            aID,
+            aName,
+            aNameRegional,
+            supportFluids ? 11 : 6,
+            MAX_INV_COUNT + MAX_PATTERN_COUNT * 9,
+            new String[] { StatCollector.translateToLocal("Tooltip_SuperCraftingInputHatchME_00"),
+                StatCollector.translateToLocal("Tooltip_SuperCraftingInputHatchME_01"),
+                supportFluids ? StatCollector.translateToLocal("Tooltip_SuperCraftingInputHatchME_01_00")
+                    : StatCollector.translateToLocal("Tooltip_SuperCraftingInputHatchME_01_01"),
+                StatCollector.translateToLocal("Tooltip_SuperCraftingInputHatchME_02"),
+                supportFluids ? StatCollector.translateToLocal("Tooltip_SuperCraftingInputHatchME_03_00")
+                    : StatCollector.translateToLocal("Tooltip_SuperCraftingInputHatchME_03_01"),
+                StatCollector.translateToLocal("Tooltip_SuperCraftingInputHatchME_04"),
+                StatCollector.translateToLocal("Tooltip_SuperCraftingInputHatchME_06") });
+        disableSort = true;
+        this.supportFluids = supportFluids;
+    }
+
+    public SuperCraftingInputHatchME(String aName, int aTier, String[] aDescription, ITexture[][][] aTextures,
+        boolean supportFluids) {
+        super(aName, aTier, MAX_INV_COUNT + MAX_PATTERN_COUNT * 9, aDescription, aTextures);
+        this.supportFluids = supportFluids;
+        disableSort = true;
+    }
+
+    @Override
+    public MetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
+        return new SuperCraftingInputHatchME(mName, mTier, mDescriptionArray, mTextures, supportFluids);
+    }
+
+    @Override
+    public ITexture[] getTexturesActive(ITexture aBaseTexture) {
+        return getTexturesInactive(aBaseTexture);
+    }
+
+    @Override
+    public ITexture[] getTexturesInactive(ITexture aBaseTexture) {
+        return new ITexture[] { aBaseTexture,
+            TextureFactory.of(
+                supportFluids ? Textures.BlockIcons.OVERLAY_ME_CRAFTING_INPUT_BUFFER
+                    : Textures.BlockIcons.OVERLAY_ME_CRAFTING_INPUT_BUS) };
+    }
+
+    @Override
+    public void onPostTick(IGregTechTileEntity aBaseMetaTileEntity, long aTimer) {
+        super.onPostTick(aBaseMetaTileEntity, aTimer);
+
+        if (getBaseMetaTileEntity().isServerSide()) {
+            if (needPatternSync && aTimer % 10 == 0) {
+                needPatternSync = !postMEPatternChange();
+            }
+            if (aTimer % 20 == 0) {
+                getBaseMetaTileEntity().setActive(isActive());
+            }
+        }
+    }
+
+    @Override
+    public void onFirstTick(IGregTechTileEntity aBaseMetaTileEntity) {
+        super.onFirstTick(aBaseMetaTileEntity);
+        getProxy().onReady();
+    }
+
+    @Override
+    public ItemStack getSelfRep() {
+        return this.getStackForm(1);
+    }
+
+    @Override
+    public IGridNode getGridNode(ForgeDirection dir) {
+        return getProxy().getNode();
+    }
+
+    @Override
+    public void onColorChangeServer(byte aColor) {
+        updateAE2ProxyColor();
+    }
+
+    public void updateAE2ProxyColor() {
+        AENetworkProxy proxy = getProxy();
+        byte color = this.getColor();
+        if (color == -1) {
+            proxy.setColor(AEColor.Transparent);
+        } else {
+            proxy.setColor(AEColor.values()[Dyes.transformDyeIndex(color)]);
+        }
+        if (proxy.getNode() != null) {
+            proxy.getNode()
+                .updateState();
+        }
+    }
+
+    @Override
+    public AECableType getCableConnectionType(ForgeDirection forgeDirection) {
+        return isOutputFacing(forgeDirection) ? AECableType.SMART : AECableType.NONE;
+    }
+
+    public void updateValidGridProxySides() {
+        if (additionalConnection) {
+            getProxy().setValidSides(EnumSet.complementOf(EnumSet.of(ForgeDirection.UNKNOWN)));
+        } else {
+            getProxy().setValidSides(EnumSet.of(getBaseMetaTileEntity().getFrontFacing()));
+        }
+    }
+
+    @Override
+    public void onFacingChange() {
+        updateValidGridProxySides();
+    }
+
+    @Override
+    public void securityBreak() {}
+
+    @Override
+    public boolean onWireCutterRightClick(ForgeDirection side, ForgeDirection wrenchingSide, EntityPlayer aPlayer,
+        float aX, float aY, float aZ, ItemStack aTool) {
+        additionalConnection = !additionalConnection;
+        updateValidGridProxySides();
+        aPlayer.addChatComponentMessage(
+            new ChatComponentTranslation("GT5U.hatch.additionalConnection." + additionalConnection));
+        return true;
+    }
+
+    @Override
+    public boolean connectsToAllSides() {
+        return additionalConnection;
+    }
+
+    @Override
+    public void setConnectsToAllSides(boolean connects) {
+        additionalConnection = connects;
+        updateValidGridProxySides();
+    }
+
+    @Override
+    public AENetworkProxy getProxy() {
+        if (gridProxy == null) {
+            gridProxy = new AENetworkProxy(this, "proxy", GTNLItemList.SuperCraftingInputHatchME.get(1), true);
+            gridProxy.setFlags(GridFlags.REQUIRE_CHANNEL);
+            updateValidGridProxySides();
+            if (getBaseMetaTileEntity().getWorld() != null) gridProxy.setOwner(
+                getBaseMetaTileEntity().getWorld()
+                    .getPlayerEntityByName(getBaseMetaTileEntity().getOwnerName()));
+        }
+
+        return this.gridProxy;
+    }
+
+    @Override
+    public DimensionalCoord getLocation() {
+        return new DimensionalCoord(
+            getBaseMetaTileEntity().getWorld(),
+            getBaseMetaTileEntity().getXCoord(),
+            getBaseMetaTileEntity().getYCoord(),
+            getBaseMetaTileEntity().getZCoord());
+    }
+
+    @Override
+    public int rows() {
+        if (lastNonNullIndex == -1) refreshLastNonNullIndex();
+        int calculatedRows = (lastNonNullIndex + 9) / 9 + 1;
+        if ((lastNonNullIndex + 1) % 9 == 0) {
+            calculatedRows++;
+        }
+        return Math.min(calculatedRows, 40);
+    }
+
+    @Override
+    public int rowSize() {
+        return 9;
+    }
+
+    @Override
+    public IInventory getPatterns() {
+        return this;
+    }
+
+    @Override
+    public String getName() {
+        if (hasCustomName()) {
+            return customName;
+        }
+
+        StringBuilder name = new StringBuilder();
+
+        if (MainConfig.machine.enableHatchInterfaceTerminalEnhance) {
+            if (mInventory[SLOT_CIRCUIT] != null) {
+                name.append("gt_circuit_")
+                    .append(mInventory[SLOT_CIRCUIT].getItemDamage())
+                    .append('_');
+            }
+
+            if (gtnl$getRecipeMapName() != null) {
+                name.append("extra_start_")
+                    .append(gtnl$getRecipeMapName())
+                    .append("_extra_end_");
+            }
+
+            if (mInventory[SLOT_MANUAL_START] != null) {
+                ItemStack stack = mInventory[SLOT_MANUAL_START];
+                Item item = stack.getItem();
+                String registryName = GameRegistry.findUniqueIdentifierFor(item)
+                    .toString();
+
+                name.append("extra_item_start_")
+                    .append(registryName)
+                    .append("@")
+                    .append(stack.getItemDamage());
+
+                if (stack.hasDisplayName()) {
+                    name.append("{")
+                        .append(stack.getDisplayName())
+                        .append("}");
+                }
+
+                name.append("extra_item_end_");
+            }
+
+            if (getCrafterIcon() != null) {
+                name.append(getCrafterIcon().getUnlocalizedName());
+            } else {
+                name.append("gt.blockmachines.")
+                    .append(mName)
+                    .append(".name");
+            }
+        } else {
+            if (getCrafterIcon() != null) {
+                name.append(getCrafterIcon().getDisplayName());
+            } else {
+                name.append(getLocalName());
+            }
+
+            if (mInventory[SLOT_CIRCUIT] != null) {
+                name.append(" - ");
+                name.append(mInventory[SLOT_CIRCUIT].getItemDamage());
+            }
+            if (mInventory[SLOT_MANUAL_START] != null) {
+                name.append(" - ");
+                name.append(mInventory[SLOT_MANUAL_START].getDisplayName());
+            }
+        }
+
+        return name.toString();
+    }
+
+    @Override
+    public TileEntity getTileEntity() {
+        return (TileEntity) getBaseMetaTileEntity();
+    }
+
+    @Override
+    public boolean shouldDisplay() {
+        return showPattern;
+    }
+
+    @Override
+    public boolean allowsPatternOptimization() {
+        return !disablePatternOptimization;
+    }
+
+    @Override
+    public void gridChanged() {
+        needPatternSync = true;
+    }
+
+    @Override
+    public boolean isPowered() {
+        return getProxy() != null && getProxy().isPowered();
+    }
+
+    @Override
+    public boolean isActive() {
+        return getProxy() != null && getProxy().isActive();
+    }
+
+    @Override
+    public void saveNBTData(NBTTagCompound aNBT) {
+        super.saveNBTData(aNBT);
+
+        // save internalInventory
+        NBTTagList internalInventoryNBT = new NBTTagList();
+        for (int i = 0; i < internalInventory.length; i++) {
+            if (internalInventory[i] != null) {
+                NBTTagCompound internalInventorySlotNBT = new NBTTagCompound();
+                internalInventorySlotNBT.setInteger("patternSlot", i);
+                internalInventorySlotNBT
+                    .setTag("patternSlotNBT", internalInventory[i].writeToNBT(new NBTTagCompound()));
+                internalInventoryNBT.appendTag(internalInventorySlotNBT);
+            }
+        }
+        aNBT.setTag("internalInventory", internalInventoryNBT);
+        if (customName != null && !customName.isEmpty()) aNBT.setString("customName", customName);
+        aNBT.setBoolean("additionalConnection", additionalConnection);
+        aNBT.setBoolean("disablePatternOptimization", disablePatternOptimization);
+        aNBT.setBoolean("showPattern", showPattern);
+        getProxy().writeToNBT(aNBT);
+    }
+
+    @Override
+    public void loadNBTData(NBTTagCompound aNBT) {
+        super.loadNBTData(aNBT);
+        // load internalInventory
+        NBTTagList internalInventoryNBT = aNBT.getTagList("internalInventory", Constants.NBT.TAG_COMPOUND);
+        for (int i = 0; i < internalInventoryNBT.tagCount(); i++) {
+            NBTTagCompound internalInventorySlotNBT = internalInventoryNBT.getCompoundTagAt(i);
+            int patternSlot = internalInventorySlotNBT.getInteger("patternSlot");
+            NBTTagCompound patternSlotNBT = internalInventorySlotNBT.getCompoundTag("patternSlotNBT");
+            ItemStack pattern = ItemStack.loadItemStackFromNBT(patternSlotNBT.getCompoundTag("pattern"));
+            if (pattern != null) {
+                internalInventory[patternSlot] = new PatternSlot<>(pattern, patternSlotNBT, this, i);
+            } else {
+                ScienceNotLeisure.LOG.warn(
+                    "An error occurred while loading contents of ME Crafting Input Bus. This pattern has been voided: {}",
+                    patternSlotNBT);
+            }
+        }
+
+        // Migrate from 4x8 to 4x9 pattern inventory
+        int oldPatternCount = 4 * 8;
+        int oldSlotManual = oldPatternCount + 1;
+
+        if (internalInventory[oldSlotManual] == null && mInventory[oldSlotManual] != null) {
+            mInventory[SLOT_MANUAL_START] = mInventory[oldSlotManual];
+            mInventory[oldSlotManual] = null;
+        }
+        if (internalInventory[oldPatternCount] == null && mInventory[oldPatternCount] != null) {
+            mInventory[SLOT_CIRCUIT] = mInventory[oldPatternCount];
+            mInventory[oldPatternCount] = null;
+        }
+
+        // reconstruct patternDetailsPatternSlotMap
+        patternDetailsPatternSlotMap.clear();
+        for (PatternSlot<SuperCraftingInputHatchME> patternSlot : internalInventory) {
+            if (patternSlot != null) {
+                patternDetailsPatternSlotMap.put(patternSlot.getPatternDetails(), patternSlot);
+            }
+        }
+
+        if (aNBT.hasKey("customName")) customName = aNBT.getString("customName");
+        additionalConnection = aNBT.getBoolean("additionalConnection");
+        disablePatternOptimization = aNBT.getBoolean("disablePatternOptimization");
+        showPattern = aNBT.getBoolean("showPattern");
+
+        getProxy().readFromNBT(aNBT);
+        updateAE2ProxyColor();
+        updateValidGridProxySides();
+    }
+
+    @Override
+    public boolean isGivingInformation() {
+        return true;
+    }
+
+    public String describePattern(ICraftingPatternDetails patternDetails) {
+        return Arrays.stream(patternDetails.getCondensedOutputs())
+            .map(
+                aeItemStack -> aeItemStack.getItem()
+                    .getItemStackDisplayName(aeItemStack.getItemStack()))
+            .collect(Collectors.joining(", "));
+    }
+
+    @Override
+    public String[] getInfoData() {
+        List<String> ret = new ObjectArrayList<>();
+        ret.add(
+            "The bus is " + ((getProxy() != null && getProxy().isActive()) ? EnumChatFormatting.GREEN + "online"
+                : EnumChatFormatting.RED + "offline" + getAEDiagnostics()) + EnumChatFormatting.RESET);
+        ret.add(StatCollector.translateToLocal("Info_ShowPattern_" + (showPattern ? "Enabled" : "Disabled")));
+        ret.add("Internal Inventory: ");
+        int i = 0;
+
+        for (PatternSlot<SuperCraftingInputHatchME> slot : internalInventory) {
+            if (slot == null) continue;
+            IWideReadableNumberConverter nc = ReadableNumberConverter.INSTANCE;
+
+            i += 1;
+            ret.add(
+                StatCollector.translateToLocalFormatted(
+                    "GT5U.infodata.hatch.internal_inventory.slot",
+                    i,
+                    EnumChatFormatting.BLUE + describePattern(slot.patternDetails) + EnumChatFormatting.RESET));
+
+            Object2LongOpenHashMap<GTUtility.ItemId> itemMap = new Object2LongOpenHashMap<>();
+            itemMap.putAll(GTUtility.convertItemListToMap(slot.itemInventory));
+
+            for (Map.Entry<GTUtility.ItemId, Long> entry : itemMap.object2LongEntrySet()) {
+                ItemStack item = entry.getKey()
+                    .getItemStack();
+                long amount = entry.getValue();
+                ret.add(
+                    item.getItem()
+                        .getItemStackDisplayName(item) + ": "
+                        + EnumChatFormatting.GOLD
+                        + nc.toWideReadableForm(amount)
+                        + EnumChatFormatting.RESET);
+            }
+
+            Object2LongOpenHashMap<Fluid> fluidMap = new Object2LongOpenHashMap<>();
+            fluidMap.putAll(GTUtility.convertFluidListToMap(slot.fluidInventory));
+
+            for (Map.Entry<Fluid, Long> entry : fluidMap.object2LongEntrySet()) {
+                FluidStack fluid = new FluidStack(entry.getKey(), 1);
+                long amount = entry.getValue();
+                ret.add(
+                    fluid.getLocalizedName() + ": "
+                        + EnumChatFormatting.AQUA
+                        + nc.toWideReadableForm(amount)
+                        + EnumChatFormatting.RESET);
+            }
+        }
+        return ret.toArray(new String[0]);
+    }
+
+    @Override
+    public boolean allowPullStack(IGregTechTileEntity aBaseMetaTileEntity, int aIndex, ForgeDirection side,
+        ItemStack aStack) {
+        return false;
+    }
+
+    @Override
+    public boolean allowPutStack(IGregTechTileEntity aBaseMetaTileEntity, int aIndex, ForgeDirection side,
+        ItemStack aStack) {
+        return false;
+    }
+
+    @Override
+    public int getCircuitSlot() {
+        return SLOT_CIRCUIT;
+    }
+
+    @Override
+    public int getCircuitSlotX() {
+        return 170;
+    }
+
+    @Override
+    public int getCircuitSlotY() {
+        return 64;
+    }
+
+    @Override
+    public int getGUIWidth() {
+        return super.getGUIWidth() + 16;
+    }
+
+    @Override
+    public void addUIWidgets(ModularWindow.@NotNull Builder builder, UIBuildContext buildContext) {
+        final Scrollable scrollable = new Scrollable().setVerticalScroll();
+        buildContext.addSyncedWindow(MANUAL_SLOT_WINDOW, this::createSlotManualWindow);
+        for (int i = 15; i < MAX_PATTERN_COUNT + 15; i++) {
+            int slotID = i;
+            buildContext.addSyncedWindow(i, (player) -> createPatternSlotManualWindow(player, slotID - 15));
+        }
+        SlotGroup slotGroup = (SlotGroup) SlotGroup.ofItemHandler(inventoryHandler, 9)
+            .startFromSlot(0)
+            .endAtSlot(MAX_PATTERN_COUNT - 1)
+            .phantom(false)
+            .background(getGUITextureSet().getItemSlot(), GTUITextures.OVERLAY_SLOT_PATTERN_ME)
+            .widgetCreator(slot -> new SlotWidget(slot) {
+
+                @Override
+                public ClickResult onClick(int buttonId, boolean doubleClick) {
+                    // vanilla slot interaction is handled on mouseMovedOrUp, so we need to hold the state
+                    // of this widget being clicked and prevent further interaction
+                    if (interactionDisabled || !getMcSlot().isEnabled()) return ClickResult.ACCEPT;
+                    if (buttonId == 2) {
+                        ClickData clickData = ClickData.create(buttonId, doubleClick);
+                        syncToServer(15, clickData::writeToPacket);
+                        return ClickResult.SUCCESS;
+                    }
+                    return ClickResult.DELEGATE;
+                }
+
+                @Override
+                public void readOnServer(int id, PacketBuffer buf) throws IOException {
+                    if (id == 15) click(ClickData.readPacket(buf));
+                    super.readOnServer(id, buf);
+                }
+
+                public void click(ClickData clickData) {
+                    if (interactionDisabled || !getMcSlot().isEnabled()) return;
+                    if (clickData.mouseButton == 2) {
+                        getContext().openSyncedWindow(getMcSlot().slotNumber - 21);
+                    }
+                }
+
+                @Override
+                public ItemStack getItemStackForRendering(Slot slotIn) {
+                    ItemStack stack = slot.getStack();
+                    if (stack == null || !(stack.getItem() instanceof ItemEncodedPattern patternItem)) {
+                        return stack;
+                    }
+                    ItemStack output = patternItem.getOutput(stack);
+                    return output != null ? output : stack;
+                }
+            }.setFilter(itemStack -> itemStack.getItem() instanceof ICraftingPatternItem)
+                .setChangeListener(() -> onPatternChange(slot.getSlotIndex(), slot.getStack())))
+            .build()
+            .setPos(0, 0);
+
+        scrollable.widget(slotGroup);
+
+        builder.widget(
+            scrollable.setSize(18 * 9 + 4, 18 * 4)
+                .setPos(7, 9));
+
+        builder.widget(new ButtonWidget().setOnClick((clickData, widget) -> {
+            if (clickData.mouseButton == 0) {
+                widget.getContext()
+                    .openSyncedWindow(MANUAL_SLOT_WINDOW);
+            }
+        })
+            .setPlayClickSound(true)
+            .setBackground(GTUITextures.BUTTON_STANDARD, GTUITextures.OVERLAY_BUTTON_PLUS_LARGE)
+            .addTooltips(
+                ImmutableList.of(StatCollector.translateToLocal("Button_Tooltip_SuperCraftingInputHatchME_00")))
+            .setSize(16, 16)
+            .setPos(170, 46))
+            .widget(new ButtonWidget().setOnClick((clickData, widget) -> {
+                if (clickData.mouseButton == 0) {
+                    refundAll(false);
+                }
+            })
+                .setPlayClickSound(true)
+                .setBackground(GTUITextures.BUTTON_STANDARD, GTUITextures.OVERLAY_BUTTON_EXPORT)
+                .addTooltips(
+                    ImmutableList.of(StatCollector.translateToLocal("Button_Tooltip_SuperCraftingInputHatchME_01")))
+                .setSize(16, 16)
+                .setPos(170, 28))
+            .widget(
+                new CycleButtonWidget()
+                    .setToggle(() -> disablePatternOptimization, val -> disablePatternOptimization = val)
+                    .setStaticTexture(GTUITextures.OVERLAY_BUTTON_PATTERN_OPTIMIZE)
+                    .setVariableBackground(GTUITextures.BUTTON_STANDARD_TOGGLE)
+                    .addTooltip(0, StatCollector.translateToLocal("Button_Tooltip_SuperCraftingInputHatchME_02_00"))
+                    .addTooltip(1, StatCollector.translateToLocal("Button_Tooltip_SuperCraftingInputHatchME_02_01"))
+                    .setPos(170, 10)
+                    .setSize(16, 16))
+            .widget(new ButtonWidget().setOnClick((clickData, widget) -> {
+                int val = clickData.shift ? 1 : 0;
+                if (clickData.mouseButton == 1) val |= 0b10;
+                doublePatterns(val);
+            })
+                .setPlayClickSound(true)
+                .setBackground(GTUITextures.BUTTON_STANDARD, OVERLAY_BUTTON_X2)
+                .addTooltip(StatCollector.translateToLocal("gui.tooltips.appliedenergistics2.DoublePatterns"))
+                .setSize(16, 16)
+                .setPos(194, 10))
+            .widget(
+                new ButtonWidget().setOnClick((clickData, widget) -> showPattern = !showPattern)
+                    .setPlayClickSoundResource(
+                        () -> showPattern ? SoundResource.GUI_BUTTON_UP.resourceLocation
+                            : SoundResource.GUI_BUTTON_DOWN.resourceLocation)
+                    .setBackground(() -> {
+                        if (showPattern) {
+                            return new IDrawable[] { GTUITextures.BUTTON_STANDARD_PRESSED,
+                                GTUITextures.OVERLAY_BUTTON_WHITELIST };
+                        } else {
+                            return new IDrawable[] { GTUITextures.BUTTON_STANDARD,
+                                GTUITextures.OVERLAY_BUTTON_BLACKLIST };
+                        }
+                    })
+                    .attachSyncer(
+                        new FakeSyncWidget.BooleanSyncer(() -> showPattern, val -> showPattern = val),
+                        builder)
+                    .dynamicTooltip(
+                        () -> Collections.singletonList(
+                            StatCollector
+                                .translateToLocal("Info_ShowPattern_" + (showPattern ? "Enabled" : "Disabled"))))
+                    .setTooltipShowUpDelay(BaseTileEntity.TOOLTIP_DELAY)
+                    .setUpdateTooltipEveryTick(true)
+                    .setPos(194, 28)
+                    .setSize(16, 16));
+    }
+
+    @Override
+    public void updateSlots() {
+        for (int slotId = SLOT_MANUAL_START; slotId < SLOT_MANUAL_START + SLOT_MANUAL_SIZE; ++slotId) {
+            if (mInventory[slotId] != null && mInventory[slotId].stackSize <= 0) mInventory[slotId] = null;
+        }
+        for (int slotId = MAX_INV_COUNT; slotId < MAX_INV_COUNT + MAX_PATTERN_COUNT * 9; ++slotId) {
+            if (mInventory[slotId] != null && mInventory[slotId].stackSize <= 0) mInventory[slotId] = null;
+        }
+    }
+
+    public BaseActionSource getRequest() {
+        if (requestSource == null) requestSource = new MachineSource((IActionHost) getBaseMetaTileEntity());
+        return requestSource;
+    }
+
+    public void onPatternChange(int index, ItemStack newItem) {
+        if (!getBaseMetaTileEntity().isServerSide()) return;
+
+        World world = getBaseMetaTileEntity().getWorld();
+
+        // remove old if applicable
+        PatternSlot<SuperCraftingInputHatchME> originalPattern = internalInventory[index];
+        if (originalPattern != null) {
+            if (originalPattern.hasChanged(newItem, world)) {
+                try {
+                    originalPattern.refund(getProxy(), getRequest(), true);
+                    for (ProcessingLogic pl : processingLogics) {
+                        pl.removeInventoryRecipeCache(originalPattern);
+                    }
+                } catch (GridAccessException ignored) {}
+                internalInventory[index] = null;
+                needPatternSync = true;
+            } else {
+                return; // nothing has changed
+            }
+        }
+
+        // original does not exist or has changed
+        if (newItem == null || !(newItem.getItem() instanceof ICraftingPatternItem)) return;
+
+        PatternSlot<SuperCraftingInputHatchME> patternSlot = new PatternSlot<>(newItem, this, index);
+        internalInventory[index] = patternSlot;
+        patternDetailsPatternSlotMap.put(patternSlot.getPatternDetails(), patternSlot);
+
+        needPatternSync = true;
+
+        refreshLastNonNullIndex();
+    }
+
+    public void refreshLastNonNullIndex() {
+        lastNonNullIndex = -1;
+        if (internalInventory == null || internalInventory.length == 0) return;
+
+        for (int i = internalInventory.length - 1; i >= 0; i--) {
+            if (internalInventory[i] != null) {
+                lastNonNullIndex = i;
+                break;
+            }
+        }
+    }
+
+    @Override
+    public ItemStack[] getSharedItems() {
+        ItemStack[] sharedItems = new ItemStack[SLOT_MANUAL_SIZE + 1];
+        sharedItems[0] = mInventory[SLOT_CIRCUIT];
+        System.arraycopy(mInventory, SLOT_MANUAL_START, sharedItems, 1, SLOT_MANUAL_SIZE);
+        return ArrayExt.withoutNulls(sharedItems, ItemStack[]::new);
+    }
+
+    @Override
+    public void setProcessingLogic(ProcessingLogic pl) {
+        if (!processingLogics.contains(pl)) {
+            processingLogics.add(Objects.requireNonNull(pl));
+        }
+    }
+
+    public void resetCraftingInputRecipeMap() {
+        for (ProcessingLogic pl : processingLogics) {
+            for (PatternSlot<SuperCraftingInputHatchME> sl : internalInventory) {
+                if (sl == null) continue;
+                pl.removeInventoryRecipeCache(sl);
+            }
+        }
+    }
+
+    @Override
+    public void getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor,
+        IWailaConfigHandler config) {
+        NBTTagCompound tag = accessor.getNBTData();
+        currenttip.add(
+            StatCollector
+                .translateToLocal("Info_ShowPattern_" + (tag.getBoolean("showPattern") ? "Enabled" : "Disabled")));
+        if (tag.hasKey("inventory")) {
+            NBTTagList inventory = tag.getTagList("inventory", Constants.NBT.TAG_COMPOUND);
+            for (int i = 0; i < inventory.tagCount(); ++i) {
+                NBTTagCompound item = inventory.getCompoundTagAt(i);
+                String name = item.getString("name");
+                long amount = item.getLong("amount");
+                currenttip.add(
+                    name + ": "
+                        + EnumChatFormatting.GOLD
+                        + ReadableNumberConverter.INSTANCE.toWideReadableForm(amount)
+                        + EnumChatFormatting.RESET);
+            }
+        }
+        super.getWailaBody(itemStack, currenttip, accessor, config);
+    }
+
+    @Override
+    public void getWailaNBTData(EntityPlayerMP player, TileEntity tile, NBTTagCompound tag, World world, int x, int y,
+        int z) {
+        super.getWailaNBTData(player, tile, tag, world, x, y, z);
+        tag.setBoolean("showPattern", showPattern);
+        NBTTagList inventory = new NBTTagList();
+
+        Object2LongOpenHashMap<String> nameToAmount = new Object2LongOpenHashMap<>();
+
+        Iterator<PatternSlot<SuperCraftingInputHatchME>> it = inventories();
+        while (it.hasNext()) {
+            PatternSlot<SuperCraftingInputHatchME> i = it.next();
+            for (ItemStack item : i.itemInventory) {
+                if (item != null && item.stackSize > 0) {
+                    String name = item.getDisplayName();
+                    nameToAmount.merge(name, item.stackSize, Long::sum);
+                }
+            }
+            for (FluidStack fluid : i.fluidInventory) {
+                if (fluid != null && fluid.amount > 0) {
+                    String name = fluid.getLocalizedName();
+                    nameToAmount.merge(name, fluid.amount, Long::sum);
+                }
+            }
+        }
+
+        for (Map.Entry<String, Long> entry : nameToAmount.object2LongEntrySet()) {
+            NBTTagCompound item = new NBTTagCompound();
+            item.setString("name", entry.getKey());
+            item.setLong("amount", entry.getValue());
+            inventory.appendTag(item);
+        }
+
+        tag.setTag("inventory", inventory);
+    }
+
+    @Override
+    public void provideCrafting(ICraftingProviderHelper craftingTracker) {
+        if (!isActive()) return;
+
+        for (PatternSlot<SuperCraftingInputHatchME> slot : internalInventory) {
+            if (slot == null) continue;
+            ICraftingPatternDetails details = slot.getPatternDetails();
+            if (details == null) {
+                ScienceNotLeisure.LOG.warn(
+                    "Found an invalid pattern at {} in dim {}",
+                    getBaseMetaTileEntity().getCoords(),
+                    getBaseMetaTileEntity().getWorld().provider.dimensionId);
+                continue;
+            }
+            craftingTracker.addCraftingOption(this, details);
+        }
+    }
+
+    @Override
+    public boolean pushPattern(ICraftingPatternDetails patternDetails, InventoryCrafting table) {
+        if (!isActive()) return false;
+
+        if (!supportFluids) {
+            for (int i = 0; i < table.getSizeInventory(); ++i) {
+                ItemStack itemStack = table.getStackInSlot(i);
+                if (itemStack == null) continue;
+                if (itemStack.getItem() instanceof ItemFluidPacket) return false;
+            }
+        }
+        if (!patternDetailsPatternSlotMap.get(patternDetails)
+            .insertItemsAndFluids(table)) {
+            return false;
+        }
+        justHadNewItems = true;
+        return true;
+    }
+
+    @Override
+    public boolean isBusy() {
+        return false;
+    }
+
+    @Override
+    public Iterator<PatternSlot<SuperCraftingInputHatchME>> inventories() {
+        return Arrays.stream(internalInventory)
+            .filter(Objects::nonNull)
+            .iterator();
+    }
+
+    @Override
+    public void onBlockDestroyed() {
+        refundAll(true);
+        super.onBlockDestroyed();
+    }
+
+    public void refundAll(boolean shouldDrop) {
+        for (PatternSlot<SuperCraftingInputHatchME> slot : internalInventory) {
+            if (slot == null) continue;
+            try {
+                slot.refund(getProxy(), getRequest(), shouldDrop);
+            } catch (GridAccessException ignored) {}
+        }
+    }
+
+    @Override
+    public boolean justUpdated() {
+        boolean ret = justHadNewItems;
+        justHadNewItems = false;
+        return ret;
+    }
+
+    @Override
+    public void onLeftclick(IGregTechTileEntity aBaseMetaTileEntity, EntityPlayer aPlayer) {
+        if (!(aPlayer instanceof EntityPlayerMP)) return;
+
+        ItemStack dataStick = aPlayer.inventory.getCurrentItem();
+        if (!ItemList.Tool_DataStick.isStackEqual(dataStick, false, true)) return;
+
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setString("typeSuper", "SuperCraftingInputBuffer");
+        tag.setInteger("xSuper", aBaseMetaTileEntity.getXCoord());
+        tag.setInteger("ySuper", aBaseMetaTileEntity.getYCoord());
+        tag.setInteger("zSuper", aBaseMetaTileEntity.getZCoord());
+
+        dataStick.stackTagCompound = tag;
+        dataStick.setStackDisplayName(
+            "Super Crafting Input Buffer Link Data Stick (" + aBaseMetaTileEntity
+                .getXCoord() + ", " + aBaseMetaTileEntity.getYCoord() + ", " + aBaseMetaTileEntity.getZCoord() + ")");
+        aPlayer.addChatMessage(new ChatComponentTranslation("Tooltip_SuperCraftingInputHatchME_05"));
+    }
+
+    @Override
+    public boolean onRightclick(IGregTechTileEntity aBaseMetaTileEntity, EntityPlayer aPlayer, ForgeDirection side,
+        float aX, float aY, float aZ) {
+        final ItemStack is = aPlayer.inventory.getCurrentItem();
+        if (is != null && is.getItem() instanceof ToolQuartzCuttingKnife) {
+            if (ForgeEventFactory.onItemUseStart(aPlayer, is, 1) <= 0) return false;
+            IGregTechTileEntity te = getBaseMetaTileEntity();
+            aPlayer.openGui(
+                AppEng.instance(),
+                GuiBridge.GUI_RENAMER.ordinal() << 5 | (side.ordinal()),
+                te.getWorld(),
+                te.getXCoord(),
+                te.getYCoord(),
+                te.getZCoord());
+            return true;
+        }
+        refreshLastNonNullIndex();
+        return super.onRightclick(aBaseMetaTileEntity, aPlayer, side, aX, aY, aZ);
+    }
+
+    @Override
+    public ItemStack getCrafterIcon() {
+        return getMachineCraftingIcon();
+    }
+
+    @Override
+    public void markDirty() {
+        super.markDirty();
+        resetCraftingInputRecipeMap();
+    }
+
+    public boolean postMEPatternChange() {
+        // don't post until it's active
+        if (!getProxy().isActive()) return false;
+        try {
+            getProxy().getGrid()
+                .postEvent(new MENetworkCraftingPatternChange(this, getProxy().getNode()));
+        } catch (GridAccessException ignored) {
+            return false;
+        }
+        return true;
+    }
+
+    public ModularWindow createSlotManualWindow(final EntityPlayer player) {
+        final int WIDTH = 176;
+        final int HEIGHT = 86;
+        final int PARENT_WIDTH = getGUIWidth();
+        final int PARENT_HEIGHT = getGUIHeight();
+        ModularWindow.Builder builder = ModularWindow.builder(WIDTH, HEIGHT);
+        builder.setBackground(GTUITextures.BACKGROUND_SINGLEBLOCK_DEFAULT);
+        builder.setGuiTint(getGUIColorization());
+        builder.setDraggable(true);
+        builder.setPos(
+            (size, window) -> Alignment.Center.getAlignedPos(size, new Size(PARENT_WIDTH, PARENT_HEIGHT))
+                .add(Alignment.TopRight.getAlignedPos(new Size(PARENT_WIDTH, PARENT_HEIGHT), new Size(WIDTH, HEIGHT))));
+
+        final Scrollable scrollable = new Scrollable().setVerticalScroll();
+        scrollable.widget(
+            SlotGroup.ofItemHandler(inventoryHandler, 9)
+                .startFromSlot(SLOT_MANUAL_START)
+                .endAtSlot(SLOT_MANUAL_START + SLOT_MANUAL_SIZE - 1)
+                .phantom(false)
+                .background(getGUITextureSet().getItemSlot())
+                .widgetCreator(slot -> new SlotWidget(slot).setChangeListener(this::resetCraftingInputRecipeMap))
+                .build());
+
+        builder.widget(
+            scrollable.setSize(18 * 9 + 4, 18 * 4)
+                .setPos(7, 7));
+
+        return builder.build();
+    }
+
+    public ModularWindow createPatternSlotManualWindow(final EntityPlayer player, int slotID) {
+        final int WIDTH = 68;
+        final int HEIGHT = 68;
+        final int PARENT_WIDTH = getGUIWidth();
+        final int PARENT_HEIGHT = getGUIHeight();
+        ModularWindow.Builder builder = ModularWindow.builder(WIDTH, HEIGHT);
+        builder.setBackground(GTUITextures.BACKGROUND_SINGLEBLOCK_DEFAULT);
+        builder.setGuiTint(getGUIColorization());
+        builder.setDraggable(true);
+        // make sure the manual window is within the parent window
+        // otherwise picking up manual items would toss them
+        // See GuiContainer.java flag1
+
+        int base = MAX_INV_COUNT + slotID * 9;
+
+        builder.setPos(
+            (size, window) -> Alignment.Center.getAlignedPos(size, new Size(PARENT_WIDTH, PARENT_HEIGHT))
+                .add(Alignment.TopRight.getAlignedPos(new Size(PARENT_WIDTH, PARENT_HEIGHT), new Size(WIDTH, HEIGHT))));
+        builder.widget(
+            SlotGroup.ofItemHandler(inventoryHandler, 3)
+                .startFromSlot(base)
+                .endAtSlot(base + 8)
+                .phantom(false)
+                .background(getGUITextureSet().getItemSlot())
+                .widgetCreator(SlotWidget::new)
+                .build()
+                .setPos(7, 7));
+        return builder.build();
+    }
+
+    @Override
+    public void setInventorySlotContents(int aIndex, ItemStack aStack) {
+        super.setInventorySlotContents(aIndex, aStack);
+        if (aIndex >= MAX_PATTERN_COUNT) return;
+        onPatternChange(aIndex, aStack);
+        needPatternSync = true;
+    }
+
+    @Override
+    public String getCustomName() {
+        return customName;
+    }
+
+    @Override
+    public boolean hasCustomName() {
+        return customName != null && !this.customName.isEmpty();
+    }
+
+    @Override
+    public void setCustomName(String name) {
+        customName = name;
+    }
+
+    @Override
+    public Optional<IDualInputInventory> getFirstNonEmptyInventory() {
+        for (PatternSlot<SuperCraftingInputHatchME> slot : internalInventory) {
+            if (slot != null && !slot.isEmpty()) return Optional.of(slot);
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean supportsFluids() {
+        return this.supportFluids;
+    }
+
+    @Override
+    public List<ItemStack> getItemsForHoloGlasses() {
+        List<ItemStack> list = new ArrayList<>();
+        for (PatternSlot<SuperCraftingInputHatchME> slot : internalInventory) {
+            if (slot == null) continue;
+
+            IAEItemStack[] outputs = slot.getPatternDetails()
+                .getCondensedOutputs();
+            list.add(outputs[0].getItemStack());
+        }
+        return list;
+    }
+
+    public void doublePatterns(int val) {
+        boolean fast = (val & 1) != 0;
+        boolean backwards = (val & 2) != 0;
+        CraftingGridCache.pauseRebuilds();
+        try {
+            IInventory patterns = this.getPatterns();
+            TileEntity te = this.getTileEntity();
+            for (int i = 0; i < patterns.getSizeInventory(); i++) {
+                ItemStack stack = patterns.getStackInSlot(i);
+                if (stack != null && stack.getItem() instanceof ICraftingPatternItem cpi) {
+                    ICraftingPatternDetails details = cpi.getPatternForItem(stack, te.getWorldObj());
+                    if (details != null && !details.isCraftable()) {
+                        int max = backwards ? PatternMultiplierHelper.getMaxBitDivider(details)
+                            : PatternMultiplierHelper.getMaxBitMultiplier(details);
+                        if (max > 0) {
+                            ItemStack copy = stack.copy();
+                            PatternMultiplierHelper
+                                .applyModification(copy, (fast ? Math.min(3, max) : 1) * (backwards ? -1 : 1));
+                            patterns.setInventorySlotContents(i, copy);
+                        }
+                    }
+                }
+            }
+        } catch (Throwable ignored) {}
+        CraftingGridCache.unpauseRebuilds();
+    }
+}
